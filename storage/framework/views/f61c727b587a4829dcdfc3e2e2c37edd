@@ -1,0 +1,90 @@
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('forum::partials.breadcrumbs', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<h2><?php echo e(trans('forum::base.index')); ?></h2>
+
+<?php foreach($categories as $category): ?>
+
+<table class="table table-index">
+    <thead>
+        <tr>
+            <th><?php echo e(trans('forum::base.category')); ?></th>
+            <th><?php echo e(trans('forum::base.threads')); ?></th>
+            <th><?php echo e(trans('forum::base.posts')); ?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p class="lead"><a href="<?php echo e($category->route); ?>"><?php echo e($category->title); ?></a></p>
+                <?php echo e($category->subtitle); ?>
+
+
+                <?php if($category->newestThread): ?>
+				<div class="text-muted">
+                    <br>
+                    <?php echo e(trans('forum::base.newest_thread')); ?>:
+                    <a href="<?php echo e($category->newestThread->route); ?>">
+                        <?php echo e($category->newestThread->title); ?>
+
+                        (<?php echo e($category->newestThread->authorName); ?>)</a>
+                    <br>
+                    <?php echo e(trans('forum::base.last_post')); ?>:
+                    <a href="<?php echo e($category->latestActiveThread->lastPost->route); ?>">
+                        <?php echo e($category->latestActiveThread->title); ?>
+
+                        (<?php echo e($category->latestActiveThread->lastPost->authorName); ?>)</a>
+				</div>
+                <?php endif; ?>
+            </td>
+            <td><?php echo e($category->threadCount); ?></td>
+            <td><?php echo e($category->postCount); ?></td>
+        </tr>
+        <?php if(!$category->subcategories->isEmpty()): ?>
+        <tr>
+            <td><?php echo e(trans('forum::base.subcategories')); ?></td>
+            <th><?php echo e(trans('forum::base.threads')); ?></th>
+            <th><?php echo e(trans('forum::base.posts')); ?></th>
+        </tr>
+        <?php foreach($category->subcategories as $subcategory): ?>
+        <tr>
+            <td>
+                <a href="<?php echo e($subcategory->route); ?>"><?php echo e($subcategory->title); ?></a>
+                <br>
+                <?php echo e($subcategory->subtitle); ?>
+
+                <?php if($subcategory->newestThread): ?>
+				<div class="text-muted">
+                    <br>
+                    <?php echo e(trans('forum::base.newest_thread')); ?>:
+                    <a href="<?php echo e($subcategory->newestThread->route); ?>">
+                        <?php echo e($subcategory->newestThread->title); ?>
+
+                        (<?php echo e($subcategory->newestThread->authorName); ?>)</a>
+                    <br>
+                    <?php echo e(trans('forum::base.last_post')); ?>:
+                    <a href="<?php echo e($subcategory->latestActiveThread->lastPost->route); ?>">
+                        <?php echo e($subcategory->latestActiveThread->title); ?>
+
+                        (<?php echo e($subcategory->latestActiveThread->lastPost->authorName); ?>)</a>
+				</div>
+                <?php endif; ?>
+            </td>
+            <td><?php echo e($subcategory->threadCount); ?></td>
+            <td><?php echo e($subcategory->postCount); ?></td>
+        </tr>
+        <?php endforeach; ?>
+        <?php else: ?>
+        <tr>
+            <th colspan="3">
+                <?php echo e(trans('forum::base.no_categories')); ?>
+
+            </th>
+        </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
+<?php endforeach; ?>
+<?php $__env->stopSection(true); ?>
+
+<?php echo $__env->make('forum::layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

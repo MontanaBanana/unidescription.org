@@ -1,0 +1,4 @@
+<?php if(!is_null($category->parent)): ?>
+    <?php echo $__env->make('forum::partials.breadcrumb-categories', ['category' => $category->parent], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<?php endif; ?>
+<li><a href="<?php echo e($category->route); ?>"><?php echo e($category->title); ?></a></li>

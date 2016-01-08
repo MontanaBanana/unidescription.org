@@ -1,0 +1,135 @@
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('forum::partials.breadcrumbs', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<h2><?php echo e($category->title); ?></h2>
+
+<?php if(!$category->subcategories->isEmpty()): ?>
+<table class="table table-category">
+	<thead>
+		<tr>
+			<th><?php echo e(trans('forum::base.category')); ?></th>
+			<th class="col-md-2"><?php echo e(trans('forum::base.threads')); ?></th>
+			<th class="col-md-2 text-right"><?php echo e(trans('forum::base.posts')); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach($category->subcategories as $subcategory): ?>
+		<tr>
+			<td>
+				<a href="<?php echo e($subcategory->route); ?>"><?php echo e($subcategory->title); ?></a>
+				<br>
+				<?php echo e($subcategory->subtitle); ?>
+
+				<?php if($subcategory->newestThread): ?>
+					<br>
+					<?php echo e(trans('forum::base.newest_thread')); ?>:
+					<a href="<?php echo e($subcategory->newestThread->route); ?>">
+						<?php echo e($subcategory->newestThread->title); ?>
+
+						(<?php echo e($subcategory->newestThread->authorName); ?>)
+					</a>
+					<br>
+					<?php echo e(trans('forum::base.last_post')); ?>:
+					<a href="<?php echo e($subcategory->latestActiveThread->lastPost->route); ?>">
+						<?php echo e($subcategory->latestActiveThread->title); ?>
+
+						(<?php echo e($subcategory->latestActiveThread->lastPost->authorName); ?>)
+					</a>
+				<?php endif; ?>
+			</td>
+			<td><?php echo e($subcategory->threadCount); ?></td>
+			<td class="text-right"><?php echo e($subcategory->postCount); ?></td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+<?php endif; ?>
+
+<div class="row">
+	<div class="col-xs-4">
+		<?php if($category->canPost): ?>
+		<a href="<?php echo e($category->newThreadRoute); ?>" class="btn btn-primary"><?php echo e(trans('forum::base.new_thread')); ?></a>
+		<?php endif; ?>
+	</div>
+	<div class="col-xs-8 text-right">
+		<?php echo $category->pageLinks; ?>
+
+	</div>
+</div>
+
+<table class="table table-thread">
+	<thead>
+		<tr>
+			<th><?php echo e(trans('forum::base.subject')); ?></th>
+			<th class="col-md-2 text-right"><?php echo e(trans('forum::base.views')); ?></th>
+			<th class="col-md-2 text-right"><?php echo e(trans('forum::base.replies')); ?></th>
+			<th class="col-md-2 text-right"><?php echo e(trans('forum::base.last_post')); ?></th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php if(!$category->threadsPaginated->isEmpty()): ?>
+			<?php foreach($category->threadsPaginated as $thread): ?>
+				<tr>
+					<td>
+						<span class="pull-right">
+							<?php if($thread->locked): ?>
+								<span class="label label-danger"><?php echo e(trans('forum::base.locked')); ?></span>
+							<?php endif; ?>
+							<?php if($thread->pinned): ?>
+								<span class="label label-info"><?php echo e(trans('forum::base.pinned')); ?></span>
+							<?php endif; ?>
+							<?php if($thread->userReadStatus): ?>
+								<span class="label label-primary"><?php echo e(trans($thread->userReadStatus)); ?></span>
+							<?php endif; ?>
+						</span>
+						<p class="lead">
+							<a href="<?php echo e($thread->route); ?>"><?php echo e($thread->title); ?></a>
+						</p>
+						<p><?php echo e($thread->authorName); ?> <span class="text-muted">(<?php echo e($thread->posted); ?>)</span></p>
+					</td>
+					<td class="text-right">
+					    <?php echo e($thread->viewCount); ?>
+
+					</td>
+					<td class="text-right">
+					    <?php echo e($thread->replyCount); ?>
+
+					</td>
+					<td class="text-right">
+					    <?php echo e($thread->lastPost->authorName); ?>
+
+						<p class="text-muted">(<?php echo e($thread->lastPost->posted); ?>)</p>
+						<a href="<?php echo e(URL::to( $thread->lastPostRoute )); ?>" class="btn btn-primary btn-xs"><?php echo e(trans('forum::base.view_post')); ?> &raquo;</a>
+					</td>
+				</tr>
+			<?php endforeach; ?>
+		<?php else: ?>
+			<tr>
+				<td>
+					<?php echo e(trans('forum::base.no_threads')); ?>
+
+				</td>
+				<td colspan="2">
+					<?php if($category->canPost): ?>
+						<a href="<?php echo e($category->newThreadRoute); ?>"><?php echo e(trans('forum::base.first_thread')); ?></a>
+					<?php endif; ?>
+				</td>
+			</tr>
+		<?php endif; ?>
+	</tbody>
+</table>
+
+<div class="row">
+	<div class="col-xs-4">
+		<?php if($category->canPost): ?>
+		<a href="<?php echo e($category->newThreadRoute); ?>" class="btn btn-primary"><?php echo e(trans('forum::base.new_thread')); ?></a>
+		<?php endif; ?>
+	</div>
+	<div class="col-xs-8 text-right">
+		<?php echo $category->pageLinks; ?>
+
+	</div>
+</div>
+<?php $__env->stopSection(true); ?>
+
+<?php echo $__env->make('forum::layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

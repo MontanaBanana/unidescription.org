@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js" crossorigin="anonymous"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+		
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+	</head>
+	<body style="padding: 0 5px 0 5px;">
+		<div class="row">
+	    	<div class="col-md-12">
+				<h1>
+					Jenny Lake
+				</h1>
+				<p>
+					Tour the Jenny Lake Historic District to learn about the roles of the Civilian Conservation Corps, mountaineering and visitors to this beautiful spot.
+				</p>
+				
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+			  
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="orientation-heading">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#orientation" aria-expanded="false" aria-controls="orientation">
+				          Orientation
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="orientation" class="panel-collapse collapse" role="tabpanel" aria-labelledby="orientation-heading">
+				      <div class="panel-body">
+				        <b>Begin your tour with an orientation to the Jenny Lake Historic District.</b><br />
+				          <audio controls>
+						  	<source src='audio/grte-Jenny_Lake_orientation.mp3' type='audio/mpeg'>
+						  </audio>
+						  <p>
+							  Transcription of audio here...
+						  </p>
+				      </div>
+				    </div>
+				  </div>
+
+				  <div class="panel panel-default">
+				    <div class="panel-heading" role="tab" id="visitor-heading">
+				      <h4 class="panel-title">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#visitor" aria-expanded="false" aria-controls="visitor">
+				          Visitor Center
+				        </a>
+				      </h4>
+				    </div>
+				    <div id="visitor" class="panel-collapse collapse" role="tabpanel" aria-labelledby="visitor-heading">
+				      <div class="panel-body">
+					  		<b>The Jenny Lake Visitor Center has a whole history to tell from being a photography studio, store and now visitor center.</b><br />
+					  		<audio controls>
+						  		<source src='audio/grte-JLVC.mp3' type='audio/mpeg'>
+						  </audio>
+						  <p>
+							  Transcription of audio here...
+						  </p>
+				      </div>
+				    </div>
+				  </div>
+
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="ranger-heading">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#ranger" aria-expanded="false" aria-controls="ranger">
+			          Ranger Station
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="ranger" class="panel-collapse collapse" role="tabpanel" aria-labelledby="ranger-heading">
+			      <div class="panel-body">
+			        <b>Mountaineering has been a popular activity in the park for almost a hundred years.</b><br />
+			        <audio controls>
+						<source src='audio/grte-JLRS.mp3' type='audio/mpeg'>
+				 	</audio>
+					<p>
+					  Transcription of audio here...
+					</p>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="civilian-heading">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#civilian" aria-expanded="false" aria-controls="civilian">
+			          Civilian Conservation Corps Camp
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="civilian" class="panel-collapse collapse" role="tabpanel" aria-labelledby="civilian-heading">
+			      <div class="panel-body">
+				  	<b>The Civilian Conservation Corps helped construct facilities throughout the park and remove dead trees from the shores of Jackson Lake during the Great Depression.</b><br />
+				  	<audio controls>
+					  	<source src='audio/grte-CCC.mp3' type='audio/mpeg'>
+					</audio>
+					<p>
+						  Transcription of audio here...
+					</p>
+			      </div>
+			    </div>
+			  </div>
+
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="planning-heading">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#planning" aria-expanded="false" aria-controls="planning">
+			          Planning Your Visit
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="planning" class="panel-collapse collapse" role="tabpanel" aria-labelledby="planning-heading">
+			      <div class="panel-body">
+				  	<b>Operating Hours &amp; Seasons</b><br />  
+				  	<audio controls>
+					  	<source src='audio/operating_hours.wav' type='audio/wav'>
+					</audio>
+					<p>
+						Grand Teton National Park is open twenty-four hours every day, year-round. Seasonal road closures may limit auto access to some areas in the park during the winter. Highway 89/26/191/287 from Jackson, WY to Flagg Ranch and the park's East boundary is open year-round.<br/><br/>
+
+						<b>SEASONAL ROAD CLOSURES</b><br/>
+						The Teton Park Road from Taggart Lake Trailhead to the Signal Mountain Lodge and the Moose-Wilson Road from the Death Canyon Trailhead to the Granite Canyon Trailhead are closed to motorized vehicles from November 1st through April 30th. The Antelope Flats Road and Signal Mountain Summit Road are also closed during this period. In the John D. Rockefeller, Jr. Memorial Parkway the Grassy Lake Road and Highway 89/191/287 between Flagg Ranch and Yellowstone's South Entrance is closed to cars during the winter, but open for travel by snowmobile. For more information about snowmobile use and visiting the park during the winter visit our Winter Trip Planner page.<br/><br/>
+						
+						<b>YELLOWSTONE ROADS</b><br/>
+						For Yellowstone National Park road information, check online at www.nps.gov/yell or phone (307) 344-2117. During winter, the roads in Yellowstone are closed to motorized vehicles except the road from Mammoth Hot Springs to Cooke City, MT.<br/><br/>
+						
+						<b>PATHWAY CLOSURES</b><br/>
+						Construction has begun on the next phase of the park's multi-use pathway system - a 1.25 mile long segment from Moose Junction to Antelope Flats Road junction. This new segment is expected to be completed in late fall 2015 and be open to the public in spring 2016.<br/>
+					</p>
+					<b>Colter Bay Trip Planner</b><br />
+				  	<audio controls>
+					  	<source src='audio/colter_bay.wav' type='audio/wav'>
+					</audio>
+					<p>
+						  Explore the Colter Bay District in northern Grand Teton National Park, 25 miles north of Moose and 20 miles south of Yellowstone National Park. Enjoy a variety of trails, activities, scenic drives and ranger programs as well as stunning views of the Teton Range across Jackson Lake. Visit the Colter Bay Visitor Center for trip planning information and new exhibits. The renovated visitor center includes 35 items from the David T. Vernon Collection that have never been on display before, geology and climate interpretive panels on the back deck, and new orientation displays. Stop by the Flagg Ranch Information Station located 17 miles north of Colter Bay for a quick overview of the park. Hike along the shores of Jackson Lake or venture to Grand View Point above Two Ocean and Emma Matilda lakes. Drive scenic roads looking for wildlife or the mountains reflected in the Snake River or Jackson Lake during morning calm. For a cozy evening of camping, pitch your tent or park your RV at the Colter Bay or Lizard Creek campgrounds, or hook-up your rig at the Colter Bay RV Park. The Colter Bay area remains car-accessible year-round, but the visitor center is only open from early May to early October.
+					</p>
+			      </div>
+			    </div>
+			  </div>
+			  
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="accessibility-heading">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#accessibility" aria-expanded="false" aria-controls="accessibility">
+			          Accessibility
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="accessibility" class="panel-collapse collapse" role="tabpanel" aria-labelledby="accessibility-heading">
+			      <div class="panel-body">
+				  	<b>Accessibility</b><br />
+				  	<audio controls>
+					  	<source src='audio/accessibility.wav' type='audio/wav'>
+					</audio>
+					<p>
+						The Craig Thomas Discovery & Visitor Center, Jenny Lake and Colter Bay visitor centers and the Flagg Ranch Information Station provide accessible restrooms, TDD, parking spaces, curb cuts and entrances. Exhibits at Colter Bay and Jenny Lake visitor centers may require assistance. View the Accessibility brochure for detailed information. We also have a large font Accessibility brochure available. TDD is (307) 739-3400.<br/><br/>
+
+Many accessible interpretive activities are listed in the park newspaper. Campgrounds at Gros Ventre, Jenny Lake (partially accessible restrooms) and Colter Bay (partially accessible restrooms) are located on relatively flat terrain. Lizard Creek and Signal Mountain campgrounds are hilly and access is more difficult. Inquire for most accessible sites. Eight campsites along Grassy Lake Road, west of Flagg Ranch, provide easy access by vehicle and accessible vault toilets. The Headwaters Lodge & Cabins at Flagg Ranch have camping and RV sites that provide accessible facilities.<br/><br/>
+
+All lodging facilities provide some units that are accessible except the American Alpine Club Climber's Ranch. Please contact each facility for assistance and reservations. Restaurants with accessible facilities are located at Flagg Ranch, Leeks Marina, Colter Bay, Signal Mountain Lodge, Jackson Lake Lodge and Jenny Lake Lodge.<br/><br/>
+
+A few trails are accessible, with asphalt surfaces, appropriate grades and good views including Colter Bay headwall, Jackson Lake Dam overview, Menors Ferry Historic District, and the Jenny Lake shore trail. Persons with disabilities may use any type of assistive technology to access the park.
+Wayside exhibits and overlooks have curb cuts and designated parking.
+					</p>
+			      </div>
+			    </div>
+			  </div>
+			  
+			  
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="contact-heading">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#contact" aria-expanded="false" aria-controls="contact">
+			          Contact
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="contact" class="panel-collapse collapse" role="tabpanel" aria-labelledby="contact-heading">
+			      <div class="panel-body">
+				  	<b>Contact Information</b><br />
+				  	<audio controls>
+					  	<source src='audio/contact.wav' type='audio/wav'>
+					</audio>
+					<p>
+						<b>By Mail</b><br/>
+						Grand Teton National Park<br/>
+						P.O. Drawer 170<br/>
+						Moose, WY 83012-0170<br/><br/>
+						
+						<b>By Phone</b><br/> 
+						Information<br/>
+						(307) 739-3300<br/><br/>
+						
+						<b>Information for the Hearing Impaired (TDD)</b><br/>
+						TDD is a telecommunications device for the deaf and requires an electronic device for text communication via a phone line at (307) 739-3400
+					</p>
+			      </div>
+			    </div>
+			  </div>
+
+			</div>
+	    </div>
+	  </div>
+	  
+    </div>
+  </body>
+</html>

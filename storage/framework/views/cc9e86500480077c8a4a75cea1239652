@@ -1,0 +1,11 @@
+Hello,
+
+<p>You were invited to collaborate on <?php echo e($project->title); ?> by <a href="mailto:<?php echo e($invited_by->email); ?>"><?php echo e($invited_by->name); ?></a> on the <a href="<?php echo e(url('/')); ?>">UniDescription</a> website.</p>
+
+<p><a href="<?php echo e(url('/auth/login')); ?>">Click here to login</a>. </p>
+
+<p>Password: <?php echo e($password); ?></p>
+
+<p>Thanks!<br />
+- The UniDescription team<br />
+<a href="<?php echo e(url('/')); ?>">www.unidescription.com</a></p>

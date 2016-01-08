@@ -1,0 +1,7 @@
+<div class="alert alert-<?php echo e($type); ?> alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <div class="message">
+        <?php echo $message; ?>
+
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<?php $__env->startSection('content'); ?>
+
+
+        <!-- Page Heading/Breadcrumbs -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">My Projects
+                    <small>list of your projects</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/account">Account</a></li>
+                    <li class="active">My Projects</li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project Listing -->
+        <?php $projects = Auth::user()->all_projects(); ?>
+        <?php foreach($projects as $project): ?>
+        	<!-- row -->
+	        <div class="row">
+	            <div class="col-md-5">
+					<a href="/account/project/edit/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">
+	                    <img class="img-responsive img-hover thumbnail" src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
+	                </a>
+	            </div>
+	            <div class="col-md-7">
+	                <h3><?php echo e($project->title); ?></h3>
+	                <small>
+	                	Created: <?php echo e(date('F jS, Y', strtotime($project->created_at))); ?><br />
+						Updated: <?php echo e(date('F jS, Y', strtotime($project->updated_at))); ?>
+
+					</small>
+	                <p>
+		            	<?php echo e($project->description); ?>
+
+	                </p>
+	                <a class="btn btn-primary" href="/account/project/edit/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">View Project</i></a>
+	            </div>
+	        </div>
+	        <!-- /.row -->
+	        <hr />
+        <?php endforeach; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

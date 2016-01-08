@@ -1,0 +1,28 @@
+<tr>
+    <td <?php echo e($category->threadsEnabled ? '' : 'colspan=5'); ?>>
+        <p class="<?php echo e(isset($titleClass) ? $titleClass : ''); ?>"><a href="<?php echo e($category->route); ?>"><?php echo e($category->title); ?></a></p>
+        <span class="text-muted"><?php echo e($category->description); ?></span>
+    </td>
+    <?php if($category->threadsEnabled): ?>
+        <td><?php echo e($category->threadCount); ?></td>
+        <td><?php echo e($category->postCount); ?></td>
+        <td>
+            <?php if($category->newestThread): ?>
+                <a href="<?php echo e($category->newestThread->route); ?>">
+                    <?php echo e($category->newestThread->title); ?>
+
+                    (<?php echo e($category->newestThread->authorName); ?>)
+                </a>
+            <?php endif; ?>
+        </td>
+        <td>
+            <?php if($category->latestActiveThread): ?>
+                <a href="<?php echo e($category->latestActiveThread->lastPost->url); ?>">
+                    <?php echo e($category->latestActiveThread->title); ?>
+
+                    (<?php echo e($category->latestActiveThread->lastPost->authorName); ?>)
+                </a>
+            <?php endif; ?>
+        </td>
+    <?php endif; ?>
+</tr>

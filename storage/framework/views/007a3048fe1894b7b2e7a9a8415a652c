@@ -1,0 +1,32 @@
+<?php $__env->startSection('breadcrumbs'); ?>
+    <ol class="breadcrumb">
+        <li class="active">Forums</li>
+    </ol>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <h1><?php echo e(isset($sitename) ? $sitename : 'Laravel'); ?> Forums</h1>
+
+    <?php if(isset($categories) && !empty($categories)): ?>
+        <table class="table">
+        <?php foreach($categories as $cat): ?>
+                <thead>
+                    <tr>
+                        <th><?php echo e($cat->name); ?></th>
+                        <th>Posts</th>
+                    </tr>
+                </thead>
+                <?php foreach($cat->forums as $forum): ?>
+                    <tr class="forum">
+                        <td><a href="<?php echo e(route('laravel-forum.view', ['id' => $forum->id])); ?>"><?php echo e($forum->name); ?></a> <small>- <?php echo e($forum->description); ?></small></td>
+                        <td><?php echo e($forum->getThreadCount()); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+        <?php endforeach; ?>
+        </table>
+    <?php else: ?>
+        You have no forum categories yet.
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($layout, array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

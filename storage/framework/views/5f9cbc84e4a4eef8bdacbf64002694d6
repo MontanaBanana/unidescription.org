@@ -1,0 +1,39 @@
+<?php /* $category is passed as NULL to the master layout view to prevent it from showing in the breadcrumbs */ ?>
+
+
+<?php $__env->startSection('content'); ?>
+    <?php if (Gate::check('createCategories')): ?>
+        <?php echo $__env->make('forum::category.partials.form-create', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php endif; ?>
+
+    <h2><?php echo e(trans('forum::general.index')); ?></h2>
+
+    <?php foreach($categories as $category): ?>
+        <table class="table table-index">
+            <thead>
+                <tr>
+                    <th><?php echo e(trans_choice('forum::categories.category', 1)); ?></th>
+                    <th class="col-md-2"><?php echo e(trans_choice('forum::threads.thread', 2)); ?></th>
+                    <th class="col-md-2"><?php echo e(trans_choice('forum::posts.post', 2)); ?></th>
+                    <th class="col-md-2"><?php echo e(trans('forum::threads.newest')); ?></th>
+                    <th class="col-md-2"><?php echo e(trans('forum::posts.last')); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php echo $__env->make('forum::category.partials.list', ['titleClass' => 'lead'], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </tr>
+                <?php if(!$category->children->isEmpty()): ?>
+                    <tr>
+                        <th colspan="5"><?php echo e(trans('forum::categories.subcategories')); ?></th>
+                    </tr>
+                    <?php foreach($category->children as $subcategory): ?>
+                        <?php echo $__env->make('forum::category.partials.list', ['category' => $subcategory], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    <?php endforeach; ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('forum::master', ['category' => null], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

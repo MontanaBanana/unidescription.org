@@ -1,0 +1,113 @@
+<?php $__env->startSection('content'); ?>
+    <div id="thread">
+        <h2>
+            <?php if($thread->trashed()): ?>
+                <span class="label label-danger"><?php echo e(trans('forum::general.deleted')); ?></span>
+            <?php endif; ?>
+            <?php if($thread->locked): ?>
+                <span class="label label-warning"><?php echo e(trans('forum::threads.locked')); ?></span>
+            <?php endif; ?>
+            <?php if($thread->pinned): ?>
+                <span class="label label-info"><?php echo e(trans('forum::threads.pinned')); ?></span>
+            <?php endif; ?>
+            <?php echo e($thread->title); ?>
+
+        </h2>
+
+        <hr>
+
+        <?php if (Gate::check('manageThreads', $category)): ?>
+            <form action="<?php echo e(route('forum.thread.update', $thread->id)); ?>" method="POST" data-actions-form>
+                <?php echo csrf_field(); ?>
+
+                <?php echo method_field('patch'); ?>
+
+
+                <?php echo $__env->make('forum::thread.partials.actions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </form>
+        <?php endif; ?>
+
+        <?php if (Gate::check('deletePosts', $thread)): ?>
+            <form action="<?php echo e(route('forum.bulk.post.update')); ?>" method="POST" data-actions-form>
+                <?php echo csrf_field(); ?>
+
+                <?php echo method_field('delete'); ?>
+
+        <?php endif; ?>
+
+        <?php if (Gate::check('reply', $thread)): ?>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="btn-group" role="group">
+                        <a href="<?php echo e($thread->replyRoute); ?>" class="btn btn-primary"><?php echo e(trans('forum::general.new_reply')); ?></a>
+                        <a href="#quick-reply" class="btn btn-primary"><?php echo e(trans('forum::general.quick_reply')); ?></a>
+                    </div>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <?php echo $thread->postsPaginated->render(); ?>
+
+                </div>
+            </div>
+        <?php endif; ?>
+
+        <table class="table <?php echo e($thread->trashed() ? 'deleted' : ''); ?>">
+            <thead>
+                <tr>
+                    <th class="col-md-2">
+                        <?php echo e(trans('forum::general.author')); ?>
+
+                    </th>
+                    <th>
+                        <?php echo e(trans_choice('forum::posts.post', 1)); ?>
+
+                        <?php if (Gate::check('deletePosts', $thread)): ?>
+                            <span class="pull-right">
+                                <input type="checkbox" data-toggle-all>
+                            </span>
+                        <?php endif; ?>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($thread->postsPaginated as $post): ?>
+                    <?php echo $__env->make('forum::post.partials.list', compact('post'), array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <?php if (Gate::check('deletePosts', $thread)): ?>
+                <?php echo $__env->make('forum::thread.partials.post-actions', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            </form>
+        <?php endif; ?>
+
+        <?php echo $thread->postsPaginated->render(); ?>
+
+
+        <?php if (Gate::check('reply', $thread)): ?>
+            <h3><?php echo e(trans('forum::general.quick_reply')); ?></h3>
+            <div id="quick-reply">
+                <form method="POST" action="<?php echo e(route('forum.post.store', $thread->id)); ?>">
+                    <?php echo csrf_field(); ?>
+
+
+                    <div class="form-group">
+                        <textarea name="content" class="form-control"><?php echo e(old('content')); ?></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-success pull-right"><?php echo e(trans('forum::general.reply')); ?></button>
+                </form>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('footer'); ?>
+    <script>
+    $('tr input[type=checkbox]').change(function () {
+        var postRow = $(this).closest('tr').prev('tr');
+        $(this).is(':checked') ? postRow.addClass('active') : postRow.removeClass('active');
+    });
+    </script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('forum::master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

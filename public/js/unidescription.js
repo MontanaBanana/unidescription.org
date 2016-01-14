@@ -4,3 +4,53 @@ function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
+
+$(document).ready(function(){
+	
+	// Drag and drop
+	$(document).bind('pageinit', function() {
+		$( "#sortable" ).sortable();
+		$( "#sortable" ).disableSelection();
+		//Refresh list to the end of sort to have a correct display
+		$( "#sortable" ).bind( "sortstop", function(event, ui) {
+			$('#sortable').listview('refresh');
+		});
+	});
+	
+	// Table of contents toggles
+	$( ".table-of-contents ul li ul" ).hide();
+	
+	//$(".table-of-contents .toggle").on("click", function(e){
+	//$(".table-of-contents .toggle").on("tap", function(){
+	//$( ".table-of-contents .toggle" ).click(function(){
+	$(document).on("touchstart click", ".table-of-contents .toggle", function(e){
+		e.preventDefault();
+		var parentItem = $( this ).parent().get( 0 ).id;
+		if( $( "#" + parentItem + " ul" ).length ){
+			if( $( this ).hasClass( "fa-chevron-right" ) ){
+				// hide all others
+				$( ".table-of-contents .toggle.fa-chevron-down" ).addClass( "fa-chevron-right" );
+				$( ".table-of-contents .toggle" ).removeClass( "fa-chevron-down" );
+				$( ".table-of-contents ul li ul" ).hide();
+				
+				$( this ).removeClass( "fa-chevron-right" );
+				$( this ).addClass( "fa-chevron-down" );
+				$( "#" + parentItem + " ul" ).show();
+				
+			} else {
+				$( this ).removeClass( "fa-chevron-down" );
+				$( this ).addClass( "fa-chevron-right" );
+				$( "#" + parentItem + " ul" ).hide();
+			}
+		}
+	});
+	
+	/**
+	 * Table of contents sortable
+	 * https://johnny.github.io/jquery-sortable/
+	 */
+	$(function(){
+		$("#sortable").sortable();
+	});
+	
+});

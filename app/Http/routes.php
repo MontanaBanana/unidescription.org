@@ -11,50 +11,89 @@
 |
 */
 
-$basic_pages = array('index', '404', 'about', 'contact', 'guide', 'faq', 'creator', 'site-map', 'contact', 'privacy-policy', 'license', 'auth/password');
+/**
+ * Select environtment, based on APP_ENV in .env file
+ * site base bath (webroot) can exist in any folder path defined here
+ */
+if (App::environment('jason-local')) {
+	// at ~/Sites/MontanaBanana/unidescription.com
+	define('WEBROOT', 'MontanaBanana/unidescription.com');
+} else if (App::environment('joe-local')) {
+	// at ~/Sites/unidescription.com
+	define('WEBROOT', 'unidescription.com');
+} else if (App::environment('dev')) {
+	// remote site at /dev
+	define('WEBROOT', 'dev');
+} else {
+	// live site in the web root
+	define('WEBROOT', '');
+}
 
-Route::get('/', function () {
+/**
+ * within the code, absolute path to all js/css and other assets include / + WEBROOT if not null
+ * use {{ SITEROOT }} before any images, links, css, js, etc in the views, ex: {{ SITEROOT }}/images/myimage.png
+ * use {{ WEBROOT }} for anything you wish to define your own /'s or in PHP code 
+ */
+define('SITEROOT', (WEBROOT == '' ? '/':'/'.WEBROOT));
+
+$basic_pages = array(
+	'index', 
+	'404', 
+	'about', 
+	'contact', 
+	'guide', 
+	'faq', 
+	'creator', 
+	'site-map', 
+	'contact', 
+	'privacy-policy', 
+	'license', 
+	'auth/password',
+	'comp' // jason's new project comps, standalone
+	);
+
+Route::get(WEBROOT.'/', function () {
     return view('index');
 });
 
-Route::get('/home', function () {
+Route::get(WEBROOT.'/home', function () {
     return view('index');
 });
 
 foreach ($basic_pages as $p) {
-	Route::get("/$p", function () use ($p) {
+	Route::get(WEBROOT."/$p", function () use ($p) {
 	    return view($p);
 	});
 }
 
 // Account routes
-Route::get('account', 'AccountController@index');
-Route::get('account/settings', 'AccountController@getSettings');
-Route::post('account/settings', 'AccountController@postSettings');
+Route::get(WEBROOT.'account', 'AccountController@index');
+Route::get(WEBROOT.'account/settings', 'AccountController@getSettings');
+Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 
 
 // Project routes
-Route::get('account/project', 'ProjectController@index');
-Route::get('account/project/edit/{id}/{title}', 'ProjectController@getEdit');
-Route::post('account/project/edit', 'ProjectController@postEdit');
+Route::get(WEBROOT.'account/project', 'ProjectController@index');
+Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
+Route::post(WEBROOT.'account/project/edit', 'ProjectController@postEdit');
 
-Route::get('/account/project/export/{id}', 'ProjectController@getExport');
+Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
 //Route::get('user/search/{string}', 'UserController@search');
-Route::post('/account/project/share', 'ProjectController@postShare');
+Route::post(WEBROOT.'/account/project/share', 'ProjectController@postShare');
 
 // Authentication routes...
-Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', 'Auth\AuthController@postLogin');
-Route::get('auth/logout', 'Auth\AuthController@getLogout');
+Route::get(WEBROOT.'auth/login', 'Auth\AuthController@getLogin');
+Route::post(WEBROOT.'auth/login', 'Auth\AuthController@postLogin');
+Route::get(WEBROOT.'auth/logout', 'Auth\AuthController@getLogout');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get(WEBROOT.'auth/register', 'Auth\AuthController@getRegister');
+Route::post(WEBROOT.'auth/register', 'Auth\AuthController@postRegister');
 
 // Password reset link request routes...
-Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
+Route::get(WEBROOT.'password/email', 'Auth\PasswordController@getEmail');
+Route::post(WEBROOT.'password/email', 'Auth\PasswordController@postEmail');
 
 // Password reset routes...
-Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-Route::post('password/reset', 'Auth\PasswordController@postReset');
+Route::get(WEBROOT.'password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post(WEBROOT.'password/reset', 'Auth\PasswordController@postReset');

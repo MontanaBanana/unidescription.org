@@ -149,8 +149,8 @@ return [
          * Third Party Plugin Providers...
          */
         Laravel\Socialite\SocialiteServiceProvider::class,
-        'Riari\Forum\ForumServiceProvider',
-        'Riari\Forum\Frontend\ForumFrontendServiceProvider',
+        //'Riari\Forum\ForumServiceProvider',
+        //'Riari\Forum\Frontend\ForumFrontendServiceProvider',
 
     ],
 

@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <title>UniDescription.com - @yield('title')</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="/css/nps-bootstrap.css">
+    <link rel="stylesheet" href="{{ SITEROOT }}/css/nps-bootstrap.css">
     
     <!-- Custom Fonts -->
-    <link href="/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ SITEROOT }}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -22,21 +22,23 @@
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="http://www.nps.gov/lib/bootstrap/3.3.2/js/nps-bootstrap.min.js"></script>
-    <script type="text/javascript" src="/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="{{ SITEROOT }}/js/bootstrap-filestyle.min.js"></script>
+    <script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>
 
     <!-- Unidescription custom JS -->
-    <script type="text/javascript" src="/js/unidescription.js"></script>
+    <script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js"></script>
 
     
-    <link href="/css/unidescription.css" rel="stylesheet">
+    <link href="{{ SITEROOT }}/css/unidescription.css" rel="stylesheet">
 
 	@yield('header')
     
   </head>
   <body>
-    @section('navbar')
+	@section('navbar')
 	    <!-- Navigation -->
 	    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	        <div class="container">
@@ -48,36 +50,36 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </button>
-	                <a class="navbar-brand" href="/">UniDescription</a>
+	                <a class="navbar-brand" href="{{ SITEROOT }}">UniDescription</a>
 	            </div>
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav navbar-right">
-		                <li><a href="/guide">Guide</a></li>
-	                    <li><a href="/faq">FAQ</a></li>
-	                    <li><a href="/forum">Forum</a></li>
-	                                            <li><a href="/about">About</a></li>
+		                <li><a href="{{ SITEROOT }}/guide">Guide</a></li>
+	                    <li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
+	                    <li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+	                    <li><a href="{{ SITEROOT }}/about">About</a></li>
 
 	                    <?php if (Auth::check()): ?>	                    	
 	                    	<?php $projects = Auth::user()->all_projects(); ?>
 	                    	<li class="dropdown">
-		                        <a href="/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+		                        <a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
-			                        <li><a href="/account">Account Activity</a></li>
-		                        	<li><a href="/account/project/edit/0/new">Create New Project</a></li>
-			                        <li><a href="/account/project">My Projects</a></li>
+			                        <li><a href="{{ SITEROOT }}/account">Account Activity</a></li>
+		                        	<li><a href="{{ SITEROOT }}/account/project/edit/0/new">Create New Project</a></li>
+			                        <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
 			                        @foreach ($projects as $project)
 				                        <li class="small">
-				                        	<a href="/account/project/edit/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
+				                        	<a href="{{ SITEROOT }}/account/project/edit/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
 			                        @endforeach
 			                        <li class="divider"></li>
-		                            <li><a href="/account/settings">Settings</a></li>
-		                            <li><a href="/auth/logout">Sign Out</a></li>
+		                            <li><a href="{{ SITEROOT }}/account/settings">Settings</a></li>
+		                            <li><a href="{{ SITEROOT }}/auth/logout">Sign Out</a></li>
 		                        </ul>
 							</li>							
 						<?php else: ?>
-							<li><a href="/auth/login">Sign In</a></li>
-							<li><a href="/auth/register"><strong>Register</strong></a></li>
+							<li><a href="{{ SITEROOT }}/auth/login">Sign In</a></li>
+							<li><a href="{{ SITEROOT }}/auth/register"><strong>Register</strong></a></li>
 
 						<?php endif; ?>
 	                </ul>
@@ -108,10 +110,10 @@
 		        <div class="row">
 		            <div class="col-lg-12 container">
 			            <div class="pull-left">
-				            <a href="/site-map">Site Map</a> |
-				            <a href="/contact">Contact</a> |
-				            <a href="/privacy-policy">Privacy Policy</a> |
-				            <a href="/license">License</a>
+				            <a href="{{ SITEROOT }}/site-map">Site Map</a> |
+				            <a href="{{ SITEROOT }}/contact">Contact</a> |
+				            <a href="{{ SITEROOT }}/privacy-policy">Privacy Policy</a> |
+				            <a href="{{ SITEROOT }}/license">License</a>
 			            </div>
 			            <div class="pull-right">Copyright &copy; Mobile Media Matters {{ date('Y') }}</div>
 		            </div>
@@ -140,7 +142,7 @@
 	    
     </div>
 
-	@section('js');
+	@section('js')
 	@show
   </body>
 </html>

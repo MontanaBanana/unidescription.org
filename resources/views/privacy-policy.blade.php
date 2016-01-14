@@ -7,7 +7,7 @@
             <div class="col-lg-12">
                 <h1 class="page-header">Privacy Policy</h1>
                 <ol class="breadcrumb">
-                    <li><a href="/">Home</a>
+                    <li><a href="{{ SITEROOT }}">Home</a>
                     </li>
                     <li class="active">Privacy Policy</li>
                 </ol>

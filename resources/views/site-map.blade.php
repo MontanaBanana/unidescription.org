@@ -9,7 +9,7 @@
 	            	<small>Find what you're looking for</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/">Home</a>
+                    <li><a href="{{ SITEROOT }}">Home</a>
                     </li>
                     <li class="active">Site Map</li>
                 </ol>
@@ -21,21 +21,21 @@
 
             <div class="col-lg-12">
 				<ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/guide">Guide</a></li>
-                    <li><a href="/faq">FAQ</a></li>
-                    <li><a href="/forum">Forum</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/auth/login">Sign In</a></li>
-                    <li><a href="/auth/register">Register</a></li>
+                    <li><a href="{{ SITEROOT }}">Home</a></li>
+                    <li><a href="{{ SITEROOT }}/guide">Guide</a></li>
+                    <li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
+                    <li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+                    <li><a href="{{ SITEROOT }}/about">About</a></li>
+                    <li><a href="{{ SITEROOT }}/auth/login">Sign In</a></li>
+                    <li><a href="{{ SITEROOT }}/auth/register">Register</a></li>
                     <li>
                         My Account
                         <ul>
                             <li>
-                                <a href="/account/project">My Projects</a>
+                                <a href="{{ SITEROOT }}/account/project">My Projects</a>
                             </li>
                             <li>
-                                <a href="/account/settings">Settings</a>
+                                <a href="{{ SITEROOT }}/account/settings">Settings</a>
                             </li>
                         </ul>
                     </li>

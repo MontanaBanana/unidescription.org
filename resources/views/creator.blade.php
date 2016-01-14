@@ -9,7 +9,7 @@
                     <small>UniDescription Creator</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="/">Home</a>
+                    <li><a href="{{ SITEROOT }}">Home</a>
                     </li>
                     <li class="active">Creator</li>
                 </ol>

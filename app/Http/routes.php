@@ -20,7 +20,7 @@ if (App::environment('jason-local')) {
 	define('WEBROOT', 'MontanaBanana/unidescription.com');
 } else if (App::environment('joe-local')) {
 	// at ~/Sites/unidescription.com
-	define('WEBROOT', 'unidescription.com');
+	define('WEBROOT', '');
 } else if (App::environment('dev')) {
 	// remote site at /dev
 	define('WEBROOT', 'dev');
@@ -34,7 +34,8 @@ if (App::environment('jason-local')) {
  * use {{ SITEROOT }} before any images, links, css, js, etc in the views, ex: {{ SITEROOT }}/images/myimage.png
  * use {{ WEBROOT }} for anything you wish to define your own /'s or in PHP code 
  */
-define('SITEROOT', (WEBROOT == '' ? '/':'/'.WEBROOT));
+//define('SITEROOT', (WEBROOT == '' ? '/':'/'.WEBROOT));
+define('SITEROOT', '');
 
 $basic_pages = array(
 	'index', 
@@ -76,6 +77,19 @@ Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 Route::get(WEBROOT.'account/project', 'ProjectController@index');
 Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
 Route::post(WEBROOT.'account/project/edit', 'ProjectController@postEdit');
+Route::get(WEBROOT.'account/project/details/{id}/{title}', 'ProjectController@getDetails');
+Route::post(WEBROOT.'account/project/details', 'ProjectController@postDetails');
+
+Route::get(WEBROOT.'account/project/assets/{id}/{title}', 'ProjectController@getAssets');
+Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
+Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
+
+Route::post(WEBROOT.'account/project/completed', 'ProjectController@postCompleted');
+Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
+
+Route::get(WEBROOT.'account/project/section/{id}/{section_id}', 'ProjectController@getSection');
+Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
+Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
 //Route::get('user/search/{string}', 'UserController@search');

@@ -22,7 +22,7 @@ class Project extends Model
     
     public function project_sections()
     {
-        return $this->hasMany('App\ProjectSection');
+        return $this->hasMany('App\ProjectSection')->orderBy('sort_order');
     }
     
     public function is_owner()

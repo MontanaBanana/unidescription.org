@@ -22,7 +22,7 @@
         	<!-- row -->
 	        <div class="row">
 	            <div class="col-md-5">
-					<a href="/account/project/edit/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">
+					<a href="/account/project/details/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">
 	                    <img class="img-responsive img-hover thumbnail" src="<?php echo e($project->image_url); ?>" alt="<?php echo e($project->title); ?>">
 	                </a>
 	            </div>
@@ -37,7 +37,7 @@
 		            	<?php echo e($project->description); ?>
 
 	                </p>
-	                <a class="btn btn-primary" href="/account/project/edit/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">View Project</i></a>
+	                <a class="btn btn-primary" href="/account/project/details/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>">View Project</i></a>
 	            </div>
 	        </div>
 	        <!-- /.row -->

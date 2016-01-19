@@ -273,8 +273,8 @@ div.project .panel.panel-default .panel-body .thumbnail {
 div.project .panel.panel-default .select-template {
 	display:inline-block;
 	padding:8px;
-	width:calc(25% - 12px);
-	margin-right:12px;
+	width:calc(48% - 12px);
+	/*margin-right:12px;*/
 	text-align:center;
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -473,4 +473,9 @@ div.project .tips-column .panel ul.standard-list li a {
 		margin:4px 0px;
 	}
 
+}
+
+span.toc-icon {
+	width: 23px;
+	cursor: pointer;
 }

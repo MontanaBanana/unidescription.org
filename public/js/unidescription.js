@@ -8,14 +8,14 @@ function validateEmail(email) {
 $(document).ready(function(){
 	
 	// Drag and drop
-	$(document).bind('pageinit', function() {
-		$( "#sortable" ).sortable();
+	/*$(document).bind('pageinit', function() {
+		$( "#sortable" ).nestedSortable();
 		$( "#sortable" ).disableSelection();
 		//Refresh list to the end of sort to have a correct display
 		$( "#sortable" ).bind( "sortstop", function(event, ui) {
 			$('#sortable').listview('refresh');
 		});
-	});
+	});*/
 	
 	// Table of contents toggles
 	$( ".table-of-contents ul li ul" ).hide();
@@ -25,13 +25,13 @@ $(document).ready(function(){
 	//$( ".table-of-contents .toggle" ).click(function(){
 	$(document).on("touchstart click", ".table-of-contents .toggle", function(e){
 		e.preventDefault();
-		var parentItem = $( this ).parent().get( 0 ).id;
+		var parentItem = $( this ).parent().parent().get( 0 ).id;
 		if( $( "#" + parentItem + " ul" ).length ){
 			if( $( this ).hasClass( "fa-chevron-right" ) ){
 				// hide all others
-				$( ".table-of-contents .toggle.fa-chevron-down" ).addClass( "fa-chevron-right" );
-				$( ".table-of-contents .toggle" ).removeClass( "fa-chevron-down" );
-				$( ".table-of-contents ul li ul" ).hide();
+				//$( ".table-of-contents .toggle.fa-chevron-down" ).addClass( "fa-chevron-right" );
+				//$( ".table-of-contents .toggle" ).removeClass( "fa-chevron-down" );
+				//$( ".table-of-contents ul li ul" ).hide();
 				
 				$( this ).removeClass( "fa-chevron-right" );
 				$( this ).addClass( "fa-chevron-down" );
@@ -45,12 +45,26 @@ $(document).ready(function(){
 		}
 	});
 	
-	/**
-	 * Table of contents sortable
-	 * https://johnny.github.io/jquery-sortable/
-	 */
-	$(function(){
-		$("#sortable").sortable();
+	$( "#sortable" ).nestedSortable({
+		forcePlaceholderSize: true,
+		handle: 'div',
+		helper:	'clone',
+		items: 'li',
+		opacity: .6,
+		placeholder: 'placeholder',
+		revert: 250,
+		tabSize: 25,
+		tolerance: 'pointer',
+		toleranceElement: '> div',
+		maxLevels: 2,
+		isTree: true,
+		expandOnHover: 700,
+		listType: 'ul',
+		startCollapsed: false
 	});
-	
+	$( "#sortable" ).disableSelection();
+	//Refresh list to the end of sort to have a correct display
+	//$( "#sortable" ).bind( "sortstop", function(event, ui) {
+	//	$('#sortable').listview('refresh');
+	//});
 });

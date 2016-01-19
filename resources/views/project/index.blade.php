@@ -24,7 +24,7 @@
         	<!-- row -->
 	        <div class="row">
 	            <div class="col-md-5">
-					<a href="/account/project/edit/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
+					<a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
 	                    <img class="img-responsive img-hover thumbnail" src="{{ $project->image_url }}" alt="{{ $project->title }}">
 	                </a>
 	            </div>
@@ -37,7 +37,7 @@
 	                <p>
 		            	{{ $project->description }}
 	                </p>
-	                <a class="btn btn-primary" href="/account/project/edit/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">View Project</i></a>
+	                <a class="btn btn-primary" href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">View Project</i></a>
 	            </div>
 	        </div>
 	        <!-- /.row -->

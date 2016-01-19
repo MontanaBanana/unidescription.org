@@ -26,7 +26,9 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script type="text/javascript" src="http://www.nps.gov/lib/bootstrap/3.3.2/js/nps-bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/bootstrap-filestyle.min.js"></script>
-    <script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>
+    <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>-->
+    <script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>
+
 
     <!-- Unidescription custom JS -->
     <script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js"></script>
@@ -66,7 +68,7 @@
 		                        <a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 			                        <li><a href="{{ SITEROOT }}/account">Account Activity</a></li>
-		                        	<li><a href="{{ SITEROOT }}/account/project/edit/0/new">Create New Project</a></li>
+		                        	<li><a href="{{ SITEROOT }}/account/project/details/0/new">Create New Project</a></li>
 			                        <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
 			                        @foreach ($projects as $project)
 				                        <li class="small">

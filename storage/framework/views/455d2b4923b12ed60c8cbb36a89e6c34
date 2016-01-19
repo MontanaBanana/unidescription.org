@@ -12,21 +12,21 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('/slideshow/interview.jpg');"></div>
+                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/interview.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Why make audio descriptions?</h2>
                     <p>What are audio descriptions? Why are they important?<br/><a href="#" class="btn btn-default">Learn more!</a></p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('/slideshow/ww2_vet.jpg');"></div>
+                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/ww2_vet.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Best practices</h2>
-                    <p>You know why audio descriptions are important, but do you know the best way to create them? Our online forum will has the answers you need!<br/><a href="/forum" class="btn btn-default">Join the forum!</a></p>
+                    <p>You know why audio descriptions are important, but do you know the best way to create them? Our online forum will has the answers you need!<br/><a href="<?php echo e(SITEROOT); ?>/forum" class="btn btn-default">Join the forum!</a></p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('/slideshow/learning.jpg');"></div>
+                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/learning.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>App store help</h2>
                     <p>Uploading apps to the Google and iOS stores can be confusing. Read, watch, and listen to our guides!<br/><a href="#" class="btn btn-default">View our guides!</a></p>
@@ -95,23 +95,28 @@
                 <h2 class="page-header">Our favorite audio descriptions</h2>
             </div>
             <?php
-	            $dh = opendir($_SERVER['DOCUMENT_ROOT'].'/portfolio/');
-	            $images = array();
-	            while ($file = readdir($dh)) {
-		            if (preg_match("/.jpg$/", $file)) {
-			        	$images[] = $file;
-		            }
-	            }
 	            
-	            foreach ($images as $image) {
-		            ?>
-			            <div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-			                <a href="portfolio-item.html">
-			                    <img class="img-responsive img-portfolio img-hover" src="/portfolio/<?php echo $image; ?>" alt="">
-			                </a>
-			                Lorem ipsum dolor sit amet
-			            </div>
-			        <?
+	            if(is_dir($_SERVER['DOCUMENT_ROOT'].SITEROOT.'/portfolio/')){
+	            
+		            $dh = opendir($_SERVER['DOCUMENT_ROOT'].SITEROOT.'/portfolio/');
+		            $images = array();
+		            while ($file = readdir($dh)) {
+			            if (preg_match("/.jpg$/", $file)) {
+				        	$images[] = $file;
+			            }
+		            }
+		            
+		            foreach ($images as $image) {
+			            ?>
+				            <div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
+				                <a href="<?php echo e(SITEROOT); ?>portfolio-item.html">
+				                    <img class="img-responsive img-portfolio img-hover" src="<?php echo e(SITEROOT); ?>/portfolio/<?php echo $image; ?>" alt="">
+				                </a>
+				                Lorem ipsum dolor sit amet
+				            </div>
+				        <?
+		            }
+
 	            }
 	        ?>
         </div>
@@ -138,7 +143,7 @@
 				<p>Vivamus sit amet odio risus. Fusce maximus ut neque vel efficitur. Aenean commodo tellus sit amet posuere volutpat. Etiam euismod sollicitudin quam, nec venenatis risus mattis sit amet. Quisque in pulvinar neque. Donec laoreet nisi nisi, id pharetra magna cursus ut. Nulla quis ligula sed mauris semper porta. Phasellus rutrum metus in nisl aliquam, a dignissim nunc auctor. Nullam ut urna sed ante volutpat laoreet. Nulla nisl lacus, imperdiet vitae dui et, placerat sodales orci.</p>
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="/images/fifth_ohio.jpg" alt="">
+                <img class="img-responsive" src="<?php echo e(SITEROOT); ?>/images/fifth_ohio.jpg" alt="">
             </div>
         </div>
         <!-- /.row -->

@@ -105,7 +105,7 @@
 														@endif
 														<li>
 															<div class="input-group">
-																<input type="text" class="form-control" placeholder="Enter a page name here..." aria-describedby="section-{{ $section->id }}-add" />
+																<input type="text" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
 																<span class="btn input-group-addon add-page" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}">ADD</span>
 															</div>
 														</li>
@@ -119,7 +119,7 @@
 											<? endforeach; ?>
 											<li id="final-leaf">
 												<div class="input-group">
-													<input type="text" class="form-control" placeholder="Enter a page name here..." aria-describedby="section-0-add" />
+													<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
 													<span class="btn input-group-addon add-page" id="section-0-add" data-project_section_id="0">ADD</span>
 												</div>
 											</li>

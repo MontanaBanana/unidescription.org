@@ -72,7 +72,7 @@
 			                        <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
 			                        @foreach ($projects as $project)
 				                        <li class="small">
-				                        	<a href="{{ SITEROOT }}/account/project/edit/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
+				                        	<a href="{{ SITEROOT }}/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
 			                        @endforeach
 			                        <li class="divider"></li>
 		                            <li><a href="{{ SITEROOT }}/account/settings">Settings</a></li>

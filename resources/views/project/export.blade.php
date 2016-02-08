@@ -40,7 +40,7 @@
 				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 					
 					<?php foreach ($project->section_tree() as $section): ?>
-	
+						<?php if ($section['completed'] && !$section['deleted']): ?>
 				    	<div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="section-{{ $section->id }}-heading">
 						      <h4 class="panel-title">
@@ -58,6 +58,7 @@
 									
 									@if (count($section->children))
 										@foreach ($section->children as $s)
+											@if ($s->completed && !$s->deleted)
 											<p>
 												<b>{{ $s->title }}</b><br />
 												<audio controls>
@@ -65,11 +66,13 @@
 												</audio>
 												<p>{{ $s->description }}</p>
 											</p>
+											@endif
 										@endforeach
 									@endif
 						    	</div><!-- end panel-body -->
 						    </div>
 				    	</div><!-- end panel-default -->
+				    	<?php endif; ?>
 					<?php endforeach; ?>
 			  	</div>
 	    	</div>

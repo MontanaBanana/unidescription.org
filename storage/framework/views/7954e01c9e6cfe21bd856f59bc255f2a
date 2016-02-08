@@ -52,7 +52,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </button>
-	                <a class="navbar-brand" href="<?php echo e(SITEROOT); ?>">UniDescription</a>
+	                <a class="navbar-brand" href="<?php echo e(SITEROOT); ?>/"><img src="/images/unid_logo.png" style="top: -16px; position: relative;" /></a>
 	            </div>
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -65,20 +65,25 @@
 	                    <?php if (Auth::check()): ?>	                    	
 	                    	<?php $projects = Auth::user()->all_projects(); ?>
 	                    	<li class="dropdown">
-		                        <a href="<?php echo e(SITEROOT); ?>/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+		                        <a href="<?php echo e(SITEROOT); ?>/account" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
-			                        <li><a href="<?php echo e(SITEROOT); ?>/account">Account Activity</a></li>
 		                        	<li><a href="<?php echo e(SITEROOT); ?>/account/project/details/0/new">Create New Project</a></li>
+			                        <li class="divider"></li>
 			                        <li><a href="<?php echo e(SITEROOT); ?>/account/project">My Projects</a></li>
 			                        <?php foreach($projects as $project): ?>
 				                        <li class="small">
-				                        	<a href="<?php echo e(SITEROOT); ?>/account/project/edit/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>"><?php echo e($project->title); ?></a></li>
+				                        	<a href="<?php echo e(SITEROOT); ?>/account/project/details/<?php echo e($project->id); ?>/<?php echo e(strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title))); ?>"><?php echo e($project->title); ?></a></li>
 			                        <?php endforeach; ?>
-			                        <li class="divider"></li>
+		                        </ul>
+							</li>	
+	                    	<li class="dropdown">
+		                        <a href="<?php echo e(SITEROOT); ?>/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+		                        <ul class="dropdown-menu">
+			                        <li><a href="<?php echo e(SITEROOT); ?>/account">Account Activity</a></li>
 		                            <li><a href="<?php echo e(SITEROOT); ?>/account/settings">Settings</a></li>
 		                            <li><a href="<?php echo e(SITEROOT); ?>/auth/logout">Sign Out</a></li>
 		                        </ul>
-							</li>							
+							</li>
 						<?php else: ?>
 							<li><a href="<?php echo e(SITEROOT); ?>/auth/login">Sign In</a></li>
 							<li><a href="<?php echo e(SITEROOT); ?>/auth/register"><strong>Register</strong></a></li>

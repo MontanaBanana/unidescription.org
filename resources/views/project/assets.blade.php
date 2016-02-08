@@ -48,7 +48,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Project Details <span class="sr-only">(current)</span></a></li>
+						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li class="active"><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
 					</ul>
@@ -191,17 +191,24 @@
 								</div>
 							</div>
 						</div>
-			        	
+						
+				        @if ($project->id)
 			        	<div class="panel panel-default">
-							<div class="panel-heading">Tip:</div>
+							<div class="panel-heading">Tip: Exporting</div>
 							<div class="panel-body">
 								<!--
 								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
 								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
 								-->
 								<p>Keep track of your app store assets here.</p>
+								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
+								
+								@if ($project->id)
+									<a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
+								@endif
 							</div>
 						</div>
+						@endif
 			          	
 			        </div>
 				</div>

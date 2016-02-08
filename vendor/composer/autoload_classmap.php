@@ -7,7 +7,9 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddAccountImage' => $baseDir . '/database/migrations/2015_12_05_210347_add_account_image.php',
+    'AddProjectDetailColumns' => $baseDir . '/database/migrations/2016_02_08_085652_add_project_detail_columns.php',
     'AddProjectImage' => $baseDir . '/database/migrations/2015_11_28_003646_add_project_image.php',
+    'AddSectionNotes' => $baseDir . '/database/migrations/2016_02_08_072457_add_section_notes.php',
     'CreateForumTableCategories' => $baseDir . '/database/migrations/2014_05_19_151759_create_forum_table_categories.php',
     'CreateForumTablePosts' => $baseDir . '/database/migrations/2014_05_19_152611_create_forum_table_posts.php',
     'CreateForumTableThreads' => $baseDir . '/database/migrations/2014_05_19_152425_create_forum_table_threads.php',

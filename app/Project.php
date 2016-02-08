@@ -8,7 +8,7 @@ use Auth;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'title', 'description', 'image_url'];
+    protected $fillable = ['user_id', 'title', 'description', 'gpo', 'version_number', 'version', 'author', 'publication_date', 'image_url'];
 
     public function users()
     {

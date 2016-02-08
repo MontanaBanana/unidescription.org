@@ -48,7 +48,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Project Details <span class="sr-only">(current)</span></a></li>
+						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 						<li class="active"><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
 					</ul>
@@ -80,10 +80,10 @@
 
 													<div>
 														<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
-														<span class="fa fa-bars"></span>
+														<span class="fa fa-bars" style="cursor: move;" data-toggle="tooltip" data-placement="left" title="Click and drag to re-sort"></span>
 										                <i class="fa fa-chevron-right toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
-														<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
-														<span data-section_id="{{ $section->id }}" class="toc-icon toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+														<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
+														<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 														<!--<span class="label pull-right text-length label-info">Good Text Length</span>-->
 													</div>
 													<ul>
@@ -94,7 +94,7 @@
 																		<input type="hidden" name="sort_order[]" value="{{ $child->id }}" />
 																		<input type="hidden" name="section-{{ $child->id }}-parent" value="{{ $index }}" />
 
-																		<span class="fa fa-bars"></span>
+																		<span class="fa fa-bars" style="cursor: move;" data-toggle="tooltip" data-placement="left" title="Click and drag to re-sort"></span>
 																		<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																		<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
 																		<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
@@ -177,7 +177,7 @@
 						</div>
 			        	
 			        	<div class="panel panel-default">
-							<div class="panel-heading">Tip:</div>
+							<div class="panel-heading">Tip: Table of Contents</div>
 							<div class="panel-body">
 								<!--
 								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
@@ -188,7 +188,22 @@
 							</div>
 						</div>
 			        	
-
+				        @if ($project->id)
+			        	<div class="panel panel-default">
+							<div class="panel-heading">Tip: Exporting</div>
+							<div class="panel-body">
+								<!--
+								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
+								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
+								-->
+								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
+								
+								@if ($project->id)
+									<a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
+								@endif
+							</div>
+						</div>
+						@endif
 
 			          	
 			        </div>
@@ -207,6 +222,18 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+		
+		$('[data-toggle="tooltip"]').tooltip();
+		
+		$('.form-control').bind('keypress', function(e){
+			if ( e.keyCode == 13 ) {
+				//console.log('the span:');
+				//console.log(e.currentTarget.parentElement);
+				$('span', e.currentTarget.parentElement).click();
+				//$( this ).find( 'input[type=submit]:first' ).click();
+				e.preventDefault();
+			}
+		});
 		
 		$('.toc-check-complete').on('click', function(event) {
 			//console.log( $(this).data() );
@@ -288,8 +315,6 @@
 				// Set it not completed
 			}
 			
-			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
-
 	  	});
 	  	
 	  	$('.add-page').on('click', function(event) {
@@ -323,6 +348,8 @@
 		$('.toc-arrow').on('click', function() {
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
+	  	
+	  	$('.fa-chevron-right').click();
 	  	
 	  	
 	  	$('.toc-delete').on('click', function(event) {

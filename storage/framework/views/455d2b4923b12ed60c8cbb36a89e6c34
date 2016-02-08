@@ -12,7 +12,7 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/interview.jpg');"></div>
+                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/ad_photo1.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Why make audio descriptions?</h2>
                     <p>What are audio descriptions? Why are they important?<br/><a href="#" class="btn btn-default">Learn more!</a></p>
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/learning.jpg');"></div>
+                <div class="fill" style="background-image:url('<?php echo e(SITEROOT); ?>/slideshow/ad_photo2.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>App store help</h2>
                     <p>Uploading apps to the Google and iOS stores can be confusing. Read, watch, and listen to our guides!<br/><a href="#" class="btn btn-default">View our guides!</a></p>
@@ -52,47 +52,25 @@
                 <h1 class="page-header">
                     UniDescription - Easily create audio description apps!
                 </h1>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-check"></em> iOS and Android support</strong>
-                    </div>
-                    <div class="panel-body">
-                        <p>The apps we generate are ready for you to upload into the Android and iOS app stores!</p>
-                        <a href="#" class="btn btn-default">Click for our guides!</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-gift"></em> Free &amp; Open Source</strong>
-                    </div>
-                    <div class="panel-body">
-                        <p>This project is available for everyone to use, update, and learn from!</p>
-                        <a href="#" class="btn btn-default">GitHub project page</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-compass"></em> Easy to Use</strong>
-                    </div>
-                    <div class="panel-body">
-                        <p>The UniDescription creator has been designed to make audio description projects as easy to create as possible.</p>
-                        <a href="#" class="btn btn-default">Get started!</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
+            </div>	            
+	    </div>
+	    
+	    <div class="well">
+		    <div class="row">
+		        <div class="col-md-8">
+		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+		        </div>
+		        <div class="col-md-4">
+		            <a class="btn btn-lg btn-default btn-block" href="#">Create Now!</a>
+		        </div>
+		    </div>
+	        <!-- /.row -->
+	    </div>
 
         <!-- Portfolio Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">Our favorite audio descriptions</h2>
+                <h2 class="page-header">Featured Audio Descriptions</h2>
             </div>
             <?php
 	            
@@ -151,15 +129,41 @@
         <hr>
 
         <!-- Call to Action Section -->
-        <div class="well">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn btn-lg btn-default btn-block" href="#">Create Now!</a>
+        <div class="row">         
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong><em class="fa fa-fw fa-check"></em> iOS and Android support</strong>
+                    </div>
+                    <div class="panel-body">
+                        <p>The apps we generate are ready for you to upload into the Android and iOS app stores!</p>
+                        <a href="#" class="btn btn-default">Click for our guides!</a>
+                    </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong><em class="fa fa-fw fa-gift"></em> Free &amp; Open Source</strong>
+                    </div>
+                    <div class="panel-body">
+                        <p>This project is available for everyone to use, update, and learn from!</p>
+                        <a href="#" class="btn btn-default">GitHub project page</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong><em class="fa fa-fw fa-compass"></em> Easy to Use</strong>
+                    </div>
+                    <div class="panel-body">
+                        <p>The UniDescription creator has been designed to make audio description projects as easy to create as possible.</p>
+                        <a href="#" class="btn btn-default">Get started!</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <hr>

@@ -48,7 +48,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Project Details <span class="sr-only">(current)</span></a></li>
+						<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
 					</ul>
@@ -69,19 +69,24 @@
 				        <div class="wrapper">
 										
 				            <!-- project details -->
+				            @if (!$project->id)
+							<input type="hidden" id="chosen_template" name="chosen_template" value="template-none" />
+
 				            <div class="panel panel-default">
 								<div class="panel-heading">Project Template:</div>
 								<div class="panel-body">
-									<div class="select-template" style="float: left;">
+									<div class="select-template selected" style="float: left;" data-template="template-none">
 										<img class="thumbnail" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="">
 										<p>No Template</p>
 									</div>
-									<div class="select-template selected" style="float: right;">
+									<div class="select-template" style="float: right;" data-template="template-nps">
+										<input type="hidden" id="template-nps" value="0" />
 										<img class="thumbnail" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="">
-										<p>NPS Brochure</p>
+										<p>NPS Unigrid Brochure</p>
 									</div>
 								</div>
 							</div>
+							@endif
 			
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -95,7 +100,7 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Project Description:
+									App Store Description:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
 								</div>
 								<div class="panel-body form-element">
@@ -103,6 +108,51 @@
 								</div>
 							</div>
 							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									GPO #:
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="gpo" value="{{ $project->gpo }}" />
+								</div>
+							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Version:
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="version" value="{{ $project->version }}" />
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Version #
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="version_number" value="{{ $project->version_number }}" />
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Author:
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="author" value="{{ $project->author }}" />
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Publication Date:
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" />
+								</div>
+							</div>
+																																			
 							<div class="panel panel-default">
 								<div class="panel-heading">Project Photo:</div>
 								<div class="panel-body white">
@@ -167,8 +217,9 @@
 							</div>
 						</div>
 			        	
+				        @if ($project->id)
 			        	<div class="panel panel-default">
-							<div class="panel-heading">Tip:</div>
+							<div class="panel-heading">Tip: Exporting</div>
 							<div class="panel-body">
 								<!--
 								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
@@ -181,6 +232,7 @@
 								@endif
 							</div>
 						</div>
+						@endif
 
 				        @if ($project->id)
 						<div class="panel panel-default">
@@ -226,6 +278,15 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+		
+		$('.select-template').on('click', function(e) {
+			$('.select-template').removeClass('selected');
+			$(this).addClass('selected');
+			
+			console.log( $(e.currentTarget).data('template') );
+			$('#chosen_template').val( $(e.currentTarget).data('template') );
+			//console.log( $(e).data() );
+		});
 		
 		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 	    

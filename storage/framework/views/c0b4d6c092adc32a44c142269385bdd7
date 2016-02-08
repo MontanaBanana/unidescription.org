@@ -17,7 +17,7 @@
         </h1>-->
 	    <p>&nbsp;</p>
         <ol class="breadcrumb">
-            <li><a href="<?php echo e(SITEROOT); ?>">Home</a></li>
+            <li><a href="<?php echo e(SITEROOT); ?>/">Home</a></li>
             <li><a href="<?php echo e(SITEROOT); ?>/account">Account</a></li>
             <li><a href="<?php echo e(SITEROOT); ?>/account/project">My Projects</a></li>
             <li class="active">

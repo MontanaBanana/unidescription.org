@@ -121,8 +121,8 @@ class ProjectController extends Controller
 		            'password' => bcrypt($password),
 		        ]);
 				$project->users()->sync([ $new_user->id ], false);
-				error_reporting(E_ALL);
-				ini_set('display_errors', true);
+				//error_reporting(E_ALL);
+				//ini_set('display_errors', true);
 				
 		        Mail::send('emails.invited', ['user' => $new_user, 'invited_by' => $invited_by, 'password' => $password, 'project' => $project], function ($m) use ($new_user, $invited_by, $project) {
 		            $m->from('support@unidescription.com', 'UniDescription');
@@ -152,11 +152,17 @@ class ProjectController extends Controller
     
 	public function postDetails(Request $request)
     {
-//	    echo "<PRE>".print_R($request->all(),true)."</pre>";exit;
+	    //echo "<PRE>".print_R($request->all(),true)."</pre>";exit;
 	    if ($request->id) {
 		    $project = Project::find($request->id);
 		    $project->title = $request->title;
 		    $project->description = $request->description;
+		    $project->gpo = $request->gpo;
+		    $project->version_number = $request->version_number;
+		    $project->version = $request->version;
+		    $project->author = $request->author;
+		    $project->publication_date = $request->publication_date;
+
 		    
 		    if ($request->hasFile('project_image')) {
 			    $imageName = $project->id . '.' . $request->file('project_image')->guessExtension();
@@ -222,19 +228,21 @@ class ProjectController extends Controller
 			}
 			$project->save();
 		    
-		    $sections = buildTree(SectionTemplate::all()->sortBy('sort_order'), 'section_template_id');
-			
-			$section_template_ids = array();
-			foreach ($sections as $idx => $section) {
-				$parent_id = 0;
+		    if ($request->chosen_template == 'template-nps') {
+			    $sections = buildTree(SectionTemplate::all()->sortBy('sort_order'), 'section_template_id');
 				
-				$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'description' => $section->description, 'sort_order' => $section->sort_order, 'project_section_id' => 0]);
-				$ps->save();
-				
-				if ($section->children) {
-					foreach ($section->children as $child) {
-						$ps_child = ProjectSection::create(['project_id' => $project->id, 'title' => $child->title, 'description' => $child->description, 'sort_order' => $child->sort_order, 'project_section_id' => $ps->id]);
-						$ps_child->save();
+				$section_template_ids = array();
+				foreach ($sections as $idx => $section) {
+					$parent_id = 0;
+					
+					$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'description' => $section->description, 'sort_order' => $section->sort_order, 'project_section_id' => 0]);
+					$ps->save();
+					
+					if ($section->children) {
+						foreach ($section->children as $child) {
+							$ps_child = ProjectSection::create(['project_id' => $project->id, 'title' => $child->title, 'description' => $child->description, 'sort_order' => $child->sort_order, 'project_section_id' => $ps->id]);
+							$ps_child->save();
+						}
 					}
 				}
 			}
@@ -288,6 +296,7 @@ class ProjectController extends Controller
 		$ps = ProjectSection::find($request->project_section_id);
 		$ps->title = $request->title;
 		$ps->description = $request->description;
+		$ps->notes = $request->notes;
 		$ps->save();
 	    return redirect()->back();
     }
@@ -305,10 +314,11 @@ class ProjectController extends Controller
 			}
 			$new_sections = 0;
 			$sections = buildTree($project->project_sections, 'project_section_id');
-			if (!count($sections)) {
+			/*if (!count($sections)) {
 				$sections = buildTree(SectionTemplate::all()->sortBy('sort_order'), 'section_template_id');
 				$new_sections = 1;
-			}
+			}*/
+			//echo "<PRE>".print_R($sections,true)."</pre>";exit;
 		    return view('project.toc', ['sections' => $sections, 'project' => $project, 'new_sections' => $new_sections]);
 	    }
 	    

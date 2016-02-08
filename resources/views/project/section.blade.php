@@ -48,7 +48,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Project Details <span class="sr-only">(current)</span></a></li>
+						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
 						<li class="active"><a href="#">{{ $section->title }}</a></li>
@@ -89,7 +89,16 @@
 									<textarea class="tall" name="description">{{ $section->description }}</textarea>
 								</div>
 							</div>
-				        
+				        						
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Page Notes (internal use only):
+								</div>
+								<div class="panel-body form-element">
+									<textarea class="tall" name="notes">{{ $section->notes }}</textarea>
+								</div>
+							</div>
+							
 					        <div class="wrapper-footer">
 								<button class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save Page</button>
 								<a class="check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
@@ -192,7 +201,7 @@
 				var formData = { 
 					_token: $('input[name=_token]').val(),
 					completed: 1,
-					id: {{ $section->id }}
+					id: $('#project_section_id').val()
 				};
 			
 				console.log(formData);
@@ -228,7 +237,7 @@
 				var formData = { 
 					_token: $('input[name=_token]').val(),
 					completed: 0,
-					id: {{ $section->id }}
+					id: $('#project_section_id').val()
 				};
 			
 				// Set it completed

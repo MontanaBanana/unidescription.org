@@ -85,8 +85,8 @@
 		                        </ul>
 							</li>
 						<?php else: ?>
-							<li style="line-height: 80px; height: 80px; padding-top: 0px"><a href="{{ SITEROOT }}/auth/login">Sign In</a></li>
-							<li style="line-height: 80px; height: 80px; padding-top: 0px"><a href="{{ SITEROOT }}/auth/register"><strong>Register</strong></a></li>
+							<li><a style="line-height: 80px; height: 80px; padding-top: 0px" href="{{ SITEROOT }}/auth/login">Sign In</a></li>
+							<li><a style="line-height: 80px; height: 80px; padding-top: 0px" href="{{ SITEROOT }}/auth/register"><strong>Register</strong></a></li>
 
 						<?php endif; ?>
 	                </ul>

@@ -479,3 +479,18 @@ span.toc-icon {
 	width: 23px;
 	cursor: pointer;
 }
+
+.carousel-inner {
+	overflow: visible;
+}
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    color: black;
+    text-shadow: 0 0 0;
+}
+
+div.home-boxes .panel {
+	height: 235px;
+}

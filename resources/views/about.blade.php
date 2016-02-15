@@ -20,7 +20,7 @@
         <!-- Intro Content -->
         <div class="row">
             <div class="col-md-6">
-                <img class="img-responsive" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="Campfires & Candlelight">
+                <img class="img-responsive" src="{{ SITEROOT }}/images/showing_ipad_apps.jpg" alt="Campfires & Candlelight">
             </div>
             <div class="col-md-6">
                 <h2>About UniDescription</h2>

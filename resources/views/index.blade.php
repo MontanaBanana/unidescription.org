@@ -16,22 +16,22 @@
             <div class="item active">
                 <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo1.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Why make audio descriptions?</h2>
-                    <p>What are audio descriptions? Why are they important?<br/><a href="#" class="btn btn-default">Learn more!</a></p>
+                    <h2>Why create audio description?</h2>
+                    <p>An argument for its international importance, based on Universal Design principles.<br/><a href="{{ SITEROOT }}/about" class="btn btn-default">Learn more!</a></p>
                 </div>
             </div>
             <div class="item">
-                <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ww2_vet.jpg');"></div>
+                <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/mobile_nps.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>Best practices</h2>
-                    <p>You know why audio descriptions are important, but do you know the best way to create them? Our online forum will has the answers you need!<br/><a href="{{ SITEROOT }}/forum" class="btn btn-default">Join the forum!</a></p>
+                    <h2>How do I get started? </h2>
+                    <p>Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.<br/><a href="{{ SITEROOT }}/auth/register" class="btn btn-default">Join now!</a></p>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo2.jpg');"></div>
                 <div class="carousel-caption">
-                    <h2>App store help</h2>
-                    <p>Uploading apps to the Google and iOS stores can be confusing. Read, watch, and listen to our guides!<br/><a href="#" class="btn btn-default">View our guides!</a></p>
+                    <h2>Who is behind this project?</h2>
+                    <p>Collaborators including scholars from the University of Hawai'i, staff from the National Park Service, sounds artists, media designers, and computer programmers. <br/><a href="{{ SITEROOT }}/about" class="btn btn-default">Learn more!</a></p>
                 </div>
             </div>
         </div>
@@ -46,24 +46,39 @@
     </header>
 
     <!-- Page Content -->
-    <div class="container">
+    <div class="container" style="margin-top: 100px;">
 
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">
-                    UniDescription - Easily create audio description apps!
+                <h1 class="page-header" style="font-faily: Helvetica;">
+                    The UniD Project: To Create Acoustic Spaces and More Accessible Places
                 </h1>
-            </div>	            
+                <p>
+	            	In the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.
+                </p>
+                <p>
+					Our web-based project – with direct connections to Harpers Ferry, the National Park Service, those brochures, and those basic beliefs – has been called UniD, in tribute. That name should be pronounced like "unity," serving as both an abbreviation of the more wonky original label of "unidescription" and as an inspiration for our mission: <br /><br />
+
+					<strong>To bring unity to the world of audio description. </strong>
+	
+	                </br /><br />
+                
+					Audio description (often called verbal description) can be thought of as a medium equivalent to open and closed captioning, only for audiences that prefer information in acoustic rather than visual forms. In some cases, that involves the simple verbalization of a transcript (as in text-to-voice translation), but what we mostly are concerned with here is the more complex audiovisual translation of visual into audible material. For example, how would you describe an Ansel Adams photograph of a scene within Yellowstone National Park to a person who cannot see, or has low vision, or has difficulty interpreting print materials, or simply prefers information in audible forms? Those varied audiences (including people who are blind, with low-vision, print dyslexic, and audio-oriented) deserve full access to public discourse, and this project has been created to serve them, under the core principles of <a href="http://www.universaldesign.com/" target="_blank">Universal Design</a>.
+                </p>
+                <p>
+					In turn, this UniD project has been developed to help people create more audio description and to be a robust resource for those interested in this topic, including "best practices" guidelines, updated scholarly research, and a forum for related thoughts and discussions. Our hope is that like the impact Vignelli's system had on NPS brochures, the UniD Project will bring higher clarity and quality to this acoustic communication form, especially in public spaces.
+                </p>
+            </div>   
 	    </div>
 	    
 	    <div class="well">
 		    <div class="row">
 		        <div class="col-md-8">
-		            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
+		            <p>This federally funded project is free and open source. To start making your own audio description, <a href="{{ SITEROOT }}/auth/register">just create an account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and follow the direction for making a new project. </p>
 		        </div>
 		        <div class="col-md-4">
-		            <a class="btn btn-lg btn-default btn-block" href="#">Create Now!</a>
+		            <a class="btn btn-lg btn-default btn-block" href="{{ SITEROOT }}/auth/register">Join now!</a>
 		        </div>
 		    </div>
 	        <!-- /.row -->
@@ -105,63 +120,79 @@
         <!-- Features Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h2 class="page-header">UniDescription Features</h2>
+                <h2 class="page-header">About The UniD Project:</h2>
             </div>
             <div class="col-md-6">
-                <p>UniDescription features:</p>
+                <p><strong>What can the UniD project do for you?</strong></p>
                 <ul>
-                    <li><strong>iOS and Android app generation</strong>
-                    </li>
-                    <li>Audio file generation</li>
-                    <li>Manage multiple projects</li>
-                    <li>Forum for asking questions and helping others</li>
-                    <li>New features added often!</li>
-                </ul>
-                <p>The goal of the UniDescription project is to make it easy for non-technical users to create audio descriptions.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc varius justo lorem, eu lacinia tellus commodo at. Etiam eget leo non sem dictum dictum lobortis at dui. Curabitur dignissim nibh vel dui pellentesque tincidunt et id mi. Nulla metus augue, pharetra et orci eget, semper commodo nisl. Pellentesque fermentum metus in tortor maximus sodales. Sed at malesuada lectus, tincidunt volutpat leo. Nulla quis odio ac nunc malesuada eleifend. Morbi at risus diam.</p>
+					<li>It can help you translate static visual media of any kind (texts, photographs, paintings, posters, statues, etc.) into audio content that can be freely shared</li>
+					<li>It will convert text to speech (in an audio file format)</li>
+					<li>It will help you manage multiple text-to-speech projects, which can be created around any type of audiovisual translation context, including the need to translate a static media source (such as a brochure), a grouping of artifacts (either by theme or location), or whatever other ways in which you might find it useful</li>
+					<li>It provides templates for common audiovisual translation contexts</li>
+					<li>It provides best practices and scholarly research related to audiovisual translation issues</li>
+					<li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
+					<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
+					<li>This is a grant-sponsored program (details about the collaborators in the About section), so all of this is offered to you for free – and its products created for free distribution – in the hopes of making the world a more accessible place to people of all abilities. </li>
 
-				<p>Vivamus sit amet odio risus. Fusce maximus ut neque vel efficitur. Aenean commodo tellus sit amet posuere volutpat. Etiam euismod sollicitudin quam, nec venenatis risus mattis sit amet. Quisque in pulvinar neque. Donec laoreet nisi nisi, id pharetra magna cursus ut. Nulla quis ligula sed mauris semper porta. Phasellus rutrum metus in nisl aliquam, a dignissim nunc auctor. Nullam ut urna sed ante volutpat laoreet. Nulla nisl lacus, imperdiet vitae dui et, placerat sodales orci.</p>
+                </ul>
+
             </div>
             <div class="col-md-6">
                 <img class="img-responsive" src="{{ SITEROOT }}/images/fifth_ohio.jpg" alt="">
             </div>
+        </div>
+        <div class="row">
+	        <div class="col-lg-12">
+                <p>
+                	Our collaborators are listed, in detail, on the <a href="{{ SITEROOT }}/about">About</a> page, including contact information.
+                </p>
+                <p>
+					For quick reference, though, the principal investigator on this project is: <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> in the School of Communications in the College of Social Sciences at the University of Hawai‘i. 
+				</p>
+				<p>	
+					All inquiries about this project should be directed to him, either <a href="mailto:brett.oppegaard@gmail.com">by email</a> or <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu">phone</a>
+				</p>
+				<p>
+					More behind-the-scenes: Our regularly updated blog about this project also is available <a href="https://npsaudiodescription.wordpress.com/" target="_blank">here</a>.
+				</p>
+	        </div>
         </div>
         <!-- /.row -->
 
         <hr>
 
         <!-- Call to Action Section -->
-        <div class="row">         
+        <div class="row home-boxes">         
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-check"></em> iOS and Android support</strong>
+                        <strong><em class="fa fa-fw fa-comment"></em> Discuss that in our forums:</strong>
                     </div>
                     <div class="panel-body">
-                        <p>The apps we generate are ready for you to upload into the Android and iOS app stores!</p>
-                        <a href="#" class="btn btn-default">Click for our guides!</a>
+                        <p>If you want to talk about any aspect of audio description, our forums provide a focused place for debates, questions, and learning about related issues. </p>
+                        <a href="{{ SITEROOT }}/forum" class="btn btn-default">Forum!</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-gift"></em> Free &amp; Open Source</strong>
+                        <strong><em class="fa fa-fw fa-volume-up"></em> Make audio description available</strong>
                     </div>
                     <div class="panel-body">
-                        <p>This project is available for everyone to use, update, and learn from!</p>
-                        <a href="#" class="btn btn-default">GitHub project page</a>
+                        <p>If you want to audio describe anything, our tool can help, and when you are ready to share your work, it is available in multiple forms, including text, audio files, and upload-ready mobile apps.</p>
+                        <a href="{{ SITEROOT }}/account/project/details/0/new" class="btn btn-default">Create now!</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong><em class="fa fa-fw fa-compass"></em> Easy to Use</strong>
+                        <strong><em class="fa fa-fw fa-gift"></em> Free and open source</strong>
                     </div>
                     <div class="panel-body">
-                        <p>The UniDescription creator has been designed to make audio description projects as easy to create as possible.</p>
-                        <a href="#" class="btn btn-default">Get started!</a>
+                        <p>As a grant-funded project, led by academics and federal employees, we want to openly share and develop this project, so we have built it in open-source code and offer it freely to anyone who wants to participate.</p>
+                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" class="btn btn-default">Fork on Github!</a>
                     </div>
                 </div>
             </div>

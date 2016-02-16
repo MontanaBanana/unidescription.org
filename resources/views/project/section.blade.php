@@ -84,9 +84,10 @@
 								<div class="panel-heading">
 									Page Description:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
+									<span class="pull-right"><a class="btn btn-sm btn-primary play-description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="description">{{ $section->description }}</textarea>
+									<textarea class="tall" name="description" id="description">{{ $section->description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -156,7 +157,7 @@
 									<li>&bull; <a href="#">Vivamus sagittis lacinia turpis</a></li>
 									<li>&bull; <a href="#">Class aptent taciti sociosqu ad litora</a></li>
 								</ul>
-								<a href="#" class="btn btn-lg btn-white btn-icon"><span class="fa fa-users"></span> Join Our Forum!</a>
+								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-users"></span> Join Our Forum!</a>
 							</div>
 						</div>
 			          	
@@ -181,7 +182,59 @@
 
 <script type="text/javascript">
 	
+	var audio;
+	
 	$(document).ready(function() {
+		
+		$('.play-description').on('click', function(event) {
+			
+
+			/*
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+			
+			//execute post
+			$result = json_decode(curl_exec($ch));
+			
+			$ps->audio_file_url = $result->fn;
+			$ps->audio_file_needs_update = false;
+			*/
+			if ($('#player-icon').hasClass('fa-play')) {
+				$('#player-icon').removeClass('fa-play');
+				$('#player-icon').addClass('fa-stop');
+				
+				var request = $.ajax({
+				  url: "http://api.montanab.com/tts/tts.php",
+				  method: "POST",
+				  data: { t : $('#description').val() },
+				  dataType: "json"
+				});
+				 
+				request.done(function( msg ) {
+					console.log(msg.fn);
+					audio = new Audio(msg.fn);
+					audio.play();
+					audio.addEventListener('ended', function() {
+						$('#player-icon').removeClass('fa-stop');
+						$('#player-icon').addClass('fa-play');
+					});
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			}
+			else {
+				$('#player-icon').removeClass('fa-stop');
+				$('#player-icon').addClass('fa-play');
+				
+				audio.pause();
+				audio.currentTime = 0;
+			}
+		});		
 		
 	  	$('.check-complete').on('click', function(event) {
 			//console.log( $(this).data() );

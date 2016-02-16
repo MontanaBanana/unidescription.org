@@ -65,7 +65,7 @@
 												<audio controls>
 													<source src='<?php echo e($s->audio_file_url); ?>' type='audio/wav'>
 												</audio>
-												<p><?php echo e($s->description); ?></p>
+												<p><?php echo nl2br($s->description); ?></p>
 											</p>
 											<?php endif; ?>
 										<?php endforeach; ?>

@@ -64,7 +64,7 @@
 												<audio controls>
 													<source src='{{ $s->audio_file_url }}' type='audio/wav'>
 												</audio>
-												<p>{{ $s->description }}</p>
+												<p><?php echo nl2br($s->description); ?></p>
 											</p>
 											@endif
 										@endforeach

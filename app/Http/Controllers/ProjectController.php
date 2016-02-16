@@ -264,6 +264,42 @@ class ProjectController extends Controller
 	    return view('project.assets', ['sections' => $sections, 'project' => $project]);
     }
     
+    public function getDeleteconfirm($id)
+    {
+	    if (!$id) {
+			abort(404);
+	    }
+	    else {
+			$project = Project::find($id);
+		    $auth_user = Auth::user();
+
+			if (!$project || $project->user_id != $auth_user->id) {
+				abort(404);
+			}
+		    return view('project.deleteconfirm', ['project' => $project]);
+	    }
+    }
+    
+    public function getDelete($id)
+    {
+	    if (!$id) {
+		    abort(404);
+	    }
+	    else {
+			$project = Project::find($id);
+		    $auth_user = Auth::user();
+
+			if (!$project || $project->user_id != $auth_user->id) {
+				abort(404);
+			}
+			else {
+				$project->delete();
+			}
+	    }
+	    
+	    return redirect()->action('ProjectController@index');
+    }
+    
     public function getEdit($id)
     {
 	    if (!$id) {
@@ -295,8 +331,25 @@ class ProjectController extends Controller
     {
 		$ps = ProjectSection::find($request->project_section_id);
 		$ps->title = $request->title;
+		if ($ps->description != $request->description) {
+			// Generate the audio file
+			$ch = curl_init();
+			
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+			
+			//execute post
+			$result = json_decode(curl_exec($ch));
+			
+			$ps->audio_file_url = $result->fn;
+			$ps->audio_file_needs_update = false;
+		}
 		$ps->description = $request->description;
 		$ps->notes = $request->notes;
+
 		$ps->save();
 	    return redirect()->back();
     }

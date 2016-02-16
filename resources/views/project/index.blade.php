@@ -29,7 +29,7 @@
 	                </a>
 	            </div>
 	            <div class="col-md-7">
-	                <h3>{{ $project->title }}</h3>
+	                <h3><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></h3>
 	                <small>
 	                	Created: {{ date('F jS, Y', strtotime($project->created_at)) }}<br />
 						Updated: {{ date('F jS, Y', strtotime($project->updated_at)) }}
@@ -37,11 +37,12 @@
 	                <p>
 		            	{{ $project->description }}
 	                </p>
-	                <a class="btn btn-primary" href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">View Project</i></a>
+	                <a class="btn btn-primary btn-icon" href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}"><span class="fa fa-eye"></span> View Project</i></a>
+	                <a class="btn btn-primary btn-icon label-danger delete-project" href="/account/project/deleteconfirm/{{ $project->id }}" data-id="{{ $project->id }}"><span class="fa fa-times"></span> Delete Project</i></a>
 	            </div>
 	        </div>
 	        <!-- /.row -->
 	        <hr />
         @endforeach
-
+	    
 @endsection

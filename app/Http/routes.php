@@ -77,10 +77,16 @@ Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 Route::get(WEBROOT.'account/project', 'ProjectController@index');
 Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
 Route::post(WEBROOT.'account/project/edit', 'ProjectController@postEdit');
+
 Route::get(WEBROOT.'account/project/details/{id}/{title}', 'ProjectController@getDetails');
 Route::post(WEBROOT.'account/project/details', 'ProjectController@postDetails');
 
+Route::get(WEBROOT.'account/project/deleteconfirm/{id}', 'ProjectController@getDeleteconfirm');
+Route::get(WEBROOT.'account/project/delete/{id}', 'ProjectController@getDelete');
+
+
 Route::get(WEBROOT.'account/project/assets/{id}/{title}', 'ProjectController@getAssets');
+
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
 

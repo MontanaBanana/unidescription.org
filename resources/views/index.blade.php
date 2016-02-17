@@ -51,7 +51,7 @@
         <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header" style="font-faily: Helvetica;">
+                <h1 class="page-header" style="font-family: Helvetica;">
                     The UniD Project: To Create Acoustic Spaces and More Accessible Places
                 </h1>
                 <p>
@@ -78,7 +78,11 @@
 		            <p>This federally funded project is free and open source. To start making your own audio description, <a href="{{ SITEROOT }}/auth/register">just create an account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and follow the direction for making a new project. </p>
 		        </div>
 		        <div class="col-md-4">
-		            <a class="btn btn-lg btn-default btn-block" href="{{ SITEROOT }}/auth/register">Join now!</a>
+	                <?php if (Auth::check()): ?>	
+			            <a class="btn btn-lg btn-default btn-block" href="{{ SITEROOT }}/account/project/details/0/new">Create now!</a>
+					<?php else: ?>                    	
+			            <a class="btn btn-lg btn-default btn-block" href="{{ SITEROOT }}/auth/register">Join now!</a>
+			        <?php endif; ?>
 		        </div>
 		    </div>
 	        <!-- /.row -->

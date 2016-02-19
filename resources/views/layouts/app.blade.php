@@ -122,7 +122,6 @@
 				            <a href="{{ SITEROOT }}/privacy-policy">Privacy Policy</a> |
 				            <a href="{{ SITEROOT }}/license">License</a>
 			            </div>
-			            <div class="pull-right">Copyright &copy; Mobile Media Matters {{ date('Y') }}</div>
 		            </div>
 		        </div>
 		        <div class="row container" style="margin-top: 5px">

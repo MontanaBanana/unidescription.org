@@ -17,21 +17,21 @@
                 <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo1.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Why create audio description?</h2>
-                    <p>An argument for its international importance, based on Universal Design principles.<br/><a href="{{ SITEROOT }}/about" class="btn btn-default">Learn more!</a></p>
+                    <p>An argument for its international importance, based on Universal Design principles.</p>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/mobile_nps.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>How do I get started? </h2>
-                    <p>Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.<br/><a href="{{ SITEROOT }}/auth/register" class="btn btn-default">Join now!</a></p>
+                    <p>Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
                 </div>
             </div>
             <div class="item">
                 <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo2.jpg');"></div>
                 <div class="carousel-caption">
                     <h2>Who is behind this project?</h2>
-                    <p>Collaborators including scholars from the University of Hawai'i, staff from the National Park Service, sounds artists, media designers, and computer programmers. <br/><a href="{{ SITEROOT }}/about" class="btn btn-default">Learn more!</a></p>
+                    <p>Collaborators including scholars from the University of Hawai'i, staff from the National Park Service, sounds artists, media designers, and computer programmers.</p>
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" style="font-family: Helvetica;">
-                    The UniD Project: To Create Acoustic Spaces and More Accessible Places
+                    <center><strong style="font-size: 42px">The UniD Project</strong><br /> To Create Acoustic Spaces and More Accessible Places</center>
                 </h1>
                 <p>
 	            	In the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.
@@ -75,7 +75,7 @@
 	    <div class="well">
 		    <div class="row">
 		        <div class="col-md-8">
-		            <p>This federally funded project is free and open source. To start making your own audio description, <a href="{{ SITEROOT }}/auth/register">just create an account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and follow the direction for making a new project. </p>
+		            <p>This federally funded project is free and open source. To start making your own audio description, <a href="{{ SITEROOT }}/auth/register">just create an account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and follow the directions. </p>
 		        </div>
 		        <div class="col-md-4">
 	                <?php if (Auth::check()): ?>	

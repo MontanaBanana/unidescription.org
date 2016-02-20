@@ -152,12 +152,19 @@
 										$completed = 0;
 										foreach ($sections as $section):
 											//echo "<PRE>".print_R($section->all(),true)."</pre>";
+											if ($section->deleted) { 
+												$total--; 
+											}
+											
 											$total++;
 											if ($section->completed) {
 												$completed++;
 											}
 											if ($section->children) {
 												foreach ($section->children as $child) {
+													if ($child->deleted) {
+														$total--;
+													}
 													$total++;
 													if ($child->completed) {
 														$completed++;

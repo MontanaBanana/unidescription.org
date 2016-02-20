@@ -61,3 +61,35 @@ function random_str(
     }
     return $str;
 }
+
+function get_project_completion_percentage($sections)
+{
+	$total = 0;
+	$completed = 0;
+	foreach ($sections as $section):
+		//echo "<PRE>".print_R($section->all(),true)."</pre>";
+		if ($section->deleted) { 
+			$total--; 
+		}
+		
+		$total++;
+		if ($section->completed) {
+			$completed++;
+		}
+		if ($section->children) {
+			foreach ($section->children as $child) {
+				if ($child->deleted) {
+					$total--;
+				}
+				$total++;
+				if ($child->completed) {
+					$completed++;
+				}
+			}
+		}
+	endforeach;
+	if (!$total) { $total = 1; }
+	$percent = floor(($completed / $total) * 100);
+	
+	return $percent;
+}

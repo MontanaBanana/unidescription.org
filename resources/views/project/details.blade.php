@@ -189,27 +189,7 @@
 							<div class="panel-heading">Project Progress:</div>
 							<div class="panel-body">
 								<div class="progress">
-									<?php
-										$total = 0;
-										$completed = 0;
-										foreach ($sections as $section):
-											//echo "<PRE>".print_R($section->all(),true)."</pre>";
-											$total++;
-											if ($section->completed) {
-												$completed++;
-											}
-											if ($section->children) {
-												foreach ($section->children as $child) {
-													$total++;
-													if ($child->completed) {
-														$completed++;
-													}
-												}
-											}
-										endforeach;
-										if (!$total) { $total = 1; }
-										$percent = floor(($completed / $total) * 100);
-									?>
+									<?php $percent = get_project_completion_percentage($sections); ?>
 									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
 										<?php echo $percent; ?>%
 									</div>

@@ -44,12 +44,12 @@
 				    	<div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="section-{{ $section->id }}-heading">
 						      <h4 class="panel-title">
-						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-{{ $section->id }}" aria-expanded="false" aria-controls="section-{{ $section->id }}">
+						        
 						          {{ $section->title }}
-						        </a>
+						        
 						      </h4>
 						    </div>
-						    <div id="section-{{ $section->id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
+						    <div id="section-{{ $section->id }}" class="panel" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
 						    	<div class="panel-body">
 									<audio controls>
 										<source src='{{ $section->audio_file_url }}' type='audio/wav'>

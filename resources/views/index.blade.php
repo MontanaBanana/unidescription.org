@@ -3,50 +3,16 @@
 @section('content')
 
     <!-- Header Carousel -->
-    <header id="myCarousel" class="carousel slide">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <div class="item active">
-                <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo1.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Why create audio description?</h2>
-                    <p>An argument for its international importance, based on Universal Design principles.</p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/mobile_nps.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>How do I get started? </h2>
-                    <p>Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
-                </div>
-            </div>
-            <div class="item">
-                <div class="fill" style="background-image:url('{{ SITEROOT }}/slideshow/ad_photo2.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Who is behind this project?</h2>
-                    <p>Collaborators including scholars from the University of Hawai'i, staff from the National Park Service, sounds artists, media designers, and computer programmers.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-            <span class="icon-prev"></span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-            <span class="icon-next"></span>
-        </a>
+    
+    <header>
+	    <img src="{{ SITEROOT }}/slideshow/ad_photo1.jpg" /><br />
+		<div style="text-align: center;">
+			<p style="font-size: 22px;"><strong>How do I get started?</strong> Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
+		</div>
     </header>
 
     <!-- Page Content -->
-    <div class="container" style="margin-top: 100px;">
+    <div class="container">
 
         <!-- Marketing Icons Section -->
         <div class="row">
@@ -93,8 +59,25 @@
             <div class="col-lg-12">
                 <h2 class="page-header">Featured Audio Descriptions</h2>
             </div>
+            
+			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Washington Monument">
+				Washington Monument
+			</div>
+			
+			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="Golden Gate">
+				Golden Gate
+			</div>
+			
+			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/volcanoes.jpg" alt="Hawaii Volcanoes">
+				Hawaii Volcanoes
+			</div>
+			
             <?php
 	            
+	            /*
 	            if(is_dir($_SERVER['DOCUMENT_ROOT'].SITEROOT.'/portfolio/')){
 	            
 		            $dh = opendir($_SERVER['DOCUMENT_ROOT'].SITEROOT.'/portfolio/');
@@ -117,6 +100,7 @@
 		            }
 
 	            }
+	            */
 	        ?>
         </div>
         <!-- /.row -->
@@ -134,19 +118,21 @@
 					<li>It will help you manage multiple text-to-speech projects, which can be created around any type of audiovisual translation context, including the need to translate a static media source (such as a brochure), a grouping of artifacts (either by theme or location), or whatever other ways in which you might find it useful</li>
 					<li>It provides templates for common audiovisual translation contexts</li>
 					<li>It provides best practices and scholarly research related to audiovisual translation issues</li>
-					<li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
-					<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
-					<li>This is a grant-sponsored program (details about the collaborators in the About section), so all of this is offered to you for free – and its products created for free distribution – in the hopes of making the world a more accessible place to people of all abilities. </li>
 
                 </ul>
 
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="{{ SITEROOT }}/images/fifth_ohio.jpg" alt="">
+                <img class="img-responsive" src="{{ SITEROOT }}/slideshow/mobile_nps.jpg" alt="">
             </div>
         </div>
         <div class="row">
 	        <div class="col-lg-12">
+		        <ul style="top: -10px; position: relative;">
+			        <li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
+					<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
+					<li>This is a grant-sponsored program (details about the collaborators in the About section), so all of this is offered to you for free – and its products created for free distribution – in the hopes of making the world a more accessible place to people of all abilities. </li>
+		        </ul>
                 <p>
                 	Our collaborators are listed, in detail, on the <a href="{{ SITEROOT }}/about">About</a> page, including contact information.
                 </p>

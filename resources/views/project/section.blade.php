@@ -49,8 +49,8 @@
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
+						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li class="active"><a href="#">{{ $section->title }}</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -85,6 +85,8 @@
 									Page Description:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									<span class="pull-right"><a class="btn btn-sm btn-primary play-description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+
 								</div>
 								<div class="panel-body form-element">
 									<textarea class="tall" name="description" id="description">{{ $section->description }}</textarea>
@@ -234,7 +236,23 @@
 				audio.pause();
 				audio.currentTime = 0;
 			}
+		});
+		
+		$('.download-description').on('click', function(event) {
+
+				var request = $.ajax({
+				  url: "http://api.montanab.com/tts/tts.php",
+				  method: "POST",
+				  data: { t : $('#description').val() },
+				  dataType: "json"
+				});
+				 
+				request.done(function( msg ) {
+					window.open(msg.fn);
+				});
+				 
 		});		
+		
 		
 	  	$('.check-complete').on('click', function(event) {
 			//console.log( $(this).data() );

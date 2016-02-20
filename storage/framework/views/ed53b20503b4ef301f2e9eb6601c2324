@@ -44,13 +44,13 @@
 				    	<div class="panel panel-default">
 						    <div class="panel-heading" role="tab" id="section-<?php echo e($section->id); ?>-heading">
 						      <h4 class="panel-title">
-						        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#section-<?php echo e($section->id); ?>" aria-expanded="false" aria-controls="section-<?php echo e($section->id); ?>">
+						        
 						          <?php echo e($section->title); ?>
 
-						        </a>
+						        
 						      </h4>
 						    </div>
-						    <div id="section-<?php echo e($section->id); ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="section-<?php echo e($section->id); ?>-heading">
+						    <div id="section-<?php echo e($section->id); ?>" class="panel" role="tabpanel" aria-labelledby="section-<?php echo e($section->id); ?>-heading">
 						    	<div class="panel-body">
 									<audio controls>
 										<source src='<?php echo e($section->audio_file_url); ?>' type='audio/wav'>

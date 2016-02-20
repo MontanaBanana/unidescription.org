@@ -8,9 +8,9 @@
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
         "laravel/socialite": "^2.0",
-        "riari/laravel-forum": "~3.0@RC",
-        "riari/laravel-forum-frontend": "master@dev",
-        "guzzlehttp/guzzle": "~5.3|~6.0"
+        "guzzlehttp/guzzle": "~5.3|~6.0",
+        "riari/laravel-forum": "~3.0",
+        "riari/laravel-forum-frontend": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

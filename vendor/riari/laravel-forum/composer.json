@@ -11,7 +11,7 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~5.0",
+        "laravel/framework": "~5.1",
         "doctrine/dbal": "^2.5"
     },
     "autoload": {
@@ -21,6 +21,5 @@
     },
     "suggest": {
         "riari/laravel-forum-frontend": "The standard forum frontend that provides views written with Bootstrap 3"
-    },
-    "minimum-stability": "dev"
+    }
 }

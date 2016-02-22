@@ -9,7 +9,7 @@
 	                <small>Open Source</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{ SITEROOT }}">Home</a>
+                    <li><a href="{{ SITEROOT }}/">Home</a>
                     </li>
                     <li class="active">License</li>
                 </ol>

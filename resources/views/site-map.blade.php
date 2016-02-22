@@ -9,7 +9,7 @@
 	            	<small>Find what you're looking for</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="{{ SITEROOT }}">Home</a>
+                    <li><a href="{{ SITEROOT }}/">Home</a>
                     </li>
                     <li class="active">Site Map</li>
                 </ol>

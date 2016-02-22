@@ -128,15 +128,6 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Version #
-								</div>
-								<div class="panel-body form-element">
-									<input type="text" class="large" name="version_number" value="{{ $project->version_number }}" />
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
 									Author:
 								</div>
 								<div class="panel-body form-element">

@@ -7,7 +7,7 @@
     <header>
 	    <img src="{{ SITEROOT }}/slideshow/ad_photo1.jpg" /><br />
 		<div style="text-align: center;">
-			<p style="font-size: 22px;"><strong>How do I get started?</strong> Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
+			<p style="font-size: 22px;"><strong>How do you get started?</strong> Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
 		</div>
     </header>
 

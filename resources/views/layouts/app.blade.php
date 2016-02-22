@@ -60,6 +60,7 @@
 		                <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide">Guide</a></li>
 	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/faq">FAQ</a></li>
 	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/forum">Forum</a></li>
+	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>
 	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about">About</a></li>
 
 	                    <?php if (Auth::check()): ?>	                    	

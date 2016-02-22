@@ -235,12 +235,12 @@ class ProjectController extends Controller
 				foreach ($sections as $idx => $section) {
 					$parent_id = 0;
 					
-					$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'description' => $section->description, 'sort_order' => $section->sort_order, 'project_section_id' => 0]);
+					$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'sort_order' => $section->sort_order, 'project_section_id' => 0]);
 					$ps->save();
 					
 					if ($section->children) {
 						foreach ($section->children as $child) {
-							$ps_child = ProjectSection::create(['project_id' => $project->id, 'title' => $child->title, 'description' => $child->description, 'sort_order' => $child->sort_order, 'project_section_id' => $ps->id]);
+							$ps_child = ProjectSection::create(['project_id' => $project->id, 'title' => $child->title, 'sort_order' => $child->sort_order, 'project_section_id' => $ps->id]);
 							$ps_child->save();
 						}
 					}

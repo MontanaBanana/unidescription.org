@@ -1,5 +1,8 @@
 <?php
 	
+//use App\SectionTemplate;
+
+	
 function buildTree(Illuminate\Database\Eloquent\Collection $elements, $parent_column, $parentId = 0) {
     $branch = array();
 
@@ -92,4 +95,13 @@ function get_project_completion_percentage($sections)
 	$percent = floor(($completed / $total) * 100);
 	
 	return $percent;
+}
+
+function get_placeholder_text($section_title)
+{
+	//ini_set('display_errors', true); error_reporting(E_ALL);
+	$section_template = App\SectionTemplate::where('title', $section_title)->first();
+	//echo "<PRE>".print_r($section_template,true)."</pre>";exit;
+	return $section_template->description;
+
 }

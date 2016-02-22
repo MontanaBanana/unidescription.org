@@ -89,7 +89,7 @@
 
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="description" id="description">{{ $section->description }}</textarea>
+									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>">{{ $section->description }}</textarea>
 								</div>
 							</div>
 				        						

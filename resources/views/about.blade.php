@@ -23,7 +23,7 @@
                 <img class="img-responsive" src="{{ SITEROOT }}/images/showing_ipad_apps.jpg" alt="Campfires & Candlelight">
             </div>
             <div class="col-md-6">
-                <h2>About the UniD Project:</h2>
+                <h2>About The UniD Project:</h2>
                 <p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Tom Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
 
 
@@ -44,15 +44,15 @@
                             <small>Collaborator</small>
                         </h3>
                         <p>A transdisciplinary collaboration between the School of Communications and the Center on Disability Studies</p>
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/uhmanoa/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/company/university-of-hawaii" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/uhmanoa" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                   <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/uhmanoa/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/company/university-of-hawaii" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/uhmanoa" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-3 text-center">
@@ -63,15 +63,15 @@
                             <small>Collaborator</small>
                         </h3>
                         <p>Including Harpers Ferry Center, the design hub of the bureau, and park sites nationwide</p>
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/nationalparkservice" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/company/national-park-service" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/NatlParkService" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/nationalparkservice" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/company/national-park-service" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/NatlParkService" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-3 text-center">
@@ -82,15 +82,15 @@
                             <small>Collaborator</small>
                         </h3>
                         <p>A coalition of governmental agencies, non-governmental organizations and universities, promoting research within the Pacific region</p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-3 text-center">
@@ -101,15 +101,15 @@
                             <small>Developer</small>
                         </h3>
                         <p>Seattle-based web and mobile app development company</p>
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/company/montana-banana-web-design-&-development" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/montanabweb" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+	                <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/company/montana-banana-web-design-&-development" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/montanabweb" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -119,115 +119,115 @@
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/brett-oppegaard.jpg" alt="Brett Oppegaard's bio photo">
-                    <div class="caption" style="height: 242px;">
+                    <div class="caption" style="height: 205px;">
                         <h4>Brett Oppegaard<br>
                             <small>Principal Investigator</small>
                         </h4>
                         <p>An Assistant Professor in the UH School of Communications</p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/brettoppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/brettoppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/megan-conway.jpg" alt="Megan Conway's bio photo">
-                    <div class="caption" style="height: 242px;">
+                    <div class="caption" style="height: 205px;">
                         <h4>Megan Conway<br>
                             <small>Co-PI</small>
                         </h4>
                         <p>An Assistant Professor in the UH Center on Disability Studies</p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                   <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/thomas-conway.jpg" alt="Thomas Conway's bio photo">
-                    <div class="caption" style="height: 242px;">
+                    <div class="caption" style="height: 205px;">
                         <h4>Thomas Conway<br>
                             <small>Co-PI</small>
                         </h4>
                         <p>Media Coordinator in the UH Center on Disability Studies</p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="">
-                    <div class="caption" style="height: 242px;">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/michele-hartley.jpg" alt="Michele Hartley's bio photo">
+                    <div class="caption" style="height: 205px;">
                         <h4>Michele Hartley<br>
                             <small>NPS Liaison</small>
                         </h4>
                         <p>Media accessibility coordinator at Harpers Ferry Center</p>
-                        <ul class="list-inline">
-                            <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/joe-oppegaard.png" alt="Joe Oppegaard's bio photo">
-                    <div class="caption" style="height: 242px;">
+                    <div class="caption" style="height: 205px;">
                         <h4>Joe Oppegaard<br>
                             <small>Chief Technology Officer</small>
                         </h4>
                         <p>Montana Banana</p>
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/in/joe-oppegaard-38957811" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/JoeOppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/in/joe-oppegaard-38957811" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/JoeOppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="">
-                    <div class="caption" style="height: 242px;">
+                    <div class="caption" style="height: 205px;">
                         <h4>Jason Kenison<br>
                             <small>Senior Programmer</small>
                         </h4>
                         <p>Montana Banana</p>
-                        <ul class="list-inline">
-                            <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
-                            </li>
-                            <li><a href="https://www.linkedin.com/in/jasonkenison" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
-                            </li>
-                            <li><a href="https://twitter.com/jasonkenison" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
-                            </li>
-                        </ul>
                     </div>
+                    <ul class="list-inline">
+                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        </li>
+                        <li><a href="https://www.linkedin.com/in/jasonkenison" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        </li>
+                        <li><a href="https://twitter.com/jasonkenison" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

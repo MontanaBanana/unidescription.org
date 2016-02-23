@@ -128,6 +128,42 @@
         @include ('forum::partials.alerts')
 
         @yield('content')
+        
+                
+		<!-- Footer -->
+		@section('footer')
+		    <footer>
+		        <div class="row">
+		            <div class="col-lg-12 container">
+			            <div class="pull-left">
+				            <a href="{{ SITEROOT }}/site-map">Site Map</a> |
+				            <a href="{{ SITEROOT }}/contact">Contact</a> |
+				            <a href="{{ SITEROOT }}/privacy-policy">Privacy Policy</a> |
+				            <a href="{{ SITEROOT }}/license">License</a>
+			            </div>
+		            </div>
+		        </div>
+		        <div class="row container" style="margin-top: 5px">
+		            <ul class="list-unstyled list-inline list-social-icons">
+	                    <li>
+	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank"><em class="fa fa-github-square fa-2x"></em></a>
+	                    </li>
+	                    <li>
+	                        <a href="#" target="_blank"><em class="fa fa-facebook-square fa-2x"></em></a>
+	                    </li>
+	                    <li>
+	                        <a href="#" target="_blank"><em class="fa fa-linkedin-square fa-2x"></em></a>
+	                    </li>
+	                    <li>
+	                        <a href="#" target="_blank"><em class="fa fa-twitter-square fa-2x"></em></a>
+	                    </li>
+	                    <li>
+	                        <a href="#" target="_blank"><em class="fa fa-google-plus-square fa-2x"></em></a>
+	                    </li>
+	                </ul>
+		        </div>
+		    </footer>
+		@show
     </div>
 
     <script>
@@ -194,44 +230,7 @@
         return confirm(confirmString);
     });
     </script>
-
-            
-		<!-- Footer -->
-		@section('footer')
-		    <footer>
-		        <div class="row">
-		            <div class="col-lg-12 container">
-			            <div class="pull-left">
-				            <a href="{{ SITEROOT }}/site-map">Site Map</a> |
-				            <a href="{{ SITEROOT }}/contact">Contact</a> |
-				            <a href="{{ SITEROOT }}/privacy-policy">Privacy Policy</a> |
-				            <a href="{{ SITEROOT }}/license">License</a>
-			            </div>
-		            </div>
-		        </div>
-		        <div class="row container" style="margin-top: 5px">
-		            <ul class="list-unstyled list-inline list-social-icons">
-	                    <li>
-	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank"><em class="fa fa-github-square fa-2x"></em></a>
-	                    </li>
-	                    <li>
-	                        <a href="#" target="_blank"><em class="fa fa-facebook-square fa-2x"></em></a>
-	                    </li>
-	                    <li>
-	                        <a href="#" target="_blank"><em class="fa fa-linkedin-square fa-2x"></em></a>
-	                    </li>
-	                    <li>
-	                        <a href="#" target="_blank"><em class="fa fa-twitter-square fa-2x"></em></a>
-	                    </li>
-	                    <li>
-	                        <a href="#" target="_blank"><em class="fa fa-google-plus-square fa-2x"></em></a>
-	                    </li>
-	                </ul>
-		        </div>
-		    </footer>
-		@show
-	    
-    </div>
+    
 
 	@section('js')
 	@show

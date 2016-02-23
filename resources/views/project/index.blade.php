@@ -25,7 +25,7 @@
 	        <div class="row">
 	            <div class="col-md-5">
 					<a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
-	                    <img class="img-responsive img-hover thumbnail" src="{{ $project->image_url }}" alt="{{ $project->title }}">
+	                    <img class="img-responsive img-hover thumbnail" src="<?php if ($project->image_url) { echo $project->image_url; } else { echo 'https://placeholdit.imgix.net/~text?txtsize=14&txt=Project Placeholder Image&w=380&h=250'; } ?>" alt="{{ $project->title }}">
 	                </a>
 	            </div>
 	            <div class="col-md-7">

@@ -153,6 +153,11 @@ class ProjectController extends Controller
 	public function postDetails(Request $request)
     {
 	    //echo "<PRE>".print_R($request->all(),true)."</pre>";exit;
+	    
+        $this->validate($request, [
+	        'title' => 'required',
+		]);
+    
 	    if ($request->id) {
 		    $project = Project::find($request->id);
 		    $project->title = $request->title;

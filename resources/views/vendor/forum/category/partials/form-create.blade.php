@@ -1,7 +1,7 @@
 <form action="{{ Forum::route('category.store') }}" method="POST">
     {!! csrf_field() !!}
 
-    <div class="panel panel-default">
+    <div class="panel panel-inverse">
         <div class="panel-heading">
             <span class="glyphicon glyphicon-plus"></span>
             <a href="#" data-toggle="collapse" data-target=".collapse.create-category">{{ trans('forum::categories.create') }}</a>

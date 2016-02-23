@@ -1,4 +1,4 @@
-<div class="panel panel-default" data-actions>
+<div class="panel panel-inverse" data-actions>
     <div class="panel-heading">
         <span class="glyphicon glyphicon-option-vertical"></span>
         <a href="#" data-toggle="collapse" data-target=".collapse.post-actions">{{ trans('forum::posts.actions') }}</a>

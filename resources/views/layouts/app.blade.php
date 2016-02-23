@@ -57,11 +57,26 @@
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav navbar-right">
-		                <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide">Guide</a></li>
-	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/faq">FAQ</a></li>
-	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/forum">Forum</a></li>
-	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>
-	                    <li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about">About</a></li>
+			    <li class="dropdown">
+				<a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				    <li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
+				    <li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>
+				    <li><a href="{{ SITEROOT }}/best-practices">Best Practices</a></li>
+				    <li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+				</ul>
+			    </li>
+			    <li class="dropdown">
+				<a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				    <li><a href="{{ SITEROOT }}/about">About Us</a></li>
+				    <li><a href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>
+				</ul>
+			    </li>
+			    <!--<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide">Guide</a></li>-->
+	                    <!--<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/forum">Forum</a></li>-->
+	                    <!--<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>-->
+	                    <!--<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about">About</a></li>-->
 
 	                    <?php if (Auth::check()): ?>	                    	
 	                    	<?php $projects = Auth::user()->all_projects(); ?>
@@ -151,5 +166,16 @@
 
 	@section('js')
 	@show
+
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-74229208-1', 'auto');
+	  ga('send', 'pageview');
+
+	</script>
   </body>
 </html>

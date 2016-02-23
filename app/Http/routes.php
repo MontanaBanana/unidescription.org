@@ -48,6 +48,8 @@ $basic_pages = array(
 	'site-map', 
 	'contact', 
 	'privacy-policy', 
+	'tutorials', 
+	'best-practices', 
 	'license', 
 	'auth/password',
 	'comp' // jason's new project comps, standalone

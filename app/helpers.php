@@ -102,6 +102,9 @@ function get_placeholder_text($section_title)
 	//ini_set('display_errors', true); error_reporting(E_ALL);
 	$section_template = App\SectionTemplate::where('title', $section_title)->first();
 	//echo "<PRE>".print_r($section_template,true)."</pre>";exit;
-	return $section_template->description;
+	if ($section_template) {
+		return $section_template->description;
+	}
+	return '';
 
 }

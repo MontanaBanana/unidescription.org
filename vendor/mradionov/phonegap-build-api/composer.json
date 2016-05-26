@@ -1,0 +1,27 @@
+{
+    "name": "mradionov/phonegap-build-api",
+    "description": "PHP library to interact with Phonegap Build API",
+    "version": "0.1.1",
+    "type": "library",
+    "keywords": [
+        "phonegap",
+        "build",
+        "php",
+        "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Radionov"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/mradionov/phonegap-build-api",
+        "issues": "https://github.com/mradionov/phonegap-build-api/issues"
+    },
+    "autoload": {
+        "psr-0": {
+            "PhonegapBuildApi": ""
+        }
+    }
+}

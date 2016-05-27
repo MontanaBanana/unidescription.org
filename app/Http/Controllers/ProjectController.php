@@ -30,6 +30,18 @@ class ProjectController extends Controller
 	    
 	    return view('project.view', ['project' => $project]);
     }
+
+    public function getBuildIndex($id)
+    {
+	    $project = Project::find($id);
+
+        return view('project.build.index', ['project' => $project]);
+    }
+
+    public function postBuildIndex(Request $request)
+    {
+        return view('project.build.index', ['project' => $project]);
+    }
     
     public function getExport($id)
     {

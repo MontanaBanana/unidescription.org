@@ -4156,5 +4156,45 @@
             "laravel-4",
             "laravel-5"
         ]
+    },
+    {
+        "name": "mradionov/phonegap-build-api",
+        "version": "0.1.1",
+        "version_normalized": "0.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/mradionov/phonegap-build-api.git",
+            "reference": "d0445cc2d5635743b7d8214db37fc29e1cc287e8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/mradionov/phonegap-build-api/zipball/d0445cc2d5635743b7d8214db37fc29e1cc287e8",
+            "reference": "d0445cc2d5635743b7d8214db37fc29e1cc287e8",
+            "shasum": ""
+        },
+        "time": "2015-11-25 20:56:43",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PhonegapBuildApi": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Michael Radionov"
+            }
+        ],
+        "description": "PHP library to interact with Phonegap Build API",
+        "keywords": [
+            "api",
+            "build",
+            "phonegap",
+            "php"
+        ]
     }
 ]

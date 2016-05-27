@@ -109,7 +109,7 @@
 														</li>
 													</ul>
 												</li>
-											<? endforeach; ?>
+											<?php endforeach; ?>
 											<li>
 												<div class="input-group" id="share-input-group">
 													<input type="text" class="form-control" id="share-email" placeholder="Enter a page name here..." aria-describedby="share-button" />

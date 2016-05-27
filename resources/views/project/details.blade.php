@@ -198,14 +198,11 @@
 			        	<div class="panel panel-default">
 							<div class="panel-heading">Tip: Exporting</div>
 							<div class="panel-body">
-								<!--
-								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
-								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
-								-->
-								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
+								<p>When your project is completed, you can preview the app by clicking on the Preview Project button below. When you're ready to upload the app to the app store, click on the Build Project button.</p>
 								
 								@if ($project->id)
-									<a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Export Project</a>
+                                    <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview Project</a></p>
+                                    <p><a href="/account/project/build/{{ $project->id }}/index" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Build Project</a></p>
 								@endif
 							</div>
 						</div>

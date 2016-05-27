@@ -75,13 +75,13 @@
 									<div data-role="content" data-theme="c">
 										<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
 											<?php foreach ($sections as $index => $section): ?>
-												<li id="item-{{ $index }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded">
-						        				    <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
+												<li id="item-{{ $index }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
+												        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 
 													<div>
 														<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
 														<span class="fa fa-bars" style="cursor: move;" data-toggle="tooltip" data-placement="left" title="Click and drag to re-sort"></span>
-										                <i class="fa fa-chevron-right toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+														<i class="fa fa-chevron-right toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 														<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
 														<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 														<!--<span class="label pull-right text-length label-info">Good Text Length</span>-->
@@ -89,7 +89,7 @@
 													<ul>
 														@if (count($section->children))
 													  		@foreach ($section->children as $child)
-																<li class="li-section-child">
+																<li class="li-section-child @if ($child->deleted) deleted @endif">
 																	<div>
 																		<input type="hidden" name="sort_order[]" value="{{ $child->id }}" />
 																		<input type="hidden" name="section-{{ $child->id }}-parent" value="{{ $index }}" />
@@ -116,7 +116,7 @@
 														</li>-->
 													</ul>
 												</li>
-											<? endforeach; ?>
+											<?php endforeach; ?>
 											<li id="final-leaf">
 												<div class="input-group">
 													<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
@@ -164,6 +164,8 @@
 								-->
 								<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
 								<p>After you are done making changes, be sure to click the Save button at the bottom of the page.</p>
+
+								<p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" /> Show deleted items</label> </p>
 							</div>
 						</div>
 			        	

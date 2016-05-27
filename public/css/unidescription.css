@@ -496,3 +496,7 @@ span.toc-icon {
 div.home-boxes .panel {
 	height: 235px;
 }
+
+.deleted {
+	display: none;
+}

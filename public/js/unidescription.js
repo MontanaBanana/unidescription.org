@@ -5,6 +5,15 @@ function validateEmail(email) {
     return re.test(email);
 }
 
+function toggleDeleted() {
+	if ($('input#toggle-deleted').is(':checked')) {
+		$('.deleted').show();
+	}
+	else {
+		$('.deleted').hide();
+	}
+}
+
 $(document).ready(function(){
 	
 	$('.pull-down').each(function() {

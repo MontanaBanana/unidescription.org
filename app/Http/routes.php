@@ -100,6 +100,9 @@ Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
 Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
+
+Route::get(WEBROOT.'/account/project/build/{id}', 'ProjectController@getBuildIndex');
+
 //Route::get('user/search/{string}', 'UserController@search');
 Route::post(WEBROOT.'/account/project/share', 'ProjectController@postShare');
 

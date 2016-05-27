@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7ecc74441ca9d01a059dd24d03eb65f0",
-    "content-hash": "00155fd477fb248890331843cd0eb101",
+    "hash": "1559afe89c3d9653f46d9ff54279bfbe",
+    "content-hash": "a18df29e2a0bc597e895030e9e3c89ee",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1434,6 +1434,44 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
+        },
+        {
+            "name": "mradionov/phonegap-build-api",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mradionov/phonegap-build-api.git",
+                "reference": "d0445cc2d5635743b7d8214db37fc29e1cc287e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mradionov/phonegap-build-api/zipball/d0445cc2d5635743b7d8214db37fc29e1cc287e8",
+                "reference": "d0445cc2d5635743b7d8214db37fc29e1cc287e8",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PhonegapBuildApi": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Radionov"
+                }
+            ],
+            "description": "PHP library to interact with Phonegap Build API",
+            "keywords": [
+                "api",
+                "build",
+                "phonegap",
+                "php"
+            ],
+            "time": "2015-11-25 20:56:43"
         },
         {
             "name": "mtdowling/cron-expression",

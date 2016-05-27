@@ -8,7 +8,11 @@ use Auth;
 
 class Project extends Model
 {
-    protected $fillable = ['user_id', 'title', 'description', 'gpo', 'version_number', 'version', 'author', 'publication_date', 'image_url'];
+    protected $fillable = [
+        'user_id', 'title', 'description', 'gpo', 'version_number', 'version', 
+        'author', 'publication_date', 'image_url', 
+        'pg_build_code', 'pg_build_access_token', 'pg_build_application_id', 'pg_build_version'
+    ];
 
     public function users()
     {

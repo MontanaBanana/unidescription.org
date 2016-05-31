@@ -202,7 +202,7 @@
 								
 								@if ($project->id)
                                     <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview Project</a></p>
-                                    <p><a href="/account/project/build/{{ $project->id }}/index" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Build Project</a></p>
+                                    <p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Build Project</a></p>
 								@endif
 							</div>
 						</div>

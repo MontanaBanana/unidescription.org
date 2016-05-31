@@ -6,7 +6,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="{{ $project->description }}">
 		<meta name="author" content="{{ $project->user->email }}">
-		
+	    
+	     <!-- phonegap -->
+	    <script type="text/javascript" src="phonegap.js"></script>
+	    
 	    <!-- Bootstrap -->
 	    <link rel="stylesheet" href="/css/nps-bootstrap.css">
 	    
@@ -20,9 +23,9 @@
 	    <![endif]-->
 	    
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	    <script type="text/javascript" src="/jquery.min.js"></script>
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script type="text/javascript" src="http://www.nps.gov/lib/bootstrap/3.3.2/js/nps-bootstrap.min.js"></script>
+	    <script type="text/javascript" src="/js/nps-bootstrap.min.js"></script>
 	
 	    <!-- Unidescription custom JS -->
 	    <script type="text/javascript" src="/js/unidescription.js"></script>	

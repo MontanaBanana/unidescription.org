@@ -1,0 +1,502 @@
+/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+
+html,
+body {
+    height: 100%;
+    /*
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	*/
+}
+
+body {
+    padding-top: 50px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.mobile-only {
+	display:none;
+}
+
+.img-portfolio {
+    /*margin-bottom: 30px;*/
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+
+/* Home Page Carousel */
+
+header.carousel {
+    height: 550px;
+}
+
+header.carousel .item,
+header.carousel .item.active,
+header.carousel .carousel-inner {
+    height: 100%;
+}
+
+header.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+/* 404 Page Styles */
+
+.error-404 {
+    font-size: 100px;
+}
+
+/* Pricing Page Styles */
+
+.price {
+    display: block;
+    font-size: 50px;
+    line-height: 50px;
+}
+
+.price sup {
+    top: -20px;
+    left: 2px;
+    font-size: 20px;
+}
+
+.period {
+    display: block;
+    font-style: italic;
+}
+
+/* Footer Styles */
+
+footer {
+    margin: 50px 0;
+}
+
+/* Responsive Styles */
+
+@media(max-width:991px) {
+    .customer-img,
+    .img-related {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:767px) {
+    .img-portfolio {
+        margin-bottom: 15px;
+    }
+
+    header.carousel .carousel {
+        height: 70%;
+    }
+}
+
+/* Authentication styles */
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+
+/* Register styles */
+.form-register {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-register .form-signin-heading,
+.form-register .checkbox {
+  margin-bottom: 10px;
+}
+.form-register .checkbox {
+  font-weight: normal;
+}
+.form-register .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-register .form-control:focus {
+  z-index: 2;
+}
+.form-register input {
+  margin-bottom: 3px;
+
+}
+
+.toc-arrow {
+	cursor: pointer;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+div.settings span.group-span-filestyle label {
+	width: 300px;
+}
+
+/* Buttons - edits to base btn class */
+.btn.btn-icon {
+	text-align:left;
+}
+.btn.btn-icon span {
+	display:inline-block;
+	padding-right:8px;
+	margin-right:3px;
+	
+	padding-top:8px;
+	padding-bottom:8px;
+	margin-top:-8px;
+	margin-bottom:-8px;
+	
+	border-right:1px solid rgba(0,0,0,0.15);
+}
+.btn-white {
+	background:#fff;
+	color:#464646;
+	border:1px solid #D9D1D7;
+}
+.btn-white:hover {
+	background:rgba(0,0,0,0.1);
+}
+
+/* Project Builder */
+.col-md-6.no-left-padding {
+	padding-left:0px;
+}
+div.project {
+	padding-left:14px;
+	padding-right:14px;
+}
+div.project .wrapper {
+	border:1px solid #F3EFE3;
+	background:#F9F7F1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding:22px 20px;
+}
+div.project .wrapper .wrapper-footer {
+	text-align:center;
+	border:1px solid #EDE8D6;
+	background:#F3EFE3;
+	padding:24px;
+	margin:0px -21px -23px -21px;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+div.project .panel.panel-default {
+	border:none;
+}
+div.project .panel.panel-default .panel-heading {
+	color:#fff;
+	border-bottom:none;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+div.project .col-md-8:first-child .panel.panel-default .panel-heading {
+	background:#777;
+}
+div.project .panel.panel-default .panel-body.white {
+	background:#fff;
+	border:1px solid #D9D1D7;
+	border-top:none;
+}
+div.project .panel.panel-default .panel-body.form-element {
+	padding:0px;
+}
+div.project .panel.panel-default .panel-body.form-element input,
+div.project .panel.panel-default .panel-body.form-element textarea {
+	width:100%;
+	background:#fff;
+	border:1px solid #D9D1D7;
+	border-top:none;
+	color:#464646;
+	padding:12px;
+}
+div.project .panel.panel-default .panel-body.form-element textarea {
+	min-height:150px;
+	margin-bottom:-6px;
+}
+div.project .panel.panel-default .panel-body.form-element textarea.tall {
+	min-height:250px;
+}
+div.project .panel.panel-default .panel-body.form-element input.large {
+	font-size:24px;
+}
+div.project .panel.panel-default .panel-body .thumbnail {
+	width:100%;
+}
+div.project .panel.panel-default .select-template {
+	display:inline-block;
+	padding:8px;
+	width:calc(48% - 12px);
+	/*margin-right:12px;*/
+	text-align:center;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-weight:bold;
+}
+div.project .panel.panel-default .select-template:nth-child(4n) {
+	margin-right:0px;
+}
+div.project .panel.panel-default .select-template:hover,
+div.project .panel.panel-default .select-template.selected {
+	background:#D7CEB2;
+	cursor:pointer;
+}
+div.project .panel.panel-default .panel-body .col-md-6:first-child {
+	padding-left:0px;
+}
+div.project .panel.panel-default .panel-note {
+	background:#f5f5f5;
+	padding:14px;
+	padding-top:20px;
+	margin:-14px;
+	margin-top:24px;
+}
+div.project .panel.panel-default .panel-note img.icon {
+	display:inline-block;
+	float:left;
+	margin-right:20px;	
+}
+
+/* Table of contents*/
+div.project .panel .table-of-contents {
+	padding:0px;
+}
+div.project .panel .table-of-contents p {
+	margin:12px;
+}
+div.project .panel .table-of-contents ul {
+	padding:0px;
+	margin:0px;
+	list-style:none;
+}
+div.project .panel .table-of-contents ul li {
+	padding:8px 6px 8px 14px;
+	border-bottom:1px solid #D9D1D7;
+}
+div.project .panel .table-of-contents ul li ul {
+	margin:8px -6px -8px -14px;
+	padding:0px;
+	border-left:26px solid #EEE;	
+}
+div.project .panel .table-of-contents ul li ul li {
+	border-top:1px solid #D9D1D7;
+	border-bottom:none;
+}
+div.project .panel .table-of-contents ul li ul li p {
+	margin:4px 0px;
+}
+div.project .panel .table-of-contents ul li .label {
+	margin-left:4px;
+	margin-top:-1px;
+	padding-top:6px;
+	padding-bottom:5px;
+}
+div.project .panel .table-of-contents ul li .fa-bars {
+	margin-right:12px;
+	color:rgba(0,0,0,0.3);
+}
+div.project .panel .table-of-contents ul li .fa-bars:hover {
+	cursor:pointer;	
+}
+div.project .panel .table-of-contents ul li .fa-chevron-right, 
+div.project .panel .table-of-contents ul li .fa-chevron-down {
+	display:inline-block;
+	width:18px;
+}
+div.project .panel .table-of-contents ul li .fa-chevron-right:hover, 
+div.project .panel .table-of-contents ul li .fa-chevron-down:hover {
+	cursor:pointer;
+	color:rgba(0,0,0,0.4);
+}
+
+/* Table of contents sortable */
+body.dragging, body.dragging * {
+	cursor: move !important;
+}
+.dragged {
+	position: absolute;
+	opacity: 0.5;
+	z-index: 2000;
+}
+#sortable li.placeholder {
+	position: relative;
+	/** More li styles **/
+}
+#sortable li.placeholder:before {
+	position: absolute;
+	/** Define arrowhead **/
+}
+
+/* Project Page Edit */
+div.project .wrapper .warning {
+	background:#DB524B;
+	color:#fff;
+	font-weight:bold;
+	margin:-22px -20px 22px -20px;
+	padding:20px 20px 20px 20px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+div.project .wrapper .warning a {
+	color:#fff;
+	text-decoration:underline;
+}
+div.project .wrapper .warning a.btn-primary {
+	color:#fff;
+	text-decoration:none;
+	background:none;
+	border:1px solid #fff;
+	float:right;
+	margin-top:-7px;
+}
+
+div.project .help {
+	padding:12px 0px;
+	margin-bottom:24px;
+}
+div.project .help .fa {
+	display:inline-block;
+	float:left;
+	font-size:56px;
+	color:#7f7f7f;
+	margin-right:12px;
+}
+
+/* tips column */
+div.project .tips-column .panel ul.standard-list {
+	margin:12px 0px;
+	padding:0px;
+	list-style:none;
+}
+div.project .tips-column .panel ul.standard-list li {
+	padding:4px 0px;
+}
+div.project .tips-column .panel ul.standard-list li a {
+	margin-left:8px;
+}
+
+/* mobile responsive */
+@media only screen and (max-device-width: 800px) { 
+	.mobile-only {
+		display:inline;
+	}
+	.desktop-only {
+		display:none;
+	}
+	div.project .edit-column,
+	dif.project .tips-column {
+		margin:0px 15px;
+		padding:0px;
+		width:calc(100% - 30px);
+	}
+	div.project .wrapper .col-md-4,
+	div.project .wrapper .col-md-6,
+	div.project .wrapper .col-md-8 {
+		padding-left:0px;
+		padding-left:0px;
+		width:100%;
+	}
+	div.project .wrapper input,
+	div.project .wrapper textarea {
+	    -webkit-appearance: none;
+	    border-radius: 0;
+	}
+	div.project .panel .table-of-contents .text-length {
+		display:none;
+	}
+	div.project .panel.panel-default .select-template {
+		width:calc(50% - 18px);
+		margin-bottom:24px;
+	}
+	div.project .help {
+		margin-top:32px;
+	}
+	div.project .panel-body.white p {
+		margin:12px 0px;
+	}
+	div.project .panel .table-of-contents p {
+		margin:12px;
+	}
+	div.project .panel .table-of-contents ul li ul li p {
+		margin:4px 0px;
+	}
+
+}
+
+span.toc-icon {
+	width: 23px;
+	cursor: pointer;
+}
+
+
+.carousel-inner {
+	overflow: visible;
+}
+.carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    color: black;
+    text-shadow: 0 0 0;
+}
+
+
+div.home-boxes .panel {
+	height: 235px;
+}
+
+.deleted {
+	display: none;
+}

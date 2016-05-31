@@ -62,4 +62,9 @@ return [
 
     ],
 
+    'phonegap_build' => [
+        'client_id' => env('PHONEGAP_BUILD_CLIENT_ID'),
+        'client_secret' => env('PHONEGAP_BUILD_CLIENT_SECRET')
+    ],
+
 ];

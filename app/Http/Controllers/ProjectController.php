@@ -11,6 +11,7 @@ use App\User;
 use App\Http\Controllers;
 use Auth;
 use Validator;
+use PhonegapBuildApi;
 
 class ProjectController extends Controller
 {
@@ -31,17 +32,6 @@ class ProjectController extends Controller
 	    return view('project.view', ['project' => $project]);
     }
 
-    public function getBuildIndex($id)
-    {
-	    $project = Project::find($id);
-
-        return view('project.build.index', ['project' => $project]);
-    }
-
-    public function postBuildIndex(Request $request)
-    {
-        return view('project.build.index', ['project' => $project]);
-    }
     
     public function getExport($id)
     {
@@ -69,6 +59,77 @@ class ProjectController extends Controller
 		return view('project.export', ['project' => $project]);
     }
     
+    public function getBuildIndex(Request $request, $id)
+    {
+	    // This will start the process of building the app through PG build...
+	    // First step is to do some sanity checks...
+	    $project = Project::find($id);
+	    $owner = User::find($project->user_id);
+	    if (!$owner->pg_build_code || !$owner->pg_build_access_token) {
+		    // The owner of this project needs to authorize us w/ PG build
+		    if ($owner->id == Auth::user()->id) {
+			    // They own this project, so just send them through the PG build auth process
+		    	header('Location: ' . SITEROOT . '/phonegapbuild/authorize');
+		    	exit;
+		    }
+		    else {
+			    // They don't own the project, so give them a message as to why they can't do this
+		    	return view('project.authorize', ['project' => $project, 'owner' => $owner]);
+		    }
+	    }
+	    
+	    // If we're here, then the owner of this project has a PG Build access token.
+	    // So, let's do some stuff on their behalf.
+	    $api = new PhonegapBuildApi($owner->pg_build_access_token);
+	    
+	    // See if this project already has been created
+	    $was_created = false;
+	    if (! $project->pg_build_application_id) {
+			// Not yet created, so create it.
+			$was_created = true;
+			$project->create_build_assets();
+
+			$res = $api->createApplicationFromFile($_SERVER['DOCUMENT_ROOT'].'/projects/'.$project->id.'.zip', array(
+			  'title' => 'Not used (it uses the config.xml title)',
+			  'private' => true,
+			  'hydrates' => true,
+			  'share' => true
+			  // see docs for all options
+			));
+
+					
+		    if ($api->success()) {
+    			$project->pg_build_application_id = $res['id'];
+				$project->pg_build_version = $res['version'];  
+				$project->save();
+		    }
+		    else {
+			    echo "Error: " . $api->error();
+			    exit;
+		    }
+	    }
+	    
+	    $pg_build = $api->getApplication( $project->pg_build_application_id );
+	    if ($api->success()) {
+			//echo "<PRE>".print_R($res,true)."</pre>";
+			//exit;
+			if (!$was_created) {
+				$project->create_build_assets();
+				$update_res = $api->updateApplicationFromFile($project->pg_build_application_id, $_SERVER['DOCUMENT_ROOT'].'/projects/'.$project->id.'.zip', array(
+				  'title' => 'Not used (it uses the config.xml title)',
+				));
+			}
+		}
+		else {
+			echo "Error: " . $api->error();
+		}
+		
+		//$pg_build['android_download'] = $api->downloadApplicationPlatform($project->pg_build_application_id, \PhonegapBuildApi::ANDROID);
+		//$pg_build['ios_download'] = $api->downloadApplicationPlatform($project->pg_build_application_id, \PhonegapBuildApi::IOS);
+
+		return view('project.build', ['project' => $project, 'owner' => $owner, 'pg_build' => $pg_build]);
+    }
+        
     /**
      * Accept share update, return a list of currently shared users.
      *

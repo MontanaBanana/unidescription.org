@@ -97,6 +97,9 @@
 		                        <ul class="dropdown-menu">
 			                        <li><a href="{{ SITEROOT }}/account">Account Activity</a></li>
 		                            <li><a href="{{ SITEROOT }}/account/settings">Settings</a></li>
+		                            <?php if (! Auth::user()->pg_build_code) { ?>
+		                            	<li><a href="{{ SITEROOT }}/phonegapbuild/authorize">PhoneGap Build Auth</a></li>
+		                            <?php } ?>
 		                            <li><a href="{{ SITEROOT }}/auth/logout">Sign Out</a></li>
 		                        </ul>
 							</li>

@@ -108,3 +108,26 @@ function get_placeholder_text($section_title)
 	return '';
 
 }
+
+function recurse_copy($src,$dst) { 
+    $dir = opendir($src); 
+    @mkdir($dst); 
+    while(false !== ( $file = readdir($dir)) ) { 
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($src . '/' . $file) ) { 
+                recurse_copy($src . '/' . $file,$dst . '/' . $file); 
+            } 
+            else { 
+                copy($src . '/' . $file,$dst . '/' . $file); 
+            } 
+        } 
+    } 
+    closedir($dir); 
+}
+
+function replace_string_in_file($filename, $string_to_replace, $replace_with) {
+    $content=file_get_contents($filename);
+    $content_chunks=explode($string_to_replace, $content);
+    $content=implode($replace_with, $content_chunks);
+    file_put_contents($filename, $content);
+}

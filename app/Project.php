@@ -53,7 +53,7 @@ class Project extends Model
 	    $owner = User::find($this->user_id);
 
 		replace_string_in_file($pg_build_dir."/config.xml", "{project.title}", $this->title);
-		replace_string_in_file($pg_build_dir."/config.xml", "{project.title_code}", preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($this->title)));
+		replace_string_in_file($pg_build_dir."/config.xml", "{project.title_code}", preg_replace("/[^A-Za-z0-9]/", '', strtolower($this->title)));
 		replace_string_in_file($pg_build_dir."/config.xml", "{project.description}", $this->description);
 		replace_string_in_file($pg_build_dir."/config.xml", "{owner.name}", $owner->name);
 		replace_string_in_file($pg_build_dir."/config.xml", "{owner.email}", $owner->email);

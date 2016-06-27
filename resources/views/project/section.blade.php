@@ -184,6 +184,8 @@
 @section('js')
 
 <script type="text/javascript">
+
+    $('textarea').trumbowyg();
 	
 	var audio;
 	

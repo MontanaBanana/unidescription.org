@@ -14,6 +14,9 @@
     <!-- Custom Fonts -->
     <link href="{{ SITEROOT }}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- RTE -->
+    <link rel="stylesheet" href="{{ SITEROOT }}/css/trumbowyg.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -29,6 +32,8 @@
     <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>-->
     <script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>
 
+    <!-- RTE -->
+    <script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js"></script>
 
     <!-- Unidescription custom JS -->
     <script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js"></script>

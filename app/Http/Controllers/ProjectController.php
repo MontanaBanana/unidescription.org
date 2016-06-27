@@ -409,6 +409,17 @@ class ProjectController extends Controller
     {
 		$ps = ProjectSection::find($request->project_section_id);
 		$ps->title = $request->title;
+
+        if ($request->hasFile('section_image')) {
+            $imageName = $ps->id . '.' . $request->file('section_image')->guessExtension();
+
+            $request->file('section_image')->move(
+                base_path() . '/public/assets/projects/' . $request->project_id . '/sections/', $imageName
+            );
+
+            $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
+        }
+
 		if ($ps->description != $request->description) {
 			// Generate the audio file
 			$ch = curl_init();
@@ -426,6 +437,25 @@ class ProjectController extends Controller
 			$ps->audio_file_needs_update = false;
 		}
 		$ps->description = $request->description;
+
+		if ($ps->phonetic_description != $request->phonetic_description) {
+			// Generate the audio file
+			$ch = curl_init();
+			
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+			
+			//execute post
+			$result = json_decode(curl_exec($ch));
+			
+			$ps->audio_file_url = $result->fn;
+			$ps->audio_file_needs_update = false;
+		}
+		$ps->phonetic_description = $request->phonetic_description;
+
 		$ps->notes = $request->notes;
 
 		$ps->save();

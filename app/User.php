@@ -49,6 +49,6 @@ class User extends Model implements AuthenticatableContract,
     
     public function all_projects()
     {
-	    return $this->projects->merge( $this->shared_projects );
+	    return $this->projects->merge( $this->shared_projects )->sortBy(function($sort){ return $sort->created_at; })->reverse();
     }
 }

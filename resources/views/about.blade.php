@@ -20,7 +20,7 @@
         <!-- Intro Content -->
         <div class="row">
             <div class="col-md-6">
-                <img class="img-responsive" src="{{ SITEROOT }}/images/showing_ipad_apps.jpg" alt="Campfires & Candlelight">
+                <img class="img-responsive" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
             </div>
             <div class="col-md-6">
                 <h2>About The UniD Project:</h2>

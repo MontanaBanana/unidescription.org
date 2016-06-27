@@ -49,7 +49,7 @@
 				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">App Store Assets</a></li>
+						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
 						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						<li class="active"><a href="#">{{ $section->title }}</a></li>
 					</ul>
@@ -95,6 +95,17 @@
 				        						
 							<div class="panel panel-default">
 								<div class="panel-heading">
+									Phonetic Page Description (... description about what this means ...):
+                                    <span class="pull-right"><a class="btn btn-sm btn-primary play-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-player-icon" class="fa fa-play"></span></a></span>
+                                    <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
+								</div>
+								<div class="panel-body form-element">
+									<textarea class="tall" name="phonetic_description" id="phonetic_description">{{ $section->phonetic_description }}</textarea>
+								</div>
+							</div>
+				        						
+							<div class="panel panel-default">
+								<div class="panel-heading">
 									Page Notes (internal use only):
 								</div>
 								<div class="panel-body form-element">
@@ -128,6 +139,17 @@
 							</div>
 						</div>
 						
+						<div class="panel panel-default">
+							<div class="panel-heading">Section Photo:</div>
+							<div class="panel-body">
+								<p>Upload a photo for this project section.</p>
+                                @if ($section->image_url)
+                                    <img src="{{ $section->image_url }}" style="width: 100%;" class="thumbnail" />
+                                @endif
+                                <input type="file" id="section_image" name="section_image">
+							</div>
+						</div>
+			          	
 						<div class="panel panel-default">
 							<div class="panel-heading">Content Tips:</div>
 							<div class="panel-body">
@@ -166,6 +188,58 @@
 	var audio;
 	
 	$(document).ready(function() {
+
+        $(":file").filestyle({buttonBefore: true, placeHolder: 'Section Photo', buttonText: '&nbsp;Section Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+
+		$('.play-phonetic-description').on('click', function(event) {
+			
+
+			/*
+			//set the url, number of POST vars, POST data
+			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+			
+			//execute post
+			$result = json_decode(curl_exec($ch));
+			
+			$ps->audio_file_url = $result->fn;
+			$ps->audio_file_needs_update = false;
+			*/
+			if ($('#phonetic-player-icon').hasClass('fa-play')) {
+				$('#phonetic-player-icon').removeClass('fa-play');
+				$('#phonetic-player-icon').addClass('fa-stop');
+				
+				var request = $.ajax({
+				  url: "http://api.montanab.com/tts/tts.php",
+				  method: "POST",
+				  data: { t : $('#phonetic_description').val() },
+				  dataType: "json"
+				});
+				 
+				request.done(function( msg ) {
+					console.log(msg.fn);
+					audio = new Audio(msg.fn);
+					audio.play();
+					audio.addEventListener('ended', function() {
+						$('#phonetic-player-icon').removeClass('fa-stop');
+						$('#phonetic-player-icon').addClass('fa-play');
+					});
+				});
+				 
+				request.fail(function( jqXHR, textStatus ) {
+				  alert( "Request failed: " + textStatus );
+				});
+			}
+			else {
+				$('#phonetic-player-icon').removeClass('fa-stop');
+				$('#phonetic-player-icon').addClass('fa-play');
+				
+				audio.pause();
+				audio.currentTime = 0;
+			}
+		});
 		
 		$('.play-description').on('click', function(event) {
 			

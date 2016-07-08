@@ -140,7 +140,7 @@
 						</div>
 						
 						<div class="panel panel-default">
-							<div class="panel-heading">Section Photo:</div>
+							<div class="panel-heading">Component Photo:</div>
 							<div class="panel-body">
 								<p>Upload a photo for this project section.</p>
                                 @if ($section->image_url)
@@ -191,7 +191,7 @@
 	
 	$(document).ready(function() {
 
-        $(":file").filestyle({buttonBefore: true, placeHolder: 'Section Photo', buttonText: '&nbsp;Section Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+        $(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 
 		$('.play-phonetic-description').on('click', function(event) {
 			

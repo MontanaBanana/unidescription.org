@@ -125,7 +125,7 @@
 
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Version:
+									Version / Version Notes:
 								</div>
 								<div class="panel-body form-element">
 									<input type="text" class="large" name="version" value="{{ $project->version }}" />
@@ -143,7 +143,7 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Publication Date:
+									Publication year of brochure:
 								</div>
 								<div class="panel-body form-element">
 									<input type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" />

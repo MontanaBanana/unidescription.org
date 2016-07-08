@@ -500,3 +500,7 @@ div.home-boxes .panel {
 .deleted {
 	display: none;
 }
+
+img {
+    border: 1px solid #000;
+}

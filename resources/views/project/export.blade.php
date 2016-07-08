@@ -54,20 +54,24 @@
 						    </div>
 						    <div id="section-{{ $section->id }}" class="panel" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
 						    	<div class="panel-body">
-									<audio controls>
-										<source src='{{ $section->audio_file_url }}' type='audio/wav'>
-									</audio>
-									<p>{{ $section->description }}</p>
+                                    <?php if (strlen($section->description)): ?>
+                                        <audio controls>
+                                            <source src='{{ $section->audio_file_url }}' type='audio/wav'>
+                                        </audio>
+                                        <p>{{ $section->description }}</p>
+                                    <?php endif; ?>
 									
 									@if (count($section->children))
 										@foreach ($section->children as $s)
 											@if ($s->completed && !$s->deleted)
 											<p>
 												<b>{{ $s->title }}</b><br />
-												<audio controls>
-													<source src='{{ $s->audio_file_url }}' type='audio/wav'>
-												</audio>
-												<p><?php echo nl2br($s->description); ?></p>
+                                                <?php if (strlen($s->description)): ?>
+                                                    <audio controls>
+                                                        <source src='{{ $s->audio_file_url }}' type='audio/wav'>
+                                                    </audio>
+                                                    <p><?php echo nl2br($s->description); ?></p>
+                                                <?php endif; ?>
 											</p>
 											@endif
 										@endforeach

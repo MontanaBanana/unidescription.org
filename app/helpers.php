@@ -70,7 +70,6 @@ function get_project_completion_percentage($sections)
 	$total = 0;
 	$completed = 0;
 	foreach ($sections as $section):
-		//echo "<PRE>".print_R($section->all(),true)."</pre>";
 		if ($section->deleted) { 
 			$total--; 
 		}

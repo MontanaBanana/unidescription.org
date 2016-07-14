@@ -11,7 +11,8 @@
         "guzzlehttp/guzzle": "~5.3|~6.0",
         "riari/laravel-forum": "~3.0",
         "riari/laravel-forum-frontend": "~1.0",
-        "mradionov/phonegap-build-api": "^0.1.1"
+        "mradionov/phonegap-build-api": "^0.1.1",
+        "graham-campbell/github": "^4.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

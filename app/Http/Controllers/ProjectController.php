@@ -89,11 +89,12 @@ class ProjectController extends Controller
 			$was_created = true;
 			$project->create_build_assets();
 
-			$res = $api->createApplicationFromFile($_SERVER['DOCUMENT_ROOT'].'/projects/'.$project->id.'.zip', array(
+			$res = $api->createApplicationFromRepo('https://github.com/MontanaBanana/unidescription-projects', array(
 			  'title' => 'Not used (it uses the config.xml title)',
-			  'private' => true,
+			  'private' => false,
 			  'hydrates' => true,
-			  'share' => true
+              'share' => true,
+              'tag' => 'test-project' // replace with real branch name
 			  // see docs for all options
 			));
 
@@ -115,8 +116,10 @@ class ProjectController extends Controller
 			//exit;
 			if (!$was_created) {
 				$project->create_build_assets();
-				$update_res = $api->updateApplicationFromFile($project->pg_build_application_id, $_SERVER['DOCUMENT_ROOT'].'/projects/'.$project->id.'.zip', array(
-				  'title' => 'Not used (it uses the config.xml title)',
+				$update_res = $api->updateApplicationFromRepo($project->pg_build_application_id, array(
+                    'title' => 'Not used (it uses the config.xml title)',
+                    'repo' => 'https://github.com/MontanaBanana/unidescription-projects',
+                    'tag' => 'test-project' // replace with real branch name
 				));
 			}
 		}
@@ -239,6 +242,7 @@ class ProjectController extends Controller
 		    $project->version_number = $request->version_number;
 		    $project->version = $request->version;
 		    $project->author = $request->author;
+		    $project->metatags= $request->metatags;
 		    $project->publication_date = $request->publication_date;
 
 		    

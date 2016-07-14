@@ -131,6 +131,15 @@
 									<input type="text" class="large" name="version" value="{{ $project->version }}" />
 								</div>
 							</div>
+
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Metatags: (comma separated list. i.e.: National Historial Site, Oregon, bison, Midwest.)
+								</div>
+								<div class="panel-body form-element">
+									<input type="text" class="large" name="metatags" value="{{ $project->metatags }}" />
+								</div>
+							</div>
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -198,11 +207,11 @@
 			        	<div class="panel panel-default">
 							<div class="panel-heading">Tip: Exporting</div>
 							<div class="panel-body">
-								<p>When your project is completed, you can preview the app by clicking on the Preview Project button below. When you're ready to upload the app to the app store, click on the Build Project button.</p>
+								<p>When your project is completed, you can preview the app by clicking on the Preview App button below. When you're ready to upload the app to the app store, click on the Create App button.</p>
 								
 								@if ($project->id)
-                                    <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview Project</a></p>
-                                    <p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Build Project</a></p>
+                                    <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview App</a></p>
+                                    <p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Create App</a></p>
 								@endif
 							</div>
 						</div>
@@ -334,6 +343,8 @@
 					        }
 					        $('#share-icon').removeClass("fa fa-spinner fa-spin");
 		        			$('#share-icon').addClass("fa fa-plus fa-fw");
+                            
+                            $('#share-email').val('');
 				        }
 				        else {
 					        

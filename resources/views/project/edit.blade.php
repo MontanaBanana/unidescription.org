@@ -247,7 +247,7 @@
 								
 								<button class="btn btn-sm btn-primary btn-block" type="submit"><span class="fa fa-save"></span> Save Project</button>
 								@if ($project->id)
-									<a href="/account/project/export/{{ $project->id }}" class="btn btn-sm btn-warning btn-block" target="_blank"><span class="fa fa-download"></span> Export Project</a>
+									<a href="/account/project/export/{{ $project->id }}" class="btn btn-sm btn-warning btn-block" target="_blank"><span class="fa fa-download"></span> Preview App</a>
 								@endif
 							</div>
 				        </div>

@@ -10,7 +10,7 @@ class Project extends Model
 {
     protected $fillable = [
         'user_id', 'title', 'description', 'gpo', 'version_number', 'version', 
-        'author', 'publication_date', 'image_url', 
+        'author', 'metatags', 'publication_date', 'image_url', 
     ];
 
     public function users()

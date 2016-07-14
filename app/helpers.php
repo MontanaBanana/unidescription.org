@@ -69,13 +69,14 @@ function get_project_completion_percentage($sections)
 {
 	$total = 0;
 	$completed = 0;
-	foreach ($sections as $section):
-		if ($section->deleted) { 
-			$total--; 
-		}
-		
+    foreach ($sections as $section):
+        if ($section->deleted) {
+            continue; 
+        }
+
 		$total++;
-		if ($section->completed) {
+
+		if ($section->completed && !$section->deleted) {
 			$completed++;
 		}
 		if ($section->children) {
@@ -84,13 +85,15 @@ function get_project_completion_percentage($sections)
 					$total--;
 				}
 				$total++;
-				if ($child->completed) {
+
+				if ($child->completed && !$child->deleted) {
 					$completed++;
 				}
 			}
 		}
 	endforeach;
 	if (!$total) { $total = 1; }
+
 	$percent = floor(($completed / $total) * 100);
 	
 	return $percent;

@@ -180,7 +180,7 @@
 								<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
 								
 								@if ($project->id)
-									<a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Export Project</a>
+									<a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview App</a>
 								@endif
 							</div>
 						</div>

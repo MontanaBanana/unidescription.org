@@ -90,8 +90,13 @@ class Project extends Model
     public function create_build_assets()
     {
         // Clone the repo
-        system("cd ".$_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id.'/; git clone ssh://git@github.com/MontanaBanana/unidescription-projects.git; cd unidescription-projects');
-        system("git checkout -t origin/".$this->github_branch);
+        system(
+            "cd ".$_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id.'/;'.
+            'rm -rf unidescription-projects;'.
+            'git clone ssh://git@github.com/MontanaBanana/unidescription-projects.git;'. 
+            'cd unidescription-projects;'.
+            'git checkout -t origin/'.$this->github_branch
+        );
 
         // Then, replace_string_in_file.
         // Then, commit back to github.
@@ -112,8 +117,11 @@ class Project extends Model
 		
 		file_put_contents($pg_build_dir."/index.html", 	$contents);
 
-        system("git commit -a -m'Template updated'");
-        system("git push");
+        system(
+            "cd ".$_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id.'/;'.
+            'git commit -a -m"Template updated";'.
+            'git push'
+        );
 		//replace_string_in_file($pg_build_dir."/index.html", "{project.title}", $this->title);
 		//replace_string_in_file($pg_build_dir."/index.html", "{project.description}", $this->description);
 

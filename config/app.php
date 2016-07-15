@@ -151,6 +151,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         'Riari\Forum\ForumServiceProvider',
         'Riari\Forum\Frontend\ForumFrontendServiceProvider',
+        'GrahamCampbell\GitHub\GitHubServiceProvider',
+
 
     ],
 
@@ -201,6 +203,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'GitHub' => 'GrahamCampbell\GitHub\Facades\GitHub',
 
 
     ],

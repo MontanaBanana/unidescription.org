@@ -12,6 +12,7 @@ use App\Http\Controllers;
 use Auth;
 use Validator;
 use PhonegapBuildApi;
+use GrahamCampbell\GitHub\Facades\GitHub;
 
 class ProjectController extends Controller
 {
@@ -77,6 +78,9 @@ class ProjectController extends Controller
 		    	return view('project.authorize', ['project' => $project, 'owner' => $owner]);
 		    }
 	    }
+
+        // Update GitHub with latest info
+        $project->create_github_branch();
 	    
 	    // If we're here, then the owner of this project has a PG Build access token.
 	    // So, let's do some stuff on their behalf.

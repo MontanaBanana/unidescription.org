@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
 use Auth;
+use GrahamCampbell\GitHub\Facades\GitHub;
 
 class Project extends Model
 {
@@ -39,6 +40,51 @@ class Project extends Model
     public function section_tree()
     {
 	    return buildTree($this->project_sections, 'project_section_id');
+    }
+
+    public function create_github_branch()
+    {
+        // First, what would we call the branch? Let's see if one exists in
+        // the db...
+        if (!strlen($this->github_branch)) {
+            // Nope, so create the github branch name based on the title and id
+            $branch = preg_replace("/[^A-Za-z0-9]/", '-', str_replace(' ', '-', $this->title)) . "-".$this->id;
+        }
+        else {
+            $branch = $this->github_branch;
+        }
+
+        // Now, loop through all branches and make sure this one doesn't exist yet.
+        $all_branches = GitHub::repo()->branches('MontanaBanana', 'unidescription-projects');
+        $found = false;
+        $master_sha = '';
+        foreach ($all_branches as $b) {
+            if ($b['name'] == $branch) {
+                // Already exists
+                $found = true;
+            }
+
+            if ($b['name'] == 'master') {
+                $master_sha = $b['commit']['sha'];
+            }
+        }
+
+        if ($found) {
+            // Found it, but delete it and create a new branch based
+            // on the latest master
+            GitHub::gitData()->References()->remove('MontanaBanana', 'unidescription-projects', 'heads/'.$branch);
+            GitHub::gitData()->References()->create('MontanaBanana', 'unidescription-projects', array('ref' => 'refs/heads/'.$branch, 'sha' => $master_sha));
+
+        }
+        else {
+            // Didn't find it, so create one based on the latest sha
+            GitHub::gitData()->References()->create('MontanaBanana', 'unidescription-projects', array('ref' => 'refs/heads/'.$branch, 'sha' => $master_sha));
+        }
+
+        $this->github_branch = $branch;
+        $this->save();
+
+        return $this->github_branch;
     }
     
     public function create_build_assets()

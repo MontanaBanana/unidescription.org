@@ -39,10 +39,10 @@ return [
     'connections' => [
 
         'main' => [
-            'username' => 'USERNAME',
-            'password' => 'PASSWORD',
+            'username' => 'radiojoe',
+            'password' => '95cf4c403306f538426f7557eebda8001675a999',
             'method'   => 'password',
-            'cache'    => true
+            'cache'    => false 
         ],
         /*
         'main' => [

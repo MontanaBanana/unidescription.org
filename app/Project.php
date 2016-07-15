@@ -86,9 +86,45 @@ class Project extends Model
 
         return $this->github_branch;
     }
-    
+
     public function create_build_assets()
     {
+        // Clone the repo
+        system("cd ".$_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id.'/; git clone ssh://git@github.com/MontanaBanana/unidescription-projects.git; cd unidescription-projects');
+        system("git checkout -t origin/".$this->github_branch);
+
+        // Then, replace_string_in_file.
+        // Then, commit back to github.
+
+		// Create all files necessary for creating a PG Build zip
+		$pg_build_dir = $_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id.'/unidescription-projects/';
+
+	    $owner = User::find($this->user_id);
+
+		replace_string_in_file($pg_build_dir."/config.xml", "{project.title}", $this->title);
+		replace_string_in_file($pg_build_dir."/config.xml", "{project.title_code}", preg_replace("/[^A-Za-z0-9]/", '', strtolower($this->title)));
+		replace_string_in_file($pg_build_dir."/config.xml", "{project.description}", $this->description);
+		replace_string_in_file($pg_build_dir."/config.xml", "{owner.name}", $owner->name);
+		replace_string_in_file($pg_build_dir."/config.xml", "{owner.email}", $owner->email);
+		
+		$view = \View::make('project.export', ['project' => $this]);
+		$contents = $view->render();
+		
+		file_put_contents($pg_build_dir."/index.html", 	$contents);
+
+        system("git commit -a -m'Template updated'");
+        system("git push");
+		//replace_string_in_file($pg_build_dir."/index.html", "{project.title}", $this->title);
+		//replace_string_in_file($pg_build_dir."/index.html", "{project.description}", $this->description);
+
+		return true;
+    }
+    
+    public function zip_create_build_assets()
+    {
+        // This is the OLD way, where we were creating the build assets with
+        // and uploading them via a zip file, instead of via GitHub.
+        
 		// Create all files necessary for creating a PG Build zip
 		$pg_build_template = $_SERVER['DOCUMENT_ROOT'].'/projects/template';
 		$pg_build_dir = $_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id;

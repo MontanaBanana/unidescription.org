@@ -79,8 +79,10 @@ class ProjectController extends Controller
 		    }
 	    }
 
-        // Update GitHub with latest info
+        // Create a new branch of the master template in github
         $project->create_github_branch();
+        // Now, update the assets from the template
+        $project->create_build_assets();
 	    
 	    // If we're here, then the owner of this project has a PG Build access token.
 	    // So, let's do some stuff on their behalf.
@@ -91,14 +93,13 @@ class ProjectController extends Controller
 	    if (! $project->pg_build_application_id) {
 			// Not yet created, so create it.
 			$was_created = true;
-			$project->create_build_assets();
 
 			$res = $api->createApplicationFromRepo('https://github.com/MontanaBanana/unidescription-projects', array(
 			  'title' => 'Not used (it uses the config.xml title)',
 			  'private' => false,
 			  'hydrates' => true,
               'share' => true,
-              'tag' => 'test-project' // replace with real branch name
+              'tag' => $project->github_branch // replace with real branch name
 			  // see docs for all options
 			));
 
@@ -119,11 +120,10 @@ class ProjectController extends Controller
 			//echo "<PRE>".print_R($res,true)."</pre>";
 			//exit;
 			if (!$was_created) {
-				$project->create_build_assets();
 				$update_res = $api->updateApplicationFromRepo($project->pg_build_application_id, array(
                     'title' => 'Not used (it uses the config.xml title)',
                     'repo' => 'https://github.com/MontanaBanana/unidescription-projects',
-                    'tag' => 'test-project' // replace with real branch name
+                    'tag' => $project->github_branch // replace with real branch name
 				));
 			}
 		}

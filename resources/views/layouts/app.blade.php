@@ -38,6 +38,9 @@
     <!-- Unidescription custom JS -->
     <script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js"></script>
 
+    <!-- cropper -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.js"></script>
     
     <link href="{{ SITEROOT }}/css/unidescription.css" rel="stylesheet">
 

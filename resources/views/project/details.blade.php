@@ -128,7 +128,8 @@
 									Version / Version Notes:
 								</div>
 								<div class="panel-body form-element">
-									<input type="text" class="large" name="version" value="{{ $project->version }}" />
+                                    <!--<input type="text" class="large" name="version" value="{{ $project->version }}" />-->
+                                    <textarea name="version">{{ $project->version }}</textarea>
 								</div>
 							</div>
 
@@ -190,62 +191,13 @@
 				        	<span class="fa fa-question-circle"></span>
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
 			        	</div>
+
+                        @include('project.shared.progress')
 			        	
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Project Progress:</div>
-							<div class="panel-body">
-								<div class="progress">
-									<?php $percent = get_project_completion_percentage($sections); ?>
-									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
-										<?php echo $percent; ?>%
-									</div>
-								</div>
-							</div>
-						</div>
-			        	
-				        @if ($project->id)
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Tip: Exporting</div>
-							<div class="panel-body">
-								<p>When your project is completed, you can preview the app by clicking on the Preview App button below. When you're ready to upload the app to the app store, click on the Create App button.</p>
-								
-								@if ($project->id)
-                                    <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" target="_blank"><span class="fa fa-download"></span> Preview App</a></p>
-                                    <p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Create App</a></p>
-								@endif
-							</div>
-						</div>
-						@endif
+                        @include('project.shared.export')
 
-				        @if ($project->id)
-						<div class="panel panel-default">
-							<div class="panel-heading"><h3 class="panel-title">Owner: {{ $project->user->name }}</h3></div>
-							<div class="panel-body">
-								Shared with:
-								<ul class="list-group share-list-group">
-									@foreach ($project->users as $user)
-										<li class="list-group-item">
-											@if ($project->is_owner())
-												<span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="{{ $user->email }}"></span>
-											@endif
-											<span class="email">{{ $user->email }}</span>
-										</li>
-									@endforeach
-								</ul>
-								@if ($project->is_owner())
-								<div class="input-group" id="share-input-group">
-									<input type="email" class="form-control" id="share-email" placeholder="Email" aria-describedby="share-button" />
-									<span class="btn input-group-addon" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
-								</div>
-								@endif
-			
-							</div>
-						</div>
-						@endif
-				        
+                        @include('project.shared.owner')
 
-
-			          	
 			        </div>
 				</div>
 				<!-- /.row -->
@@ -272,94 +224,8 @@
 		});
 		
 		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
-	    
-	    $('.share-list-group').on('click', 'span.glyphicon-trash', function(event) {
-		   console.log($(event.currentTarget).data('email'));
-			$('#share-input-group').removeClass('has-error');
-			
-			$('#share-icon').removeClass("fa fa-plus fa-fw");
-			$('#share-icon').addClass("fa fa-spinner fa-spin");
-			
-			var formData = { 
-				_token: $('input[name=_token]').val(),
-				project_id: $('#id').val(),
-				email: $(event.currentTarget).data('email'),
-				add_or_del: 'del'
-			};
-			
-			$.ajax({
-			    url : "/account/project/share",
-			    type: "POST",
-			    data : formData,
-			    success: function(data, textStatus, jqXHR)
-			    {
-			        if (data.status) {
-				        $('ul.share-list-group').empty();
-				        for (var i = 0; i < data.users.length; i++) {
-					        $('ul.share-list-group').append(
-						        '<li class="list-group-item"><span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="'+ data.users[i].email +'"></span><span class="email">'+ data.users[i].email +'</span></li>'
-					        );
-				        }
-				        $('#share-icon').removeClass("fa fa-spinner fa-spin");
-	        			$('#share-icon').addClass("fa fa-plus fa-fw");
-
-			        }
-			        else {
-				        
-			        }
-			    }
-			}); 
-	    });
-	    
-	    
-	    $('#share-button').click(function(event) {
-			var email = $('#share-email').val();
-			
-			if (validateEmail(email)) {
-				$('#share-input-group').removeClass('has-error');
-				
-				$('#share-icon').removeClass("fa fa-plus fa-fw");
-				$('#share-icon').addClass("fa fa-spinner fa-spin");
-				
-				var formData = { 
-					_token: $('input[name=_token]').val(),
-					project_id: $('#id').val(),
-					email: email,
-					add_or_del: 'add'
-				}; 
-				
-				$.ajax({
-				    url : "/account/project/share",
-				    type: "POST",
-				    data : formData,
-				    success: function(data, textStatus, jqXHR)
-				    {
-				        if (data.status) {
-					        $('ul.share-list-group').empty();
-					        for (var i = 0; i < data.users.length; i++) {
-						        $('ul.share-list-group').append(
-							        '<li class="list-group-item"><span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="'+ data.users[i].email +'"></span><span class="email">'+ data.users[i].email +'</span></li>'
-						        );
-					        }
-					        $('#share-icon').removeClass("fa fa-spinner fa-spin");
-		        			$('#share-icon').addClass("fa fa-plus fa-fw");
-                            
-                            $('#share-email').val('');
-				        }
-				        else {
-					        
-				        }
-				    }
-				});
-			} 
-			else {
-				$('#share-input-group').addClass('has-error');
-			}
-	    });
 
 	});
-
-
 
 </script>
 

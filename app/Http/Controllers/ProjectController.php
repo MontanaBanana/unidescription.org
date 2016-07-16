@@ -129,6 +129,7 @@ class ProjectController extends Controller
 		}
 		else {
 			echo "Error: " . $api->error();
+            exit;
 		}
 		
 		//$pg_build['android_download'] = $api->downloadApplicationPlatform($project->pg_build_application_id, \PhonegapBuildApi::ANDROID);

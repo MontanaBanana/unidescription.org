@@ -47,7 +47,12 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$s->description);
+                if (strlen($s->phonetic_description)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$s->phonetic_description);
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$s->description);
+                }
 				
 				//execute post
 				$result = json_decode(curl_exec($ch));
@@ -229,6 +234,16 @@ class ProjectController extends Controller
 			$sections = buildTree($project->project_sections, 'project_section_id');
 			return view('project.details', ['sections' => $sections, 'project' => $project]);
 		}
+    }
+
+	public function postSectionCrop(Request $request)
+    {
+        $destination_fn = '/assets/projects/' . $request->project_id . '/sections/' . $request->project_section_id . '-cropped.jpg';
+        base64_to_jpeg($request->photo, $_SERVER['DOCUMENT_ROOT'].$destination_fn);
+		$ps = ProjectSection::find($request->project_section_id);
+        $ps->image_url = $destination_fn;
+        $ps->save();
+        return json_encode( array('status' => 'success', 'file' => $destination_fn) );
     }
     
 	public function postDetails(Request $request)
@@ -427,6 +442,7 @@ class ProjectController extends Controller
             );
 
             $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
+            $ps->original_image = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
         }
 
 		if ($ps->description != $request->description) {
@@ -437,7 +453,12 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+            if (strlen($request->phonetic_description)) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+            }
+            else {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+            }
 			
 			//execute post
 			$result = json_decode(curl_exec($ch));
@@ -456,6 +477,12 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+            if (strlen($request->phonetic_description)) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+            }
+            else {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+            }
 			
 			//execute post
 			$result = json_decode(curl_exec($ch));

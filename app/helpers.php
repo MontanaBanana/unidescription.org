@@ -133,3 +133,14 @@ function replace_string_in_file($filename, $string_to_replace, $replace_with) {
     $content=implode($replace_with, $content_chunks);
     file_put_contents($filename, $content);
 }
+
+function base64_to_jpeg($base64_string, $output_file) {
+    $ifp = fopen($output_file, "wb"); 
+
+    $data = explode(',', $base64_string);
+
+    fwrite($ifp, base64_decode($data[1])); 
+    fclose($ifp); 
+
+    return $output_file; 
+}

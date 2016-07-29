@@ -142,11 +142,17 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">Component Photo:</div>
 							<div class="panel-body">
-								<p>Upload a photo for this project section.</p>
+								<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
+                                <p><input type="file" id="section_image" name="section_image"></p>
                                 @if ($section->image_url)
-                                    <img src="{{ $section->image_url }}" style="width: 100%;" class="thumbnail" />
+                                    <div>
+                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
+                                    </div>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+                                        <span class="fa fa-file-image-o"></span> Crop Photo
+                                    </button>
                                 @endif
-                                <input type="file" id="section_image" name="section_image">
 							</div>
 						</div>
 			          	
@@ -160,7 +166,7 @@
 									<li>&bull; <a href="#">Vivamus sagittis lacinia turpis</a></li>
 									<li>&bull; <a href="#">Class aptent taciti sociosqu ad litora</a></li>
 								</ul>
-								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-users"></span> Join Our Forum!</a>
+								<a href="#" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-users"></span> Join Our Forum!</a>
 							</div>
 						</div>
 			          	
@@ -185,13 +191,13 @@
 
 <script type="text/javascript">
 
-    $('textarea').trumbowyg();
-	
 	var audio;
 	
 	$(document).ready(function() {
 
-        $(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+        $('textarea').trumbowyg();
+        //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+        $(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
 		$('.play-phonetic-description').on('click', function(event) {
 			
@@ -392,9 +398,101 @@
 
 	  	});
 
-	
+        // Upload cropped image to server if the browser supports `HTMLCanvasElement.toBlob`
+        /*
+        $('img.cropper').cropper('getCroppedCanvas').toBlob(function (blob) {
+          var formData = new FormData();
+
+          formData.append('croppedImage', blob);
+
+          $.ajax('/<?php WEBROOT ?>/account/project/crop', {
+            method: "POST",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function () {
+              console.log('Upload success');
+            },
+            error: function () {
+              console.log('Upload error');
+            }
+          });
+        }, "image/jpeg", 0.75);
+
+        */
+        $('.cropper').cropper({
+          preview: '.img-preview',
+          crop: function(e) {
+            // Output the result data for cropping image.
+            console.log(e.x);
+            console.log(e.y);
+            console.log(e.width);
+            console.log(e.height);
+            console.log(e.rotate);
+            console.log(e.scaleX);
+            console.log(e.scaleY);
+          },
+          minContainerHeight: 400,
+          minContainerWidth: 400,
+    
+        });
+
+        $('#saveCrop').click(function() {
+            var $img = $('.cropper');
+            var canvas = $img.cropper('getCroppedCanvas');
+            //console.log('canvas');
+            //console.log(canvas);
+            var canvasURL = canvas.toDataURL('image/jpeg');
+            //console.log('url');
+            //console.log(canvasURL);
+            //var photo = canvasURL.toDataURL('image/jpeg');                
+            //console.log('photo');
+            //console.log(photo);
+
+            $.ajax({
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN' : $('input[name="_token"]').val()  },
+                url: '/account/project/section/crop',
+                data: {
+                    photo: canvasURL,
+                    project_id: $('#id').val(),
+                    project_section_id: $('#project_section_id').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    d = new Date();
+                    $('#section-photo').attr('src', response.file + "?" + d.getTime());
+                    $('#modalClose').click();
+                }
+            });
+        });
 	});
 
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Crop Image</h4>
+      </div>
+      <div class="modal-body col-md-12">
+        <div class="col-md-6">
+          <img src="{{ $section->original_image }}" style="width: 100%;" class="thumbnail cropper" />
+        </div>
+        <div class="col-md-6">
+          <div class="img-preview"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modalClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveCrop">Save changes</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

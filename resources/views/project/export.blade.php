@@ -58,7 +58,16 @@
                                         <audio controls>
                                             <source src='{{ $section->audio_file_url }}' type='audio/wav'>
                                         </audio>
+
+                                        <?php if (strlen($section->image_url)): ?>
+                                            <img width="100%" src="<?php echo $section->image_url; ?>" />
+                                        <?php endif; ?>
+
                                         <p>{{ $section->description }}</p>
+                                    <?php endif; ?>
+
+                                    <?php if (strlen($section->image_url) && !strlen($section->description)): ?>
+                                        <img width="100%" src="<?php echo $section->image_url; ?>" />
                                     <?php endif; ?>
 									
 									@if (count($section->children))
@@ -70,7 +79,17 @@
                                                     <audio controls>
                                                         <source src='{{ $s->audio_file_url }}' type='audio/wav'>
                                                     </audio>
-                                                    <p><?php echo nl2br($s->description); ?></p>
+
+                                                    <?php if (strlen($s->image_url)): ?>
+                                                        <img width="100%" src="<?php echo $s->image_url; ?>" />
+                                                    <?php endif; ?>
+
+                                                    <!--<p><?php echo nl2br($s->description); ?></p>-->
+                                                    <p>{{ $s->description }}</p>
+                                                <?php endif; ?>
+
+                                                <?php if (strlen($s->image_url) && !strlen($s->description)): ?>
+                                                    <img width="100%" src="<?php echo $s->image_url; ?>" />
                                                 <?php endif; ?>
 											</p>
 											@endif

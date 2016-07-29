@@ -90,9 +90,13 @@ class Project extends Model
     public function create_build_assets()
     {
         $pg_build_dir = $_SERVER['DOCUMENT_ROOT'].'/projects/'.$this->id;
-        mkdir($pg_build_dir);
+	if (!is_dir($pg_build_dir)) {
+		@mkdir($pg_build_dir);
+	}
         $pg_build_dir .= '/unidescription-projects/';
-        mkdir($pg_build_dir);
+	if (!is_dir($pg_build_dir)) {
+		@mkdir($pg_build_dir);
+	}
 
         // Clone the repo
         exec(

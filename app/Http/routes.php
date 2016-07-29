@@ -98,6 +98,7 @@ Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
 Route::get(WEBROOT.'account/project/section/{id}/{section_id}', 'ProjectController@getSection');
 Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
 Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
+Route::post(WEBROOT.'account/project/section/crop', 'ProjectController@postSectionCrop');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');

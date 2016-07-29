@@ -504,3 +504,16 @@ div.home-boxes .panel {
 img {
     border: 1px solid #000;
 }
+
+img.cropper {
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid black;
+}
+
+div.img-preview {
+    overflow: hidden;
+    height: 400px;
+    width: 400px;
+    border: 1px solid black;
+}

@@ -218,7 +218,7 @@
 									<li>&bull; <a href="#">Vivamus sagittis lacinia turpis</a></li>
 									<li>&bull; <a href="#">Class aptent taciti sociosqu ad litora</a></li>
 								</ul>
-								<a href="#" class="btn btn-lg btn-white btn-icon"><span class="fa fa-users"></span> Join Our Forum!</a>
+								<a href="#" class="btn btn-lg btn-white btn-icon" style="width: 100%;"><span class="fa fa-users"></span> Join Our Forum!</a>
 							</div>
 						</div>
 				        

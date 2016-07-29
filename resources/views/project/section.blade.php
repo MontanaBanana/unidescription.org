@@ -61,7 +61,7 @@
 	
 	<div class="row project">
 	    <div class="col-lg-12">
-			<form method="POST" action="/account/project/section" enctype="multipart/form-data">
+        <form method="POST" action="/account/project/section" enctype="multipart/form-data">
 				{!! csrf_field() !!}
 				<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
 				<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />		
@@ -95,7 +95,7 @@
 				        						
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Phonetic Page Description (... description about what this means ...):
+									Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
                                     <span class="pull-right"><a class="btn btn-sm btn-primary play-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-player-icon" class="fa fa-play"></span></a></span>
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
@@ -106,7 +106,7 @@
 				        						
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Page Notes (internal use only):
+									Page Notes:<br /><small>internal use only</small>
 								</div>
 								<div class="panel-body form-element">
 									<textarea class="tall" name="notes">{{ $section->notes }}</textarea>
@@ -114,7 +114,7 @@
 							</div>
 							
 					        <div class="wrapper-footer">
-								<button class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save Page</button>
+								<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save Page</button>
 								<a class="check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
 							</div>
 				        </div>				        
@@ -127,6 +127,12 @@
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
 			        	</div>
 			        	
+			        	<div class="panel panel-default">
+							<div class="panel-body">
+                                <button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save Page</button>
+							</div>
+						</div>
+						
 			        	<div class="panel panel-default">
 							<div class="panel-heading">Project Progress:</div>
 							<div class="panel-body">
@@ -222,7 +228,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#phonetic_description').val() },
+				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"") },
 				  dataType: "json"
 				});
 				 
@@ -272,7 +278,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val() },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"") },
 				  dataType: "json"
 				});
 				 
@@ -304,7 +310,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val() },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"") },
 				  dataType: "json"
 				});
 				 
@@ -480,7 +486,7 @@
       </div>
       <div class="modal-body col-md-12">
         <div class="col-md-6">
-          <img src="{{ $section->original_image }}" style="width: 100%;" class="thumbnail cropper" />
+            <img src="{{ $section->original_image }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail cropper" />
         </div>
         <div class="col-md-6">
           <div class="img-preview"></div>

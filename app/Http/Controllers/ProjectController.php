@@ -48,10 +48,10 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
                 if (strlen($s->phonetic_description)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$s->phonetic_description);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->phonetic_description));
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$s->description);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->description));
                 }
 				
 				//execute post
@@ -454,10 +454,10 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
             if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
             }
             else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
             }
 			
 			//execute post
@@ -476,12 +476,11 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
             if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->phonetic_description);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
             }
             else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
             }
 			
 			//execute post

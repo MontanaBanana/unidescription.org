@@ -63,7 +63,7 @@
                                             <img width="100%" src="<?php echo $section->image_url; ?>" />
                                         <?php endif; ?>
 
-                                        <p>{{ $section->description }}</p>
+                                        <p><?php echo nl2br($section->description); ?></p>
                                     <?php endif; ?>
 
                                     <?php if (strlen($section->image_url) && !strlen($section->description)): ?>
@@ -85,7 +85,8 @@
                                                     <?php endif; ?>
 
                                                     <!--<p><?php echo nl2br($s->description); ?></p>-->
-                                                    <p>{{ $s->description }}</p>
+                                                    <p><?php echo nl2br($s->description); ?></p>
+                                                    <!--<p>{{ $s->description }}</p>-->
                                                 <?php endif; ?>
 
                                                 <?php if (strlen($s->image_url) && !strlen($s->description)): ?>

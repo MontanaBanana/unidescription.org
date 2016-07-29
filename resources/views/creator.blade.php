@@ -751,7 +751,7 @@
                 url: 'http://api.montanab.com/tts/tts.php',
                 type: 'get',
                 dataType: 'json',
-                data: 't='+msg,
+                data: 't='+msg.replace(/(<([^>]+)>)/ig,""),
                 success:function(data)
                 {
                     console.log(data); 

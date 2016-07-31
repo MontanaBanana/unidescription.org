@@ -234,7 +234,7 @@
 						        
 						        <label for="project_image" style="margin-top: 10px;">Project Image</label>
 						        @if ($project->image_url)
-						        	<img src="{{ $project->image_url }}" style="width: 100%;" class="thumbnail" />
+						        	<img src="{{ $project->image_url }}" style="width: 100%;" class="thumbnail" alt="{{ $project->title }} main project image" />
 						        @endif
 								<input type="file" id="project_image" name="project_image">
 							    

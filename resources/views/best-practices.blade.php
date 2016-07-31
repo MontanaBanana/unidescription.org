@@ -26,11 +26,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Describe what you see</a>
+                                Describe what you see
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseOne" class="panel-collapse collapse">
+                        <div id="collapseOne" class="panel">
                             <div class="panel-body">
 								<p>This is the first rule of description: what you see is what you describe. One sees physical appearances and actions; one does not see motivations or intentions. Never describe what you think you see.</p>
 								<div class="panel panel-default">
@@ -78,11 +78,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Describe objectively</a>
+                                Describe objectively
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseTwo" class="panel-collapse collapse">
+                        <div id="collapseTwo" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -95,11 +95,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Hearing the Dialogue</a>
+                                Hearing the Dialogue
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseThree" class="panel-collapse collapse">
+                        <div id="collapseThree" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -112,11 +112,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Trust the Listener</a>
+                                Trust the Listener
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseFour" class="panel-collapse collapse">
+                        <div id="collapseFour" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -129,11 +129,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Censorship</a>
+                                Censorship
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseFive" class="panel-collapse collapse">
+                        <div id="collapseFive" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -146,11 +146,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">Consistent Language</a>
+                                Consistent Language
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseSix" class="panel-collapse collapse">
+                        <div id="collapseSix" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -163,11 +163,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">Race, Ethnicity and Nationality</a>
+                                Race, Ethnicity and Nationality
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseSeven" class="panel-collapse collapse">
+                        <div id="collapseSeven" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -180,11 +180,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">The Listeners' Perspective</a>
+                                The Listeners' Perspective
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseEight" class="panel-collapse collapse">
+                        <div id="collapseEight" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>
@@ -197,11 +197,11 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">Good Techniques</a>
+                                Good Techniques
                             </h4>
                         </div>
                         <!-- Start collapse -->
-                        <div id="collapseNine" class="panel-collapse collapse">
+                        <div id="collapseNine" class="panel">
                             <div class="panel-body">
 								<p>... stub ...</p>
                             </div>

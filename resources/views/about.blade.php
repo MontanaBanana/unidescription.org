@@ -213,7 +213,7 @@
             </div>
             <div class="col-md-2 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Jason Kenison's bio photo">
                     <div class="caption" style="height: 205px;">
                         <h4>Jason Kenison<br>
                             <small>Senior Programmer</small>
@@ -245,15 +245,15 @@
                 <h2 class="page-header">Research Partners</h2>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="">
+                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Washington Monument photo from the air">
                 <p>Washington Monument</p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="">
+                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="Golden Gate photo from the distance">
                 <p>Golden Gate</p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/volcanoes.jpg" alt="">
+                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/volcanoes.jpg" alt="Lava aerial view">
                 <p>Hawaii Volcanoes</p>
             </div>
         </div>

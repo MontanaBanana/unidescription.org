@@ -67,7 +67,7 @@
                                     <?php endif; ?>
 
                                     <?php if (strlen($section->image_url) && !strlen($section->description)): ?>
-                                        <img width="100%" src="<?php echo $section->image_url; ?>" />
+                                        <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                     <?php endif; ?>
 									
 									@if (count($section->children))
@@ -90,7 +90,7 @@
                                                 <?php endif; ?>
 
                                                 <?php if (strlen($s->image_url) && !strlen($s->description)): ?>
-                                                    <img width="100%" src="<?php echo $s->image_url; ?>" />
+                                                    <img width="100%" src="<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                 <?php endif; ?>
 											</p>
 											@endif

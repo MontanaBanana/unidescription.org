@@ -11,7 +11,7 @@
     <h2 class="form-signin-heading">Settings</h2>
     
     @if (Auth::user()->image_url)
-    	<img src="<?php echo Auth::user()->image_url; ?>" class="img-responsive thumbnail" />
+    	<img src="<?php echo Auth::user()->image_url; ?>?ts=<?php echo time(); ?>" class="img-responsive thumbnail" />
     @endif
     
     <div class="input-group margin-bottom-sm">
@@ -55,7 +55,8 @@
 
 <script type="text/javascript">
 $( document ).ready(function() {
-    $(":file").filestyle({buttonBefore: true, placeHolder: 'Profile Photo', buttonText: '&nbsp;Profile photo', size: 'lg', input: false, iconName: "fa fa-camera-retro"});
+    //$(":file").filestyle({buttonBefore: true, placeHolder: 'Profile Photo', buttonText: '&nbsp;Profile photo', size: 'lg', input: false, iconName: "fa fa-camera-retro"});
+    $(":file").filestyle({icon: true, iconName: "fa fa-camera-retro", buttonText: "Update Profile Photo", buttonName: "btn-primary", input: false});
 });
 </script>
 

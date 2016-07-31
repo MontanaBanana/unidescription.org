@@ -82,12 +82,12 @@
 								<div class="panel-heading">Project Template:</div>
 								<div class="panel-body">
 									<div class="select-template selected" style="float: left;" data-template="template-none">
-										<img class="thumbnail" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="">
+										<img class="thumbnail" src="https://placeholdit.imgix.net/~text?txtsize=14&txt=No%20Template&w=200&h=131" alt="No Template placeholder">
 										<p>No Template</p>
 									</div>
 									<div class="select-template" style="float: right;" data-template="template-nps">
 										<input type="hidden" id="template-nps" value="0" />
-										<img class="thumbnail" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="">
+										<img class="thumbnail" src="{{ SITEROOT }}/images/campfires_and_candlelight.jpg" alt="NPS Campfires and Candlelight">
 										<p>NPS Unigrid Brochure</p>
 									</div>
 								</div>

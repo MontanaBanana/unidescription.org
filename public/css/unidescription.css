@@ -518,6 +518,6 @@ div.img-preview {
     border: 1px solid black;
 }
 
-div.navbar-header {
+div#main-nav {
     min-height: 80px;
 }

@@ -5,7 +5,7 @@
     <!-- Header Carousel -->
     
     <header>
-	    <img style="width: 100%;" src="{{ SITEROOT }}/slideshow/ad_photo1.jpg" /><br />
+	    <img style="width: 100%;" src="{{ SITEROOT }}/slideshow/ad_photo1.jpg" alt="Girl looking at phone at Old Faithful" /><br />
 		<div style="text-align: center; margin-top: 5px;">
 			<p style="font-size: 22px;"><strong>How do you get started?</strong> Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
 		</div>
@@ -123,7 +123,7 @@
 
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="{{ SITEROOT }}/slideshow/mobile_nps.jpg" alt="">
+                <img class="img-responsive" src="{{ SITEROOT }}/slideshow/mobile_nps.jpg" alt="Multiple people taking photos with their phones">
             </div>
         </div>
         <div class="row">

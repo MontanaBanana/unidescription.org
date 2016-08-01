@@ -99,6 +99,9 @@ Route::get(WEBROOT.'account/project/section/{id}/{section_id}', 'ProjectControll
 Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
 Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
 Route::post(WEBROOT.'account/project/section/crop', 'ProjectController@postSectionCrop');
+Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@postDeleteImage');
+Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController@postHasImageRights');
+
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');

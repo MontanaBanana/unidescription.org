@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectSection extends Model
 {
-    protected $fillable = ['project_id', 'project_section_id', 'title', 'description', 'notes', 'sort_order'];
+    protected $fillable = ['project_id', 'project_section_id', 'title', 'description', 'notes', 'sort_order', 'has_image_rights'];
 
     public function project()
     {

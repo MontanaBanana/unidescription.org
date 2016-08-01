@@ -115,7 +115,7 @@
 							
 					        <div class="wrapper-footer">
 								<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save Page</button>
-								<a class="check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
+								<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
 							</div>
 				        </div>				        
 			        </div>
@@ -129,7 +129,8 @@
 			        	
 			        	<div class="panel panel-default">
 							<div class="panel-body">
-                                <button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save Page</button>
+                                <p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save Page</button></p>
+								<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
 							</div>
 						</div>
 						
@@ -155,9 +156,19 @@
                                         <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
                                     </div>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
-                                        <span class="fa fa-file-image-o"></span> Crop Photo
-                                    </button>
+                                    <p>
+	                                    <a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
+                                    </p>
+                                    <p>
+	                                    <button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+	                                        <span class="fa fa-file-image-o"></span> Crop photo
+	                                    </button>
+                                    </p>
+                                    <p>
+	                                    <button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
+	                                        <span class="fa fa-remove"></span> Delete photo
+	                                    </button>
+                                    </p>
                                 @endif
 							</div>
 						</div>
@@ -319,9 +330,8 @@
 				});
 				 
 		});		
-		
-		
-	  	$('.check-complete').on('click', function(event) {
+	
+		$('.has-image-rights').on('click', function(event) {
 			//console.log( $(this).data() );
 			console.log( $(this) );
 			//console.log( $(this).children() );
@@ -338,19 +348,22 @@
 
 				var formData = { 
 					_token: $('input[name=_token]').val(),
-					completed: 1,
-					id: $('#project_section_id').val()
+					has_image_rights: 1,
+					project_section_id: $('#project_section_id').val()
 				};
 			
 				console.log(formData);
 				// Set it completed
 				$.ajax({
-				    url : "/account/project/completed",
+				    url : "/account/project/section/hasImageRights",
 				    type: "POST",
 				    data : formData,
+				    dataType: "json",
 				    success: function(data, textStatus, jqXHR)
 				    {
-				        if (data.status) {
+					    console.log('the data');
+					    console.log(data);
+				        if (data.status == 'success') {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-default');
 							$(section).addClass('btn-success');
@@ -374,6 +387,95 @@
 
 				var formData = { 
 					_token: $('input[name=_token]').val(),
+					has_image_rights: 0,
+					project_section_id: $('#project_section_id').val()
+				};
+			
+				// Set it completed
+				$.ajax({
+				    url : "/account/project/section/hasImageRights",
+				    type: "POST",
+				    data : formData,
+				    dataType: "json",
+				    success: function(data, textStatus, jqXHR)
+				    {
+					    console.log('the data');
+					    console.log(data);
+				        if (data.status == 'success') {
+					        $(section).children().removeClass("fa-spinner fa-spin");
+					        $(section).removeClass('btn-success');
+							$(section).addClass('btn-default');
+							$(section).children().addClass('fa-square-o');
+	
+				        }
+				        else {
+					        alert('Error: contact the site admin');
+				        }
+				    }
+				});
+				// Set it not completed
+			}
+			
+			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
+		});
+		
+		
+	  	$('.check-complete').on('click', function(event) {
+			//console.log( $(this).data() );
+			console.log( $(this) );
+			//console.log( $(this).children() );
+			//console.log( $(this).data() );
+
+			if ($(this).children().hasClass('fa-square-o')) {
+				
+				var section_id = $(this).data('section_id');
+				//var section = $(this);
+				var section = $('.page-complete');
+				//$(section).addClass('label-success');
+				//$(section).removeClass('label-default');
+				$(section).children().removeClass('fa-square-o');
+    			$(section).children().addClass("fa-spinner fa-spin");
+
+				var formData = { 
+					_token: $('input[name=_token]').val(),
+					completed: 1,
+					id: $('#project_section_id').val()
+				};
+			
+				console.log(formData);
+				// Set it completed
+				$.ajax({
+				    url : "/account/project/completed",
+				    type: "POST",
+                    dataType: "json",
+				    data : formData,
+				    success: function(data, textStatus, jqXHR)
+				    {
+				        if (data.status) {
+					        $(section).children().removeClass("fa-spinner fa-spin");
+					        $(section).removeClass('btn-default');
+							$(section).addClass('btn-success');
+							$(section).children().addClass('fa-check-square-o');
+	
+				        }
+				        else {
+					        alert('Error: contact the site admin.');
+				        }
+				    }
+				});
+			}
+			else {
+				var section_id = $(this).data('section_id');
+				//var section = $(this);
+				var section = $('.page-complete');
+				
+				//$(section).addClass('label-success');
+				//$(section).removeClass('label-default');
+				$(section).children().removeClass('fa-check-square-o');
+    			$(section).children().addClass("fa-spinner fa-spin");
+
+				var formData = { 
+					_token: $('input[name=_token]').val(),
 					completed: 0,
 					id: $('#project_section_id').val()
 				};
@@ -382,6 +484,7 @@
 				$.ajax({
 				    url : "/account/project/completed",
 				    type: "POST",
+                    dataType: "json",
 				    data : formData,
 				    success: function(data, textStatus, jqXHR)
 				    {
@@ -472,6 +575,23 @@
                 }
             });
         });
+        
+        $('#deleteImage').click(function() {
+            $.ajax({
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN' : $('input[name="_token"]').val()  },
+                url: '/account/project/section/deleteImage',
+                data: {
+                    project_id: $('#id').val(),
+                    project_section_id: $('#project_section_id').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    //$('#deleteModalClose').click();
+                    $('#save-page').click();
+                }
+            });
+        });
 	});
 
 </script>
@@ -500,5 +620,27 @@
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myDeleteModalLabel">Delete Photo</h4>
+      </div>
+      <div class="modal-body col-md-12">
+	  	Are you sure you want to delete the component photo?
+      </div>
+      <div class="modal-footer">
+        <button id="deleteModalClose" type="button" class="btn btn-default" data-dismiss="modal">No, Close</button>
+        <button type="button" class="btn btn-primary label-danger" id="deleteImage">Yes, Delete Photo</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
+
 
 @endsection

@@ -59,7 +59,7 @@
                                             <source src='{{ $section->audio_file_url }}' type='audio/wav'>
                                         </audio>
 
-                                        <?php if (strlen($section->image_url)): ?>
+                                        <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
                                             <img width="100%" src="<?php echo $section->image_url; ?>" />
                                         <?php endif; ?>
 
@@ -80,7 +80,7 @@
                                                         <source src='{{ $s->audio_file_url }}' type='audio/wav'>
                                                     </audio>
 
-                                                    <?php if (strlen($s->image_url)): ?>
+                                                    <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
                                                         <img width="100%" src="<?php echo $s->image_url; ?>" />
                                                     <?php endif; ?>
 

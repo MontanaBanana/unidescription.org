@@ -212,7 +212,9 @@
 	
 	$(document).ready(function() {
 
-        $('textarea').trumbowyg();
+        $('textarea').trumbowyg({
+		    removeformatPasted: true
+		});
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
         $(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 

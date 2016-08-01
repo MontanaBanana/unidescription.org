@@ -60,13 +60,13 @@
                                         </audio>
 
                                         <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
-                                            <img width="100%" src="<?php echo $section->image_url; ?>" />
+                                            <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                         <?php endif; ?>
 
                                         <p><?php echo nl2br($section->description); ?></p>
                                     <?php endif; ?>
 
-                                    <?php if (strlen($section->image_url) && !strlen($section->description)): ?>
+                                    <?php if (strlen($section->image_url) && !strlen($section->description) && $section->has_image_rights): ?>
                                         <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                     <?php endif; ?>
 									
@@ -81,7 +81,7 @@
                                                     </audio>
 
                                                     <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
-                                                        <img width="100%" src="<?php echo $s->image_url; ?>" />
+                                                        <img width="100%" src="<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                     <?php endif; ?>
 
                                                     <!--<p><?php echo nl2br($s->description); ?></p>-->
@@ -89,7 +89,7 @@
                                                     <!--<p>{{ $s->description }}</p>-->
                                                 <?php endif; ?>
 
-                                                <?php if (strlen($s->image_url) && !strlen($s->description)): ?>
+                                                <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
                                                     <img width="100%" src="<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                 <?php endif; ?>
 											</p>

@@ -158,6 +158,7 @@
 				        	<span class="fa fa-question-circle"></span>
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
 			        	</div>
+			        	@include('project.shared.version')
 			        	
                         @include('project.shared.progress')
 

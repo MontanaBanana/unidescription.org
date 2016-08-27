@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProjectSection extends Model
 {
-    protected $fillable = ['project_id', 'project_section_id', 'title', 'description', 'notes', 'sort_order', 'has_image_rights'];
+    protected $guarded = array();
 
     public function project()
     {
@@ -17,4 +17,10 @@ class ProjectSection extends Model
     {
 	    return $this->belongsTo('App\SectionTemplate');
     }
+
+    public function project_section_versions()
+    {
+        return $this->hasMany('App\ProjectSectionVersion');
+    }
+
 }

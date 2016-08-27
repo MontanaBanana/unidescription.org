@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
+use App\ProjectSectionVersion;
 use App\User;
 use App\Http\Controllers;
 use Auth;
 use Validator;
 use PhonegapBuildApi;
 use GrahamCampbell\GitHub\Facades\GitHub;
+use Icap\HtmlDiff\HtmlDiff;
+
 
 class ProjectController extends Controller
 {
@@ -442,6 +445,7 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$ps = ProjectSection::find($project_section_id);
+		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');
 	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project]);
     }
@@ -449,7 +453,60 @@ class ProjectController extends Controller
     public function postSection(Request $request)
     {
 		$ps = ProjectSection::find($request->project_section_id);
+		
+		// Save a version of this section with timestamps. Only save if the section is different enough.
+		if (
+			$request->description != $ps->description || 
+			$request->phonetic_description != $ps->phonetic_description || 
+			$request->title != $ps->title || 
+			$request->notes != $ps->notes ||
+			$request->audio_file_url != $ps->audio_file_url
+			) {
+			
+			/*
+					       $table->increments('id');
+           $table->string('project_section_id');
+	       $table->integer('project_id');
+	       $table->string('title');
+	       $table->text('description')->nullable();
+	       $table->text('phonetic_description')->nullable();
+	       $table->string('notes');
+	       $table->string('audio_file_url')->nullable();
+	       $table->boolean('audio_file_needs_update')->default(true);
+	       $table->integer('sort_order')->nullable()->unsigned();
+	       $table->boolean('completed')->default(false);
+	       $table->boolean('deleted')->default(false);
+	       $table->boolean('version')->default(1);
+	       $table->timestamps(); 
+	       $table->string('image_url');
+	       $table->string('original_image');
+	       $table->tinyInteger('has_image_rights')->default(0);
+				*/
+			$psv = ProjectSectionVersion::create(
+				[
+					'project_section' => $ps->project_section_id,
+					'project_section_id' => $ps->id, 
+					'project_id' => $ps->project_id,
+					'title' => $ps->title, 
+					'description' => $ps->description,
+					'phonetic_description' => $ps->phonetic_description,
+					'notes' => $ps->notes,
+					'audio_file_url' => $ps->audio_file_url,
+					'audio_file_needs_update' => $ps->audio_file_needs_update,
+					'sort_order' => $ps->sort_order,
+					'completed' => $ps->completed,
+					'deleted' => $ps->deleted,
+					'version' => $ps->version,
+					'image_url' => $ps->image_url,
+					'original_image' => $ps->original_image,
+					'has_image_rights' => $ps->has_image_rights
+				]
+			);
+			$psv->save();
+		}
+		
 		$ps->title = $request->title;
+		
 
         if ($request->hasFile('section_image')) {
             $imageName = $ps->id . '.' . $request->file('section_image')->guessExtension();

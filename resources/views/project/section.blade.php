@@ -2,6 +2,8 @@
 
 @section('header')
 
+	<script type="text/javascript" src="/js/jquery.form.js"></script>
+
 @endsection
 
 @section('content')
@@ -61,7 +63,7 @@
 	
 	<div class="row project">
 	    <div class="col-lg-12">
-        <form method="POST" action="/account/project/section" enctype="multipart/form-data">
+        <form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
 				{!! csrf_field() !!}
 				<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
 				<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />		
@@ -121,30 +123,12 @@
 			        </div>
 			        <div class="col-md-4 tips-column">
 				        
-				        
+				        <!--
 	                	<div class="help">
 				        	<span class="fa fa-question-circle"></span>
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
 			        	</div>
-			        	
-			        	<div class="panel panel-default">
-							<div class="panel-body">
-                                <p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save Page</button></p>
-								<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
-							</div>
-						</div>
-						
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Project Progress:</div>
-							<div class="panel-body">
-								<div class="progress">
-									<?php $percent = get_project_completion_percentage($sections); ?>
-									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
-										<?php echo $percent; ?>%
-									</div>
-								</div>
-							</div>
-						</div>
+			        	-->
 						
 						<div class="panel panel-default">
 							<div class="panel-heading">Component Photo:</div>
@@ -172,7 +156,30 @@
                                 @endif
 							</div>
 						</div>
-			          	
+    				    
+    				    @include('project.shared.section_version')
+  	
+			        	<div class="panel panel-default">
+							<div class="panel-heading">Save &amp; Complete:</div>
+							<div class="panel-body">
+                                <p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save Page</button></p>
+								<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
+							</div>
+						</div>
+						<!--						
+			        	<div class="panel panel-default">
+							<div class="panel-heading">Project Progress:</div>
+							<div class="panel-body">
+								<div class="progress">
+									<?php $percent = get_project_completion_percentage($sections); ?>
+									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
+										<?php echo $percent; ?>%
+									</div>
+								</div>
+							</div>
+						</div>
+			          	-->
+			          	<!--
 						<div class="panel panel-default">
 							<div class="panel-heading">Content Tips:</div>
 							<div class="panel-body">
@@ -186,12 +193,13 @@
 								<a href="#" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-users"></span> Join Our Forum!</a>
 							</div>
 						</div>
+						-->
 			          	
+
 			        </div>
 				</div>
 				<!-- /.row -->
-			
-			        
+						        
 			    <div class="row creator">
 			        
 			       
@@ -212,9 +220,28 @@
 	
 	$(document).ready(function() {
 
+        $(window).on('beforeunload', function(){
+            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }, async: false});
+        });
+		
         $('textarea').trumbowyg({
-		    removeformatPasted: true
+		    removeformatPasted: true,
+	        autogrow: true
+		}).on('tbwchange', function() {
+			console.log('current text');
+			console.log($('.trumbowyg-editor').text().length);
+			console.log('original count');
+			console.log(orig_count)
+			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {
+				// Reset the count, so we save again in another 15 characters
+				console.log('submitting');
+				orig_count = $('.trumbowyg-editor').text().length;
+				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+			}
 		});
+		
+		var orig_count = $('.trumbowyg-editor').text().length;
+		
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
         $(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
@@ -241,7 +268,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"") },
+				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
 				});
 				 
@@ -291,7 +318,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"") },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
 				});
 				 
@@ -323,7 +350,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"") },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
 				});
 				 
@@ -375,6 +402,9 @@
 				        else {
 					        alert('Error: contact the site admin.');
 				        }
+
+        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
 				    }
 				});
 			}
@@ -413,6 +443,9 @@
 				        else {
 					        alert('Error: contact the site admin');
 				        }
+				        
+        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
 				    }
 				});
 				// Set it not completed
@@ -463,6 +496,9 @@
 				        else {
 					        alert('Error: contact the site admin.');
 				        }
+				        
+        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
 				    }
 				});
 			}
@@ -500,6 +536,9 @@
 				        else {
 					        alert('Error: contact the site admin');
 				        }
+				        
+        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
 				    }
 				});
 				// Set it not completed
@@ -574,6 +613,9 @@
                     d = new Date();
                     $('#section-photo').attr('src', response.file + "?" + d.getTime());
                     $('#modalClose').click();
+                    
+    				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
                 }
             });
         });
@@ -591,8 +633,16 @@
                 success: function(response) {
                     //$('#deleteModalClose').click();
                     $('#save-page').click();
+    				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+
                 }
             });
+        });
+        
+        $('#section_image').change(function(){
+	       // When a file is chosen, auto-submit and refresh.
+	       $('#section_form').submit();
+	        
         });
 	});
 

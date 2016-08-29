@@ -1,7 +1,6 @@
-<?php
+<?php namespace Riari\Forum\Frontend\Http\Controllers;
 
-namespace Riari\Forum\Frontend\Http\Controllers;
-
+use Forum;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Exception\HttpResponseException;
@@ -11,7 +10,6 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Collection;
 use Riari\Forum\API\Dispatcher;
 use Riari\Forum\Contracts\API\ReceiverContract;
-use Riari\Forum\Frontend\Support\Forum;
 
 abstract class BaseController extends Controller implements ReceiverContract
 {
@@ -57,6 +55,10 @@ abstract class BaseController extends Controller implements ReceiverContract
             throw new HttpResponseException(
                 redirect()->back()->withInput($request->input())->withErrors($errors)
             );
+        }
+
+        if ($response->getStatusCode() == 403) {
+            abort(403);
         }
 
         return $response->isNotFound() ? abort(404) : $response->getOriginalContent();

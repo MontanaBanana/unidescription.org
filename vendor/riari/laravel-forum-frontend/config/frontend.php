@@ -4,6 +4,31 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Routes
+    |--------------------------------------------------------------------------
+    |
+    | By default, the routes are loaded automatically. You can disable that
+    | behaviour here if you wish to define them yourself or simply pull them
+    | into your own routes file.
+    |
+    */
+
+    'routes' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Middleware
+    |--------------------------------------------------------------------------
+    |
+    | Here we specify middleware to apply to the routes. For multiple values,
+    | use arrays or pipe notation.
+    |
+    */
+
+    'middleware' => 'web',
+
+    /*
+    |--------------------------------------------------------------------------
     | Controllers
     |--------------------------------------------------------------------------
     |
@@ -31,17 +56,5 @@ return [
     */
 
     'utility_class' => Riari\Forum\Frontend\Support\Forum::class,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Middleware
-    |--------------------------------------------------------------------------
-    |
-    | Here we specify middleware to apply to the routes. For multiple values,
-    | use arrays or pipe notation.
-    |
-    */
-
-    'middleware' => null
 
 ];

@@ -86,9 +86,7 @@
                         <textarea name="content" class="form-control">{{ old('content') }}</textarea>
                     </div>
 
-                    <div class="text-right">
-                        <button type="submit" class="btn btn-success pull-right">{{ trans('forum::general.reply') }}</button>
-                    </div>
+                    <button type="submit" class="btn btn-success pull-right">{{ trans('forum::general.reply') }}</button>
                 </form>
             </div>
         @endcan

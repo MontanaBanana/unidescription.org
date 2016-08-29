@@ -1,10 +1,12 @@
-<?php namespace Riari\Forum\Frontend\Http\Controllers;
+<?php
 
-use Forum;
+namespace Riari\Forum\Frontend\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Riari\Forum\Frontend\Events\UserCreatingPost;
 use Riari\Forum\Frontend\Events\UserEditingPost;
 use Riari\Forum\Frontend\Events\UserViewingPost;
+use Riari\Forum\Frontend\Support\Forum;
 
 class PostController extends BaseController
 {
@@ -67,7 +69,7 @@ class PostController extends BaseController
 
         $post = $this->api('post.store')->parameters([
             'thread_id' => $thread->id,
-            'author_id' => auth()->user()->getKey(),
+            'author_id' => auth()->user()->id,
             'post_id'   => is_null($post) ? 0 : $post->id,
             'content'   => $request->input('content')
         ])->post();

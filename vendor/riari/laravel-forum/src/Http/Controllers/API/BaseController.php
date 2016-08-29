@@ -155,11 +155,11 @@ abstract class BaseController extends Controller
         foreach ($items as $id) {
             $response = $this->{$action}($id, $request);
 
-            if (!$response->isNotFound()) {
-                if ($response->isClientError()) {
-                    return $response;
-                }
+            if ($response->isClientError()) {
+                return $response;
+            }
 
+            if (!$response->isNotFound()) {
                 $models->push($response->getOriginalContent());
             }
         }

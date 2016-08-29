@@ -21,6 +21,7 @@ class Thread extends BaseModel
     protected $fillable         = ['category_id', 'author_id', 'title', 'locked', 'pinned'];
     protected $guarded          = ['id'];
     protected $with             = ['author'];
+    protected $appends      = ['route'];
 
     /**
      * Constants
@@ -88,16 +89,14 @@ class Thread extends BaseModel
         $age = strtotime(config('forum.preferences.old_thread_threshold'), 0);
         $cutoff = $time - $age;
 
-        return $query->where('updated_at', '>', date('Y-m-d H:i:s', $cutoff))->orderBy('updated_at', 'desc');
+        return $query->where('updated_at', '>', date('Y-m-d H:i:s', strtotime($cutoff)))
+            ->orderBy('updated_at', 'desc');
     }
 
     /**
      * Attribute: Thread route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getRouteAttribute()
     {
@@ -108,9 +107,6 @@ class Thread extends BaseModel
      * Attribute: Reply route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getReplyRouteAttribute()
     {
@@ -121,9 +117,6 @@ class Thread extends BaseModel
      * Attribute: Update route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getUpdateRouteAttribute()
     {
@@ -134,9 +127,6 @@ class Thread extends BaseModel
      * Attribute: Delete route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getDeleteRouteAttribute()
     {
@@ -147,9 +137,6 @@ class Thread extends BaseModel
      * Attribute: Restore route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getRestoreRouteAttribute()
     {
@@ -160,9 +147,6 @@ class Thread extends BaseModel
      * Attribute: Force delete route.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getForceDeleteRouteAttribute()
     {
@@ -183,9 +167,6 @@ class Thread extends BaseModel
      * Attribute: Last post URL.
      *
      * @return string
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getLastPostUrlAttribute()
     {
@@ -291,9 +272,6 @@ class Thread extends BaseModel
      * Helper: Get route parameters.
      *
      * @return array
-     *
-     * @deprecated as of 3.0.2
-     * @todo remove before 3.1.0
      */
     public function getRouteParameters()
     {

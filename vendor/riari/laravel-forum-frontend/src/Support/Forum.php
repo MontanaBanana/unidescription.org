@@ -1,9 +1,8 @@
-<?php namespace Riari\Forum\Frontend\Support;
+<?php
 
-use Illuminate\Routing\Router;
-use Riari\Forum\Models\Category;
-use Riari\Forum\Models\Post;
-use Riari\Forum\Models\Thread;
+namespace Riari\Forum\Frontend\Support;
+
+use ReflectionClass;
 use Session;
 
 class Forum
@@ -50,42 +49,43 @@ class Forum
      */
     public static function route($route, $model = null)
     {
-        if (!starts_with($route, config('forum.routing.as'))) {
-            $route = config('forum.routing.as') . $route;
+        if (!starts_with($route, 'forum.')) {
+            $route = "forum.{$route}";
         }
 
         $params = [];
         $append = '';
 
         if ($model) {
-            switch (true) {
-                case $model instanceof Category:
+            $class = new ReflectionClass($model);
+            switch ($class->getShortName()) {
+                case 'Category':
                     $params = [
                         'category'      => $model->id,
-                        'category_slug' => static::slugify($model->title)
+                        'category_slug' => $model->slug
                     ];
                     break;
-                case $model instanceof Thread:
+                case 'Thread':
                     $params = [
                         'category'      => $model->category->id,
-                        'category_slug' => static::slugify($model->category->title),
+                        'category_slug' => $model->category->slug,
                         'thread'        => $model->id,
-                        'thread_slug'   => static::slugify($model->title)
+                        'thread_slug'   => $model->slug
                     ];
                     break;
-                case $model instanceof Post:
+                case 'Post':
                     $params = [
                         'category'      => $model->thread->category->id,
-                        'category_slug' => static::slugify($model->thread->category->title),
+                        'category_slug' => $model->thread->category->slug,
                         'thread'        => $model->thread->id,
-                        'thread_slug'   => static::slugify($model->thread->title)
+                        'thread_slug'   => $model->thread->slug
                     ];
 
-                    if ($route == config('forum.routing.as') . 'thread.show') {
+                    if ($route == 'forum.thread.show') {
                         // The requested route is for a thread; we need to specify the page number and append a hash for
                         // the post
-                        $params['page'] = ceil($model->sequenceNumber / $model->getPerPage());
-                        $append = "#post-{$model->sequenceNumber}";
+                        $params['page'] = ceil($model->thread->lastPage / $model->thread->getPerPage());
+                        $append = "#post-{$model->id}";
                     } else {
                         // Other post routes require the post parameter
                         $params['post'] = $model->id;
@@ -95,65 +95,5 @@ class Forum
         }
 
         return route($route, $params) . $append;
-    }
-
-    /**
-     * Register the standard forum routes.
-     *
-     * @param  Router  $router
-     * @return void
-     */
-    public static function routes(Router $router)
-    {
-        $controllers = config('forum.frontend.controllers');
-
-        // Forum index
-        $router->get('/', ['as' => 'index', 'uses' => "{$controllers['category']}@index"]);
-
-        // New/updated threads
-        $router->get('new', ['as' => 'index-new', 'uses' => "{$controllers['thread']}@indexNew"]);
-        $router->patch('new', ['as' => 'mark-new', 'uses' => "{$controllers['thread']}@markNew"]);
-
-        // Categories
-        $router->post('category/create', ['as' => 'category.store', 'uses' => "{$controllers['category']}@store"]);
-        $router->group(['prefix' => '{category}-{category_slug}'], function ($router) use ($controllers) {
-            $router->get('/', ['as' => 'category.show', 'uses' => "{$controllers['category']}@show"]);
-            $router->patch('/', ['as' => 'category.update', 'uses' => "{$controllers['category']}@update"]);
-            $router->delete('/', ['as' => 'category.delete', 'uses' => "{$controllers['category']}@destroy"]);
-
-            // Threads
-            $router->get('{thread}-{thread_slug}', ['as' => 'thread.show', 'uses' => "{$controllers['thread']}@show"]);
-            $router->get('thread/create', ['as' => 'thread.create', 'uses' => "{$controllers['thread']}@create"]);
-            $router->post('thread/create', ['as' => 'thread.store', 'uses' => "{$controllers['thread']}@store"]);
-            $router->patch('{thread}-{thread_slug}', ['as' => 'thread.update', 'uses' => "{$controllers['thread']}@update"]);
-            $router->delete('{thread}-{thread_slug}', ['as' => 'thread.delete', 'uses' => "{$controllers['thread']}@destroy"]);
-
-            // Posts
-            $router->get('{thread}-{thread_slug}/post/{post}', ['as' => 'post.show', 'uses' => "{$controllers['post']}@show"]);
-            $router->get('{thread}-{thread_slug}/reply', ['as' => 'post.create', 'uses' => "{$controllers['post']}@create"]);
-            $router->post('{thread}-{thread_slug}/reply', ['as' => 'post.store', 'uses' => "{$controllers['post']}@store"]);
-            $router->get('{thread}-{thread_slug}/post/{post}/edit', ['as' => 'post.edit', 'uses' => "{$controllers['post']}@edit"]);
-            $router->patch('{thread}-{thread_slug}/{post}', ['as' => 'post.update', 'uses' => "{$controllers['post']}@update"]);
-            $router->delete('{thread}-{thread_slug}/{post}', ['as' => 'post.delete', 'uses' => "{$controllers['post']}@destroy"]);
-        });
-
-        // Bulk actions
-        $router->group(['prefix' => 'bulk', 'as' => 'bulk.'], function ($router) use ($controllers) {
-            $router->patch('thread', ['as' => 'thread.update', 'uses' => "{$controllers['thread']}@bulkUpdate"]);
-            $router->delete('thread', ['as' => 'thread.delete', 'uses' => "{$controllers['thread']}@bulkDestroy"]);
-            $router->patch('post', ['as' => 'post.update', 'uses' => "{$controllers['post']}@bulkUpdate"]);
-            $router->delete('post', ['as' => 'post.delete', 'uses' => "{$controllers['post']}@bulkDestroy"]);
-        });
-    }
-
-    /**
-     * Convert the given string to a URL-friendly slug.
-     *
-     * @param  string  $string
-     * @return string
-     */
-    public static function slugify($string)
-    {
-        return str_slug($string, '-');
     }
 }

@@ -1,4 +1,6 @@
-<?php namespace Riari\Forum\Frontend\Events;
+<?php
+
+namespace Riari\Forum\Frontend\Events;
 
 class UserMarkingNew
 {

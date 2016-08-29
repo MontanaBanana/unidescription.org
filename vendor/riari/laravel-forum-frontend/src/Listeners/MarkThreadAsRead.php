@@ -1,4 +1,6 @@
-<?php namespace Riari\Forum\Frontend\Listeners;
+<?php
+
+namespace Riari\Forum\Frontend\Listeners;
 
 use Riari\Forum\Frontend\Events\UserViewingThread;
 use Illuminate\Contracts\Auth\Guard;

@@ -1,4 +1,6 @@
-<?php namespace Riari\Forum\Frontend\Events\Types;
+<?php
+
+namespace Riari\Forum\Frontend\Events\Types;
 
 use Riari\Forum\Models\Thread;
 

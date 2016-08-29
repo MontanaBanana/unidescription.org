@@ -3690,53 +3690,6 @@
         ]
     },
     {
-        "name": "riari/laravel-forum-frontend",
-        "version": "1.1.2",
-        "version_normalized": "1.1.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Riari/laravel-forum-frontend.git",
-            "reference": "1bcfca5ab5ab30e6f46126cac9c4453628f490c3"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Riari/laravel-forum-frontend/zipball/1bcfca5ab5ab30e6f46126cac9c4453628f490c3",
-            "reference": "1bcfca5ab5ab30e6f46126cac9c4453628f490c3",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.4.0",
-            "riari/laravel-forum": "~3.0"
-        },
-        "time": "2016-06-01 10:23:01",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Riari\\Forum\\Frontend\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Riari",
-                "email": "hello@ricko.me"
-            }
-        ],
-        "description": "A frontend for riari/laravel-forum providing views written with Bootstrap 3",
-        "keywords": [
-            "discuss",
-            "forum",
-            "frontend",
-            "laravel",
-            "laravel-4",
-            "laravel-5"
-        ]
-    },
-    {
         "name": "fzaninotto/faker",
         "version": "v1.6.0",
         "version_normalized": "1.6.0.0",
@@ -4605,28 +4558,28 @@
     },
     {
         "name": "riari/laravel-forum",
-        "version": "3.0.3",
-        "version_normalized": "3.0.3.0",
+        "version": "3.0.0",
+        "version_normalized": "3.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/Riari/laravel-forum.git",
-            "reference": "20f6f6114baaecc00769b9f78025d684b3b39392"
+            "reference": "4eb76f0f6bd6fe4fb460a4fff77a3c38cf903794"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Riari/laravel-forum/zipball/20f6f6114baaecc00769b9f78025d684b3b39392",
-            "reference": "20f6f6114baaecc00769b9f78025d684b3b39392",
+            "url": "https://api.github.com/repos/Riari/laravel-forum/zipball/4eb76f0f6bd6fe4fb460a4fff77a3c38cf903794",
+            "reference": "4eb76f0f6bd6fe4fb460a4fff77a3c38cf903794",
             "shasum": ""
         },
         "require": {
             "doctrine/dbal": "^2.5",
-            "laravel/framework": "~5.1",
+            "illuminate/support": "~5.0",
             "php": ">=5.4.0"
         },
         "suggest": {
             "riari/laravel-forum-frontend": "The standard forum frontend that provides views written with Bootstrap 3"
         },
-        "time": "2016-01-03 10:33:48",
+        "time": "2015-11-27 18:38:16",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -4648,6 +4601,53 @@
         "keywords": [
             "discuss",
             "forum",
+            "laravel",
+            "laravel-4",
+            "laravel-5"
+        ]
+    },
+    {
+        "name": "riari/laravel-forum-frontend",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Riari/laravel-forum-frontend.git",
+            "reference": "64b54162fbd7359b8cf7934c387dc463ce0b1b2e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Riari/laravel-forum-frontend/zipball/64b54162fbd7359b8cf7934c387dc463ce0b1b2e",
+            "reference": "64b54162fbd7359b8cf7934c387dc463ce0b1b2e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0",
+            "riari/laravel-forum": "~3.0"
+        },
+        "time": "2015-12-08 18:21:01",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Riari\\Forum\\Frontend\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Riari",
+                "email": "hello@ricko.me"
+            }
+        ],
+        "description": "A frontend for riari/laravel-forum providing views written with Bootstrap 3",
+        "keywords": [
+            "discuss",
+            "forum",
+            "frontend",
             "laravel",
             "laravel-4",
             "laravel-5"

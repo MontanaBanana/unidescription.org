@@ -57,6 +57,39 @@ $(document).ready(function(){
 		}
 	});
 	
+    var group = $("ul#sortable").sortable({
+	    afterMove: function ($placeholder, container, $closestItemOrContainer) {
+		    //console.log('afterMove');
+		    //console.log($placeholder, container, $closestItemOrContainer);
+		},
+		onDrop: function ($item, container, _super) {
+			var data = group.sortable("serialize").get();
+			var jsonString = JSON.stringify(data, null, ' ');
+			//console.log('onDrop');
+			//console.log(jsonString);
+			$('#json_toc').val(jsonString);
+			//$('#serialize_output').html("<PRE>"+jsonString+"</pre>");
+			_super($item, container);
+			$('#toc-form').submit();
+		},
+		isValidTarget: function ($item, container) {
+			var item_count =  $('i.fa',$item).length;
+			var container_count = $('i.fa',container.el).length
+		    //console.log('container', $('i.fa',container.el).length);
+		    //console.log('item', $('i.fa',$item).length);
+		    
+		    if (item_count == 1 && container_count == 0) {
+			    return false;
+		    }
+		    return true;
+		},
+		//tolerance: 6,
+		//distance: 10,
+		exclude: ".new-component",
+		nested: true
+    });
+    
+	/*
 	$( "#sortable" ).nestedSortable({
 		forcePlaceholderSize: true,
 		handle: 'div',
@@ -65,16 +98,33 @@ $(document).ready(function(){
 		opacity: .6,
 		placeholder: 'placeholder',
 		revert: 250,
-		tabSize: 25,
+		tabSize: 15,
 		tolerance: 'pointer',
 		toleranceElement: '> div',
 		maxLevels: 2,
 		isTree: true,
 		expandOnHover: 700,
 		listType: 'ul',
-		startCollapsed: false
+		startCollapsed: false,
+		isAllowed: function (placeholder, placeholderParent, currentItem) { 
+			//console.log('start');
+			//console.log(placeholder.hasClass('new-component'));
+			//console.log(placeholderParent.hasClass('new-component'));
+			//console.log(currentItem.hasClass('new-component')); 
+			//console.log('');
+			return true;
+		},
+		change: function(event, ui) {
+			console.log('change');
+			console.log(event, ui)
+		},
+		sort: function(event, ui) {
+			//console.log('sort');
+			//console.log(event, ui);
+		}
 	});
 	$( "#sortable" ).disableSelection();
+	*/
 	//Refresh list to the end of sort to have a correct display
 	//$( "#sortable" ).bind( "sortstop", function(event, ui) {
 	//	$('#sortable').listview('refresh');

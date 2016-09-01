@@ -32,8 +32,8 @@
     <!--<script type="text/javascript" src="http://www.nps.gov/lib/bootstrap/3.3.2/js/nps-bootstrap.min.js"></script>-->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/bootstrap-filestyle.min.js"></script>
-    <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>-->
-    <script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>
+    <script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>
+    <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>-->
 
     <!-- RTE -->
     <script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js"></script>

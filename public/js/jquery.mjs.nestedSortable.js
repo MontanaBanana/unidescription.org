@@ -1,19 +1,17 @@
 /*
  * jQuery UI Nested Sortable
- * v 2.0 / 29 oct 2012
- * http://mjsarfatti.com/sandbox/nestedSortable
+ * v 2.1a / 2016-02-04
+ * https://github.com/ilikenwf/nestedSortable
  *
  * Depends on:
  *	 jquery.ui.sortable.js 1.10+
  *
- * Copyright (c) 2010-2013 Manuele J Sarfatti
+ * Copyright (c) 2010-2016 Manuele J Sarfatti and contributors
  * Licensed under the MIT License
  * http://www.opensource.org/licenses/mit-license.php
  */
 (function( factory ) {
 	"use strict";
-
-	var define = window.define;
 
 	if ( typeof define === "function" && define.amd ) {
 
@@ -42,7 +40,7 @@
 			expandOnHover: 700,
 			isAllowed: function() { return true; },
 			isTree: false,
-			listType: "ul",
+			listType: "ol",
 			maxLevels: 0,
 			protectRoot: false,
 			rootID: null,
@@ -80,8 +78,6 @@
 				this.options.tolerance = "intersect";
 			}
 
-console.log(this);
-console.log(arguments);
 			$.ui.sortable.prototype._create.apply(this, arguments);
 
 			// prepare the tree by applying the right classes
@@ -754,7 +750,7 @@ console.log(arguments);
 			}
 
 			$(this.element).children(o.items).each(function() {
-				left = _recursiveArray(this, sDepth + 1, left);
+				left = _recursiveArray(this, sDepth, left);
 			});
 
 			ret = ret.sort(function(a, b) { return (a.left - b.left); });
@@ -776,9 +772,9 @@ console.log(arguments);
 					depth--;
 				}
 
-				id = ($(item).attr(o.attribute || "id")).match(o.expression || (/(.+)[-=_](.+)/));
+				id = ($(item).attr(o.attribute || "id") || "").match(o.expression || (/(.+)[-=_](.+)/));
 
-				if (depth === sDepth + 1) {
+				if (depth === sDepth) {
 					pid = o.rootID;
 				} else {
 					parentItem = ($(item).parent(o.listType)
@@ -789,13 +785,15 @@ console.log(arguments);
 				}
 
 				if (id) {
-						ret.push({
-							"item_id": id[2],
-							"parent_id": pid,
-							"depth": depth,
-							"left": _left,
-							"right": right
-						});
+					var data = $(item).children('div').data();
+					var itemObj = $.extend( data, {
+						"id":id[2],
+						"parent_id":pid,
+						"depth":depth,
+						"left":_left,
+						"right":right
+						} );
+					ret.push( itemObj );
 				}
 
 				_left = right + 1;
@@ -815,7 +813,7 @@ console.log(arguments);
 
 			var o = this.options,
 				childrenList = $(item).children(o.listType),
-				hasChildren = childrenList.is(':not(:empty)');
+				hasChildren = childrenList.has('li').length;
 
 			var doNotClear =
 				o.doNotClear ||
@@ -824,13 +822,10 @@ console.log(arguments);
 
 			if (o.isTree) {
 				replaceClass(item, o.branchClass, o.leafClass, doNotClear);
-
-				if (doNotClear && hasChildren) {
-					replaceClass(item, o.collapsedClass, o.expandedClass);
-				}
 			}
 
 			if (!doNotClear) {
+				childrenList.parent().removeClass(o.expandedClass);
 				childrenList.remove();
 			}
 		},

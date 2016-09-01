@@ -596,6 +596,39 @@ class ProjectController extends Controller
     
     public function postToc(Request $request)
     {
+	    $sort_order = 1;
+	    
+	    if ($request->id) {
+		    if (strlen($request->json_toc)) {
+			    $data = json_decode($request->json_toc);
+			    if (is_array($data[0])) {
+				    //echo "<PRE>".print_r($data[0],true)."</pre>";
+				    foreach ($data[0] as $parent) {
+					    
+	    				$ps = ProjectSection::find($parent->sectionId);
+						$ps->sort_order = $sort_order++;
+						$ps->project_section_id = 0;
+						$ps->save();
+					    //echo "<PRE>p ".print_r($parent,true)."</pre>";
+					    if (isset($parent->children)) {
+						    foreach ($parent->children[0] as $child) {
+							    //echo "<PRE>c ".print_r($child,true)."</pre>";exit;
+							    if (isset($child->sectionId)) {
+		    	    				$child_ps = ProjectSection::find($child->sectionId);
+									$child_ps->sort_order = $sort_order++;
+									$child_ps->project_section_id = $parent->sectionId;
+									//echo "<PRE>".print_R($child_ps,true)."</pre>";exit;
+									$child_ps->save();
+								}
+						    }
+					    }
+				    }
+			    }
+		    }
+		}
+		//exit;
+/*
+	    echo "<PRE>".print_R($request->json_toc,true)."</pre>";exit;
 	    if ($request->id) {
 			foreach ($request->sort_order as $sort_order => $section_id) {
 				if ($request->new_sections) {
@@ -607,7 +640,7 @@ class ProjectController extends Controller
 			}
 
 	    }
-
+*/
 		return redirect()->back();
 	}    
 	

@@ -56,14 +56,14 @@
 			</div><!-- /.container-fluid -->
 		</nav>
     </div>
-    
 	
 	<div class="row project">
 	    <div class="col-lg-12">
-			<form method="POST" action="/account/project/toc" enctype="multipart/form-data">
+			<form method="POST" action="/account/project/toc" enctype="multipart/form-data" id="toc-form">
 				{!! csrf_field() !!}
 				<input type="hidden" name="id" id="id" value="{{ $project->id }}" />			
 				<input type="hidden" name="new_sections" id="new_sections" value="{{ $new_sections }}" />
+				<input type="hidden" name="json_toc" id="json_toc" value="" />
 				
 				<div class="row">
 			        <div class="col-md-8 edit-column">
@@ -73,14 +73,14 @@
 								<div class="panel-heading">Table of Contents:</div>
 								<div class="panel-body white table-of-contents">
 									<div data-role="content" data-theme="c">
+										
 										<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
 											<?php foreach ($sections as $index => $section): ?>
-												<li id="item-{{ $index }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
-												        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
-
+												<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
 													<div>
+												        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 														<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
-														<span class="fa fa-bars" style="cursor: move;" data-toggle="tooltip" data-placement="left" title="Click and drag to re-sort"></span>
+														<span class="fa fa-bars" style="cursor: move;"></span>
 														<i class="fa fa-chevron-right toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 														<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
 														<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
@@ -89,12 +89,12 @@
 													<ul>
 														@if (count($section->children))
 													  		@foreach ($section->children as $child)
-																<li class="li-section-child @if ($child->deleted) deleted @endif">
+																<li data-title="{{ $child->title }}" data-section-id="{{ $child->id }}" class="li-section-child @if ($child->deleted) deleted @endif">
 																	<div>
 																		<input type="hidden" name="sort_order[]" value="{{ $child->id }}" />
 																		<input type="hidden" name="section-{{ $child->id }}-parent" value="{{ $index }}" />
 
-																		<span class="fa fa-bars" style="cursor: move;" data-toggle="tooltip" data-placement="left" title="Click and drag to re-sort"></span>
+																		<span class="fa fa-bars" style="cursor: move;"></span>
 																		<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																		<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
 																		<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
@@ -103,7 +103,7 @@
 																</li>
 															@endforeach
 														@endif
-														<li>
+														<li class="new-component">
 															<div class="input-group">
 																<input type="text" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
 																<span class="btn input-group-addon add-page" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}">ADD</span>
@@ -117,18 +117,19 @@
 													</ul>
 												</li>
 											<?php endforeach; ?>
-											<li id="final-leaf">
+											<li id="final-leaf" class="new-component">
 												<div class="input-group">
 													<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
 													<span class="btn input-group-addon add-page" id="section-0-add" data-project_section_id="0">ADD</span>
 												</div>
 											</li>
 										</ul>
+										
 									</div>
 									<!--<p><button class="btn btn-sm btn-primary btn-icon"><span class="fa fa-plus"></span> Add New Page</button></p>-->
 								</div>
 							</div>   
-							<div class="wrapper-footer">
+							<div class="wrapper-footer" style="display: none;">
 								<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>
 								<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 							</div>

@@ -1,6 +1,6 @@
 @if (Session::has('alerts'))
     @foreach (Session::get('alerts') as $alert)
-        @include ('forum::partials.alert', $alert)
+        @include ('forum::partials.alert', ['type' => $alert['type'], 'message' => $alert['message']])
     @endforeach
 @endif
 

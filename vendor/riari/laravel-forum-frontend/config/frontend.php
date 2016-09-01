@@ -30,18 +30,6 @@ return [
     |
     */
 
-    'utility_class' => Riari\Forum\Frontend\Support\Forum::class,
-
-    /*
-    |--------------------------------------------------------------------------
-    | Middleware
-    |--------------------------------------------------------------------------
-    |
-    | Here we specify middleware to apply to the routes. For multiple values,
-    | use arrays or pipe notation.
-    |
-    */
-
-    'middleware' => null
+    'utility_class' => Riari\Forum\Frontend\Support\Forum::class
 
 ];

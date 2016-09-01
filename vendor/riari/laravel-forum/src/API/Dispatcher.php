@@ -29,6 +29,11 @@ class Dispatcher
     protected $parameters = [];
 
     /**
+     * @var array
+     */
+    protected $headers = [];
+
+    /**
      * Create a new dispatcher instance.
      *
      * @param  ReceiverContract  $receiver

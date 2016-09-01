@@ -9,8 +9,8 @@
         "laravel/framework": "5.1.*",
         "laravel/socialite": "^2.0",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "riari/laravel-forum": "~3.0",
-        "riari/laravel-forum-frontend": "~1.0",
+        "riari/laravel-forum": "3.0.0",
+        "riari/laravel-forum-frontend": "1.0.1",
         "mradionov/phonegap-build-api": "^0.1.1",
         "graham-campbell/github": "^4.4",
         "icap/html-diff":">=1.0.1"

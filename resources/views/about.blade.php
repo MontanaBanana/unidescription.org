@@ -116,7 +116,7 @@
         
         <!-- List of people involved -->
         <div class="row">
-            <div class="col-md-2 text-center">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/brett-oppegaard.jpg" alt="Brett Oppegaard's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -135,7 +135,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/megan-conway.jpg" alt="Megan Conway's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -154,7 +154,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/thomas-conway.jpg" alt="Thomas Conway's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -173,7 +173,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/michele-hartley.jpg" alt="Michele Hartley's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -192,7 +192,9 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+		</div>
+		<div class="row">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/joe-oppegaard.png" alt="Joe Oppegaard's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -211,7 +213,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Jason Kenison's bio photo">
                     <div class="caption" style="height: 205px;">
@@ -228,6 +230,28 @@
                         <li><a href="https://twitter.com/jasonkenison" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="/images/team/tuyet-hayes.jpg" alt="Tuyet Hayes's bio photo">
+                    <div class="caption" style="height: 205px;">
+                        <h4>Tuyet Hayes<br>
+                            <small>Research Assistant</small>
+                        </h4>
+						<p>University of Hawai‘i</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                <div class="thumbnail">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Philipp Jordan's bio photo">
+                    <div class="caption" style="height: 205px;">
+                        <h4>Philipp Jordan<br>
+                            <small>Research Assistant</small>
+                        </h4>
+                        <p>University of Hawai‘i</p>
+                    </div>
                 </div>
             </div>
         </div>

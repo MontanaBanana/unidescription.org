@@ -573,7 +573,8 @@ class ProjectController extends Controller
 		$ps->notes = $request->notes;
 
 		$ps->save();
-	    return redirect()->back();
+	    //return redirect()->back();
+		return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
     }
     
     public function getToc($id)

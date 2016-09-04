@@ -274,7 +274,7 @@
 			
 	  	});
 	  	
-	  	$('.add-page').on('click', function(event) {
+	  	$('.add-page').one('click', function(event) {
 		  	//console.log( $(this).data() );
 		  	//console.log($(this).prev().val());
 		  	//console.log(event);
@@ -334,26 +334,27 @@
 				deleted: deleted,
 				id: section_id
 			};
-		
-			// Set it completed
-			$.ajax({
-			    url : "/account/project/deleted",
-			    type: "POST",
-			    data : formData,
-			    success: function(data, textStatus, jqXHR)
-			    {
-			        if (data.status) {
-				        $(section).children().removeClass("fa-spinner fa-spin");
-				        //$(section).removeClass('label-success');
-						//$(section).addClass('label-default');
-					    location.reload();
-			        }
-			        else {
-				        alert('Error: contact the site admin');
-			        }
-			    }
-			});
-		
+
+			if (confirm('Are you sure you want to delete this? If you do, you can still recover it by clicking "Show deleted items" in the right hand column')) {	
+				// Set it completed
+				$.ajax({
+					url : "/account/project/deleted",
+					type: "POST",
+					data : formData,
+					success: function(data, textStatus, jqXHR)
+					{
+						if (data.status) {
+							$(section).children().removeClass("fa-spinner fa-spin");
+							//$(section).removeClass('label-success');
+							//$(section).addClass('label-default');
+							location.reload();
+						}
+						else {
+							alert('Error: contact the site admin');
+						}
+					}
+				});
+			}
 	  	});
 	    
 		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});

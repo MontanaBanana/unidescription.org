@@ -33,17 +33,19 @@
 	                <h3><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></h3>
 	                <small>
 	                	Created: {{ date('F jS, Y', strtotime($project->created_at)) }}<br />
-						Updated: {{ date('F jS, Y', strtotime($project->updated_at)) }}
+						Updated: {{ date('F jS, Y', strtotime($project->updated_at)) }}<br />
 					</small>
+					<?php if (strlen($project->author)): ?>
+						<strong>Author:</strong> {{ $project->author }}<br />
+					<?php endif; ?>
 					<?php if (strlen($project->description)): ?>
-						<p>
-							<strong>Description:</strong> {{ $project->description }}
-						</p>
+						<strong>Description:</strong> {{ $project->description }}<br />
 					<?php endif; ?>
 					<?php if (strlen($project->version)): ?>
-						<p>
-							<strong>Version notes:</strong> {{ $project->version }}
-						</p>
+							<strong>Version notes:</strong> {{ $project->version }}<br />
+					<?php endif; ?>
+					<?php if (strlen($project->metatags)): ?>
+							<strong>Metatags:</strong> {{ $project->metatags }}<br />
 					<?php endif; ?>
 					<?php if (count($project->users)): ?>
 						<p>

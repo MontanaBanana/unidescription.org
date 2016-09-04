@@ -491,7 +491,7 @@ class ProjectController extends Controller
 					'project_section' => $ps->project_section_id,
 					'project_section_id' => $ps->id, 
 					'project_id' => $ps->project_id,
-					'title' => $ps->title, 
+					'title' => trim($ps->title), 
 					'description' => $ps->description,
 					'phonetic_description' => $ps->phonetic_description,
 					'notes' => $ps->notes,
@@ -509,7 +509,7 @@ class ProjectController extends Controller
 			$psv->save();
 		}
 		
-		$ps->title = $request->title;
+		$ps->title = trim($request->title);
 		
 
         if ($request->hasFile('section_image')) {

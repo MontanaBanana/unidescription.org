@@ -88,45 +88,5 @@ $(document).ready(function(){
 		exclude: ".new-component",
 		nested: true
     });
-    
-	/*
-	$( "#sortable" ).nestedSortable({
-		forcePlaceholderSize: true,
-		handle: 'div',
-		helper:	'clone',
-		items: 'li',
-		opacity: .6,
-		placeholder: 'placeholder',
-		revert: 250,
-		tabSize: 15,
-		tolerance: 'pointer',
-		toleranceElement: '> div',
-		maxLevels: 2,
-		isTree: true,
-		expandOnHover: 700,
-		listType: 'ul',
-		startCollapsed: false,
-		isAllowed: function (placeholder, placeholderParent, currentItem) { 
-			//console.log('start');
-			//console.log(placeholder.hasClass('new-component'));
-			//console.log(placeholderParent.hasClass('new-component'));
-			//console.log(currentItem.hasClass('new-component')); 
-			//console.log('');
-			return true;
-		},
-		change: function(event, ui) {
-			console.log('change');
-			console.log(event, ui)
-		},
-		sort: function(event, ui) {
-			//console.log('sort');
-			//console.log(event, ui);
-		}
-	});
-	$( "#sortable" ).disableSelection();
-	*/
-	//Refresh list to the end of sort to have a correct display
-	//$( "#sortable" ).bind( "sortstop", function(event, ui) {
-	//	$('#sortable').listview('refresh');
-	//});
+
 });

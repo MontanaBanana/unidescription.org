@@ -27,6 +27,7 @@
 					<a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
 	                    <img class="img-responsive img-hover thumbnail" src="<?php if ($project->image_url) { echo $project->image_url; } else { echo 'https://placeholdit.imgix.net/~text?txtsize=14&txt=Project Placeholder Image&w=380&h=250'; } ?>" alt="{{ $project->title }}">
 	                </a>
+					@include('project.shared.progress')
 	            </div>
 	            <div class="col-md-7">
 	                <h3><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></h3>
@@ -34,9 +35,24 @@
 	                	Created: {{ date('F jS, Y', strtotime($project->created_at)) }}<br />
 						Updated: {{ date('F jS, Y', strtotime($project->updated_at)) }}
 					</small>
-	                <p>
-		            	{{ $project->description }}
-	                </p>
+					<?php if (strlen($project->description)): ?>
+						<p>
+							<strong>Description:</strong> {{ $project->description }}
+						</p>
+					<?php endif; ?>
+					<?php if (strlen($project->version)): ?>
+						<p>
+							<strong>Version notes:</strong> {{ $project->version }}
+						</p>
+					<?php endif; ?>
+					<?php if (count($project->users)): ?>
+						<p>
+							<strong>Shared with:</strong>
+								@foreach ($project->users as $user)
+									{{ $user->email }}&nbsp;
+								@endforeach
+						</p>
+					<?php endif; ?>
 	                <a class="btn btn-primary btn-icon" href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}"><span class="fa fa-eye"></span> Edit Project</i></a>
 	                <a class="btn btn-primary btn-icon label-danger delete-project" href="/account/project/deleteconfirm/{{ $project->id }}" data-id="{{ $project->id }}"><span class="fa fa-times"></span> Delete Project</i></a>
 	            </div>

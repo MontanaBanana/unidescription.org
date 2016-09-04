@@ -1,3 +1,9 @@
+<?php 
+if (!isset($sections) && isset($project)) {
+	$sections = buildTree($project->project_sections, 'project_section_id');
+}
+?>
+
 <div class="panel panel-default">
     <div class="panel-heading">Project Progress:</div>
     <div class="panel-body">

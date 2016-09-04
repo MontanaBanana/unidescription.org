@@ -335,7 +335,7 @@
 				id: section_id
 			};
 
-			if (confirm('Are you sure you want to delete this? If you do, you can still recover it by clicking "Show deleted items" in the right hand column')) {	
+			if (confirm('Are you sure you want to delete this? If you do, you can still recover it by clicking "Show deleted items" in the right hand column.')) {	
 				// Set it completed
 				$.ajax({
 					url : "/account/project/deleted",

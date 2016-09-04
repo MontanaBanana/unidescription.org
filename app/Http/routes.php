@@ -49,7 +49,8 @@ $basic_pages = array(
 	'contact', 
 	'privacy-policy', 
 	'tutorials', 
-	'best-practices', 
+	'best-practices',
+	'unid-academy',	
 	'license', 
 	'auth/password',
 	'comp' // jason's new project comps, standalone

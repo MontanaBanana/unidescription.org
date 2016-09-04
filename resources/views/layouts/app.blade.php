@@ -28,6 +28,7 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css">
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!--<script type="text/javascript" src="http://www.nps.gov/lib/bootstrap/3.3.2/js/nps-bootstrap.min.js"></script>-->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -71,9 +72,9 @@
 			    <li class="dropdown">
 				<a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-				    <li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
-				    <li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>
-				    <li><a href="{{ SITEROOT }}/best-practices">Best Practices</a></li>
+				    <!--<li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
+				    <li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>-->
+				    <li><a href="{{ SITEROOT }}/unid-academy">UniD Academy</a></li>
 				    <li><a href="{{ SITEROOT }}/forum">Forum</a></li>
 				</ul>
 			    </li>

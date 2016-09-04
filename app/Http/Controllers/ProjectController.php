@@ -156,6 +156,10 @@ class ProjectController extends Controller
 	    //$project_id, $email, $add_or_del,
 	    $project_id = $request->project_id;
 	    $email = $request->email;
+		if (preg_match("/.*<(.*)>/", $email, $m)) {
+			$email = $m[1];
+		}
+		//echo "$email";exit;
 	    $add_or_del = $request->add_or_del;
 	    
 	    $project = Project::find($project_id);

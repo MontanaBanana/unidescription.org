@@ -521,6 +521,7 @@ class ProjectController extends Controller
 
             $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
             $ps->original_image = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
+			$ps->has_image_rights = 1;
         }
 
 		if ($ps->description != $request->description) {

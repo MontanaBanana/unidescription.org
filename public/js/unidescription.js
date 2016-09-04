@@ -58,6 +58,7 @@ $(document).ready(function(){
 	});
 	
     var group = $("ul#sortable").sortable({
+		handle: "span.fa-bars",
 	    afterMove: function ($placeholder, container, $closestItemOrContainer) {
 		    //console.log('afterMove');
 		    //console.log($placeholder, container, $closestItemOrContainer);
@@ -77,6 +78,8 @@ $(document).ready(function(){
 			var container_count = $('i.fa',container.el).length
 		    //console.log('container', $('i.fa',container.el).length);
 		    //console.log('item', $('i.fa',$item).length);
+			console.log('item', item_count);
+			console.log('container', container_count);
 		    
 		    if (item_count == 1 && container_count == 0) {
 			    return false;

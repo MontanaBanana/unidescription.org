@@ -213,6 +213,7 @@
                     </ul>
                 </div>
             </div>
+			<!--
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Jason Kenison's bio photo">
@@ -232,6 +233,7 @@
                     </ul>
                 </div>
             </div>
+			-->
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="/images/team/tuyet-hayes.jpg" alt="Tuyet Hayes's bio photo">

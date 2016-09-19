@@ -68,6 +68,29 @@
 								        
 							<!-- app store assets -->
 							<div class="panel panel-default">
+								<div class="panel-heading">Project assets:</div>
+								<div class="panel-body white">
+									<?php $c = false; foreach ($assets as $a): ?>
+										<div class="row" style="<?php echo (($c = !$c)?'background-color: #f5f5f5':'') ?>; padding: 10px;">
+											<h4 class="media-heading"><a target="_blank" href="/assets/projects/<?php echo $project->id; ?>/assets/<?php echo $a['title']; ?>"><?php echo $a['title']; ?></a></h4>
+											Uploaded by <a href="mailto:<?php echo $a->user->email; ?>"><?php echo $a->user->name; ?></a> on <?php echo date('F jS, Y'); ?>
+										</div>
+									<?php endforeach; ?>
+									<div class="panel-note">
+										<form method="POST" action="/account/project/assets" enctype="multipart/form-data" id="section_form">
+											{{ csrf_field() }}
+											<input type="hidden" name="project_id" id="id" value="{{ $project->id }}"  />
+											<p>
+												<input type="file" id="asset" name="asset" onchange="javascript:this.form.submit();"><br />
+												This section allows you to store all assets related to this project.
+												The assets are not automatically included in the export of the app.<br />
+											</p>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+							<div class="panel panel-default">
 								<div class="panel-heading">App Store Icons:</div>
 								<div class="panel-body white">
 									<div class="col-md-6">
@@ -133,30 +156,7 @@
 									</div>
 								</div>
 							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">Project assets:</div>
-								<div class="panel-body white">
-									<?php $c = false; foreach ($assets as $a): ?>
-										<div class="row" style="<?php echo (($c = !$c)?'background-color: #f5f5f5':'') ?>; padding: 10px;">
-											<h4 class="media-heading"><a target="_blank" href="/assets/projects/<?php echo $project->id; ?>/assets/<?php echo $a['title']; ?>"><?php echo $a['title']; ?></a></h4>
-											Uploaded by <a href="mailto:<?php echo $a->user->email; ?>"><?php echo $a->user->name; ?></a> on <?php echo date('F jS, Y'); ?>
-										</div>
-									<?php endforeach; ?>
-									<div class="panel-note">
-										<form method="POST" action="/account/project/assets" enctype="multipart/form-data" id="section_form">
-											{{ csrf_field() }}
-											<input type="hidden" name="project_id" id="id" value="{{ $project->id }}"  />
-											<p>
-												<input type="file" id="asset" name="asset" onchange="javascript:this.form.submit();"><br />
-												This section allows you to store all assets related to this project.
-												The assets are not automatically included in the export of the app.<br />
-											</p>
-										</form>
-									</div>
-								</div>
-									
-							</div>
+
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">

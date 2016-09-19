@@ -8,6 +8,7 @@ use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
+use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
 use Auth;
@@ -387,9 +388,38 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.assets', ['sections' => $sections, 'project' => $project]);
+		$assets = ProjectAsset::where('project_id', $project_id)->orderBy('priority', 'asc')->get();
+		
+	    return view('project.assets', ['sections' => $sections, 'project' => $project, 'assets' => $assets]);
     }
     
+	public function postAssets(Request $request)
+	{
+		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
+		$p = Project::find($request->project_id);
+
+		//echo "<PRE>"."/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title))."</pre>";exit;
+
+		if ($request->hasFile('asset')) {
+            
+            $request->file('asset')->move(
+                base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $_FILES['asset']['name']
+            );
+
+			$pa = ProjectAsset::create(
+				[
+					'project_id' => $request->project_id,
+					'user_id' => Auth::user()->id, 
+					'title' => $_FILES['asset']['name'],
+					'description' => '',
+					'priority' => 1
+				]
+			);
+			$pa->save();   
+        }
+		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
+	}
+	
     public function getDeleteconfirm($id)
     {
 	    if (!$id) {

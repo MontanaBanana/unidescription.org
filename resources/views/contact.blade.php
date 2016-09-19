@@ -41,6 +41,7 @@
                     <li>
                         <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
                     </li>
+<!--
                     <li>
                         <a href="#" target="_blank"><i class="fa fa-facebook-square fa-2x"></i></a>
                     </li>
@@ -53,6 +54,7 @@
                     <li>
                         <a href="#" target="_blank"><i class="fa fa-google-plus-square fa-2x"></i></a>
                     </li>
+-->
                 </ul>
             </div>
         </div>

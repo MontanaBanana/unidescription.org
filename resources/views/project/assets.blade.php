@@ -89,7 +89,7 @@
 									</div>
 								</div>
 							</div>
-							
+	<!--						
 							<div class="panel panel-default">
 								<div class="panel-heading">App Store Icons:</div>
 								<div class="panel-body white">
@@ -156,6 +156,7 @@
 									</div>
 								</div>
 							</div>
+-->
 
 							
 							<div class="panel panel-default">
@@ -178,7 +179,7 @@
 			        <div class="col-md-4 tips-column">
 	                	<div class="help">
 				        	<span class="fa fa-question-circle"></span>
-				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
+				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	@include('project.shared.version')
 			        	

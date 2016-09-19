@@ -126,7 +126,7 @@
 				        <!--
 	                	<div class="help">
 				        	<span class="fa fa-question-circle"></span>
-				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
+				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	-->
 						

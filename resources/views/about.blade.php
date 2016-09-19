@@ -213,6 +213,7 @@
                     </ul>
                 </div>
             </div>
+			<!--
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Jason Kenison's bio photo">
@@ -232,6 +233,7 @@
                     </ul>
                 </div>
             </div>
+			-->
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="/images/team/tuyet-hayes.jpg" alt="Tuyet Hayes's bio photo">
@@ -245,7 +247,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Philipp Jordan's bio photo">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="/images/team/phil-jordan.jpg" alt="Philipp Jordan's bio photo">
                     <div class="caption" style="height: 205px;">
                         <h4>Philipp Jordan<br>
                             <small>Research Assistant</small>

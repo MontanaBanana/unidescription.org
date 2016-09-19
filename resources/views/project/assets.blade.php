@@ -60,15 +60,36 @@
 	
 	<div class="row project">
 	    <div class="col-lg-12">
-			<form method="POST" action="/account/project/edit" enctype="multipart/form-data">
-				{!! csrf_field() !!}
-				<input type="hidden" name="id" id="id" value="{{ $project->id }}" />			
+			<!--<form method="POST" action="/account/project/edit" enctype="multipart/form-data">-->		
 				
 				<div class="row">
 			        <div class="col-md-8 edit-column">
 				        <div class="wrapper">
 								        
 							<!-- app store assets -->
+							<div class="panel panel-default">
+								<div class="panel-heading">Project assets:</div>
+								<div class="panel-body white">
+									<?php $c = false; foreach ($assets as $a): ?>
+										<div class="row" style="<?php echo (($c = !$c)?'background-color: #f5f5f5':'') ?>; padding: 10px;">
+											<h4 class="media-heading"><a target="_blank" href="/assets/projects/<?php echo $project->id; ?>/assets/<?php echo $a['title']; ?>"><?php echo $a['title']; ?></a></h4>
+											Uploaded by <a href="mailto:<?php echo $a->user->email; ?>"><?php echo $a->user->name; ?></a> on <?php echo date('F jS, Y'); ?>
+										</div>
+									<?php endforeach; ?>
+									<div class="panel-note">
+										<form method="POST" action="/account/project/assets" enctype="multipart/form-data" id="section_form">
+											{{ csrf_field() }}
+											<input type="hidden" name="project_id" id="id" value="{{ $project->id }}"  />
+											<p>
+												<input type="file" id="asset" name="asset" onchange="javascript:this.form.submit();"><br />
+												This section allows you to store all assets related to this project.
+												The assets are not automatically included in the export of the app.<br />
+											</p>
+										</form>
+									</div>
+								</div>
+							</div>
+							
 							<div class="panel panel-default">
 								<div class="panel-heading">App Store Icons:</div>
 								<div class="panel-body white">
@@ -135,6 +156,7 @@
 									</div>
 								</div>
 							</div>
+
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -169,7 +191,7 @@
 			        </div>
 				</div>
 				<!-- /.row -->
-			</form>
+			<!--</form>-->
 	    </div>
 	</div>
 </div>
@@ -186,7 +208,7 @@
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
 	    
-		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+		$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
 	    
 	    // Take the nav bar into account
 	    $(window).on("hashchange", function () {

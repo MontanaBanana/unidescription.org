@@ -8,6 +8,7 @@ use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
+use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
 use Auth;
@@ -51,10 +52,10 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
                 if (strlen($s->phonetic_description)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->phonetic_description));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->title . " " . $s->phonetic_description));
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->description));
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->title . " " . $s->description));
                 }
 				
 				//execute post
@@ -312,7 +313,7 @@ class ProjectController extends Controller
 				    $found = false;
 					foreach ($project_sections as $ps) {
 						if ($ps->id == $m[1]) {
-							if ($ps->description != $v) {
+							if ($ps->description != $v || $ps->title != $request->input('section-'.$m[1].'-title')) {
 								$ps->audio_file_needs_update = 1;
 							}
 							$ps->fill(array('description' => $v, 'title' => $request->input('section-'.$m[1].'-title')));
@@ -387,9 +388,38 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.assets', ['sections' => $sections, 'project' => $project]);
+		$assets = ProjectAsset::where('project_id', $project_id)->orderBy('priority', 'asc')->get();
+		
+	    return view('project.assets', ['sections' => $sections, 'project' => $project, 'assets' => $assets]);
     }
     
+	public function postAssets(Request $request)
+	{
+		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
+		$p = Project::find($request->project_id);
+
+		//echo "<PRE>"."/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title))."</pre>";exit;
+
+		if ($request->hasFile('asset')) {
+            
+            $request->file('asset')->move(
+                base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $_FILES['asset']['name']
+            );
+
+			$pa = ProjectAsset::create(
+				[
+					'project_id' => $request->project_id,
+					'user_id' => Auth::user()->id, 
+					'title' => $_FILES['asset']['name'],
+					'description' => '',
+					'priority' => 1
+				]
+			);
+			$pa->save();   
+        }
+		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
+	}
+	
     public function getDeleteconfirm($id)
     {
 	    if (!$id) {
@@ -509,9 +539,6 @@ class ProjectController extends Controller
 			$psv->save();
 		}
 		
-		$ps->title = trim($request->title);
-		
-
         if ($request->hasFile('section_image')) {
             $imageName = $ps->id . '.' . $request->file('section_image')->guessExtension();
 
@@ -524,7 +551,7 @@ class ProjectController extends Controller
 			$ps->has_image_rights = 1;
         }
 
-		if ($ps->description != $request->description) {
+		if ($ps->description != $request->description || $ps->title != $request->title) {
 			// Generate the audio file
 			$ch = curl_init();
 			
@@ -533,10 +560,10 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
             if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->title . " " . $request->phonetic_description));
             }
             else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->title . " " . $request->description));
             }
 			
 			//execute post
@@ -546,8 +573,9 @@ class ProjectController extends Controller
 			$ps->audio_file_needs_update = false;
 		}
 		$ps->description = $request->description;
+		$ps->title = trim($request->title);
 
-		if ($ps->phonetic_description != $request->phonetic_description) {
+		if ($ps->phonetic_description != $request->phonetic_description || $ps->title != $request->title) {
 			// Generate the audio file
 			$ch = curl_init();
 			
@@ -556,10 +584,10 @@ class ProjectController extends Controller
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
             if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->title . " " . $request->phonetic_description));
             }
             else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->title . " " . $request->description));
             }
 			
 			//execute post
@@ -710,7 +738,7 @@ class ProjectController extends Controller
 				    $found = false;
 					foreach ($project_sections as $ps) {
 						if ($ps->id == $m[1]) {
-							if ($ps->description != $v) {
+							if ($ps->description != $v || $ps->title != $request->input('section-'.$m[1].'-title')) {
 								$ps->audio_file_needs_update = 1;
 							}
 							$ps->fill(array('description' => $v, 'title' => $request->input('section-'.$m[1].'-title')));

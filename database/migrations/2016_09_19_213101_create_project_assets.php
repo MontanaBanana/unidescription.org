@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSessionsTable extends Migration
+class CreateProjectAssets extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,14 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('project_assets', function (Blueprint $table) {
+            Schema::create('project_assets', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id')->unsigned();
-	    $table->integer('user_id')->unsigned();
-	    $table->string('title');
-	    $table->text('description');
-	    $table->integer('priority');
-	    $table->timestamps();
+            $table->integer('user_id')->unsigned();
+            $table->string('title');
+            $table->text('description');
+            $table->integer('priority');
+            $table->timestamps();
         });
     }
 

@@ -211,7 +211,7 @@
 
 	</script>
 
-    <!--<script type="text/javascript" src="https://seattlemb.atlassian.net/s/facec166f3b90481a98c70aef7999867-T/mzwzae/100012/c/1000.0.9/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c8cf07bc"></script>-->
+    <script type="text/javascript" src="https://seattlemb.atlassian.net/s/facec166f3b90481a98c70aef7999867-T/mzwzae/100012/c/1000.0.9/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=c8cf07bc"></script>
 
   </body>
 </html>

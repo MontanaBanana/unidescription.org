@@ -25,7 +25,48 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('account.index');
+		$activities = array();
+		
+		/* Fetch all projects this user owns, and use:
+			Created
+			Shared w/ another
+		   Fetch all projects this user belongs to and use:
+		    Created
+			Shared w/ me
+			Shared w/ another
+		*/
+		$projects = Auth::user()->all_projects();
+		foreach ($projects as $project) {
+			//echo "<PRE>".print_R($project,true)."</pre>";
+			$p_ts = strtotime($project->created_at);
+			$activities[$p_ts]['text'] = '<a href="mailto:'.$project->user->email.'">'.$project->user->name.'</a> created <a href="/account/project/details/'.$project->id.'/'.strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)).'">'.$project->title.'</a>.';
+			$activities[$p_ts]['user_image'] = $project->user->image_url;
+			$activities[$p_ts]['project_image'] = $project->image_url;
+			$activities[$p_ts]['project_title'] = $project->title;
+			$activities[$p_ts]['project_description'] = $project->description;
+			$activities[$p_ts]['project_link'] = '/account/project/details/'.$project->id.'/'.strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title));
+			
+			//echo "<PRE>".print_R($project->users,true)."</pre>";
+			foreach ($project->users as $u) {
+				$ts = strtotime($u->getOriginal()['pivot_created_at']);
+				$activities[$ts]['text'] = '<a href="mailto:'.$u->email.'">'.$u->name.'</a> was invited to collaborate on <a href="/account/project/details/'.$project->id.'/'.strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)).'">'.$project->title.'</a>';
+				//echo "<PRE>".print_R($u,true)."</pre>";
+				$activities[$ts]['user_image'] = $u->image_url;
+				$activities[$ts]['project_image'] = $project->image_url;					
+				$activities[$ts]['project_title'] = $project->title;
+				$activities[$ts]['project_description'] = $project->description;
+				$activities[$ts]['project_link'] = '/account/project/details/'.$project->id.'/'.strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title));
+				//echo "<PRE>".print_R(get_class_methods($u),true)."</pre>";
+				//echo "<PRE>".print_R($u->getOriginal()['pivot_created_at'],true)."</pre>";
+			
+			}
+			
+		}
+
+		krsort($activities);
+		//echo "<PRE>".print_R($activities,true).'</pre>';
+		   
+        return view('account.index', ['activities' => $activities]);
     }
     
     public function getSettings()

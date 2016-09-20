@@ -539,6 +539,7 @@ class ProjectController extends Controller
 			$psv->save();
 		}
 		
+		$go_back = false;
         if ($request->hasFile('section_image')) {
             $imageName = $ps->id . '.' . $request->file('section_image')->guessExtension();
 
@@ -549,6 +550,7 @@ class ProjectController extends Controller
             $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
             $ps->original_image = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
 			$ps->has_image_rights = 1;
+			$go_back = true;
         }
 
 		if ($ps->description != $request->description || $ps->title != $request->title) {
@@ -601,7 +603,9 @@ class ProjectController extends Controller
 		$ps->notes = $request->notes;
 
 		$ps->save();
-	    //return redirect()->back();
+		if ($go_back) {
+			return redirect()->back();
+		}
 		return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
     }
     

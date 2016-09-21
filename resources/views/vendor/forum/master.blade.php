@@ -262,6 +262,11 @@
     $('form[data-confirm]').submit(function() {
         return confirm(confirmString);
     });
+	
+	$('textarea').trumbowyg({
+		    removeformatPasted: true,
+	        autogrow: true
+	})
     </script>
     
 

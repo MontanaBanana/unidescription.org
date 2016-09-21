@@ -37,7 +37,7 @@ class Forum
      */
     public static function render($content)
     {
-        return nl2br(e($content));
+        return nl2br($content);
     }
 
     /**

@@ -302,7 +302,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n") },
+				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
 				 
@@ -352,7 +352,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
 				 

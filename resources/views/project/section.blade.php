@@ -139,7 +139,7 @@
 							</div>
 							<?php if ($was_locked): ?>
 								<div class="wrapper-footer">
-									<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>
+									<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
 									<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
 								</div>
 							<?php endif; ?>
@@ -187,7 +187,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">Save &amp; Complete:</div>
 								<div class="panel-body">
-									<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
+									<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
 									<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
 								</div>
 							</div>
@@ -250,7 +250,8 @@
 	$(document).ready(function() {
 
         $(window).on('beforeunload', function(){
-            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }, async: false});
+            $("#was_autosave").val(0);
+            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
         });
 		
         $('textarea').trumbowyg({
@@ -487,7 +488,6 @@
 			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
 		});
 		
-		
 	  	$('.check-complete').on('click', function(event) {
 			//console.log( $(this).data() );
 			//console.log( $(this) );
@@ -666,8 +666,9 @@
                 dataType: "json",
                 success: function(response) {
                     //$('#deleteModalClose').click();
-                    $('#save-page').click();
-    				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+                    //$('#save-page').click();
+                    //$('#was_autosave').val(0);
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post'});
 
                 }
             });

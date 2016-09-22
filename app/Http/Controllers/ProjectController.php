@@ -22,7 +22,7 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth');
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport')]);
 	}
 	
     public function index()
@@ -37,6 +37,32 @@ class ProjectController extends Controller
 	    return view('project.view', ['project' => $project]);
     }
 
+    public function getZip($id)
+    {
+	    $project = Project::find($id);
+		
+		$fn = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$project->title.'.html';
+		$html = file_get_contents('http://'.$_SERVER['SERVER_NAME'].'/account/project/export/'.$id);
+		if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/')) {
+			mkdir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/');
+		}
+		file_put_contents($fn, $html);
+
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.basename($fn));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($fn));
+		ob_clean();
+		flush();
+		readfile($fn);
+		exit;
+		//echo "<PRE>".print_R($_SERVER,true)."</pre>";exit;
+		//return view('project.export', ['project' => $project]);
+    }
     
     public function getExport($id)
     {

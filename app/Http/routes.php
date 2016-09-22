@@ -106,6 +106,7 @@ Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@po
 Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController@postHasImageRights');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
+Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');
 
 // PhoneGap Build related calls

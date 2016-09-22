@@ -6,7 +6,8 @@
 
         @if ($project->id)
             <p><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-eye"></span> Preview App</a></p>
-            <p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-download"></span> Create App</a></p>
+			<p><a href="/account/project/zip/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-html5"></span> Download HTML Export</a></p>
+			<p><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-download"></span> Create App</a></p>
         @endif
     </div>
 </div>

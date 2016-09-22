@@ -81,7 +81,7 @@
                                                     </audio>
 
                                                     <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
-                                                        <img width="100%" src="<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+                                                        <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                     <?php endif; ?>
 
                                                     <!--<p><?php echo nl2br($s->description); ?></p>-->
@@ -90,7 +90,7 @@
                                                 <?php endif; ?>
 
                                                 <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
-                                                    <img width="100%" src="<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                 <?php endif; ?>
 											</p>
 											@endif

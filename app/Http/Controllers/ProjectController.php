@@ -479,15 +479,26 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$ps = ProjectSection::find($project_section_id);
+		
+		$was_locked = false;
+		if (! $ps->locked || (isset($_GET['force_unlock']) && $_GET['force_unlock'] == 1)) {
+			// Lock it.
+			$ps->locked = true;
+			$ps->locked_by_user_id = Auth::user()->id;
+			$ps->locked_at = date('Y-m-d H:i:s');
+			$ps->save();
+			$was_locked = true;
+		}
+		
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project]);
+	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked]);
     }
     
     public function postSection(Request $request)
     {
 		$ps = ProjectSection::find($request->project_section_id);
-		
+
 		// Save a version of this section with timestamps. Only save if the section is different enough.
 		if (
 			$request->description != $ps->description || 
@@ -602,7 +613,15 @@ class ProjectController extends Controller
 
 		$ps->notes = $request->notes;
 
+		$ps->locked = false;
+		if ($request->was_autosave) {
+			$ps->locked = true;
+			$ps->locked_by_user_id = Auth::user()->id;
+			$ps->locked_at = date('Y-m-d H:i:s');
+		}
+		
 		$ps->save();
+
 		if ($go_back) {
 			return redirect()->back();
 		}

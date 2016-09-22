@@ -17,7 +17,15 @@ class ProjectSection extends Model
     {
 	    return $this->belongsTo('App\SectionTemplate');
     }
-
+	
+	public function locked_by_user()
+	{
+		if ($this->locked_by_user_id > 0) {
+			return User::find($this->locked_by_user_id); 
+		}
+		return false;
+	}
+	
     public function project_section_versions()
     {
         return $this->hasMany('App\ProjectSectionVersion');

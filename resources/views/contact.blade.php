@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Contact');
+
 @section('content')
 
         <!-- Page Heading/Breadcrumbs -->

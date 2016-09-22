@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Delete ' . $project->title);
+
 @section('header')
 
 @endsection

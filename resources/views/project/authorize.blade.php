@@ -2,6 +2,8 @@
 
 @section('header')
 
+@section('title', 'Authorize');
+
 @endsection
 
 @section('content')

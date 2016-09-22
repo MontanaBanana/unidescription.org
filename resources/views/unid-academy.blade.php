@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'UniD Academy');
+
 @section('content')
 
         <!-- Page Heading/Breadcrumbs -->

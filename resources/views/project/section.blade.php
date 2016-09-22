@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $section->title);
+
 @section('header')
 
 	<script type="text/javascript" src="/js/jquery.form.js"></script>

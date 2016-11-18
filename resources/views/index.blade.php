@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Home');
+
 @section('content')
 
     <!-- Header Carousel -->
@@ -118,21 +120,21 @@
 					<li>It will help you manage multiple text-to-speech projects, which can be created around any type of audiovisual translation context, including the need to translate a static media source (such as a brochure), a grouping of artifacts (either by theme or location), or whatever other ways in which you might find it useful</li>
 					<li>It provides templates for common audiovisual translation contexts</li>
 					<li>It provides best practices and scholarly research related to audiovisual translation issues</li>
-
+					<li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
+					<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
+					
                 </ul>
 
             </div>
             <div class="col-md-6">
-                <img class="img-responsive" src="{{ SITEROOT }}/slideshow/mobile_nps.jpg" alt="Multiple people taking photos with their phones">
+                <img class="img-responsive" src="{{ SITEROOT }}/slideshow/sajja_koirala_hands.png" alt="Sajja Koirala hands on mobile device">
             </div>
         </div>
         <div class="row">
 	        <div class="col-lg-12">
 		        <ul style="top: -10px; position: relative;">
-			        <li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
-					<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
 					<li>This is a grant-sponsored program (details about the collaborators in the About section), so all of this is offered to you for free – and its products created for free distribution – in the hopes of making the world a more accessible place to people of all abilities. </li>
-		        </ul>
+				</ul>
                 <p>
                 	Our collaborators are listed, in detail, on the <a href="{{ SITEROOT }}/about">About</a> page, including contact information.
                 </p>

@@ -89,6 +89,8 @@ Route::get(WEBROOT.'account/project/delete/{id}', 'ProjectController@getDelete')
 
 
 Route::get(WEBROOT.'account/project/assets/{id}/{title}', 'ProjectController@getAssets');
+Route::post(WEBROOT.'account/project/assets', 'ProjectController@postAssets');
+
 
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
@@ -103,8 +105,8 @@ Route::post(WEBROOT.'account/project/section/crop', 'ProjectController@postSecti
 Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@postDeleteImage');
 Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController@postHasImageRights');
 
-
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
+Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');
 
 // PhoneGap Build related calls

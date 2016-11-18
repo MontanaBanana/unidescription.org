@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Best Practices');
+
 @section('content')
 
         <!-- Page Heading/Breadcrumbs -->

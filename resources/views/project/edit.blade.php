@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $project->title);
+
 @section('header')
 
 @endsection
@@ -157,7 +159,7 @@
 				        
 	                	<div class="help">
 				        	<span class="fa fa-question-circle"></span>
-				        	<p>Need to learn more about best practices for audio descriptions? <a href="#">Read our guide</a> for more details!</p>
+				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	
 			        	<div class="panel panel-default">

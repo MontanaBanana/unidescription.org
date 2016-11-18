@@ -8,6 +8,7 @@ use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
+use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
 use Auth;
@@ -21,7 +22,7 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth');
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport')]);
 	}
 	
     public function index()
@@ -36,6 +37,32 @@ class ProjectController extends Controller
 	    return view('project.view', ['project' => $project]);
     }
 
+    public function getZip($id)
+    {
+	    $project = Project::find($id);
+		
+		$fn = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$project->title.'.html';
+		$html = file_get_contents('http://'.$_SERVER['SERVER_NAME'].'/account/project/export/'.$id);
+		if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/')) {
+			mkdir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/');
+		}
+		file_put_contents($fn, $html);
+
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.basename($fn));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($fn));
+		ob_clean();
+		flush();
+		readfile($fn);
+		exit;
+		//echo "<PRE>".print_R($_SERVER,true)."</pre>";exit;
+		//return view('project.export', ['project' => $project]);
+    }
     
     public function getExport($id)
     {
@@ -45,17 +72,22 @@ class ProjectController extends Controller
 			if (!strlen($s->audio_file_url) || $s->audio_file_needs_update) {
 				// Generate the audio file
 				$ch = curl_init();
+	
+				if (strlen($s->phonetic_description)) {
+					$text = $s->title . ". " . $s->phonetic_description;
+                }
+                else {
+					$text = $s->title . ". " . $s->description;
+                }
+				
+				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 				
 				//set the url, number of POST vars, POST data
 				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-                if (strlen($s->phonetic_description)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->phonetic_description));
-                }
-                else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($s->description));
-                }
+				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
 				
 				//execute post
 				$result = json_decode(curl_exec($ch));
@@ -312,7 +344,7 @@ class ProjectController extends Controller
 				    $found = false;
 					foreach ($project_sections as $ps) {
 						if ($ps->id == $m[1]) {
-							if ($ps->description != $v) {
+							if ($ps->description != $v || $ps->title != $request->input('section-'.$m[1].'-title')) {
 								$ps->audio_file_needs_update = 1;
 							}
 							$ps->fill(array('description' => $v, 'title' => $request->input('section-'.$m[1].'-title')));
@@ -387,9 +419,38 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.assets', ['sections' => $sections, 'project' => $project]);
+		$assets = ProjectAsset::where('project_id', $project_id)->orderBy('priority', 'asc')->get();
+		
+	    return view('project.assets', ['sections' => $sections, 'project' => $project, 'assets' => $assets]);
     }
     
+	public function postAssets(Request $request)
+	{
+		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
+		$p = Project::find($request->project_id);
+
+		//echo "<PRE>"."/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title))."</pre>";exit;
+
+		if ($request->hasFile('asset')) {
+            
+            $request->file('asset')->move(
+                base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $_FILES['asset']['name']
+            );
+
+			$pa = ProjectAsset::create(
+				[
+					'project_id' => $request->project_id,
+					'user_id' => Auth::user()->id, 
+					'title' => $_FILES['asset']['name'],
+					'description' => '',
+					'priority' => 1
+				]
+			);
+			$pa->save();   
+        }
+		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
+	}
+	
     public function getDeleteconfirm($id)
     {
 	    if (!$id) {
@@ -449,15 +510,36 @@ class ProjectController extends Controller
 			abort(404);
 		}
 		$ps = ProjectSection::find($project_section_id);
+		
+		$was_locked = false;
+		if (! $ps->locked) {
+			// Lock it.
+			$ps->locked = true;
+			$ps->locked_by_user_id = Auth::user()->id;
+			$ps->locked_at = date('Y-m-d H:i:s');
+			$ps->save();
+			$was_locked = true;
+		}
+
+        if (isset($_GET['force_unlock']) && $_GET['force_unlock'] == 1) {
+            $ps->locked = false;
+            $ps->save();
+            header('Location: /account/project/section/'.$project->id.'/'.$ps->id);
+            exit;
+        }
+		
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project]);
+	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked]);
     }
     
     public function postSection(Request $request)
     {
+        if (!isset($request->project_section_id)) {
+			return redirect('/account/');
+        }
 		$ps = ProjectSection::find($request->project_section_id);
-		
+
 		// Save a version of this section with timestamps. Only save if the section is different enough.
 		if (
 			$request->description != $ps->description || 
@@ -509,9 +591,7 @@ class ProjectController extends Controller
 			$psv->save();
 		}
 		
-		$ps->title = trim($request->title);
-		
-
+		$go_back = false;
         if ($request->hasFile('section_image')) {
             $imageName = $ps->id . '.' . $request->file('section_image')->guessExtension();
 
@@ -522,22 +602,30 @@ class ProjectController extends Controller
             $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
             $ps->original_image = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
 			$ps->has_image_rights = 1;
+			$go_back = true;
         }
 
-		if ($ps->description != $request->description) {
+		if ($ps->description != $request->description || $ps->title != $request->title) {
 			// Generate the audio file
 			$ch = curl_init();
+
+			if (strlen($request->phonetic_description)) {
+				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->phonetic_description));
+				$text = $request->title . ". " . $request->phonetic_description;
+			}
+			else {
+				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->description));
+				$text = $request->title . ". " . $request->description;
+			}
+			
+			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 			
 			//set the url, number of POST vars, POST data
 			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
-            if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
-            }
-            else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
-            }
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
 			
 			//execute post
 			$result = json_decode(curl_exec($ch));
@@ -546,21 +634,29 @@ class ProjectController extends Controller
 			$ps->audio_file_needs_update = false;
 		}
 		$ps->description = $request->description;
+		$ps->title = trim($request->title);
 
-		if ($ps->phonetic_description != $request->phonetic_description) {
+		if ($ps->phonetic_description != $request->phonetic_description || $ps->title != $request->title) {
 			// Generate the audio file
 			$ch = curl_init();
+			
+			if (strlen($request->phonetic_description)) {
+				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->phonetic_description));
+				$text = $request->title . ". " . $request->phonetic_description;
+			}
+			else {
+				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->description));
+				$text = $request->title . ". " . $request->description;
+			}
+			
+			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 			
 			//set the url, number of POST vars, POST data
 			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
-            if (strlen($request->phonetic_description)) {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->phonetic_description));
-            }
-            else {
-                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.strip_tags($request->description));
-            }
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
 			
 			//execute post
 			$result = json_decode(curl_exec($ch));
@@ -572,8 +668,18 @@ class ProjectController extends Controller
 
 		$ps->notes = $request->notes;
 
+		$ps->locked = false;
+		if ($request->was_autosave == 1) {
+			$ps->locked = true; 
+			$ps->locked_by_user_id = Auth::user()->id;
+			$ps->locked_at = date('Y-m-d H:i:s');
+		}
+		
 		$ps->save();
-	    //return redirect()->back();
+
+        if ($go_back) {
+			return redirect('/account/project/section/'.$ps->project_id.'/'.$ps->id);
+		}
 		return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
     }
     
@@ -710,7 +816,7 @@ class ProjectController extends Controller
 				    $found = false;
 					foreach ($project_sections as $ps) {
 						if ($ps->id == $m[1]) {
-							if ($ps->description != $v) {
+							if ($ps->description != $v || $ps->title != $request->input('section-'.$m[1].'-title')) {
 								$ps->audio_file_needs_update = 1;
 							}
 							$ps->fill(array('description' => $v, 'title' => $request->input('section-'.$m[1].'-title')));

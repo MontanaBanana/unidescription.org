@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', $section->title);
+
 @section('header')
 
 	<script type="text/javascript" src="/js/jquery.form.js"></script>
@@ -63,22 +65,45 @@
 	
 	<div class="row project">
 	    <div class="col-lg-12">
-        <form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
-				{!! csrf_field() !!}
-				<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
-				<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />		
+
+			<?php if ($was_locked): ?>
+				<form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
+			<?php else: ?>
+				<form method="GET" action="#" enctype="multipart/form-data" id="section_form">
+			<?php endif; ?>
+		
+				<?php if ($was_locked): ?>
+					{!! csrf_field() !!}
+					<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
+					<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />
+					<input type="hidden" name="was_autosave" id="was_autosave" value="0" />
+				<?php endif; ?>
 				
 				<div class="row">
 			        <div class="col-md-8 edit-column">
 				        <div class="wrapper">
-					        
+										
+							<?php if ($was_locked): ?>
+								<p>
+									<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-unlock" aria-hidden="true"></i> You can edit this page.</span>
+									<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+								</p>
+								<br clear="all" />
+							<?php else: ?>
+								<p>
+									<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-lock" aria-hidden="true"></i> This page was locked by <?php echo $section->locked_by_user()->name; ?> <?php echo prettyDate($section->locked_at); ?>. <a href="?force_unlock=1">Force unlock.</a></span>
+									<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+								</p>
+								<br clear="all" />
+							<?php endif; ?>
+											        
 					        <div class="panel panel-default">
 								<div class="panel-heading">
 									Page Name:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
 								</div>
 								<div class="panel-body form-element">
-									<input type="text" class="large" name="title" value="{{ $section->title }}">
+									<input type="text" class="large" name="title" value="{{ $section->title }}" <?php if (!$was_locked) { echo 'readonly'; } ?>>
 								</div>
 							</div>
 							
@@ -91,7 +116,7 @@
 
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>">{{ $section->description }}</textarea>
+									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -102,7 +127,7 @@
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="phonetic_description" id="phonetic_description">{{ $section->phonetic_description }}</textarea>
+									<textarea class="tall" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -111,14 +136,15 @@
 									Page Notes:<br /><small>internal use only</small>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="notes">{{ $section->notes }}</textarea>
+									<textarea class="tall" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
 								</div>
 							</div>
-							
-					        <div class="wrapper-footer">
-								<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>
-								<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
-							</div>
+							<?php if ($was_locked): ?>
+								<div class="wrapper-footer">
+									<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
+									<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
+								</div>
+							<?php endif; ?>
 				        </div>				        
 			        </div>
 			        <div class="col-md-4 tips-column">
@@ -126,7 +152,7 @@
 				        <!--
 	                	<div class="help">
 				        	<span class="fa fa-question-circle"></span>
-				        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
+				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	-->
 						
@@ -134,38 +160,43 @@
 							<div class="panel-heading">Component Photo:</div>
 							<div class="panel-body">
 								<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
-                                <p><input type="file" id="section_image" name="section_image"></p>
+                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
                                 @if ($section->image_url)
                                     <div>
                                         <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
                                     </div>
                                     <!-- Button trigger modal -->
-                                    <p>
-	                                    <a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
-                                    </p>
-                                    <p>
-	                                    <button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
-	                                        <span class="fa fa-file-image-o"></span> Crop photo
-	                                    </button>
-                                    </p>
-                                    <p>
-	                                    <button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
-	                                        <span class="fa fa-remove"></span> Delete photo
-	                                    </button>
-                                    </p>
+									<?php if ($was_locked): ?>
+										<p>
+											<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
+										</p>
+										<p>
+											<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+												<span class="fa fa-file-image-o"></span> Crop photo
+											</button>
+										</p>
+										<p>
+											<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
+												<span class="fa fa-remove"></span> Delete photo
+											</button>
+										</p>
+									<?php endif; ?>
                                 @endif
 							</div>
 						</div>
-    				    
-    				    @include('project.shared.section_version')
-  	
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Save &amp; Complete:</div>
-							<div class="panel-body">
-                                <p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
-								<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
+    				      	
+						<?php if ($was_locked): ?>
+							<div class="panel panel-default">
+								<div class="panel-heading">Save &amp; Complete:</div>
+								<div class="panel-body">
+									<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
+									<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
+								</div>
 							</div>
-						</div>
+						<?php endif; ?>
+						
+						@include('project.shared.section_version')
+
 						<!--						
 			        	<div class="panel panel-default">
 							<div class="panel-heading">Project Progress:</div>
@@ -221,22 +252,25 @@
 	$(document).ready(function() {
 
         $(window).on('beforeunload', function(){
-            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }, async: false});
+            $("#was_autosave").val(0);
+            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
         });
 		
         $('textarea').trumbowyg({
 		    removeformatPasted: true,
 	        autogrow: true
 		}).on('tbwchange', function() {
-			console.log('current text');
-			console.log($('.trumbowyg-editor').text().length);
-			console.log('original count');
-			console.log(orig_count)
+			//console.log('current text');
+			//console.log($('.trumbowyg-editor').text().length);
+			//console.log('original count');
+			//console.log(orig_count)
 			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {
 				// Reset the count, so we save again in another 15 characters
 				console.log('submitting');
 				orig_count = $('.trumbowyg-editor').text().length;
-				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+				$('#was_autosave').val("1");
+				$('#saving').show();
+				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { $('#saving').hide(); console.log('submitted it'); }});
 			}
 		});
 		
@@ -268,7 +302,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n") },
+				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
 				 
@@ -318,7 +352,7 @@
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
+				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
 				 
@@ -362,7 +396,7 @@
 	
 		$('.has-image-rights').on('click', function(event) {
 			//console.log( $(this).data() );
-			console.log( $(this) );
+			//console.log( $(this) );
 			//console.log( $(this).children() );
 			//console.log( $(this).data() );
 
@@ -390,8 +424,8 @@
 				    dataType: "json",
 				    success: function(data, textStatus, jqXHR)
 				    {
-					    console.log('the data');
-					    console.log(data);
+					    //console.log('the data');
+					    //console.log(data);
 				        if (data.status == 'success') {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-default');
@@ -402,8 +436,9 @@
 				        else {
 					        alert('Error: contact the site admin.');
 				        }
-
-        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+						
+						//$('#was_autosave').val("1");
+        				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
 
 				    }
 				});
@@ -431,8 +466,8 @@
 				    dataType: "json",
 				    success: function(data, textStatus, jqXHR)
 				    {
-					    console.log('the data');
-					    console.log(data);
+					    //console.log('the data');
+					    //console.log(data);
 				        if (data.status == 'success') {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-success');
@@ -444,7 +479,8 @@
 					        alert('Error: contact the site admin');
 				        }
 				        
-        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+						//$('#was_autosave').val("1");
+        				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
 
 				    }
 				});
@@ -454,10 +490,9 @@
 			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
 		});
 		
-		
 	  	$('.check-complete').on('click', function(event) {
 			//console.log( $(this).data() );
-			console.log( $(this) );
+			//console.log( $(this) );
 			//console.log( $(this).children() );
 			//console.log( $(this).data() );
 
@@ -496,8 +531,8 @@
 				        else {
 					        alert('Error: contact the site admin.');
 				        }
-				        
-        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+						//$('#was_autosave').val("1");
+        				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
 
 				    }
 				});
@@ -536,8 +571,8 @@
 				        else {
 					        alert('Error: contact the site admin');
 				        }
-				        
-        				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+						//$('#was_autosave').val("1");
+        				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
 
 				    }
 				});
@@ -613,8 +648,9 @@
                     d = new Date();
                     $('#section-photo').attr('src', response.file + "?" + d.getTime());
                     $('#modalClose').click();
-                    
-    				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+					
+					//$('#was_autosave').val("1");
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
 
                 }
             });
@@ -632,8 +668,9 @@
                 dataType: "json",
                 success: function(response) {
                     //$('#deleteModalClose').click();
-                    $('#save-page').click();
-    				$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', success: function() { console.log('submitted it'); }});
+                    //$('#save-page').click();
+                    //$('#was_autosave').val(0);
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post'});
 
                 }
             });

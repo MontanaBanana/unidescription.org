@@ -31,6 +31,7 @@
     
     <!-- Custom Fonts -->
     <link href="{{ SITEROOT }}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,700" rel="stylesheet" type="text/css">
 
     <!-- RTE -->
     <link rel="stylesheet" href="{{ SITEROOT }}/css/trumbowyg.css">
@@ -82,7 +83,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </button>
-	                <a class="navbar-brand" href="{{ SITEROOT }}/"><img src="/images/unid_logo.png" style="position: relative; top: -8px; border: none;" alt="UniDescription logo" /></a>
+	                <a class="navbar-brand" href="{{ SITEROOT }}/"><img src="/images/unid_logo.svg" alt="UniDescription logo" /></a>
 	            </div>
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -176,7 +177,7 @@
 		        <div class="row container" style="margin-top: 5px">
 		            <ul class="list-unstyled list-inline list-social-icons">
 	                    <li>
-	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank"><em class="fa fa-github-square fa-2x"></em></a>
+	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" title="Fork on Github!"><em class="fa fa-github-square fa-2x"></em></a>
 	                    </li>
 <!--
 	                    <li>

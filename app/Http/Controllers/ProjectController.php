@@ -25,10 +25,11 @@ class ProjectController extends Controller
 	    $this->middleware('auth', ['except' => array('getZip', 'getExport')]);
 	}
 	
-    public function index()
-    {
-        return view('project.index');
-    }
+    
+	public function index(Request $request, $sortBy = null, $direction = null)
+	{
+		return view('project.index', ['sortBy' => $sortBy, 'direction' => $direction]);
+	}
     
     public function view($id, $title)
     {

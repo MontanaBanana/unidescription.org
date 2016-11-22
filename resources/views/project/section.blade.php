@@ -40,7 +40,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-project-navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -113,9 +113,11 @@
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									<span class="pull-right"><a class="btn btn-sm btn-primary play-description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
-
 								</div>
 								<div class="panel-body form-element">
+									<div class="audio-player play-description">
+										<audio id="play-description" controls></audio>
+									</div>
 									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 								</div>
 							</div>
@@ -127,6 +129,9 @@
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
+									<div class="audio-player play-phonetic-description">
+										<audio id="play-phonetic-description" controls></audio>
+									</div>
 									<textarea class="tall" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 								</div>
 							</div>
@@ -295,6 +300,10 @@
 			$ps->audio_file_url = $result->fn;
 			$ps->audio_file_needs_update = false;
 			*/
+			
+			// define the audio element
+			var audio = $('#play-phonetic-description');
+			
 			if ($('#phonetic-player-icon').hasClass('fa-play')) {
 				$('#phonetic-player-icon').removeClass('fa-play');
 				$('#phonetic-player-icon').addClass('fa-stop');
@@ -308,12 +317,30 @@
 				 
 				request.done(function( msg ) {
 					console.log(msg.fn);
+					
+					audio.attr('src', msg.fn);
+					audio.attr('autoplay', 'autoplay');
+					audio.load();
+					
+					$('.audio-player.play-phonetic-description').show();
+					audio.addEventListener('load', function() {
+						audio.play();
+					}, true);
+					
+					audio.addEventListener('ended', function() {
+						$('#phonetic-player-icon').removeClass('fa-stop');
+						$('#phonetic-player-icon').addClass('fa-play');
+						$('.audio-player.play-phonetic-description').hide();
+					});
+					
+					/*
 					audio = new Audio(msg.fn);
 					audio.play();
 					audio.addEventListener('ended', function() {
 						$('#phonetic-player-icon').removeClass('fa-stop');
 						$('#phonetic-player-icon').addClass('fa-play');
 					});
+					*/
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -323,6 +350,7 @@
 			else {
 				$('#phonetic-player-icon').removeClass('fa-stop');
 				$('#phonetic-player-icon').addClass('fa-play');
+				$('.audio-player.play-phonetic-description').hide();
 				
 				audio.pause();
 				audio.currentTime = 0;
@@ -345,6 +373,10 @@
 			$ps->audio_file_url = $result->fn;
 			$ps->audio_file_needs_update = false;
 			*/
+			
+			// define the audio element
+			var audio = $('#play-description');
+			
 			if ($('#player-icon').hasClass('fa-play')) {
 				$('#player-icon').removeClass('fa-play');
 				$('#player-icon').addClass('fa-stop');
@@ -355,15 +387,33 @@
 				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
-				 
+				
 				request.done(function( msg ) {
 					console.log(msg.fn);
-					audio = new Audio(msg.fn);
+					
+					audio.attr('src', msg.fn);
+					audio.attr('autoplay', 'autoplay');
+					audio.load();
+					
+					$('.audio-player.play-description').show();
+					audio.addEventListener('load', function() {
+						audio.play();
+					}, true);
+					
+					audio.addEventListener('ended', function() {
+						$('#player-icon').removeClass('fa-stop');
+						$('#player-icon').addClass('fa-play');
+						$('.audio-player.play-description').hide();
+					});
+					
+					/*
+					var audio = new Audio(msg.fn);
 					audio.play();
 					audio.addEventListener('ended', function() {
 						$('#player-icon').removeClass('fa-stop');
 						$('#player-icon').addClass('fa-play');
 					});
+					*/
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -373,8 +423,10 @@
 			else {
 				$('#player-icon').removeClass('fa-stop');
 				$('#player-icon').addClass('fa-play');
+				$('.audio-player.play-description').hide();
 				
 				audio.pause();
+				audio.attr('src', '');
 				audio.currentTime = 0;
 			}
 		});

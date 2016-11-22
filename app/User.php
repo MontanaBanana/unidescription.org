@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -47,8 +49,34 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsToMany('App\Project')->withTimestamps();
     }
     
-    public function all_projects()
+    /**
+	 * get all projects for user
+	 *
+	 * sort options include title and created, add more here and project's index.blade.php
+	 */
+    public function all_projects($sortBy='created', $direction='desc')
     {
-	    return $this->projects->merge( $this->shared_projects )->sortBy(function($sort){ return $sort->created_at; })->reverse();
+	    $items = $this->projects->merge( $this->shared_projects );
+	    
+	    if($sortBy == 'created')
+	    {
+		    $items = $items->sortBy(function($sort){
+			    $sort->created_at; 
+			});
+		} 
+		else if($sortBy == 'title')
+		{
+		    $items = $items->sortBy(function($sort){
+			    $sort->title;
+			});
+		}
+		
+		if($direction == 'desc'){
+			$items = $items->reverse();
+		}
+	    
+	    return $items;
+	    
+	    //return $this->projects->merge( $this->shared_projects )->sortBy(function($sort){ $sort->created_at; })->reverse();
     }
 }

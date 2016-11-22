@@ -109,6 +109,9 @@ Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport'
 Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');
 
+// Filter project listing routes
+Route::get(WEBROOT.'account/project/{sortBy?}/{direction?}', 'ProjectController@index');
+
 // PhoneGap Build related calls
 Route::get(WEBROOT.'/phonegapbuild/authorize', 
 	[ 'middleware' => 'auth', 'uses' => 'UserController@getBuildAuthorize']

@@ -60,15 +60,11 @@ class User extends Model implements AuthenticatableContract,
 	    
 	    if($sortBy == 'created')
 	    {
-		    $items = $items->sortBy(function($sort){
-			    $sort->created_at; 
-			});
+		    $items = $items->sortBy('created_at');
 		} 
 		else if($sortBy == 'title')
 		{
-		    $items = $items->sortBy(function($sort){
-			    $sort->title;
-			});
+		    $items = $items->sortBy('title');
 		}
 		
 		if($direction == 'desc'){

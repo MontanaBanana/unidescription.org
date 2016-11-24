@@ -358,54 +358,70 @@ div.project .panel.panel-default .panel-note img.icon {
 	background:#222;
 }
 
+div.todo-description {
+    display: none;
+}
+
+input.todo-title {
+    border: none;
+    padding: 3px;
+    width: 160px;
+}
+
+div.todo-description textarea {
+    border: none;
+    padding: 3px;
+    width: 100%;
+}
+
 /* Table of contents*/
-div.project .panel .table-of-contents {
+div.project .panel .unid-list {
 	padding:0px;
 }
-div.project .panel .table-of-contents p {
+div.project .panel .unid-list p {
 	margin:12px;
 }
-div.project .panel .table-of-contents ul {
+div.project .panel .unid-list ul {
 	padding:0px;
 	margin:0px;
 	list-style:none;
 }
-div.project .panel .table-of-contents ul li {
+div.project .panel .unid-list ul li {
 	padding:8px 6px 8px 14px;
 	border-bottom:1px solid #D9D1D7;
 }
-div.project .panel .table-of-contents ul li ul {
+div.project .panel .unid-list ul li ul {
 	margin:8px -6px -8px -14px;
 	padding:0px;
 	border-left:26px solid #EEE;	
 }
-div.project .panel .table-of-contents ul li ul li {
+div.project .panel .unid-list ul li ul li {
 	border-top:1px solid #D9D1D7;
 	border-bottom:none;
 }
-div.project .panel .table-of-contents ul li ul li p {
+div.project .panel .unid-list ul li ul li p {
 	margin:4px 0px;
 }
-div.project .panel .table-of-contents ul li .label {
+div.project .panel .unid-list ul li .label {
 	margin-left:4px;
 	margin-top:-1px;
 	padding-top:6px;
 	padding-bottom:5px;
 }
-div.project .panel .table-of-contents ul li .fa-bars {
+div.project .panel .unid-list ul li .fa-bars {
 	margin-right:12px;
 	color:rgba(0,0,0,0.3);
 }
-div.project .panel .table-of-contents ul li .fa-bars:hover {
+div.project .panel .unid-list ul li .fa-bars:hover {
 	cursor:pointer;	
 }
-div.project .panel .table-of-contents ul li .fa-chevron-right, 
-div.project .panel .table-of-contents ul li .fa-chevron-down {
+div.project .panel .unid-list ul li .fa-chevron-right, 
+div.project .panel .unid-list ul li .fa-chevron-down {
 	display:inline-block;
 	width:18px;
 }
-div.project .panel .table-of-contents ul li .fa-chevron-right:hover, 
-div.project .panel .table-of-contents ul li .fa-chevron-down:hover {
+div.project .panel .unid-list ul li .fa-chevron-right:hover, 
+div.project .panel .unid-list ul li .fa-chevron-down:hover {
 	cursor:pointer;
 	color:rgba(0,0,0,0.4);
 }
@@ -563,7 +579,7 @@ div.project .tips-column .panel ul.standard-list li a {
 	    -webkit-appearance: none;
 	    border-radius: 0;
 	}
-	div.project .panel .table-of-contents .text-length {
+	div.project .panel .unid-list .text-length {
 		display:none;
 	}
 	div.project .panel.panel-default .select-template {
@@ -576,10 +592,10 @@ div.project .tips-column .panel ul.standard-list li a {
 	div.project .panel-body.white p {
 		margin:12px 0px;
 	}
-	div.project .panel .table-of-contents p {
+	div.project .panel .unid-list p {
 		margin:12px;
 	}
-	div.project .panel .table-of-contents ul li ul li p {
+	div.project .panel .unid-list ul li ul li p {
 		margin:4px 0px;
 	}
 

@@ -160,7 +160,6 @@
 								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
 								-->
 								<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
-								<p>After you are done making changes, be sure to click the Save button at the bottom of the page.</p>
 
 								<p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" /> Show deleted items</label> </p>
 							</div>

@@ -284,7 +284,7 @@
 		var orig_count = $('.trumbowyg-editor').text().length;
 		
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
-        $(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
+        //$(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
 		$('.play-phonetic-description').on('click', function(event) {
 			

@@ -28,14 +28,14 @@ $(document).ready(function(){
 			$('#sortable').listview('refresh');
 		});
 	});*/
+
+    autosize( $('textarea', '#todo-sortable') );
 	
 	// Table of contents toggles
 	$( ".table-of-contents ul li ul" ).hide();
 	
-	//$(".table-of-contents .toggle").on("click", function(e){
-	//$(".table-of-contents .toggle").on("tap", function(){
-	//$( ".table-of-contents .toggle" ).click(function(){
 	$(document).on("touchstart click", ".table-of-contents .toggle", function(e){
+        //console.log('in touchstrt click');
 		e.preventDefault();
 		var parentItem = $( this ).parent().parent().get( 0 ).id;
 		if( $( "#" + parentItem + " ul" ).length ){
@@ -56,6 +56,45 @@ $(document).ready(function(){
 			}
 		}
 	});
+
+	$(document).on("touchstart click", ".todos .toggle", function(e){
+        //console.log('in touchstrt click');
+		e.preventDefault();
+		var parentItem = $( this ).parent().parent().get( 0 ).id;
+        console.log(parentItem);
+        if( $( this ).hasClass( "fa-chevron-right" ) ){
+            // hide all others
+            
+            $( this ).removeClass( "fa-chevron-right" );
+            $( this ).addClass( "fa-chevron-down" );
+            $( "div.todo-description", $("#"+parentItem) ).show();
+            autosize.update( $('textarea', '#todo-sortable') );
+            
+        } else {
+            $( this ).removeClass( "fa-chevron-down" );
+            $( this ).addClass( "fa-chevron-right" );
+            $( "div.todo-description", $("#"+parentItem) ).hide();
+            autosize.update( $('textarea', '#todo-sortable') );
+        }
+	});
+
+    var todo_group = $("ul#todo-sortable").sortable({
+		handle: "span.fa-bars",
+		//tolerance: 6,
+		//distance: 10,
+		onDrop: function ($item, container, _super) {
+			var data = todo_group.sortable("serialize").get();
+			var jsonString = JSON.stringify(data, null, ' ');
+			//console.log('onDrop');
+			//console.log(jsonString);
+			$('#json_todo').val(jsonString);
+			//$('#serialize_output').html("<PRE>"+jsonString+"</pre>");
+			_super($item, container);
+			$('#todo-form').submit();
+		},
+		exclude: ".new-component",
+		nested: false 
+    });
 	
     var group = $("ul#sortable").sortable({
 		handle: "span.fa-bars",

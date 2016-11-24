@@ -118,7 +118,7 @@
 									<div class="audio-player play-description">
 										<audio id="play-description" controls></audio>
 									</div>
-									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -132,7 +132,7 @@
 									<div class="audio-player play-phonetic-description">
 										<audio id="play-phonetic-description" controls></audio>
 									</div>
-									<textarea class="tall" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
+									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -141,7 +141,7 @@
 									Page Notes:<br /><small>internal use only</small>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
+									<textarea class="tall rte" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
 								</div>
 							</div>
 							<?php if ($was_locked): ?>
@@ -200,6 +200,8 @@
 							</div>
 						<?php endif; ?>
 						
+                        @include('project.todo.main')
+
 						@include('project.shared.section_version')
 
 						<!--						
@@ -261,7 +263,7 @@
             $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
         });
 		
-        $('textarea').trumbowyg({
+        $('textarea.rte').trumbowyg({
 		    removeformatPasted: true,
 	        autogrow: true
 		}).on('tbwchange', function() {

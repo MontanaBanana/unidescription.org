@@ -24,6 +24,11 @@ class Project extends Model
         return $this->belongsTo('App\User');
     }
     
+    public function project_todos()
+    {
+        return $this->hasMany('App\ProjectTodo')->orderBy('sort_order');
+    }
+    
     public function project_sections()
     {
         return $this->hasMany('App\ProjectSection')->orderBy('sort_order');

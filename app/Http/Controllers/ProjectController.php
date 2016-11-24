@@ -8,6 +8,7 @@ use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
+use App\ProjectTodo;
 use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
@@ -756,6 +757,45 @@ class ProjectController extends Controller
 */
 		return redirect()->back();
 	}    
+
+	public function postTodoAdd(Request $request)
+	{
+		$pt = ProjectTodo::create(['title' => $request->title, 'user_id' => Auth::user()->id, 'project_id' => $request->project_id]);
+        if (isset($request->project_section_id)) {
+            $pt->project_section_id = $request->project_section_id;
+        }
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+
+	public function postTodoUpdate(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+        if ($request->title) {
+            $pt->title= $request->title;
+        }
+        elseif ($request->description) {
+            $pt->description = $request->description;
+        }
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+
+	public function postTodoCompleted(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+		$pt->completed = $request->completed;
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+	
+	public function postTodoDeleted(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+		$pt->deleted = $request->deleted;
+		$pt->save();
+		return response()->json([ 'status' => true ]);		
+	}
 	
 	public function postCompleted(Request $request)
 	{

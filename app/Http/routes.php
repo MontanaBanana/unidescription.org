@@ -95,6 +95,11 @@ Route::post(WEBROOT.'account/project/assets', 'ProjectController@postAssets');
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
 
+Route::post(WEBROOT.'account/project/todo/completed', 'ProjectController@postTodoCompleted');
+Route::post(WEBROOT.'account/project/todo/deleted', 'ProjectController@postTodoDeleted');
+Route::post(WEBROOT.'account/project/todo/add', 'ProjectController@postTodoAdd');
+Route::post(WEBROOT.'account/project/todo/update', 'ProjectController@postTodoUpdate');
+
 Route::post(WEBROOT.'account/project/completed', 'ProjectController@postCompleted');
 Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
 

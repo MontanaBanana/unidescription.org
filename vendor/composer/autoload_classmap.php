@@ -17,6 +17,7 @@ return array(
     'AddProjectDetailColumns' => $baseDir . '/database/migrations/2016_02_08_085652_add_project_detail_columns.php',
     'AddProjectImage' => $baseDir . '/database/migrations/2015_11_28_003646_add_project_image.php',
     'AddProjectSectionImage' => $baseDir . '/database/migrations/2016_06_27_220659_add_project_section_image.php',
+    'AddProjectTodos' => $baseDir . '/database/migrations/2016_11_22_015924_add_project_todos.php',
     'AddSectionForeignKey' => $baseDir . '/database/migrations/2016_08_15_002845_add_section_foreign_key.php',
     'AddSectionNotes' => $baseDir . '/database/migrations/2016_02_08_072457_add_section_notes.php',
     'AddVersions' => $baseDir . '/database/migrations/2016_08_13_233556_add_versions.php',

@@ -73,7 +73,7 @@
 							<!-- table of contents see http://forresst.github.io/2012/06/22/Make-a-list-jQuery-Mobile-sortable-by-drag-and-drop/ -->
 							<div class="panel panel-default">
 								<div class="panel-heading">Table of Contents:</div>
-								<div class="panel-body white table-of-contents">
+								<div class="panel-body white unid-list table-of-contents">
 									<div data-role="content" data-theme="c">
 										
 										<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
@@ -119,6 +119,7 @@
 													</ul>
 												</li>
 											<?php endforeach; ?>
+                                            <?php unset($section); ?>
 											<li id="final-leaf" class="new-component">
 												<div class="input-group">
 													<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
@@ -146,6 +147,8 @@
 			        	</div>
 			        	
 			        	@include('project.shared.version')
+
+                        @include('project.todo.main')
 			        	
                         @include('project.shared.progress')
 
@@ -195,11 +198,6 @@
 		});
 		
 		$('.toc-check-complete').on('click', function(event) {
-			//console.log( $(this).data() );
-			//console.log( $(this) );
-			//console.log( $(this).children() );
-			//console.log( $(this).data() );
-			console.log()
 
 			if ($(this).hasClass('label-default')) {
 				
@@ -308,7 +306,7 @@
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
 	  	
-	  	$('.fa-chevron-right').click();
+	  	$('.fa-chevron-right', $('.table-of-contents')).click();
 	  	
 	  	
 	  	$('.toc-delete').on('click', function(event) {

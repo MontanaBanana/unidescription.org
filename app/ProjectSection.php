@@ -31,4 +31,8 @@ class ProjectSection extends Model
         return $this->hasMany('App\ProjectSectionVersion');
     }
 
+    public function todos()
+    {
+        return $this->hasMany('App\ProjectTodo');    
+    }
 }

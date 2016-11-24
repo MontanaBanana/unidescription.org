@@ -659,3 +659,8 @@ div#main-nav {
 .atlwdg-trigger {
     background: red !important;
 }
+
+/* forms */
+.input-group label {
+	display:none;
+}

@@ -8,7 +8,7 @@
     
     <header>
 	    <img style="width: 100%;" src="{{ SITEROOT }}/slideshow/ad_photo1.jpg" alt="Girl looking at phone at Old Faithful" /><br />
-		<div style="text-align: center; margin-top: 5px;">
+		<div class="getting-started">
 			<p style="font-size: 22px;"><strong>How do you get started?</strong> Just <a href="{{ SITEROOT }}/auth/register">create a free account</a>, <a href="{{ SITEROOT }}/auth/login">sign in</a>, and start a new project.</p>
 		</div>
     </header>
@@ -20,7 +20,8 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header" style="font-family: Helvetica;">
-                    <center><strong style="font-size: 42px">The UniD Project</strong><br /> To Create Acoustic Spaces and More Accessible Places</center>
+                    <center><strong style="font-size: 42px">The UniD Project</strong>
+                    <div class="small">To Create Acoustic Spaces and More Accessible Places</div></center>
                 </h1>
                 <p>
 	            	In the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.
@@ -63,17 +64,17 @@
             </div>
             
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Washington Monument">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Arial view photo of the Washington Monument">
 				Washington Monument
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="Golden Gate">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="Photo of the Golden Gate Bridge">
 				Golden Gate
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/volcanoes.jpg" alt="Hawaii Volcanoes">
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/volcanoes.jpg" alt="Photo of a lava flow from Hawaii Volcanoes">
 				Hawaii Volcanoes
 			</div>
 			
@@ -145,7 +146,7 @@
 					All inquiries about this project should be directed to him, either <a href="mailto:brett.oppegaard@gmail.com">by email</a> or <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu">phone</a>
 				</p>
 				<p>
-					More behind-the-scenes: Our regularly updated blog about this project also is available <a href="https://npsaudiodescription.wordpress.com/" target="_blank">here</a>.
+					More behind-the-scenes: Our regularly updated blog about this project also is available on <a href="https://npsaudiodescription.wordpress.com/" target="_blank">our blog</a>.
 				</p>
 	        </div>
         </div>

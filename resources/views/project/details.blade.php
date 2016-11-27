@@ -194,6 +194,8 @@
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 
+                        @include('project.todo.main')
+
 			        	@include('project.shared.version')
 
                         @include('project.shared.progress')

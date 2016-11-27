@@ -179,6 +179,47 @@ class ProjectController extends Controller
 
 		return view('project.build', ['project' => $project, 'owner' => $owner, 'pg_build' => $pg_build]);
     }
+
+    /**
+     * Accept owner change update
+     *
+     * @return Response
+     */
+    public function postChangeOwner(Request $request)
+    {
+	    //$project_id, $email, $add_or_del,
+	    $project_id = $request->project_id;
+	    $email = $request->email;
+		if (preg_match("/.*<(.*)>/", $email, $m)) {
+			$email = $m[1];
+		}
+		//echo "$email";exit;
+	    
+	    $project = Project::find($project_id);
+		if (!$project->id) {
+			return response()->json([ 'status' => false ]);
+		}
+
+	    // Only allow the owner of the project to modify the owner
+	    if ($project->user->id != Auth::user()->id) {
+		    return response()->json([ 'status' => false ]);
+		}
+
+	    $project = Project::find($project_id);
+		$user = User::where('email', $email)->first();
+		
+		if ($user && $user->id) {
+			// User already exists in the database, good.
+            // Lets change the owner
+		    $project->user_id = $user->id;	
+            $project->save();
+		}
+		else {
+			return response()->json([ 'status' => false ]);
+		}
+
+		return response()->json(['status' => true ]);
+    }
         
     /**
      * Accept share update, return a list of currently shared users.

@@ -33,7 +33,7 @@
 
         <li class="new-component">
             <div class="input-group">
-                <input type="text" class="form-control" id="todo-new" name="todo-new" placeholder="Add a new todo..." aria-describedby="todo-add" />
+                <input type="text" class="form-control" id="todo-new" name="todo-new" onKeyPress="addOnEnter(event, this);" placeholder="Add a new todo..." aria-describedby="todo-add" />
                 <span class="btn input-group-addon add-todo" id="todo-add">ADD</span>
             </div>
         </li>
@@ -42,6 +42,15 @@
 
 
     <script type="text/javascript">
+    function addOnEnter(e, textarea){
+
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code == 13) {
+            $('#todo-add').click();
+            e.preventDefault();
+        }
+    }
+
     $(document).ready(function() {
 
         $('#todo-add').on('click', function() {

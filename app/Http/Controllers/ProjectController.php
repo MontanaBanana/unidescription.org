@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Mail;
 use Illuminate\Http\Request;
 use App\Project;
@@ -578,10 +579,13 @@ class ProjectController extends Controller
             header('Location: /account/project/section/'.$project->id.'/'.$ps->id);
             exit;
         }
-		
+
+        $prev_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order-1))->first();
+        $next_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order+1))->first();
+
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked]);
+	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked, 'prev_ps' => $prev_ps, 'next_ps' => $next_ps]);
     }
     
     public function postSection(Request $request)

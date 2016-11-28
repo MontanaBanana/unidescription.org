@@ -601,6 +601,12 @@ div.project .tips-column .panel ul.standard-list li a {
 
 }
 
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 div.version {
     white-space: nowrap;
     overflow: hidden;

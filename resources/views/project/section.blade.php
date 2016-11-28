@@ -160,6 +160,21 @@
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	-->
+						<div class="panel panel-default">
+							<div class="panel-heading">Component Navigation:</div>
+							<div class="panel-body">
+                                <div class="col-sm-6 truncate" style="text-align: left;">
+                                    @if ($prev_ps)
+                                        <a href="/account/project/section/{{ $project->id }}/{{ $prev_ps->id }}">&larr; Previous<br /><small>{{ $prev_ps->title }}</small></a>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6 truncate" style="text-align: right;">
+                                    @if ($next_ps)
+                                        <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 						
 						<div class="panel panel-default">
 							<div class="panel-heading">Component Photo:</div>
@@ -203,36 +218,6 @@
                         @include('project.todo.main')
 
 						@include('project.shared.section_version')
-
-						<!--						
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Project Progress:</div>
-							<div class="panel-body">
-								<div class="progress">
-									<?php $percent = get_project_completion_percentage($sections); ?>
-									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
-										<?php echo $percent; ?>%
-									</div>
-								</div>
-							</div>
-						</div>
-			          	-->
-			          	<!--
-						<div class="panel panel-default">
-							<div class="panel-heading">Content Tips:</div>
-							<div class="panel-body">
-								<p>Click on the subjects below to read more about the best practices for audio descriptions for this page.</p>
-								<ul class="standard-list">
-									<li>&bull; <a href="#">Lorem ipsum dolor sit amet</a></li>
-									<li>&bull; <a href="#">Consectetur adipiscing elit</a></li>
-									<li>&bull; <a href="#">Vivamus sagittis lacinia turpis</a></li>
-									<li>&bull; <a href="#">Class aptent taciti sociosqu ad litora</a></li>
-								</ul>
-								<a href="#" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-users"></span> Join Our Forum!</a>
-							</div>
-						</div>
-						-->
-			          	
 
 			        </div>
 				</div>

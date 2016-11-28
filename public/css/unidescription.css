@@ -601,6 +601,12 @@ div.project .tips-column .panel ul.standard-list li a {
 
 }
 
+div.version {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 span.toc-icon {
 	width: 23px;
 	cursor: pointer;

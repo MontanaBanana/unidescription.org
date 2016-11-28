@@ -20,6 +20,7 @@ return array(
     'AddProjectTodos' => $baseDir . '/database/migrations/2016_11_22_015924_add_project_todos.php',
     'AddSectionForeignKey' => $baseDir . '/database/migrations/2016_08_15_002845_add_section_foreign_key.php',
     'AddSectionNotes' => $baseDir . '/database/migrations/2016_02_08_072457_add_section_notes.php',
+    'AddUserIdToHistory' => $baseDir . '/database/migrations/2016_11_28_024426_add_user_id_to_history.php',
     'AddVersions' => $baseDir . '/database/migrations/2016_08_13_233556_add_versions.php',
     'ChangePhoneticDescription' => $baseDir . '/database/migrations/2016_06_27_222058_change_phonetic_description.php',
     'ChangePhoneticDescriptionNullable' => $baseDir . '/database/migrations/2016_06_27_222314_change_phonetic_description_nullable.php',

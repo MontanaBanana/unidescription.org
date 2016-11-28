@@ -604,6 +604,7 @@ class ProjectController extends Controller
 					       $table->increments('id');
            $table->string('project_section_id');
 	       $table->integer('project_id');
+	       $table->integer('user_id');
 	       $table->string('title');
 	       $table->text('description')->nullable();
 	       $table->text('phonetic_description')->nullable();
@@ -624,6 +625,7 @@ class ProjectController extends Controller
 					'project_section' => $ps->project_section_id,
 					'project_section_id' => $ps->id, 
 					'project_id' => $ps->project_id,
+					'user_id' => Auth::user()->id,
 					'title' => trim($ps->title), 
 					'description' => $ps->description,
 					'phonetic_description' => $ps->phonetic_description,

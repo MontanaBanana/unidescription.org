@@ -12,6 +12,7 @@ use App\ProjectTodo;
 use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
+use Response;
 use Auth;
 use Validator;
 use PhonegapBuildApi;
@@ -23,7 +24,7 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth', ['except' => array('getZip', 'getExport')]);
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getTextExport')]);
 	}
 	
     
@@ -69,7 +70,8 @@ class ProjectController extends Controller
     public function getTextExport($id)
     {
 	    $project = Project::find($id);
-		return view('project.export_text', ['project' => $project]);
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/'.preg_replace("/\s+/", '_', $project->title).'.txt', view('project.export_text', ['project' => $project]));
+		return Response::download($_SERVER['DOCUMENT_ROOT'].'/projects/'.preg_replace("/\s+/", '_', $project->title).'.txt');
     }
     
     public function getExport($id)

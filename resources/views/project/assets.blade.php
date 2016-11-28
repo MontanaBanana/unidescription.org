@@ -213,7 +213,7 @@
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
 	    
-		$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
+		//$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
 	    
 	    // Take the nav bar into account
 	    $(window).on("hashchange", function () {

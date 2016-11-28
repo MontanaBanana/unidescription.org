@@ -374,7 +374,7 @@
 			}
 	  	});
 	    
-		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 	    
 	    // Take the nav bar into account
 	    $(window).on("hashchange", function () {

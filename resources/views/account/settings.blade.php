@@ -58,7 +58,7 @@
 <script type="text/javascript">
 $( document ).ready(function() {
     //$(":file").filestyle({buttonBefore: true, placeHolder: 'Profile Photo', buttonText: '&nbsp;Profile photo', size: 'lg', input: false, iconName: "fa fa-camera-retro"});
-    $(":file").filestyle({icon: true, iconName: "fa fa-camera-retro", buttonText: "Update Profile Photo", buttonName: "btn-primary", input: false});
+    //$(":file").filestyle({icon: true, iconName: "fa fa-camera-retro", buttonText: "Update Profile Photo", buttonName: "btn-primary", input: false});
 });
 </script>
 

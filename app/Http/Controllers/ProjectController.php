@@ -802,6 +802,17 @@ class ProjectController extends Controller
                                                         $chchch_ps->sort_order = $sort_order++;
                                                         $chchch_ps->project_section_id = $child->sectionId;
                                                         $chchch_ps->save();
+
+                                                        if (isset($chchch->children)) {
+                                                            foreach ($chchch->children[0] as $chchchch) {
+                                                                $chchchch_ps = ProjectSection::find($chchchch->sectionId);
+                                                                $chchchch_ps->sort_order = $sort_order++;
+                                                                $chchchch_ps->project_section_id = $child->sectionId;
+                                                                $chchchch_ps->save();
+
+                                                            }
+                                                        }
+
                                                     }
                                                 }
 

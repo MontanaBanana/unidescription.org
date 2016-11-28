@@ -113,17 +113,7 @@ $(document).ready(function(){
 			$('#toc-form').submit();
 		},
 		isValidTarget: function ($item, container) {
-			var item_count =  $('i.fa',$item).length;
-			var container_count = $('i.fa',container.el).length
-		    //console.log('container', $('i.fa',container.el).length);
-		    //console.log('item', $('i.fa',$item).length);
-			console.log('item', item_count);
-			console.log('container', container_count);
-		    
-		    if (item_count == 1 && container_count == 0) {
-			    return false;
-		    }
-		    return true;
+		    return true;    
 		},
 		//tolerance: 6,
 		//distance: 10,

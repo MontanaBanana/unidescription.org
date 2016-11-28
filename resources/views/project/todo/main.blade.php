@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Project Todos:</div>
+                <div class="panel-heading">To Do:</div>
                 <div class="panel-body white unid-list todos">
 
 <div data-role="content" data-theme="c">
@@ -33,7 +33,7 @@
 
         <li class="new-component">
             <div class="input-group">
-                <input type="text" class="form-control" id="todo-new" name="todo-new" onKeyPress="addOnEnter(event, this);" placeholder="Add a new todo..." aria-describedby="todo-add" />
+                <input type="text" class="form-control" id="todo-new" name="todo-new" onKeyPress="addOnEnter(event, this);" placeholder="Add a new To Do..." aria-describedby="todo-add" />
                 <span class="btn input-group-addon add-todo" id="todo-add">ADD</span>
             </div>
         </li>

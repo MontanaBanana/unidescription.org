@@ -106,7 +106,7 @@ $(document).ready(function(){
 			var data = group.sortable("serialize").get();
 			var jsonString = JSON.stringify(data, null, ' ');
 			//console.log('onDrop');
-			//console.log(jsonString);
+			console.log(jsonString);
 			$('#json_toc').val(jsonString);
 			//$('#serialize_output').html("<PRE>"+jsonString+"</pre>");
 			_super($item, container);

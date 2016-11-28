@@ -66,6 +66,12 @@ class ProjectController extends Controller
 		//return view('project.export', ['project' => $project]);
     }
     
+    public function getTextExport($id)
+    {
+	    $project = Project::find($id);
+		return view('project.export_text', ['project' => $project]);
+    }
+    
     public function getExport($id)
     {
 	    $project = Project::find($id);
@@ -764,19 +770,31 @@ class ProjectController extends Controller
 						$ps->sort_order = $sort_order++;
 						$ps->project_section_id = 0;
 						$ps->save();
-					    //echo "<PRE>p ".print_r($parent,true)."</pre>";
+
 					    if (isset($parent->children)) {
 						    foreach ($parent->children[0] as $child) {
-							    //echo "<PRE>c ".print_r($child,true)."</pre>";exit;
+
 							    if (isset($child->sectionId)) {
 		    	    				$child_ps = ProjectSection::find($child->sectionId);
 									$child_ps->sort_order = $sort_order++;
 									$child_ps->project_section_id = $parent->sectionId;
-									//echo "<PRE>".print_R($child_ps,true)."</pre>";exit;
 									$child_ps->save();
+
+                                    if (isset($child->children)) {
+                                        foreach ($child->children[0] as $chch) {
+                                            if (isset($chch->sectionId)) {
+                                                $chch_ps = ProjectSection::find($chch->sectionId);
+                                                $chch_ps->sort_order = $sort_order++;
+                                                $chch_ps->project_section_id = $child->sectionId;
+                                                $chch_ps->save();
+                                            }
+                                        }
+                                    }
+
 								}
 						    }
 					    }
+
 				    }
 			    }
 		    }

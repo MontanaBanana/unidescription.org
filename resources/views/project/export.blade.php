@@ -84,14 +84,36 @@
                                                         <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                     <?php endif; ?>
 
-                                                    <!--<p><?php echo nl2br($s->description); ?></p>-->
-                                                    <p><?php echo nl2br($s->description); ?></p>
-                                                    <!--<p>{{ $s->description }}</p>-->
+                                                    <div><?php echo nl2br($s->description); ?></div>
                                                 <?php endif; ?>
 
                                                 <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
                                                     <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
                                                 <?php endif; ?>
+                                                @if (count($s->children))
+                                                    @foreach ($s->children as $chch)
+                                                        @if ($chch->completed && !$chch->deleted)
+                                                        <p style="margin-left: 20px;">
+                                                            <b>{{ $chch->title }}</b><br />
+                                                            <?php if (strlen($chch->description)): ?>
+                                                                <audio controls>
+                                                                    <source src='{{ $chch->audio_file_url }}' type='audio/wav'>
+                                                                </audio>
+
+                                                                <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
+                                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+                                                                <?php endif; ?>
+
+                                                                <div style="margin-left: 20px;"><?php echo nl2br($chch->description); ?></div>
+                                                            <?php endif; ?>
+
+                                                            <?php if (strlen($chch->image_url) && !strlen($chch->description) && $chchection->has_image_rights): ?>
+                                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+                                                            <?php endif; ?>
+                                                        </p>
+                                                        @endif
+                                                    @endforeach
+                                                @endif
 											</p>
 											@endif
 										@endforeach

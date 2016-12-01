@@ -11,11 +11,13 @@
 
 	<div class="input-group margin-bottom-sm">
 	  <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+	  <label for="email">Email</label>
 	  <input type="email" id="email" name="email" class="form-control" placeholder="Email address" value="{{ old('email') }}" required autofocus>
 	</div>
 	
 	<div class="input-group">
 	  <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+	  <label for="password">Password</label>
 	  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
 	</div>
 	       

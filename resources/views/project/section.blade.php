@@ -40,7 +40,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-project-navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -113,10 +113,12 @@
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									<span class="pull-right"><a class="btn btn-sm btn-primary play-description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
-
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+									<div class="audio-player play-description">
+										<audio id="play-description" controls></audio>
+									</div>
+									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -127,7 +129,10 @@
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
+									<div class="audio-player play-phonetic-description">
+										<audio id="play-phonetic-description" controls></audio>
+									</div>
+									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 								</div>
 							</div>
 				        						
@@ -136,7 +141,7 @@
 									Page Notes:<br /><small>internal use only</small>
 								</div>
 								<div class="panel-body form-element">
-									<textarea class="tall" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
+									<textarea class="tall rte" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
 								</div>
 							</div>
 							<?php if ($was_locked): ?>
@@ -155,6 +160,21 @@
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
 			        	-->
+						<div class="panel panel-default">
+							<div class="panel-heading">Component Navigation:</div>
+							<div class="panel-body">
+                                <div class="col-sm-6 truncate" style="text-align: left;">
+                                    @if ($prev_ps)
+                                        <a href="/account/project/section/{{ $project->id }}/{{ $prev_ps->id }}">&larr; Previous<br /><small>{{ $prev_ps->title }}</small></a>
+                                    @endif
+                                </div>
+                                <div class="col-sm-6 truncate" style="text-align: right;">
+                                    @if ($next_ps)
+                                        <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 						
 						<div class="panel panel-default">
 							<div class="panel-heading">Component Photo:</div>
@@ -195,37 +215,9 @@
 							</div>
 						<?php endif; ?>
 						
-						@include('project.shared.section_version')
+                        @include('project.todo.main')
 
-						<!--						
-			        	<div class="panel panel-default">
-							<div class="panel-heading">Project Progress:</div>
-							<div class="panel-body">
-								<div class="progress">
-									<?php $percent = get_project_completion_percentage($sections); ?>
-									<div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
-										<?php echo $percent; ?>%
-									</div>
-								</div>
-							</div>
-						</div>
-			          	-->
-			          	<!--
-						<div class="panel panel-default">
-							<div class="panel-heading">Content Tips:</div>
-							<div class="panel-body">
-								<p>Click on the subjects below to read more about the best practices for audio descriptions for this page.</p>
-								<ul class="standard-list">
-									<li>&bull; <a href="#">Lorem ipsum dolor sit amet</a></li>
-									<li>&bull; <a href="#">Consectetur adipiscing elit</a></li>
-									<li>&bull; <a href="#">Vivamus sagittis lacinia turpis</a></li>
-									<li>&bull; <a href="#">Class aptent taciti sociosqu ad litora</a></li>
-								</ul>
-								<a href="#" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-users"></span> Join Our Forum!</a>
-							</div>
-						</div>
-						-->
-			          	
+						@include('project.shared.section_version')
 
 			        </div>
 				</div>
@@ -256,7 +248,7 @@
             $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
         });
 		
-        $('textarea').trumbowyg({
+        $('textarea.rte').trumbowyg({
 		    removeformatPasted: true,
 	        autogrow: true
 		}).on('tbwchange', function() {
@@ -277,7 +269,7 @@
 		var orig_count = $('.trumbowyg-editor').text().length;
 		
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
-        $(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
+        //$(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
 		$('.play-phonetic-description').on('click', function(event) {
 			
@@ -295,6 +287,10 @@
 			$ps->audio_file_url = $result->fn;
 			$ps->audio_file_needs_update = false;
 			*/
+			
+			// define the audio element
+			var audio = $('#play-phonetic-description');
+			
 			if ($('#phonetic-player-icon').hasClass('fa-play')) {
 				$('#phonetic-player-icon').removeClass('fa-play');
 				$('#phonetic-player-icon').addClass('fa-stop');
@@ -308,12 +304,30 @@
 				 
 				request.done(function( msg ) {
 					console.log(msg.fn);
+					
+					audio.attr('src', msg.fn);
+					audio.attr('autoplay', 'autoplay');
+					audio.load();
+					
+					$('.audio-player.play-phonetic-description').show();
+					audio.addEventListener('load', function() {
+						audio.play();
+					}, true);
+					
+					audio.addEventListener('ended', function() {
+						$('#phonetic-player-icon').removeClass('fa-stop');
+						$('#phonetic-player-icon').addClass('fa-play');
+						$('.audio-player.play-phonetic-description').hide();
+					});
+					
+					/*
 					audio = new Audio(msg.fn);
 					audio.play();
 					audio.addEventListener('ended', function() {
 						$('#phonetic-player-icon').removeClass('fa-stop');
 						$('#phonetic-player-icon').addClass('fa-play');
 					});
+					*/
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -323,6 +337,7 @@
 			else {
 				$('#phonetic-player-icon').removeClass('fa-stop');
 				$('#phonetic-player-icon').addClass('fa-play');
+				$('.audio-player.play-phonetic-description').hide();
 				
 				audio.pause();
 				audio.currentTime = 0;
@@ -345,6 +360,10 @@
 			$ps->audio_file_url = $result->fn;
 			$ps->audio_file_needs_update = false;
 			*/
+			
+			// define the audio element
+			var audio = $('#play-description');
+			
 			if ($('#player-icon').hasClass('fa-play')) {
 				$('#player-icon').removeClass('fa-play');
 				$('#player-icon').addClass('fa-stop');
@@ -355,15 +374,33 @@
 				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
-				 
+				
 				request.done(function( msg ) {
 					console.log(msg.fn);
-					audio = new Audio(msg.fn);
+					
+					audio.attr('src', msg.fn);
+					audio.attr('autoplay', 'autoplay');
+					audio.load();
+					
+					$('.audio-player.play-description').show();
+					audio.addEventListener('load', function() {
+						audio.play();
+					}, true);
+					
+					audio.addEventListener('ended', function() {
+						$('#player-icon').removeClass('fa-stop');
+						$('#player-icon').addClass('fa-play');
+						$('.audio-player.play-description').hide();
+					});
+					
+					/*
+					var audio = new Audio(msg.fn);
 					audio.play();
 					audio.addEventListener('ended', function() {
 						$('#player-icon').removeClass('fa-stop');
 						$('#player-icon').addClass('fa-play');
 					});
+					*/
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -373,8 +410,10 @@
 			else {
 				$('#player-icon').removeClass('fa-stop');
 				$('#player-icon').addClass('fa-play');
+				$('.audio-player.play-description').hide();
 				
 				audio.pause();
+				audio.attr('src', '');
 				audio.currentTime = 0;
 			}
 		});

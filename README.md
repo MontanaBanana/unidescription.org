@@ -56,5 +56,3 @@ Otherwise, you can remove that line if you're using the site on AWS or other typ
 
 * [National Park Service fork of Bootstrap](http://www.nps.gov/npmap/tools/bootstrap/)
 * [Laravel](https://laravel.com/)
-
-

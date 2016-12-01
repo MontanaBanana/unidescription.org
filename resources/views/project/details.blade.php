@@ -38,7 +38,7 @@
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-project-navbar-collapse">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -171,7 +171,7 @@
 								        @endif
 									</div>
 									<div class="col-md-6">
-										<p>This photo is used for vivamus sagittis lacinia turpis. Uploaded image should be at least 800x600 pixels.</p>
+										<p>Uploaded image should be at least 800x600 pixels.</p>
 										<input type="file" id="project_image" name="project_image">
 										<!--<a href="#" class="btn btn-primary btn-icon"><span class="fa fa-camera-retro"></span> Upload Photo</a>-->
 									</div>
@@ -193,6 +193,8 @@
 				        	<span class="fa fa-question-circle"></span>
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
+
+                        @include('project.todo.main')
 
 			        	@include('project.shared.version')
 
@@ -227,7 +229,7 @@
 			//console.log( $(e).data() );
 		});
 		
-		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 
 	});
 

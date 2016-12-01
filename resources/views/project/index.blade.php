@@ -3,7 +3,16 @@
 @section('title', 'My Projects');
 
 @section('content')
+ 
+<?php 
 
+/**
+ * get projects
+ * also gets $sortBy and $direction values from URL or defaults to 'created' 'asc'
+ */
+$projects = Auth::user()->all_projects($sortBy, $direction); 
+
+?>
 
         <!-- Page Heading/Breadcrumbs -->
         <div class="row">
@@ -11,7 +20,7 @@
                 <h1 class="page-header">My Projects
                     <small>list of your projects</small>
                 </h1>
-                <ol class="breadcrumb">
+                <ol class="breadcrumb above-filter">
                     <li><a href="/">Home</a></li>
                     <li><a href="/account">Account</a></li>
                     <li class="active">My Projects</li>
@@ -19,9 +28,36 @@
             </div>
         </div>
         <!-- /.row -->
+        
+        <!-- Project Filter -->
+        <div class="row">
+            <div class="col-lg-12">
+                <ol class="filter">
+                    <li><strong>Filter By:</strong></li>
+                    <li><a href="/account/project/title/<?php echo (($sortBy == 'title') && $direction == 'asc' ? 'desc':'asc'); ?>">
+	                    Name <?php
+		                    
+		                if($sortBy == 'title'){
+		                    ?><span class="glyphicon glyphicon-chevron-<?php echo ($direction == 'asc' ? 'down':'up'); ?>"></span><?php
+			            }
+			                   
+			            ?>
+	                    </a></li>
+                    <li><a href="/account/project/created/<?php echo (($sortBy == 'created') && $direction == 'asc' ? 'desc':'asc'); ?>">
+	                    Date <?php
+		                    
+		                if($sortBy == 'created'){
+		                    ?><span class="glyphicon glyphicon-chevron-<?php echo ($direction == 'asc' ? 'down':'up'); ?>"></span><?php
+			            }
+			                   
+			            ?>
+	                    </a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- /.row -->
 
         <!-- Project Listing -->
-        <?php $projects = Auth::user()->all_projects(); ?>
         @foreach ($projects as $project)
         	<!-- row -->
 	        <div class="row">

@@ -73,7 +73,7 @@
 							<!-- table of contents see http://forresst.github.io/2012/06/22/Make-a-list-jQuery-Mobile-sortable-by-drag-and-drop/ -->
 							<div class="panel panel-default">
 								<div class="panel-heading">Table of Contents:</div>
-								<div class="panel-body white table-of-contents">
+								<div class="panel-body white unid-list table-of-contents">
 									<div data-role="content" data-theme="c">
 										
 										<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
@@ -102,6 +102,24 @@
 																		<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 																		<!--<span class="label pull-right text-length label-default section-{{ $child->id }}-label">Not Started</span>-->
 																	</div>
+                                                                    <ul>
+                                                                        @if (count($child->children))
+                                                                            @foreach ($child->children as $chch)
+                                                                                <li data-title="{{ $chch->title }}" data-section-id="{{ $chch->id }}" class="li-section-child @if ($chch->deleted) deleted @endif">
+                                                                                    <div>
+                                                                                        <input type="hidden" name="sort_order[]" value="{{ $chch->id }}" />
+                                                                                        <input type="hidden" name="section-{{ $chch->id }}-parent" value="{{ $child->id }}" />
+
+                                                                                        <span class="fa fa-bars" style="cursor: move;"></span>
+                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
+                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+                                                                                        <!--<span class="label pull-right text-length label-default section-{{ $chch->id }}-label">Not Started</span>-->
+                                                                                    </div>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </ul>
 																</li>
 															@endforeach
 														@endif
@@ -119,6 +137,7 @@
 													</ul>
 												</li>
 											<?php endforeach; ?>
+                                            <?php unset($section); ?>
 											<li id="final-leaf" class="new-component">
 												<div class="input-group">
 													<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
@@ -146,6 +165,8 @@
 			        	</div>
 			        	
 			        	@include('project.shared.version')
+
+                        @include('project.todo.main')
 			        	
                         @include('project.shared.progress')
 
@@ -157,7 +178,6 @@
 								<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
 								-->
 								<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
-								<p>After you are done making changes, be sure to click the Save button at the bottom of the page.</p>
 
 								<p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" /> Show deleted items</label> </p>
 							</div>
@@ -195,11 +215,6 @@
 		});
 		
 		$('.toc-check-complete').on('click', function(event) {
-			//console.log( $(this).data() );
-			//console.log( $(this) );
-			//console.log( $(this).children() );
-			//console.log( $(this).data() );
-			console.log()
 
 			if ($(this).hasClass('label-default')) {
 				
@@ -308,7 +323,7 @@
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
 	  	
-	  	$('.fa-chevron-right').click();
+	  	$('.fa-chevron-right', $('.table-of-contents')).click();
 	  	
 	  	
 	  	$('.toc-delete').on('click', function(event) {
@@ -337,7 +352,7 @@
 				id: section_id
 			};
 
-			if (confirm('Are you sure you want to delete this? If you do, you can still recover it by clicking "Show deleted items" in the right hand column.')) {	
+			if (deleted == 0 || confirm('Are you sure you want to delete this? If you do, you can still recover it by clicking "Show deleted items" in the right hand column.')) {	
 				// Set it completed
 				$.ajax({
 					url : "/account/project/deleted",
@@ -359,7 +374,7 @@
 			}
 	  	});
 	    
-		$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 	    
 	    // Take the nav bar into account
 	    $(window).on("hashchange", function () {

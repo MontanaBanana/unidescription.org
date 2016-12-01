@@ -31,6 +31,7 @@
     
     <!-- Custom Fonts -->
     <link href="{{ SITEROOT }}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,700" rel="stylesheet" type="text/css">
 
     <!-- RTE -->
     <link rel="stylesheet" href="{{ SITEROOT }}/css/trumbowyg.css">
@@ -52,6 +53,7 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>
+    <script type="text/javascript" src="{{ SITEROOT }}/js/autosize.js"></script>
     <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>-->
 
     <!-- RTE -->
@@ -82,7 +84,7 @@
 	                    <span class="icon-bar"></span>
 	                    <span class="icon-bar"></span>
 	                </button>
-	                <a class="navbar-brand" href="{{ SITEROOT }}/"><img src="/images/unid_logo.png" style="position: relative; top: -8px; border: none;" alt="UniDescription logo" /></a>
+	                <a class="navbar-brand" href="{{ SITEROOT }}/"><img src="/images/unid_logo.svg" alt="UniDescription logo" /></a>
 	            </div>
 	            <!-- Collect the nav links, forms, and other content for toggling -->
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -109,14 +111,23 @@
 	                    <!--<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about">About</a></li>-->
 
 	                    <?php if (Auth::check()): ?>	                    	
-	                    	<?php $projects = Auth::user()->all_projects(); ?>
 	                    	<li class="dropdown">
 		                        <a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
 		                        	<li><a href="{{ SITEROOT }}/account/project/details/0/new">Create New Project</a></li>
 			                        <li class="divider"></li>
 			                        <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
-			                        @foreach ($projects as $project)
+                                    <?php 
+                                        $my_projects = Auth::user()->projects; 
+                                        $shared_projects = Auth::user()->shared_projects; 
+                                    ?>
+			                        @foreach ($my_projects as $project)
+				                        <li class="small">
+				                        	<a href="{{ SITEROOT }}/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
+			                        @endforeach
+			                        <li class="divider"></li>
+			                        <li><a href="{{ SITEROOT }}/account/project">Shared Projects</a></li>
+			                        @foreach ($shared_projects as $project)
 				                        <li class="small">
 				                        	<a href="{{ SITEROOT }}/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
 			                        @endforeach
@@ -176,7 +187,7 @@
 		        <div class="row container" style="margin-top: 5px">
 		            <ul class="list-unstyled list-inline list-social-icons">
 	                    <li>
-	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank"><em class="fa fa-github-square fa-2x"></em></a>
+	                        <a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" title="Fork on Github!"><em class="fa fa-github-square fa-2x"></em></a>
 	                    </li>
 <!--
 	                    <li>

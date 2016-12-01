@@ -48,11 +48,11 @@
                         <p>A transdisciplinary collaboration between the School of Communications and the Center on Disability Studies</p>
                     </div>
                    <ul class="list-inline">
-                        <li><a href="https://www.facebook.com/uhmanoa/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="https://www.facebook.com/uhmanoa/" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="https://www.linkedin.com/company/university-of-hawaii" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="https://www.linkedin.com/company/university-of-hawaii" target="_blank" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/uhmanoa" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="https://twitter.com/uhmanoa" target="_blank" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -67,11 +67,11 @@
                         <p>Including Harpers Ferry Center, the design hub of the bureau, and park sites nationwide</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="https://www.facebook.com/nationalparkservice" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="https://www.facebook.com/nationalparkservice" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="https://www.linkedin.com/company/national-park-service" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="https://www.linkedin.com/company/national-park-service" target="_blank" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/NatlParkService" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="https://twitter.com/NatlParkService" target="_blank" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -86,11 +86,11 @@
                         <p>A coalition of governmental agencies, non-governmental organizations and universities, promoting research within the Pacific region</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="#" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="#" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -105,11 +105,11 @@
                         <p>Seattle-based web and mobile app development company</p>
                     </div>
 	                <ul class="list-inline">
-                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="https://www.linkedin.com/company/montana-banana-web-design-&-development" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="https://www.linkedin.com/company/montana-banana-web-design-&-development" target="_blank" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/montanabweb" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="https://twitter.com/montanabweb" target="_blank" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -128,11 +128,11 @@
                         <p>An Assistant Professor in the UH School of Communications</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="#" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/brettoppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="https://twitter.com/brettoppegaard" target="_blank" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -147,11 +147,11 @@
                         <p>An Assistant Professor in the UH Center on Disability Studies</p>
                     </div>
                    <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="#" title="LinkedIN"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="#" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -166,11 +166,11 @@
                         <p>Media Coordinator in the UH Center on Disability Studies</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="#" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="#" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -185,11 +185,11 @@
                         <p>Media accessibility coordinator at Harpers Ferry Center</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="#" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="#"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="#" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -206,19 +206,18 @@
                         <p>Montana Banana</p>
                     </div>
                     <ul class="list-inline">
-                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank"><i class="fa fa-2x fa-facebook-square"></i></a>
+                        <li><a href="https://www.facebook.com/montanabweb/" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
                         </li>
-                        <li><a href="https://www.linkedin.com/in/joe-oppegaard-38957811" target="_blank"><i class="fa fa-2x fa-linkedin-square"></i></a>
+                        <li><a href="https://www.linkedin.com/in/joe-oppegaard-38957811" target="_blank" title="LinkedIn"><i class="fa fa-2x fa-linkedin-square"></i></a>
                         </li>
-                        <li><a href="https://twitter.com/JoeOppegaard" target="_blank"><i class="fa fa-2x fa-twitter-square"></i></a>
+                        <li><a href="https://twitter.com/JoeOppegaard" target="_blank" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
-			<!--
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
-                    <img class="img-responsive" style="height: 150px; width: 110px" src="http://placehold.it/110x150" alt="Jason Kenison's bio photo">
+                    <img class="img-responsive" style="height: 150px; width: 110px" src="{{ SITEROOT }}/images/team/jason-mug-shot.jpg" alt="Jason Kenison's bio photo">
                     <div class="caption" style="height: 205px;">
                         <h4>Jason Kenison<br>
                             <small>Senior Programmer</small>
@@ -235,7 +234,6 @@
                     </ul>
                 </div>
             </div>
-			-->
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <img class="img-responsive" style="height: 150px; width: 110px" src="/images/team/tuyet-hayes.jpg" alt="Tuyet Hayes's bio photo">

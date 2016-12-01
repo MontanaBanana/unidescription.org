@@ -8,10 +8,13 @@ if (count($section->project_section_versions)):
         <div class="version">
 			<?php
 				foreach ($section->project_section_versions as $v) {
+                    if ($v->user_id) {
+                        $user = App\User::find($v->user_id);
+                    }
 					?>
 					<a data-toggle="modal" href="#<?php echo $v->id; ?>" data-target="#<?php echo $v->id; ?>">
-						<?php echo $v->created_at->addHours(-7)->format('D, d M Y h:i:s'); ?>
-					</a><br />
+						<?php echo prettyDate($v->created_at->addHours(-7)->format('D, d M Y h:i:s')); ?>
+                    </a> @if ($v->user_id) - <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>@endif <br />
 					<?php
 				}
 			?>

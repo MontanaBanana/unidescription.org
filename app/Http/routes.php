@@ -95,6 +95,11 @@ Route::post(WEBROOT.'account/project/assets', 'ProjectController@postAssets');
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
 
+Route::post(WEBROOT.'account/project/todo/completed', 'ProjectController@postTodoCompleted');
+Route::post(WEBROOT.'account/project/todo/deleted', 'ProjectController@postTodoDeleted');
+Route::post(WEBROOT.'account/project/todo/add', 'ProjectController@postTodoAdd');
+Route::post(WEBROOT.'account/project/todo/update', 'ProjectController@postTodoUpdate');
+
 Route::post(WEBROOT.'account/project/completed', 'ProjectController@postCompleted');
 Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
 
@@ -106,8 +111,12 @@ Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@po
 Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController@postHasImageRights');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
+Route::get(WEBROOT.'/account/project/export_text/{id}', 'ProjectController@getTextExport');
 Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');
+
+// Filter project listing routes
+Route::get(WEBROOT.'account/project/{sortBy?}/{direction?}', 'ProjectController@index');
 
 // PhoneGap Build related calls
 Route::get(WEBROOT.'/phonegapbuild/authorize', 
@@ -117,6 +126,7 @@ Route::get(WEBROOT.'/phonegapbuild/callback', 'UserController@getBuildCallback')
 
 //Route::get('user/search/{string}', 'UserController@search');
 Route::post(WEBROOT.'/account/project/share', 'ProjectController@postShare');
+Route::post(WEBROOT.'/account/project/change_owner', 'ProjectController@postChangeOwner');
 
 // Authentication routes...
 Route::get(WEBROOT.'auth/login', 'Auth\AuthController@getLogin');

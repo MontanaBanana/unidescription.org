@@ -183,6 +183,8 @@
 				        	<span class="fa fa-question-circle"></span>
 				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 			        	</div>
+                        @include('project.todo.main')
+
 			        	@include('project.shared.version')
 			        	
                         @include('project.shared.progress')
@@ -211,7 +213,7 @@
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
 	  	});
 	    
-		$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
+		//$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
 	    
 	    // Take the nav bar into account
 	    $(window).on("hashchange", function () {

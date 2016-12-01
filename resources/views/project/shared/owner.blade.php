@@ -2,24 +2,31 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">Owner: {{ $project->user->name }}</h3></div>
     <div class="panel-body">
-        Shared with:
-        <ul class="list-group share-list-group">
-            @foreach ($project->users as $user)
-                <li class="list-group-item">
-                    @if ($project->is_owner())
-                        <span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="{{ $user->email }}"></span>
-                    @endif
-                    <span class="email">{{ $user->email }}</span>
-                </li>
-            @endforeach
-        </ul>
+        <strong>Shared with:</strong>
+        @if (count($project->users))
+            <ul class="list-group share-list-group">
+                @foreach ($project->users as $user)
+                    <li class="list-group-item">
+                        @if ($project->is_owner())
+                            <span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="{{ $user->email }}"></span>
+                        @endif
+                        <span class="email">{{ $user->email }}</span>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
         @if ($project->is_owner())
-			<div class="input-group" id="share-input-group">
-				<input type="text" class="form-control" id="share-email" placeholder="Email" aria-describedby="share-button" />
-				<span class="btn input-group-addon" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
-			</div>
-			<span class="btn googleContactsButton"><i class="fa fa-envelope fa-fw"></i> Authorize searching Google contacts</span>
-			<p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
+                <div class="input-group" id="share-input-group">
+                    <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" />
+                    <span class="btn input-group-addon" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
+                </div>
+                <span class="btn googleContactsButton"><i class="fa fa-envelope fa-fw"></i> Authorize Google contacts</span>
+                <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
+                <strong>Change owner:</strong>
+                <div class="input-group" id="owner-input-group">
+                    <input type="text" class="form-control" id="change-owner" placeholder="Name / Email" aria-describedby="owner-button" />
+                    <span class="btn input-group-addon" id="owner-button"><i id="owner-icon" class="fa fa-user fa-fw"></i> </span>
+                </div><small>Must already have an account</small>
         @endif
 
     </div>
@@ -29,7 +36,15 @@
         var clientId = '1024439531736-nmgb80hc0oi8i0d938a37u2d6ev68jgc.apps.googleusercontent.com';
         var apiKey = 'AIzaSyCpU-RMg5M0HABTwFc5UQsHnGvoqBPBguk';
         var scopes = 'https://www.googleapis.com/auth/contacts.readonly';
+
 		window.name_email = [];
+        window.potential_owners = [
+            <?php
+                foreach (App\User::all() as $u) {
+                    echo "'".$u->name . " <".$u->email.">',";
+                }
+            ?>
+        ];
 		  
 		Array.prototype.findReg = function(match) {
 			var reg = new RegExp(match);
@@ -39,8 +54,12 @@
 				return typeof item == 'string' && item.match(reg);
 			});
 		}
-		
+
 		$(document).ready(function() {
+
+          $("#change-owner").autocomplete({
+            source: window.potential_owners
+          });
 		
           $(document).on("click",".googleContactsButton", function(){
             gapi.client.setApiKey(apiKey);
@@ -127,6 +146,37 @@
             });
         });
 
+        $('#owner-button').click(function(event) {
+            var email = $('#change-owner').val();
+
+            if (validateEmail(email)) {
+                $('#owner-input-group').removeClass('has-error');
+
+                $('#owner-icon').removeClass("fa fa-plus fa-fw");
+                $('#owner-icon').addClass("fa fa-spinner fa-spin");
+
+                var formData = {
+                    _token: $('input[name=_token]').val(),
+                    project_id: $('#id').val(),
+                    email: email
+                };
+
+                $.ajax({
+                    url : "/account/project/change_owner",
+                    type: "POST",
+                    data : formData,
+                    success: function(data, textStatus, jqXHR)
+                    {
+                        if (data.status) {
+                            location.reload();
+                        }
+                    }
+                });
+            }
+            else {
+                $('#owner-input-group').addClass('has-error');
+            }
+        });
 
         $('#share-button').click(function(event) {
             var email = $('#share-email').val();

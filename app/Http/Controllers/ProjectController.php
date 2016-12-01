@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Mail;
 use Illuminate\Http\Request;
 use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
+use App\ProjectTodo;
 use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
+use Response;
 use Auth;
 use Validator;
 use PhonegapBuildApi;
@@ -22,13 +25,14 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth', ['except' => array('getZip', 'getExport')]);
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getTextExport')]);
 	}
 	
-    public function index()
-    {
-        return view('project.index');
-    }
+    
+	public function index(Request $request, $sortBy = null, $direction = null)
+	{
+		return view('project.index', ['sortBy' => $sortBy, 'direction' => $direction]);
+	}
     
     public function view($id, $title)
     {
@@ -62,6 +66,13 @@ class ProjectController extends Controller
 		exit;
 		//echo "<PRE>".print_R($_SERVER,true)."</pre>";exit;
 		//return view('project.export', ['project' => $project]);
+    }
+    
+    public function getTextExport($id)
+    {
+	    $project = Project::find($id);
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/'.preg_replace("/\s+/", '_', $project->title).'.txt', view('project.export_text', ['project' => $project]));
+		return Response::download($_SERVER['DOCUMENT_ROOT'].'/projects/'.preg_replace("/\s+/", '_', $project->title).'.txt');
     }
     
     public function getExport($id)
@@ -176,6 +187,47 @@ class ProjectController extends Controller
 		//$pg_build['ios_download'] = $api->downloadApplicationPlatform($project->pg_build_application_id, \PhonegapBuildApi::IOS);
 
 		return view('project.build', ['project' => $project, 'owner' => $owner, 'pg_build' => $pg_build]);
+    }
+
+    /**
+     * Accept owner change update
+     *
+     * @return Response
+     */
+    public function postChangeOwner(Request $request)
+    {
+	    //$project_id, $email, $add_or_del,
+	    $project_id = $request->project_id;
+	    $email = $request->email;
+		if (preg_match("/.*<(.*)>/", $email, $m)) {
+			$email = $m[1];
+		}
+		//echo "$email";exit;
+	    
+	    $project = Project::find($project_id);
+		if (!$project->id) {
+			return response()->json([ 'status' => false ]);
+		}
+
+	    // Only allow the owner of the project to modify the owner
+	    if ($project->user->id != Auth::user()->id) {
+		    return response()->json([ 'status' => false ]);
+		}
+
+	    $project = Project::find($project_id);
+		$user = User::where('email', $email)->first();
+		
+		if ($user && $user->id) {
+			// User already exists in the database, good.
+            // Lets change the owner
+		    $project->user_id = $user->id;	
+            $project->save();
+		}
+		else {
+			return response()->json([ 'status' => false ]);
+		}
+
+		return response()->json(['status' => true ]);
     }
         
     /**
@@ -527,10 +579,13 @@ class ProjectController extends Controller
             header('Location: /account/project/section/'.$project->id.'/'.$ps->id);
             exit;
         }
-		
+
+        $prev_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order-1))->first();
+        $next_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order+1))->first();
+
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');
-	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked]);
+	    return view('project.section', ['sections' => $sections, 'section' => $ps, 'project' => $project, 'was_locked' => $was_locked, 'prev_ps' => $prev_ps, 'next_ps' => $next_ps]);
     }
     
     public function postSection(Request $request)
@@ -553,6 +608,7 @@ class ProjectController extends Controller
 					       $table->increments('id');
            $table->string('project_section_id');
 	       $table->integer('project_id');
+	       $table->integer('user_id');
 	       $table->string('title');
 	       $table->text('description')->nullable();
 	       $table->text('phonetic_description')->nullable();
@@ -573,6 +629,7 @@ class ProjectController extends Controller
 					'project_section' => $ps->project_section_id,
 					'project_section_id' => $ps->id, 
 					'project_id' => $ps->project_id,
+					'user_id' => Auth::user()->id,
 					'title' => trim($ps->title), 
 					'description' => $ps->description,
 					'phonetic_description' => $ps->phonetic_description,
@@ -721,19 +778,52 @@ class ProjectController extends Controller
 						$ps->sort_order = $sort_order++;
 						$ps->project_section_id = 0;
 						$ps->save();
-					    //echo "<PRE>p ".print_r($parent,true)."</pre>";
+
 					    if (isset($parent->children)) {
 						    foreach ($parent->children[0] as $child) {
-							    //echo "<PRE>c ".print_r($child,true)."</pre>";exit;
+
 							    if (isset($child->sectionId)) {
 		    	    				$child_ps = ProjectSection::find($child->sectionId);
 									$child_ps->sort_order = $sort_order++;
 									$child_ps->project_section_id = $parent->sectionId;
-									//echo "<PRE>".print_R($child_ps,true)."</pre>";exit;
 									$child_ps->save();
+
+                                    if (isset($child->children)) {
+                                        foreach ($child->children[0] as $chch) {
+                                            if (isset($chch->sectionId)) {
+                                                $chch_ps = ProjectSection::find($chch->sectionId);
+                                                $chch_ps->sort_order = $sort_order++;
+                                                $chch_ps->project_section_id = $child->sectionId;
+                                                $chch_ps->save();
+
+                                                if (isset($chch->children)) {
+                                                    foreach ($chch->children[0] as $chchch) {
+                                                        $chchch_ps = ProjectSection::find($chchch->sectionId);
+                                                        $chchch_ps->sort_order = $sort_order++;
+                                                        $chchch_ps->project_section_id = $child->sectionId;
+                                                        $chchch_ps->save();
+
+                                                        if (isset($chchch->children)) {
+                                                            foreach ($chchch->children[0] as $chchchch) {
+                                                                $chchchch_ps = ProjectSection::find($chchchch->sectionId);
+                                                                $chchchch_ps->sort_order = $sort_order++;
+                                                                $chchchch_ps->project_section_id = $child->sectionId;
+                                                                $chchchch_ps->save();
+
+                                                            }
+                                                        }
+
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+
 								}
 						    }
 					    }
+
 				    }
 			    }
 		    }
@@ -755,6 +845,45 @@ class ProjectController extends Controller
 */
 		return redirect()->back();
 	}    
+
+	public function postTodoAdd(Request $request)
+	{
+		$pt = ProjectTodo::create(['title' => $request->title, 'user_id' => Auth::user()->id, 'project_id' => $request->project_id]);
+        if (isset($request->project_section_id)) {
+            $pt->project_section_id = $request->project_section_id;
+        }
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+
+	public function postTodoUpdate(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+        if ($request->title) {
+            $pt->title= $request->title;
+        }
+        elseif ($request->description) {
+            $pt->description = $request->description;
+        }
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+
+	public function postTodoCompleted(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+		$pt->completed = $request->completed;
+		$pt->save();
+		return response()->json([ 'status' => true ]);
+	}
+	
+	public function postTodoDeleted(Request $request)
+	{
+		$pt = ProjectTodo::find($request->id);
+		$pt->deleted = $request->deleted;
+		$pt->save();
+		return response()->json([ 'status' => true ]);		
+	}
 	
 	public function postCompleted(Request $request)
 	{

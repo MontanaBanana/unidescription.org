@@ -25,6 +25,19 @@ body {
 	line-height:26px;
 }
 
+.main-wrapper .container { 
+	width: 100%;
+}
+
+.main-wrapper {
+	border:1px solid #F3EFE3;
+	background:#F9F7F1;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	padding: 5px;
+}
+
 .page-header,
 h2, h3 {
 	font-family: 'Montserrat', sans-serif !important;
@@ -632,7 +645,7 @@ span.toc-icon {
 
 
 div.home-boxes .panel {
-	height: 285px;
+	height: 305px;
 }
 div.home-boxes .panel .panel-heading {
 	font-size:14px;

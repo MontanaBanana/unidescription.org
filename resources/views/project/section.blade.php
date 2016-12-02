@@ -20,7 +20,6 @@
             		Create New Project
             	@endif
         </h1>-->
-	    <p>&nbsp;</p>
         <ol class="breadcrumb">
             <li><a href="{{ SITEROOT }}/">Home</a></li>
             <li><a href="{{ SITEROOT }}/account">Account</a></li>

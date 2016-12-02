@@ -156,9 +156,9 @@
 	        <!-- /.container -->
 	    </nav>
     @show
-
     <div class="container" style="position: relative; top: 30px;">
-	    
+	    <div class="main-wrapper">
+
 	    @if (count($errors))
 		    <div class="alert alert-danger" role="alert">
 		        @foreach($errors->all() as $error)
@@ -208,6 +208,7 @@
 		    </footer>
 		@show
 	    
+    	</div>
     </div>
 
 	@section('js')

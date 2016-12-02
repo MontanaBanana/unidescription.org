@@ -20,7 +20,6 @@
             		Create New Project
             	@endif
         </h1>-->
-	    <p>&nbsp;</p>
         <ol class="breadcrumb">
             <li><a href="{{ SITEROOT }}/">Home</a></li>
             <li><a href="{{ SITEROOT }}/account">Account</a></li>
@@ -310,11 +309,11 @@
 					audio.load();
 					
 					$('.audio-player.play-phonetic-description').show();
-					audio.addEventListener('load', function() {
-						audio.play();
+					document.getElementById('play-phonetic-description').addEventListener('load', function() {
+						document.getElementById('play-phonetic-description').play();
 					}, true);
 					
-					audio.addEventListener('ended', function() {
+					document.getElementById('play-phonetic-description').addEventListener('ended', function() {
 						$('#phonetic-player-icon').removeClass('fa-stop');
 						$('#phonetic-player-icon').addClass('fa-play');
 						$('.audio-player.play-phonetic-description').hide();
@@ -339,8 +338,9 @@
 				$('#phonetic-player-icon').addClass('fa-play');
 				$('.audio-player.play-phonetic-description').hide();
 				
-				audio.pause();
-				audio.currentTime = 0;
+				document.getElementById('play-phonetic-description').pause();
+				audio.attr('src', '');
+				document.getElementById('play-phonetic-description').currentTime = 0;
 			}
 		});
 		
@@ -383,11 +383,11 @@
 					audio.load();
 					
 					$('.audio-player.play-description').show();
-					audio.addEventListener('load', function() {
-						audio.play();
+					document.getElementById('play-description').addEventListener('load', function() {
+						document.getElementById('play-description').play();
 					}, true);
 					
-					audio.addEventListener('ended', function() {
+					document.getElementById('play-description').addEventListener('ended', function() {
 						$('#player-icon').removeClass('fa-stop');
 						$('#player-icon').addClass('fa-play');
 						$('.audio-player.play-description').hide();
@@ -412,9 +412,9 @@
 				$('#player-icon').addClass('fa-play');
 				$('.audio-player.play-description').hide();
 				
-				audio.pause();
+				document.getElementById('play-description').pause();
 				audio.attr('src', '');
-				audio.currentTime = 0;
+				document.getElementById('play-description').currentTime = 0;
 			}
 		});
 		

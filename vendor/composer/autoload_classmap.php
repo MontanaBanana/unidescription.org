@@ -14,6 +14,8 @@ return array(
     'AddPgBuild' => $baseDir . '/database/migrations/2016_05_26_223523_add_pg_build.php',
     'AddPgInfoToUsers' => $baseDir . '/database/migrations/2016_05_27_232218_add_pg_info_to_users.php',
     'AddPhoneticDescription' => $baseDir . '/database/migrations/2016_06_27_221855_add_phonetic_description.php',
+    'AddPhoneticTitleToProjectSectionVersions' => $baseDir . '/database/migrations/2016_12_05_100413_add_phonetic_title_to_project_section_versions.php',
+    'AddPhoneticTitleToProjectSections' => $baseDir . '/database/migrations/2016_12_05_093057_add_phonetic_title_to_project_sections.php',
     'AddProjectDetailColumns' => $baseDir . '/database/migrations/2016_02_08_085652_add_project_detail_columns.php',
     'AddProjectImage' => $baseDir . '/database/migrations/2015_11_28_003646_add_project_image.php',
     'AddProjectSectionImage' => $baseDir . '/database/migrations/2016_06_27_220659_add_project_section_image.php',

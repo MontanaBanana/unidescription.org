@@ -7,7 +7,7 @@ if (count($section->project_section_versions)):
     <div class="panel-body">
         <div class="version">
 			<?php
-				foreach ($section->project_section_versions as $v) {
+				foreach ($section->project_section_versions->reverse() as $v) {
                     if ($v->user_id) {
                         $user = App\User::find($v->user_id);
                     }

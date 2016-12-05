@@ -57,11 +57,11 @@ $basic_pages = array(
 	);
 
 Route::get(WEBROOT.'/', function () {
-    return view('index');
+    return view('index', ['home' => true]);
 });
 
 Route::get(WEBROOT.'/home', function () {
-    return view('index');
+    return view('index', ['home' => true]);
 });
 
 foreach ($basic_pages as $p) {

@@ -156,8 +156,10 @@
 	        <!-- /.container -->
 	    </nav>
     @show
-    <div class="container" style="position: relative; top: 30px;">
-	    <div class="main-wrapper">
+    @if (!@$home)
+      <div class="container" style="position: relative; top: 30px;">
+	@endif
+	    <div class="main-wrapper" @if (@$home) style="padding: 0; border: 0" @endif>
 
 	    @if (count($errors))
 		    <div class="alert alert-danger" role="alert">
@@ -173,7 +175,7 @@
             
 		<!-- Footer -->
 		@section('footer')
-		    <footer>
+		    <footer @if (@$home) style="padding-left: 15px;" @endif>
 		        <div class="row">
 		            <div class="col-lg-12 container">
 			            <div class="pull-left">
@@ -209,7 +211,9 @@
 		@show
 	    
     	</div>
-    </div>
+    @if (!@$home)
+      </div>
+    @endif
 
 	@section('js')
 	@show

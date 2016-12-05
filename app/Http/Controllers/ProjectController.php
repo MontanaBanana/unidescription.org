@@ -84,12 +84,9 @@ class ProjectController extends Controller
 				// Generate the audio file
 				$ch = curl_init();
 	
-				if (strlen($s->phonetic_description)) {
-					$text = $s->title . ". " . $s->phonetic_description;
-                }
-                else {
-					$text = $s->title . ". " . $s->description;
-                }
+				$this_title = $s->phonetic_title ? $s->phonetic_title : $s->title;
+				$this_description = $s->phonetic_description ? $s->phonetic_description : $s->description;
+				$text = $this_title . ". " . $this_description;
 				
 				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
@@ -600,6 +597,7 @@ class ProjectController extends Controller
 			$request->description != $ps->description || 
 			$request->phonetic_description != $ps->phonetic_description || 
 			$request->title != $ps->title || 
+			$request->phonetic_title != $ps->phonetic_title || 
 			$request->notes != $ps->notes ||
 			$request->audio_file_url != $ps->audio_file_url
 			) {
@@ -630,10 +628,11 @@ class ProjectController extends Controller
 					'project_section_id' => $ps->id, 
 					'project_id' => $ps->project_id,
 					'user_id' => Auth::user()->id,
-					'title' => trim($ps->title), 
-					'description' => $ps->description,
-					'phonetic_description' => $ps->phonetic_description,
-					'notes' => $ps->notes,
+					'title' => trim($request->title), 
+					'phonetic_title' => trim($request->phonetic_title),
+					'description' => trim($request->description),
+					'phonetic_description' => trim($request->phonetic_description),
+					'notes' => $request->notes,
 					'audio_file_url' => $ps->audio_file_url,
 					'audio_file_needs_update' => $ps->audio_file_needs_update,
 					'sort_order' => $ps->sort_order,
@@ -662,18 +661,14 @@ class ProjectController extends Controller
 			$go_back = true;
         }
 
-		if ($ps->description != $request->description || $ps->title != $request->title) {
+		//combined the if statement, previous statement was redundant and repeating
+		if ($ps->description != $request->description || $ps->title != $request->title || $ps->phonetic_description != $request->phonetic_description || $ps->phonetic_title != $request->phonetic_title) {
 			// Generate the audio file
 			$ch = curl_init();
 
-			if (strlen($request->phonetic_description)) {
-				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->phonetic_description));
-				$text = $request->title . ". " . $request->phonetic_description;
-			}
-			else {
-				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->description));
-				$text = $request->title . ". " . $request->description;
-			}
+			$this_title = $request->phonetic_title ? $request->phonetic_title : $request->title;
+			$this_description = $request->phonetic_description ? $request->phonetic_description : $request->description;
+			$text = $this_title . ". " . $this_description;
 			
 			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
@@ -692,36 +687,8 @@ class ProjectController extends Controller
 		}
 		$ps->description = $request->description;
 		$ps->title = trim($request->title);
-
-		if ($ps->phonetic_description != $request->phonetic_description || $ps->title != $request->title) {
-			// Generate the audio file
-			$ch = curl_init();
-			
-			if (strlen($request->phonetic_description)) {
-				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->phonetic_description));
-				$text = $request->title . ". " . $request->phonetic_description;
-			}
-			else {
-				//$text = strip_tags($s->title . " " . preg_replace("/\r\n/", '. ', $s->description));
-				$text = $request->title . ". " . $request->description;
-			}
-			
-			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
-			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
-			
-			//set the url, number of POST vars, POST data
-			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
-			
-			//execute post
-			$result = json_decode(curl_exec($ch));
-			
-			$ps->audio_file_url = $result->fn;
-			$ps->audio_file_needs_update = false;
-		}
 		$ps->phonetic_description = $request->phonetic_description;
+		$ps->phonetic_title = $request->phonetic_title;
 
 		$ps->notes = $request->notes;
 

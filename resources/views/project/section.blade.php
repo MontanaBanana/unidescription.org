@@ -20,6 +20,7 @@
             		Create New Project
             	@endif
         </h1>-->
+        
         <ol class="breadcrumb">
             <li><a href="{{ SITEROOT }}/">Home</a></li>
             <li><a href="{{ SITEROOT }}/account">Account</a></li>
@@ -95,7 +96,8 @@
 								</p>
 								<br clear="all" />
 							<?php endif; ?>
-											        
+							
+							<? /*				        
 					        <div class="panel panel-default">
 								<div class="panel-heading">
 									Page Name:
@@ -105,12 +107,44 @@
 									<input type="text" class="large" name="title" value="{{ $section->title }}" <?php if (!$was_locked) { echo 'readonly'; } ?>>
 								</div>
 							</div>
+							*/ ?>
+							
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Page Name: 
+									<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:60%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+								</div>
+								<div class="panel-body form-element">
+									<div class="audio-player play-title">
+										<audio id="play-title" controls></audio>
+									</div>
+								</div>
+							</div>
+
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Phonetic Page Name: 
+									<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic_title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+								</div>
+								<div class="panel-body form-element">
+									<div class="audio-player play-phonetic_title">
+										<audio id="play-phonetic_title" controls></audio>
+									</div>
+								</div>
+							</div>
+
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									Page Description:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
-									<span class="pull-right"><a class="btn btn-sm btn-primary play-description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
@@ -124,7 +158,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
-                                    <span class="pull-right"><a class="btn btn-sm btn-primary play-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-player-icon" class="fa fa-play"></span></a></span>
+                                    <span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-player-icon" class="fa fa-play"></span></a></span>
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
@@ -240,6 +274,13 @@
 
 	var audio;
 	
+	
+	function stopPlayers(){
+		var sounds = document.getElementsByTagName('audio');
+		for(i=0; i<sounds.length; i++) sounds[i].pause();
+	}
+	
+	
 	$(document).ready(function() {
 
         $(window).on('beforeunload', function(){
@@ -251,10 +292,6 @@
 		    removeformatPasted: true,
 	        autogrow: true
 		}).on('tbwchange', function() {
-			//console.log('current text');
-			//console.log($('.trumbowyg-editor').text().length);
-			//console.log('original count');
-			//console.log(orig_count)
 			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {
 				// Reset the count, so we save again in another 15 characters
 				console.log('submitting');
@@ -270,37 +307,33 @@
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
         //$(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
-		$('.play-phonetic-description').on('click', function(event) {
+		
+		$('.play-audio').on('click', function(event) {
+			var this_section = $(this).attr('rel');
+			console.log(this_section);
+			stopPlayers();
 			
-
-			/*
-			//set the url, number of POST vars, POST data
-			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
+			$.each($('aaudio'), function () {
+			    this.pause();
+			    $('.fa-stop').removeClass('fa-stop').addClass('fa-play');
+			    $('.audio-player').hide();
+			});
 			
-			//execute post
-			$result = json_decode(curl_exec($ch));
-			
-			$ps->audio_file_url = $result->fn;
-			$ps->audio_file_needs_update = false;
-			*/
 			
 			// define the audio element
-			var audio = $('#play-phonetic-description');
+			var audio = $('#play-'+this_section);
 			
-			if ($('#phonetic-player-icon').hasClass('fa-play')) {
-				$('#phonetic-player-icon').removeClass('fa-play');
-				$('#phonetic-player-icon').addClass('fa-stop');
+			if ($(this).find('#player-icon').hasClass('fa-play')) {
+				$(this).find('#player-icon').removeClass('fa-play');
+				$(this).find('#player-icon').addClass('fa-stop');
 				
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
+				  data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 				  dataType: "json"
 				});
-				 
+				
 				request.done(function( msg ) {
 					console.log(msg.fn);
 					
@@ -308,25 +341,16 @@
 					audio.attr('autoplay', 'autoplay');
 					audio.load();
 					
-					$('.audio-player.play-phonetic-description').show();
-					document.getElementById('play-phonetic-description').addEventListener('load', function() {
-						document.getElementById('play-phonetic-description').play();
+					$('.audio-player.play-'+this_section).show();
+					document.getElementById('play-'+this_section).addEventListener('load', function() {
+						document.getElementById('play-'+this_section).play();
 					}, true);
 					
-					document.getElementById('play-phonetic-description').addEventListener('ended', function() {
-						$('#phonetic-player-icon').removeClass('fa-stop');
-						$('#phonetic-player-icon').addClass('fa-play');
-						$('.audio-player.play-phonetic-description').hide();
+					document.getElementById('play-'+this_section).addEventListener('ended', function() {
+						$('.fa-stop').removeClass('fa-stop').addClass('fa-play');
+						$('.audio-player.play-'+this_section).hide();
 					});
 					
-					/*
-					audio = new Audio(msg.fn);
-					audio.play();
-					audio.addEventListener('ended', function() {
-						$('#phonetic-player-icon').removeClass('fa-stop');
-						$('#phonetic-player-icon').addClass('fa-play');
-					});
-					*/
 				});
 				 
 				request.fail(function( jqXHR, textStatus ) {
@@ -334,89 +358,31 @@
 				});
 			}
 			else {
-				$('#phonetic-player-icon').removeClass('fa-stop');
-				$('#phonetic-player-icon').addClass('fa-play');
-				$('.audio-player.play-phonetic-description').hide();
 				
-				document.getElementById('play-phonetic-description').pause();
-				audio.attr('src', '');
-				document.getElementById('play-phonetic-description').currentTime = 0;
+				$(this).find('#player-icon').removeClass('fa-stop');
+				$(this).find('#player-icon').addClass('fa-play');
+				$('.audio-player.play-'+this_section).hide();
+				
+				document.getElementById('play-'+this_section).pause();
+				document.getElementById('play-'+this_section).currentTime = 0;
 			}
 		});
 		
-		$('.play-description').on('click', function(event) {
-			
-
-			/*
-			//set the url, number of POST vars, POST data
-			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$request->description);
-			
-			//execute post
-			$result = json_decode(curl_exec($ch));
-			
-			$ps->audio_file_url = $result->fn;
-			$ps->audio_file_needs_update = false;
-			*/
-			
-			// define the audio element
-			var audio = $('#play-description');
-			
-			if ($('#player-icon').hasClass('fa-play')) {
-				$('#player-icon').removeClass('fa-play');
-				$('#player-icon').addClass('fa-stop');
-				
+		
+		
+		$('.download-title').on('click', function(event) {
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
 				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
+				  data: { t : $('#title').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
 				});
-				
+				 
 				request.done(function( msg ) {
-					console.log(msg.fn);
-					
-					audio.attr('src', msg.fn);
-					audio.attr('autoplay', 'autoplay');
-					audio.load();
-					
-					$('.audio-player.play-description').show();
-					document.getElementById('play-description').addEventListener('load', function() {
-						document.getElementById('play-description').play();
-					}, true);
-					
-					document.getElementById('play-description').addEventListener('ended', function() {
-						$('#player-icon').removeClass('fa-stop');
-						$('#player-icon').addClass('fa-play');
-						$('.audio-player.play-description').hide();
-					});
-					
-					/*
-					var audio = new Audio(msg.fn);
-					audio.play();
-					audio.addEventListener('ended', function() {
-						$('#player-icon').removeClass('fa-stop');
-						$('#player-icon').addClass('fa-play');
-					});
-					*/
+					window.open(msg.fn);
 				});
 				 
-				request.fail(function( jqXHR, textStatus ) {
-				  alert( "Request failed: " + textStatus );
-				});
-			}
-			else {
-				$('#player-icon').removeClass('fa-stop');
-				$('#player-icon').addClass('fa-play');
-				$('.audio-player.play-description').hide();
-				
-				document.getElementById('play-description').pause();
-				audio.attr('src', '');
-				document.getElementById('play-description').currentTime = 0;
-			}
-		});
+		});		
 		
 		$('.download-description').on('click', function(event) {
 

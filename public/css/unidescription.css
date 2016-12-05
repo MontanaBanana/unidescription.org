@@ -29,6 +29,16 @@ body {
 	width: 100%;
 }
 
+.centerpiece {
+    background: #373535;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    min-height: 500px;
+    max-height: 900px;
+}
+
 .main-wrapper {
 	border:1px solid #F3EFE3;
 	background:#F9F7F1;

@@ -31,6 +31,72 @@ $(document).ready(function(){
 
     autosize( $('textarea', '#todo-sortable') );
 	
+	
+	
+	
+	///////////////////////////////////
+	//// Table of contents toggles
+	///////////////////////////////////
+
+	//$( ".table-of-contents ul li ul" ).hide();
+	$(".table-of-contents .toggle").click();
+	
+	$(window).load(function() {
+		var closed = JSON.parse(localStorage.getItem("toc_"+window.location.href));
+		if(closed){
+			for (var c; c = closed.pop();) {
+				console.log(c);
+				$("#"+c+" .toggle").click();
+			}
+		}
+	});
+	
+	$(".table-of-contents .toggle").click(function(e){
+		e.preventDefault();
+		var parentItem = $( this ).parent().parent().get( 0 ).id;
+		var is_loaded = $("#loaded" ).html();
+		console.log(is_loaded);
+		
+		if( $( "#" + parentItem + " ul" ).length ){
+			if( $( this ).hasClass( "fa-chevron-right" ) ){
+				$( this ).removeClass( "fa-chevron-right" );
+				$( this ).addClass( "fa-chevron-down" );
+				$( "#" + parentItem + " ul" ).show();
+				console.log('is opened');
+				
+				//remove it
+				var items = JSON.parse(localStorage.getItem("toc_"+window.location.href));
+				if(items){
+					var removed = items.filter(function(e) { return e !== parentItem });
+					console.log('removing '+parentItem+' from '+removed);
+					localStorage.setItem("toc_"+window.location.href, JSON.stringify(removed));
+				}
+				
+			} else {
+				$(this).removeClass( "fa-chevron-down" );
+				$(this).addClass( "fa-chevron-right" );
+				$("#" + parentItem + " ul" ).hide();
+						
+				//add it		
+				var items = JSON.parse(localStorage.getItem("toc_"+window.location.href));
+				if(items){
+					if(items.indexOf(parentItem) == -1){
+						items.push(parentItem);
+					}
+				}else{
+					items = [parentItem];
+				}
+				localStorage.setItem("toc_"+window.location.href, JSON.stringify(items));
+			}
+		}
+		else{
+			console.log('else');
+		}
+		
+	});
+	
+	
+	/*
 	// Table of contents toggles
 	$( ".table-of-contents ul li ul" ).hide();
 	
@@ -56,6 +122,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	*/
 
 	$(document).on("touchstart click", ".todos .toggle", function(e){
         //console.log('in touchstrt click');

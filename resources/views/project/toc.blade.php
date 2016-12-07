@@ -82,7 +82,7 @@
 												        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 														<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
 														<span class="fa fa-bars" style="cursor: move;"></span>
-														<i class="fa fa-chevron-right toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+														<i class="fa fa-chevron-down toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 														<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
 														<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 														<!--<span class="label pull-right text-length label-info">Good Text Length</span>-->
@@ -200,6 +200,8 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+		
+		
 		
 		$('[data-toggle="tooltip"]').tooltip();
 		

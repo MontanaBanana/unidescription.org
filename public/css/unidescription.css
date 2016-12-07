@@ -45,7 +45,10 @@ body {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	padding: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .page-header,
@@ -655,7 +658,7 @@ span.toc-icon {
 
 
 div.home-boxes .panel {
-	height: 305px;
+	height: 285px;
 }
 div.home-boxes .panel .panel-heading {
 	font-size:14px;

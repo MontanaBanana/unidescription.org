@@ -97,7 +97,7 @@
 								<br clear="all" />
 							<?php endif; ?>
 							
-							<? /*				        
+							<?php /*				        
 					        <div class="panel panel-default">
 								<div class="panel-heading">
 									Page Name:

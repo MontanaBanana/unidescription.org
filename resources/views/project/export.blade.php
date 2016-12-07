@@ -48,17 +48,16 @@
 						    <div class="panel-heading" role="tab" id="section-{{ $section->id }}-heading">
 						      <h4 class="panel-title">
 						        
-						          {{ $section->title }}
+						          {{ $section->title }} 
+						          <audio controls>
+                                        <source src='{{ $section->audio_file_url }}' type='audio/wav'>
+                                    </audio>
 						        
 						      </h4>
 						    </div>
 						    <div id="section-{{ $section->id }}" class="panel" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
 						    	<div class="panel-body">
                                     <?php if (strlen($section->description)): ?>
-                                        <audio controls>
-                                            <source src='{{ $section->audio_file_url }}' type='audio/wav'>
-                                        </audio>
-
                                         <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
                                             <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                         <?php endif; ?>
@@ -73,48 +72,50 @@
 									@if (count($section->children))
 										@foreach ($section->children as $s)
 											@if ($s->completed && !$s->deleted)
-											<p>
-												<b>{{ $s->title }}</b><br />
-                                                <?php if (strlen($s->description)): ?>
-                                                    <audio controls>
-                                                        <source src='{{ $s->audio_file_url }}' type='audio/wav'>
-                                                    </audio>
-
-                                                    <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
-                                                        <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
-                                                    <?php endif; ?>
-
-                                                    <div><?php echo nl2br($s->description); ?></div>
-                                                <?php endif; ?>
-
-                                                <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
-                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
-                                                <?php endif; ?>
-                                                @if (count($s->children))
-                                                    @foreach ($s->children as $chch)
-                                                        @if ($chch->completed && !$chch->deleted)
-                                                        <p style="margin-left: 20px;">
-                                                            <b>{{ $chch->title }}</b><br />
-                                                            <?php if (strlen($chch->description)): ?>
-                                                                <audio controls>
-                                                                    <source src='{{ $chch->audio_file_url }}' type='audio/wav'>
-                                                                </audio>
-
-                                                                <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
-                                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
-                                                                <?php endif; ?>
-
-                                                                <div style="margin-left: 20px;"><?php echo nl2br($chch->description); ?></div>
-                                                            <?php endif; ?>
-
-                                                            <?php if (strlen($chch->image_url) && !strlen($chch->description) && $chchection->has_image_rights): ?>
-                                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
-                                                            <?php endif; ?>
-                                                        </p>
-                                                        @endif
-                                                    @endforeach
-                                                @endif
-											</p>
+											<div style="margin-left:20px">
+												<p>
+													<h4 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;">{{ $s->title }}</h4>
+	                                                <?php if (strlen($s->description)): ?>
+	                                                    <audio controls>
+	                                                        <source src='{{ $s->audio_file_url }}' type='audio/wav'>
+	                                                    </audio>
+	
+	                                                    <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
+	                                                        <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+	                                                    <?php endif; ?>
+	
+	                                                    <div><?php echo nl2br($s->description); ?></div>
+	                                                <?php endif; ?>
+	
+	                                                <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
+	                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+	                                                <?php endif; ?>
+	                                                @if (count($s->children))
+	                                                    @foreach ($s->children as $chch)
+	                                                        @if ($chch->completed && !$chch->deleted)
+	                                                        <p style="margin-left: 20px; padding:12px 0; border-top:1px dotted #000;">
+	                                                            <b>{{ $chch->title }}</b> 
+	                                                            <?php if (strlen($chch->description)): ?>
+	                                                                <audio controls>
+	                                                                    <source src='{{ $chch->audio_file_url }}' type='audio/wav'>
+	                                                                </audio>
+	
+	                                                                <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
+	                                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+	                                                                <?php endif; ?>
+	
+	                                                                <div style="margin-left: 20px;"><?php echo nl2br($chch->description); ?></div>
+	                                                            <?php endif; ?>
+	
+	                                                            <?php if (strlen($chch->image_url) && !strlen($chch->description) && $chchection->has_image_rights): ?>
+	                                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+	                                                            <?php endif; ?>
+	                                                        </p>
+	                                                        @endif
+	                                                    @endforeach
+	                                                @endif
+												</p>
+											</div>
 											@endif
 										@endforeach
 									@endif

@@ -312,10 +312,9 @@
 							<div class="panel-body">
                                 <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
 
-									<p>Record monitor volume: <input type="range" max="1" step="0.1" value="0" onchange="changeVolume(this.value)"/></p>
 									<p>
-										<div id="audio_record" class="btn btn-primary" onclick="startRecording(this);">Record</div>
-										<div id="audio_stop" class="btn btn-warning" onclick="stopRecording(this);" disabled>Stop</div>
+										<div id="audio_record" class="btn btn-primary" onclick="changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
+										<div id="audio_stop" class="btn btn-warning" onclick="changeVolume(0); stopRecording(this);" disabled>Stop</div>
 										<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
 									</p>
 									

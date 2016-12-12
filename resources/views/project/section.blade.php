@@ -501,7 +501,7 @@
 				$(this).find('#player-icon').addClass('fa-stop');
 				
 				var request = $.ajax({
-					url: "http://api.montanab.com/tts/tts.php",
+					url: "https://api.montanab.com/tts/tts.php",
 					method: "POST",
 					data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
 					dataType: "json"
@@ -570,7 +570,7 @@
 		
 		$('.download-title').on('click', function(event) {
 				var request = $.ajax({
-				  url: "http://api.montanab.com/tts/tts.php",
+				  url: "https://api.montanab.com/tts/tts.php",
 				  method: "POST",
 				  data: { t : $('#title').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
@@ -584,7 +584,7 @@
 		
 		$('.download-phonetic_title').on('click', function(event) {
 				var request = $.ajax({
-				  url: "http://api.montanab.com/tts/tts.php",
+				  url: "https://api.montanab.com/tts/tts.php",
 				  method: "POST",
 				  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"
@@ -599,7 +599,7 @@
 		$('.download-description').on('click', function(event) {
 
 				var request = $.ajax({
-				  url: "http://api.montanab.com/tts/tts.php",
+				  url: "https://api.montanab.com/tts/tts.php",
 				  method: "POST",
 				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
 				  dataType: "json"

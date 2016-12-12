@@ -49,19 +49,36 @@
 						      <h4 class="panel-title">
 						        
 						          {{ $section->title }} 
+						          <?php 
+							          if($section->audio_title!=''){$this_audio = '/audio/'.$section->audio_title;}
+							          else{$this_audio = $section->audio_file_url;}
+							      ?>
 						          <audio controls>
-                                        <source src='{{ $section->audio_file_url }}' type='audio/wav'>
+                                        <source src='{{$this_audio}}' type='audio/wav'>
                                     </audio>
 						        
 						      </h4>
 						    </div>
 						    <div id="section-{{ $section->id }}" class="panel" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
 						    	<div class="panel-body">
-                                    <?php if (strlen($section->description)): ?>
+                                    <?php if (strlen($section->description) OR strlen($section->audio_description)): ?>
                                         <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
                                             <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                         <?php endif; ?>
+										<?php
+											if($section->audio_description!=''){
+												?>												
+										          <audio controls>
+				                                        <source src='/audio/{{$section->audio_description}}' type='audio/wav'>
+				                                    </audio>
+												<?php
+											}else{ ?>																							
+										          <audio controls>
+				                                        <source src='{{$section->audio_file_url}}' type='audio/wav'>
+				                                    </audio>
 
+											<?php }
+										?>
                                         <p><?php echo nl2br($section->description); ?></p>
                                     <?php endif; ?>
 

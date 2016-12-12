@@ -81,6 +81,10 @@ Route::get(WEBROOT.'account/project', 'ProjectController@index');
 Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
 Route::post(WEBROOT.'account/project/edit', 'ProjectController@postEdit');
 
+Route::post(WEBROOT.'account/project/edit/audio/add/{project}/{id}/{title}', 'ProjectController@postAudioFile');
+Route::get(WEBROOT.'account/project/edit/audio/add/{project}/{id}/{title}', 'ProjectController@addAudioFile');
+Route::get(WEBROOT.'account/project/edit/audio/delete/{project}/{id}/{title}', 'ProjectController@deleteAudioFile');
+
 Route::get(WEBROOT.'account/project/details/{id}/{title}', 'ProjectController@getDetails');
 Route::post(WEBROOT.'account/project/details', 'ProjectController@postDetails');
 

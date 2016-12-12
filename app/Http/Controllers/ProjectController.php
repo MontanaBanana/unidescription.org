@@ -552,6 +552,111 @@ class ProjectController extends Controller
 	    }
     }
     
+    public function postAudioFile($project, $section, $title, Request $request){
+	    $project_data = Project::find($project);
+		$section_data = ProjectSection::find($section);
+
+		if(!$project_data OR !$section_data OR !$title){abort(404);}
+		
+	    if ($request->hasFile('audio') && $request->file('audio')->isValid()) {
+		    if($request->file('audio')->guessExtension()!='wav'){
+			    $response_array['status'] = 'error';
+			    $response_array['message'] = 'Only audio WAV files can be uploaded.';
+			    header('Content-type: application/json');
+				echo json_encode($response_array); exit;
+		    }
+		    else{
+			    //process - but first delete the old file off the server if one exists
+			    if($section_data->$title!=''){
+				    $old_file = base_path().'/public/audio/'.$section_data->$title;
+				    if(file_exists($old_file)){
+						if(!unlink($old_file)){							
+						    $response_array['status'] = 'error';
+						    $response_array['message'] = 'Could not delete the existing audio file.';
+						    header('Content-type: application/json');
+							echo json_encode($response_array); exit;
+						}
+					}
+				}
+			    
+			    $file = $request->file('audio');
+			    $audio_filename = str_random(6).'-'.str_slug($project_data->title, '').'-'.str_slug($section_data->title, '').'.'.$request->file('audio')->guessExtension();
+			    $request->file('audio')->move(base_path() . '/public/audio/', $audio_filename);
+			    
+				$section_data->$title = $audio_filename;
+				$section_data->save();
+				
+			    $response_array['status'] = 'success';
+			    $response_array['message'] = 'Your audio file was completed. You may now close this box.';
+			    header('Content-type: application/json');
+				echo json_encode($response_array); exit;
+			}
+		}else{
+		    $response_array['status'] = 'error';
+		    $response_array['message'] = 'You must select an audio WAV file before uploading.';
+		    header('Content-type: application/json');
+			echo json_encode($response_array); exit;
+		}
+	}
+    
+    public function addAudioFile($project, $section, $title)
+    {
+		$project_data = Project::find($project);
+		$section_data = ProjectSection::find($section);
+		
+		if(!$project_data OR !$section_data OR !$title){abort(404);}
+		
+	    if ($project && $section && $title) {
+		    return view('project.audio.upload', ['project' => $project, 'section' => $section, 'title' => $title]);
+	    }else{
+    		abort(404);
+    	}
+    }
+    
+    
+    public function deleteAudioFile($project, $section, $title)
+    {
+		$project_data = Project::find($project);
+		$section_data = ProjectSection::find($section);
+
+		if(!$project_data OR !$section_data OR !$title){abort(404);}
+		
+		if($section_data->$title){
+			$old_file = base_path().'/public/audio/'.$section_data->$title;
+	
+			$section_data->$title = '';
+			$section_data->save();
+			
+			$section_data = ProjectSection::find($section);
+			if($section_data->$title==''){
+				if(file_exists($old_file)){
+					if(unlink($old_file)){					
+						$response_array['status'] = 'success';
+					    $response_array['message'] = 'Your audio file was deleted.';
+					}
+					else{					
+						$response_array['status'] = 'error';
+					    $response_array['message'] = 'The audio file was not deleted.';
+					}
+				}
+				else{				
+					$response_array['status'] = 'error';
+				    $response_array['message'] = 'The audio file was not found on the server.';
+				}
+			}
+			else{
+				$response_array['status'] = 'error';
+			    $response_array['message'] = 'The audio file was not deleted from the database.';
+			}
+		}
+		else{
+			$response_array['status'] = 'error';
+			$response_array['message'] = 'There was no audio file found in the database.';
+		}
+	    header('Content-type: application/json');
+		echo json_encode($response_array); exit;
+    }
+    
     public function getSection($project_id, $project_section_id)
     {
 		$project = Project::find($project_id);

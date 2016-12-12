@@ -7,6 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddAccountImage' => $baseDir . '/database/migrations/2015_12_05_210347_add_account_image.php',
+    'AddAudioDescription' => $baseDir . '/database/migrations/2016_12_12_192639_add_audio_description.php',
+    'AddAudioTitle' => $baseDir . '/database/migrations/2016_12_12_192632_add_audio_title.php',
     'AddGithubBranchName' => $baseDir . '/database/migrations/2016_07_14_223640_add_github_branch_name.php',
     'AddLockToProjectSection' => $baseDir . '/database/migrations/2016_09_21_193410_add_lock_to_project_section.php',
     'AddMetatags' => $baseDir . '/database/migrations/2016_07_11_204820_add_metatags.php',

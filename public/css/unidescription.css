@@ -384,6 +384,13 @@ div.project .panel.panel-default .panel-note img.icon {
 	background:#222;
 }
 
+/* microphone controls */
+.microphone-controller {
+	display:none;
+	width:100%;
+	padding:4px
+}
+
 div.todo-description {
     display: none;
 }

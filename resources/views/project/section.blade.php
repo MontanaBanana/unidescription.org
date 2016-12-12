@@ -3,8 +3,39 @@
 @section('title', $section->title);
 
 @section('header')
-
+	
+    <link href="/css/magnific-popup.css" rel="stylesheet" type="text/css">
+	
 	<script type="text/javascript" src="/js/jquery.form.js"></script>
+	<script type="text/javascript" src="/js/jquery.magnific-popup.min.js"></script>
+
+
+			<script type="text/javascript" src="/js/audio/recorder.js"></script>
+			<script type="text/javascript" src="/js/audio/recordLive.js"></script>
+			
+<style>
+	#recordingslist td{
+		display: inline-block;
+		margin:3px;
+	}
+	#recordingslist td:first-child{
+		display:block;
+	}
+	.soundBite{
+		border-top: 1px solid #ccc;
+		padding: 10px 0;
+		margin-bottom:4px;
+		display:block;
+	}
+	
+	.blink {
+	    animation: blinker 1.5s cubic-bezier(.5, 0, 1, 1) infinite alternate;  
+	}
+	@keyframes blinker {  
+	  from { opacity: 1; }
+	  to { opacity: 0; }
+	}
+</style>
 
 @endsection
 
@@ -114,12 +145,45 @@
 								<div class="panel-heading">
 									Page Name: 
 									<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:60%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
-									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right"><a class="btn btn-sm btn-primary microphone-control" rel="audio_title" style="position: relative; top: -5px;"><span id="microphone-icon" class="fa fa-microphone"></span></a></span>
+									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
 									<div class="audio-player play-title">
 										<audio id="play-title" controls></audio>
+									</div>
+								</div>
+								<div class="panel-body form-element">
+									<div class="microphone-controller microphone-title play_audio_title">
+										<div id='gUMArea'>
+											
+											<div class="row">
+												<div class="col-sm-3" style="text-align:center"><a class="popup" href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_title')}}">Upload Audio</a></div>
+											    <div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_title!=''){ ?>
+												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_title)}}">Download Audio</a>
+												    <? } ?>
+											    </div>
+											    <div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_title!=''){ ?>
+												        <a class="playAudio" rel="audio_title" href="{{url('audio/'.$section->audio_title)}}">Play Audio</a>
+												    <? } ?>
+											    </div>
+												<div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_title!=''){ ?>
+												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">Remove Audio</a>
+												    <? } ?>
+											    </div>
+
+											</div>
+											
+											<div class="panel-body form-element">
+												<div class="audio-player play-audio_title">
+													<audio id="play-audio_title" controls></audio>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -144,14 +208,47 @@
 								<div class="panel-heading">
 									Page Description:
 									<!--<span class="label pull-right label-info">Good Text Length</span>-->
-									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+									<span class="pull-right"><a class="btn btn-sm btn-primary microphone-control" rel="audio_description" style="position: relative; top: -5px;"><span id="microphone-icon" class="fa fa-microphone"></span></a></span>
+<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
 								</div>
-								<div class="panel-body form-element">
-									<div class="audio-player play-description">
+								<div class="panel-body form-element" id="description_container">
+									<div class="audio-player play-description play_description">
 										<audio id="play-description" controls></audio>
 									</div>
-									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->title); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+								</div>
+								<div class="panel-body form-element">
+									<div class="microphone-controller microphone-description play_audio_description">
+										<div id='gUMArea'>
+											
+											<div class="row">
+												<div class="col-sm-3" style="text-align:center"><a class="popup" href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_description')}}">Upload Audio</a></div>
+											    <div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_description!=''){ ?>
+												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_description)}}">Download Audio</a>
+												    <? } ?>
+											    </div>
+											    <div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_description!=''){ ?>
+												        <a class="playAudio" rel="audio_description" href="{{url('audio/'.$section->audio_description)}}">Play Audio</a>
+												    <? } ?>
+											    </div>
+												<div class="col-sm-3" style="text-align:center">
+											        <?php if($section->audio_description!=''){ ?>
+												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">Remove Audio</a>
+												    <? } ?>
+											    </div>
+
+											</div>
+											
+											<div class="panel-body form-element">
+												<div class="audio-player play-audio_description">
+													<audio id="play-audio_description" controls></audio>
+												</div>
+											</div>											
+										</div>
+									</div>
 								</div>
 							</div>
 				        						
@@ -162,7 +259,7 @@
                                     <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
 								</div>
 								<div class="panel-body form-element">
-									<div class="audio-player play-phonetic-description">
+									<div class="audio-player play-phonetic-description play_phonetic_description">
 										<audio id="play-phonetic-description" controls></audio>
 									</div>
 									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
@@ -205,6 +302,36 @@
                                     @if ($next_ps)
                                         <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
                                     @endif
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+						<div class="panel panel-default">
+							<div class="panel-heading">Audio Recorder:</div>
+							<div class="panel-body">
+                                <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
+
+									<p>Record monitor volume: <input type="range" max="1" step="0.1" value="0" onchange="changeVolume(this.value)"/></p>
+									<p>
+										<div id="audio_record" class="btn btn-primary" onclick="startRecording(this);">Record</div>
+										<div id="audio_stop" class="btn btn-warning" onclick="stopRecording(this);" disabled>Stop</div>
+										<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
+									</p>
+									
+									<table id="recordingslist"></table>
+									
+									<script type="text/javascript">
+									$(document).ready(function(){
+										$('.upload_audio').click(function(e){
+											e.preventDefault();
+											console.log('upload this'); 
+										});
+										$('.editor.container').addClass('invisible');
+									});
+									</script>
+								    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -283,6 +410,42 @@
 	
 	$(document).ready(function() {
 
+		$('.popup').magnificPopup({
+			type: 'ajax',
+			modal: true,
+			overflowY: 'scroll',
+			closeBtnInside: true
+		});
+	
+		$(".removeAudio").click(function(e){
+			e.preventDefault();
+			console.log($(this).attr('href'));
+			$.ajax({
+				url: $(this).attr('href'),
+				data:'',
+				dataType:"json",
+				async:true,
+				type:"get",
+				processData: false,
+				contentType: false,
+				beforeSend: function() {
+	               console.log('deleting');
+	            },
+				success:function(response){
+					if(response.status == 'success'){
+						alert('Deleted!');
+					}
+					if(response.status == 'error'){
+						alert(response.message);
+					}
+				},
+				error:function(response){
+					console.log('error: '+response.statusText);
+				}
+			});
+		});
+
+
         $(window).on('beforeunload', function(){
             $("#was_autosave").val(0);
             $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
@@ -307,10 +470,21 @@
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
         //$(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
 
+
+		
+		$( ".microphone-control" ).click(function() {
+			var mct = $(this).attr("rel");
+			console.log(mct);
+			if(mct=="audio_description"){
+				$("#description_container").toggle();
+			}
+			$( ".play_"+mct ).toggle();
+		});
+		
+		
 		
 		$('.play-audio').on('click', function(event) {
 			var this_section = $(this).attr('rel');
-			console.log(this_section);
 			stopPlayers();
 			
 			$.each($('aaudio'), function () {
@@ -318,7 +492,6 @@
 			    $('.fa-stop').removeClass('fa-stop').addClass('fa-play');
 			    $('.audio-player').hide();
 			});
-			
 			
 			// define the audio element
 			var audio = $('#play-'+this_section);
@@ -328,10 +501,10 @@
 				$(this).find('#player-icon').addClass('fa-stop');
 				
 				var request = $.ajax({
-				  url: "http://api.montanab.com/tts/tts.php",
-				  method: "POST",
-				  data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
-				  dataType: "json"
+					url: "http://api.montanab.com/tts/tts.php",
+					method: "POST",
+					data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
+					dataType: "json"
 				});
 				
 				request.done(function( msg ) {
@@ -370,6 +543,31 @@
 		
 		
 		
+		
+		$('.playAudio').on('click', function(event) {
+			event.preventDefault();
+			var this_link = $(this).attr('href');
+			var this_section = $(this).attr('rel');
+			stopPlayers();
+			console.log(this_section);
+			// define the audio element
+			var audio = $("#play-"+this_section);
+			audio.attr('src', this_link);
+			audio.attr('autoplay', 'autoplay');
+			audio.load();
+			
+			$('.audio-player.play-'+this_section).show();
+			document.getElementById('play-'+this_section).addEventListener('load', function() {
+				document.getElementById('play-'+this_section).play();
+			}, true);
+			
+			document.getElementById('play-'+this_section).addEventListener('ended', function() {
+				$('.fa-stop').removeClass('fa-stop').addClass('fa-play');
+				$('.audio-player.play-'+this_section).hide();
+			});
+		});
+		
+		
 		$('.download-title').on('click', function(event) {
 				var request = $.ajax({
 				  url: "http://api.montanab.com/tts/tts.php",
@@ -378,6 +576,20 @@
 				  dataType: "json"
 				});
 				 
+				request.done(function( msg ) {
+					window.open(msg.fn);
+				});
+				 
+		});		
+		
+		$('.download-phonetic_title').on('click', function(event) {
+				var request = $.ajax({
+				  url: "http://api.montanab.com/tts/tts.php",
+				  method: "POST",
+				  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n") },
+				  dataType: "json"
+				});
+				 console.log($('#phonetic_title').val());
 				request.done(function( msg ) {
 					window.open(msg.fn);
 				});
@@ -687,6 +899,19 @@
 	        
         });
 	});
+	
+	
+	
+		$(window).bind("load", function () {
+		<?php 
+			if($section->audio_title!=''){
+				?> $(".microphone-control[rel='audio_title'] #microphone-icon").click(); <?php
+			}	
+			if($section->audio_description!=''){
+				?> $(".microphone-control[rel='audio_description'] #microphone-icon").click(); <?php
+			}	
+		?>
+		});
 
 </script>
 

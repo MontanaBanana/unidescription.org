@@ -163,17 +163,17 @@
 											    <div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_title!=''){ ?>
 												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_title)}}">Download Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 											    <div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_title!=''){ ?>
 												        <a class="playAudio" rel="audio_title" href="{{url('audio/'.$section->audio_title)}}">Play Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 												<div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_title!=''){ ?>
 												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">Remove Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 
 											</div>
@@ -227,17 +227,17 @@
 											    <div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_description!=''){ ?>
 												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_description)}}">Download Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 											    <div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_description!=''){ ?>
 												        <a class="playAudio" rel="audio_description" href="{{url('audio/'.$section->audio_description)}}">Play Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 												<div class="col-sm-3" style="text-align:center">
 											        <?php if($section->audio_description!=''){ ?>
 												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">Remove Audio</a>
-												    <? } ?>
+												    <?php } ?>
 											    </div>
 
 											</div>

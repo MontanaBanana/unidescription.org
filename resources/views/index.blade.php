@@ -9,8 +9,8 @@
     <header>
 	    <div class="centerpiece" style="background-image:url({{ SITEROOT }}/slideshow/ad_photo1-cropped.jpg)">
 			<div style="padding-top: 25%;">
-				<div class="getting-started" style="margin-left: 50%; width: 35%;">
-					<p style="font-size: 22px;"><a href="{{ SITEROOT }}/auth/register">Create a free account</a>; audio describe the world</p>
+				<div class="getting-started" style="margin-left: 50%; width: 39%;">
+					<p style="font-size: 22px;"><a href="{{ SITEROOT }}/auth/register">Create a free account</a>... AUDIO DESCRIBE THE WORLD</p>
 				</div>
 			</div>
     </header>
@@ -82,17 +82,17 @@
             
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
 				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg" alt="Yellowstone Rainbow Pool">
-				<p style="color: white;">Yellowstone</p>
+				<p>Yellowstone National Park</p>
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
 				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/denali_homepage.jpg" alt="Photo of Denali with a tourbus in the foreground">
-				<p style="color: white;">Denali</p>
+				<p>Denali National Park and Preserve</p>
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
 				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/sf_maritime_homepage.jpg" alt="Photo of a tall ship at SF Maritime national park">
-				<p style="color: white;">SF Maritime</p>
+				<p>San Francisco Maritime National Historical Park</p>
 			</div>
         </div>
         <!-- /.row -->

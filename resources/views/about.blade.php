@@ -89,9 +89,6 @@
                         
                     </ul>
                     <p>
-                        Our collaborators are listed, in detail, on the <a href="{{ SITEROOT }}/about">About</a> page, including contact information.
-                    </p>
-                    <p>
                         The principal investigator on this project is: <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> in the School of Communications in the College of Social Sciences at the University of Hawai‘i. 
                     </p>
                     <p>	
@@ -114,12 +111,12 @@
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <a href="https://manoa.hawaii.edu/" target="_blank"><img class="img-responsive" src="{{ SITEROOT }}/images/uh_logo.jpg" alt="University of Hawaii Logo"></a>
-                    <div class="caption" style="height: 352px;">
+                    <div class="caption" style="height: 182px;">
                         <h3>University of Hawai‘i at Manoa<br>
                             <small>Collaborator</small>
                         </h3>
-                        <p>A transdisciplinary collaboration between the School of Communications and the Center on Disability Studies</p>
                     </div>
+                    <p style="height: 125px;">A transdisciplinary collaboration between the School of Communications and the Center on Disability Studies</p>
 <!--
                    <ul class="list-inline">
                         <li><a href="https://www.facebook.com/uhmanoa/" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
@@ -135,12 +132,12 @@
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <a href="http://www.nps.gov" target="_blank"><img class="img-responsive" src="{{ SITEROOT }}/images/nps_square_logo.png" alt="National Park Service Logo"></a>
-                    <div class="caption" style="height: 352px;">
+                    <div class="caption" style="height: 181px;">
                         <h3>National Park Service<br>
                             <small>Collaborator</small>
                         </h3>
-                        <p>Including Harpers Ferry Center, the design hub of the bureau, and park sites nationwide</p>
                     </div>
+                    <p style="height: 125px;">Including Harpers Ferry Center, the design hub of the bureau, and park sites nationwide</p>
 <!--
                     <ul class="list-inline">
                         <li><a href="https://www.facebook.com/nationalparkservice" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
@@ -156,12 +153,12 @@
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <a href="http://hilo.hawaii.edu/hpicesu/" target="_blank"><img class="img-responsive" src="{{ SITEROOT }}/images/hpi_cesu_logo.jpg" alt="HPI CESU Logo"></a>
-                    <div class="caption" style="height: 352px;">
+                    <div class="caption" style="height: 181px;">
                         <h3>The Hawaii-Pacific Islands Cooperative Ecosystem Studies Unit <br>
                             <small>Collaborator</small>
                         </h3>
-                        <p>A coalition of governmental agencies, non-governmental organizations and universities, promoting research within the Pacific region</p>
                     </div>
+                    <p style="height: 125px;">A coalition of governmental agencies, non-governmental organizations and universities, promoting research within the Pacific region</p>
 <!--
                     <ul class="list-inline">
                         <li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
@@ -177,12 +174,12 @@
             <div class="col-md-3 text-center">
                 <div class="thumbnail">
                     <a href="http://www.montanab.com/" target="_blank"><img class="img-responsive" src="{{ SITEROOT }}/images/mb_logo.png" alt="Montana Banana Logo"></a>
-                    <div class="caption" style="height: 352px;">
+                    <div class="caption" style="height: 181px;">
                         <h3>Montana Banana<br>
                             <small>Developer</small>
                         </h3>
-                        <p>Seattle-based web and mobile app development company</p>
                     </div>
+                    <p style="height: 125px;">Seattle-based web and mobile app development company</p>
 <!--
 	                <ul class="list-inline">
                         <li><a href="https://www.facebook.com/montanabweb/" target="_blank" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>

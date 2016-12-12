@@ -11,10 +11,10 @@
 	    <script type="text/javascript" src="phonegap.js"></script>
 	    
 	    <!-- Bootstrap -->
-	    <link rel="stylesheet" href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/css/nps-bootstrap.css">
+	    <link rel="stylesheet" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/css/nps-bootstrap.css">
 	    
 	    <!-- Custom Fonts -->
-	    <link href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
@@ -23,14 +23,14 @@
 	    <![endif]-->
 	    
 	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script type="text/javascript" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/jquery.min.js"></script>
+	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/jquery.min.js"></script>
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script type="text/javascript" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/js/nps-bootstrap.min.js"></script>
+	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/nps-bootstrap.min.js"></script>
 	
 	    <!-- Unidescription custom JS -->
-	    <script type="text/javascript" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/js/unidescription.js"></script>	
+	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/unidescription.js"></script>	
 	    
-	    <link href="http://<?php echo $_SERVER['SERVER_NAME']; ?>/css/unidescription.css" rel="stylesheet">
+	    <link href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/css/unidescription.css" rel="stylesheet">
 
 	</head>
 	<body style="padding: 0 5px 0 5px;">

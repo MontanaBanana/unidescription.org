@@ -390,6 +390,8 @@ class ComposerStaticInit8f2733cf71b393cf9d41a8d14838083a
     public static $classMap = array (
         'AddAccountImage' => __DIR__ . '/../..' . '/database/migrations/2015_12_05_210347_add_account_image.php',
         'AddAudioDescription' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_192639_add_audio_description.php',
+        'AddAudioFileDescriptionNeedsUpdateToProjectSections' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_234356_add_audio_file_description_needs_update_to_project_sections.php',
+        'AddAudioFileTitleToProjectSections' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_231421_add_audio_file_title_to_project_sections.php',
         'AddAudioTitle' => __DIR__ . '/../..' . '/database/migrations/2016_12_12_192632_add_audio_title.php',
         'AddGithubBranchName' => __DIR__ . '/../..' . '/database/migrations/2016_07_14_223640_add_github_branch_name.php',
         'AddLockToProjectSection' => __DIR__ . '/../..' . '/database/migrations/2016_09_21_193410_add_lock_to_project_section.php',

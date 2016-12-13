@@ -74,7 +74,7 @@
 												<?php
 											}else{ ?>																							
 										          <audio controls>
-				                                        <source src='{{$section->audio_file_url}}' type='audio/wav'>
+				                                        <source src='{{$section->audio_file_description}}' type='audio/wav'>
 				                                    </audio>
 
 											<?php }
@@ -91,10 +91,16 @@
 											@if ($s->completed && !$s->deleted)
 											<div style="margin-left:20px">
 												<p>
-													<h4 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;">{{ $s->title }}</h4>
+													<h4 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;">
+														{{ $s->title }} <audio controls>
+	                                                        <source src='{{ $s->audio_title ? '/audio/'.$s->audio_title : $s->audio_file_title }}' type='audio/wav'>
+	                                                    </audio>
+														
+													</h4>
+
 	                                                <?php if (strlen($s->description)): ?>
 	                                                    <audio controls>
-	                                                        <source src='{{ $s->audio_file_url }}' type='audio/wav'>
+	                                                        <source src='{{ $s->audio_description ? '/audio/'.$s->audio_description : $s->audio_file_description }}' type='audio/wav'>
 	                                                    </audio>
 	
 	                                                    <?php if (strlen($s->image_url) && $s->has_image_rights): ?>

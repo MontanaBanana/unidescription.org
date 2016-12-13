@@ -80,28 +80,48 @@ class ProjectController extends Controller
 	    $project = Project::find($id);
 		
 		foreach ($project->project_sections as $s) {
-			if (!strlen($s->audio_file_url) || $s->audio_file_needs_update) {
-				// Generate the audio file
+			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update){
+				//////////////////////////////////
+				// Generate the TITLE audio file
+				//////////////////////////////////
 				$ch = curl_init();
 	
-				$this_title = $s->phonetic_title ? $s->phonetic_title : $s->title;
-				$this_description = $s->phonetic_description ? $s->phonetic_description : $s->description;
-				$text = $this_title . ". " . $this_description;
-				
+				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
 				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 				
-				//set the url, number of POST vars, POST data
 				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
 				
-				//execute post
 				$result = json_decode(curl_exec($ch));
 				
-				$s->audio_file_url = $result->fn;
+				$s->audio_file_title = $result->fn;
 				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
+				$s->save();
+			}
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update){
+				//////////////////////////////////
+				// Generate the DESCRIPTION audio file
+				//////////////////////////////////
+				$ch = curl_init();
+	
+				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
+				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+				
+				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_description = $result->fn;
+				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
 				$s->save();
 			}
 		}
@@ -705,28 +725,8 @@ class ProjectController extends Controller
 			$request->phonetic_title != $ps->phonetic_title || 
 			$request->notes != $ps->notes ||
 			$request->audio_file_url != $ps->audio_file_url
-			) {
+		){
 			
-			/*
-					       $table->increments('id');
-           $table->string('project_section_id');
-	       $table->integer('project_id');
-	       $table->integer('user_id');
-	       $table->string('title');
-	       $table->text('description')->nullable();
-	       $table->text('phonetic_description')->nullable();
-	       $table->string('notes');
-	       $table->string('audio_file_url')->nullable();
-	       $table->boolean('audio_file_needs_update')->default(true);
-	       $table->integer('sort_order')->nullable()->unsigned();
-	       $table->boolean('completed')->default(false);
-	       $table->boolean('deleted')->default(false);
-	       $table->boolean('version')->default(1);
-	       $table->timestamps(); 
-	       $table->string('image_url');
-	       $table->string('original_image');
-	       $table->tinyInteger('has_image_rights')->default(0);
-				*/
 			$psv = ProjectSectionVersion::create(
 				[
 					'project_section' => $ps->project_section_id,
@@ -768,26 +768,44 @@ class ProjectController extends Controller
 
 		//combined the if statement, previous statement was redundant and repeating
 		if ($ps->description != $request->description || $ps->title != $request->title || $ps->phonetic_description != $request->phonetic_description || $ps->phonetic_title != $request->phonetic_title) {
-			// Generate the audio file
+			//////////////////////////////////
+			// Generate the TITLE audio file
+			//////////////////////////////////
 			$ch = curl_init();
 
-			$this_title = $request->phonetic_title ? $request->phonetic_title : $request->title;
-			$this_description = $request->phonetic_description ? $request->phonetic_description : $request->description;
-			$text = $this_title . ". " . $this_description;
+			$text = $request->phonetic_title ? $request->phonetic_title : $request->title;
 			
 			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 			
-			//set the url, number of POST vars, POST data
 			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
 			
-			//execute post
 			$result = json_decode(curl_exec($ch));
 			
-			$ps->audio_file_url = $result->fn;
+			$ps->audio_file_title = $result->fn;
+			$ps->audio_file_needs_update = false;
+			
+			//////////////////////////////////
+			// Generate the DESCRIPTION audio file
+			//////////////////////////////////
+			$ch = curl_init();
+
+			$text = $request->phonetic_description ? $request->phonetic_description : $request->description;
+			
+			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+			
+			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+			
+			$result = json_decode(curl_exec($ch));
+			
+			$ps->audio_file_description = $result->fn;
 			$ps->audio_file_needs_update = false;
 		}
 		$ps->description = $request->description;

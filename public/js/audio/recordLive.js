@@ -25,20 +25,38 @@ function changeVolume(value) {
 }
 
 function startRecording(button) {
+
+  navigator.getUserMedia({audio: true}, function(stream) {
+      var input = audio_context.createMediaStreamSource(stream);
+      console.log('Media stream created.');
+
+      volume = audio_context.createGain();
+      volume.gain.value = volumeLevel;
+      input.connect(volume);
+      volume.connect(audio_context.destination);
+      console.log('Input connected to audio context destination.');
+      
+      recorder = new Recorder(input);
+      console.log('Recorder initialised.');
+
+      // The old startRecording
+      recorder && recorder.record();
+      
+      audio_record = document.getElementById('audio_record');
+      audio_record.setAttribute('disabled','true');
+      
+      audio_stop = document.getElementById('audio_stop');
+      audio_stop.removeAttribute('disabled');
+      
+      audio_light = document.getElementById('recording_light');
+      audio_light.style.display = 'inline-block';
+      
+      console.log('Recording...');
+      
+  }, function(e) {
+    console.warn('No live audio input: ' + e);
+  });
 	
-	
-  recorder && recorder.record();
-  
-  audio_record = document.getElementById('audio_record');
-  audio_record.setAttribute('disabled','true');
-  
-  audio_stop = document.getElementById('audio_stop');
-  audio_stop.removeAttribute('disabled');
-  
-  audio_light = document.getElementById('recording_light');
-  audio_light.style.display = 'inline-block';
-  
-  console.log('Recording...');
 }
 
 function stopRecording(button) {
@@ -64,6 +82,7 @@ function stopRecording(button) {
 	  alert('Your recording was not saved.\nMake sure you give your browser\nproper access to your Microphone.');
   }
 
+  audio_context.close();
 }
 
 function createDownloadLink() {
@@ -116,7 +135,7 @@ window.onload = function init() {
     console.warn('No web audio support in this browser!');
   }
   
-  navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
-    console.warn('No live audio input: ' + e);
-  });
+  //navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+  //  console.warn('No live audio input: ' + e);
+  //});
 };

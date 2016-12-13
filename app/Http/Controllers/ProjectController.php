@@ -90,7 +90,7 @@ class ProjectController extends Controller
 				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 				
-				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
@@ -112,7 +112,7 @@ class ProjectController extends Controller
 				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 				
-				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
@@ -778,7 +778,7 @@ class ProjectController extends Controller
 			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 			
-			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
@@ -798,7 +798,7 @@ class ProjectController extends Controller
 			$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 			$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 			
-			curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+			curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_POST, 1);
 			curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);

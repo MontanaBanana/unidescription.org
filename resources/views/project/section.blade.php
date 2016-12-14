@@ -143,47 +143,57 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Page Name: 
-									<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:60%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
-									<span class="pull-right"><a class="btn btn-sm btn-primary microphone-control" rel="audio_title" style="position: relative; top: -5px;"><span id="microphone-icon" class="fa fa-microphone"></span></a></span>
-									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
-									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+									
+		Page Name: 
+		
+		<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+		
+		{{-- DELETE --}}
+		<?php if($section->audio_title!=''){ ?>			
+			<span class="pull-right" style="padding-right: 5px;">
+				<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">
+			        <span class="fa fa-times"></span>
+		        </a>
+			</span>
+	    <?php } ?>
+		
+		{{-- UPLOAD --}}
+		<span class="pull-right" style="padding-right: 5px;">
+			<a href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_title')}}" style="position: relative; top: -5px;" class="btn btn-sm btn-primary popup">
+				<span id="microphone-icon" class="fa fa-upload"></span>
+			</a>
+		</span>
+		
+		{{-- PLAY --}}
+		<span class="pull-right" style="padding-right: 5px;">
+			<?php if($section->audio_title!=''){ ?>
+			    <a href="{{url('audio/'.$section->audio_title)}}" class="btn btn-sm btn-primary playAudio" rel="title" style="position: relative; top: -5px;">
+			        <span id="player-icon" class="fa fa-play"></span>
+		        </a>
+		    <?php } else { ?>
+				<a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;">
+					<span id="player-icon" class="fa fa-play"></span>
+				</a>
+			<? } ?>
+		</span>
+		
+		{{-- DOWNLOAD --}}
+		<span class="pull-right" style="padding-right: 5px;">
+			<?php if($section->audio_title!=''){ ?>			
+				<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_title)}}">
+					<span id="download-icon" class="fa fa-download"></span>
+				</a>
+		    <?php } else { ?>
+				<a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;">
+					<span id="download-icon" class="fa fa-download"></span>
+				</a>
+			<? } ?>
+		</span>
+
 								</div>
 								<div class="panel-body form-element">
 									<div class="audio-player play-title">
 										<audio id="play-title" controls></audio>
-									</div>
-								</div>
-								<div class="panel-body form-element">
-									<div class="microphone-controller microphone-title play_audio_title">
-										<div id='gUMArea'>
-											
-											<div class="row">
-												<div class="col-sm-3" style="text-align:center"><a class="popup" href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_title')}}">Upload Audio</a></div>
-											    <div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_title!=''){ ?>
-												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_title)}}">Download Audio</a>
-												    <?php } ?>
-											    </div>
-											    <div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_title!=''){ ?>
-												        <a class="playAudio" rel="audio_title" href="{{url('audio/'.$section->audio_title)}}">Play Audio</a>
-												    <?php } ?>
-											    </div>
-												<div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_title!=''){ ?>
-												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">Remove Audio</a>
-												    <?php } ?>
-											    </div>
-
-											</div>
-											
-											<div class="panel-body form-element">
-												<div class="audio-player play-audio_title">
-													<audio id="play-audio_title" controls></audio>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -206,49 +216,61 @@
 							
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									Page Description:
-									<!--<span class="label pull-right label-info">Good Text Length</span>-->
-									<span class="pull-right"><a class="btn btn-sm btn-primary microphone-control" rel="audio_description" style="position: relative; top: -5px;"><span id="microphone-icon" class="fa fa-microphone"></span></a></span>
-<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
-									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+									
+									
+											
+									
+									
+Page Description:
+
+{{-- DELETE --}}
+<?php if($section->audio_description!=''){ ?>			
+	<span class="pull-right" style="padding-right: 5px;">
+		<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">
+	        <span class="fa fa-times"></span>
+        </a>
+	</span>
+<?php } ?>
+
+{{-- UPLOAD --}}
+<span class="pull-right" style="padding-right: 5px;">
+	<a href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_description')}}" style="position: relative; top: -5px;" class="btn btn-sm btn-primary popup">
+		<span id="microphone-icon" class="fa fa-upload"></span>
+	</a>
+</span>
+
+{{-- PLAY --}}
+<span class="pull-right" style="padding-right: 5px;">
+	<?php if($section->audio_description!=''){ ?>
+	    <a href="{{url('audio/'.$section->audio_description)}}" class="btn btn-sm btn-primary playAudio" rel="description" style="position: relative; top: -5px;">
+	        <span id="player-icon" class="fa fa-play"></span>
+        </a>
+    <?php } else { ?>
+		<a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;">
+			<span id="player-icon" class="fa fa-play"></span>
+		</a>
+	<? } ?>
+</span>
+
+{{-- DOWNLOAD --}}
+<span class="pull-right" style="padding-right: 5px;">
+	<?php if($section->audio_description!=''){ ?>			
+		<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_description)}}">
+			<span id="download-icon" class="fa fa-download"></span>
+		</a>
+    <?php } else { ?>
+		<a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;">
+			<span id="download-icon" class="fa fa-download"></span>
+		</a>
+	<? } ?>
+</span>
+
 								</div>
 								<div class="panel-body form-element" id="description_container">
 									<div class="audio-player play-description play_description">
 										<audio id="play-description" controls></audio>
 									</div>
 									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
-								</div>
-								<div class="panel-body form-element">
-									<div class="microphone-controller microphone-description play_audio_description">
-										<div id='gUMArea'>
-											
-											<div class="row">
-												<div class="col-sm-3" style="text-align:center"><a class="popup" href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_description')}}">Upload Audio</a></div>
-											    <div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_description!=''){ ?>
-												        <a class="downloadAudio" href="{{url('audio/'.$section->audio_description)}}">Download Audio</a>
-												    <?php } ?>
-											    </div>
-											    <div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_description!=''){ ?>
-												        <a class="playAudio" rel="audio_description" href="{{url('audio/'.$section->audio_description)}}">Play Audio</a>
-												    <?php } ?>
-											    </div>
-												<div class="col-sm-3" style="text-align:center">
-											        <?php if($section->audio_description!=''){ ?>
-												        <a class="removeAudio" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">Remove Audio</a>
-												    <?php } ?>
-											    </div>
-
-											</div>
-											
-											<div class="panel-body form-element">
-												<div class="audio-player play-audio_description">
-													<audio id="play-audio_description" controls></audio>
-												</div>
-											</div>											
-										</div>
-									</div>
 								</div>
 							</div>
 				        						
@@ -400,12 +422,45 @@
 
 	var audio;
 	
-	
 	function stopPlayers(){
 		var sounds = document.getElementsByTagName('audio');
 		for(i=0; i<sounds.length; i++) sounds[i].pause();
 	}
 	
+	$('body').on('click', '.saveAudio', function (e){
+		e.preventDefault();
+		var t = $(this).attr('rel');
+		var link = $(this).attr('download');
+
+		var data = new FormData();			
+		data.append('t', t);
+		data.append('link', link);
+		data.append('_token', '{{csrf_token()}}');
+		
+		$.ajax({
+			url: "{{url('account/project/edit/audio/save/'.$project->id.'/'.$section->id)}}",
+			data: data,
+			dataType:"json",
+			async:true,
+			type:"post",
+			enctype: "multipart/form-data",
+			processData: false,
+			contentType: false,
+			success:function(response){
+				if(response.status == "success"){
+					alert("Updated");
+					setTimeout(function() { window.location=window.location;},0);
+				}
+				if(response.status == "error"){
+					alert(response.message);
+				}
+			},
+			error:function(response){
+				console.log("error: "+response.statusText);
+			}
+		});
+		
+    });	
 	
 	$(document).ready(function() {
 
@@ -433,6 +488,7 @@
 				success:function(response){
 					if(response.status == 'success'){
 						alert('Deleted!');
+						setTimeout(function() { window.location=window.location;},0);
 					}
 					if(response.status == 'error'){
 						alert(response.message);
@@ -468,8 +524,6 @@
 		
         //$(":file").filestyle({buttonBefore: true, placeHolder: 'Component Photo', buttonText: '&nbsp;Component Photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
         //$(":file").filestyle({icon: false, buttonText: "Component Photo", buttonName: "btn-primary"});
-
-
 		
 		$( ".microphone-control" ).click(function() {
 			var mct = $(this).attr("rel");
@@ -479,9 +533,7 @@
 			}
 			$( ".play_"+mct ).toggle();
 		});
-		
-		
-		
+				
 		$('.play-audio').on('click', function(event) {
 			var this_section = $(this).attr('rel');
 			stopPlayers();

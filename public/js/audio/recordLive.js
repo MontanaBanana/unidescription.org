@@ -95,30 +95,56 @@ function handleWAV(blob) {
   if (currentEditedSoundIndex !== -1) {
     $('#recordingslist tr:nth-child(' + (currentEditedSoundIndex + 1) + ')').remove();
   }
+		
+  var applyName = document.createElement('a');
+  var applyDescription = document.createElement('a');
+  
+  
+var reader = new FileReader();
+reader.addEventListener("loadend", function() {
+	var blob_data = reader.result;
+	applyName.download = btoa(blob_data);
+	applyDescription.download = btoa(blob_data);
+});
+reader.readAsBinaryString(blob);
 
   var url = URL.createObjectURL(blob);
   var newRow   = tableRef.insertRow(currentEditedSoundIndex);
   newRow.className = 'soundBite';
-  var audioElement = document.createElement('audio');
-  var downloadAnchor = document.createElement('a');
-  var saveLink = document.createElement('a');
+
+  var newCell = newRow.insertCell(-1);
   
+  var audioElement = document.createElement('audio');
   audioElement.controls = true;
   audioElement.style.maxWidth = "260px";
   audioElement.src = url;
-
-  downloadAnchor.href = url;
-  downloadAnchor.download = new Date().toISOString() + '.wav';
-  downloadAnchor.innerHTML = 'Download';
-  downloadAnchor.className = 'btn btn-primary';
- 
-  var newCell = newRow.insertCell(-1);
+  
   newCell.appendChild(audioElement);
   newCell = newRow.insertCell(-1);
-  newCell.appendChild(downloadAnchor);
+  
+  var saveText = document.createElement('div');
+  saveText.style = 'font-weight:bold';
+  saveText.innerHTML = 'Apply to:';
+  
+  newCell.appendChild(saveText);
   newCell = newRow.insertCell(-1);
-  newCell.appendChild(saveLink);
+  
+  applyName.href = '#';
+  applyName.innerHTML = 'Name';
+  applyName.className = 'btn btn-primary saveAudio';
+  applyName.rel = 'audio_title';
+  
+  newCell.appendChild(applyName);
   newCell = newRow.insertCell(-1);
+  
+  applyDescription.href = '#';
+  applyDescription.innerHTML = 'Description';
+  applyDescription.className = 'btn btn-primary saveAudio';
+  applyDescription.rel = 'audio_description';
+  
+  newCell.appendChild(applyDescription);
+  newCell = newRow.insertCell(-1);
+  
 }
 
 window.onload = function init() {
@@ -135,7 +161,4 @@ window.onload = function init() {
     console.warn('No web audio support in this browser!');
   }
   
-  //navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
-  //  console.warn('No live audio input: ' + e);
-  //});
 };

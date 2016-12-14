@@ -572,6 +572,44 @@ class ProjectController extends Controller
 	    }
     }
     
+    public function saveAudioFile($project, $section){
+	    $project_data = Project::find($project);
+		$section_data = ProjectSection::find($section);
+		
+		$audio = base64_decode($_POST['link']);
+		$title = $_POST['t'];
+		
+		if(!$project_data OR !$section_data OR !$title OR !$audio){abort(404);}
+
+		//process - but first delete the old file off the server if one exists
+	    if($section_data->$title!=''){
+		    $old_file = base_path().'/public/audio/'.$section_data->$title;
+		    if(file_exists($old_file)){
+				if(!unlink($old_file)){
+				    $response_array['status'] = 'error';
+				    $response_array['message'] = 'Could not delete the existing audio file.';
+				    header('Content-type: application/json');
+					echo json_encode($response_array); exit;
+				}
+			}
+		}
+		
+		$filename = str_random(6).'-'.str_slug($project_data->title,'').'-'.str_slug($section_data->title,'').'.wav';
+		$file = base_path().'/public/audio/'.$filename;
+		
+		file_put_contents(base_path().'/public/audio/'.$filename, $audio);
+		
+		$section_data->$title = $filename;
+		$section_data->save();
+		
+	    $response_array['status'] = 'success';
+	    $response_array['message'] = 'Your audio file was saved. This page will refresh. <script>setTimeout(function() { window.location=window.location;},1000);</script>';
+	    header('Content-type: application/json');
+		echo json_encode($response_array); exit;
+
+	}
+	
+	
     public function postAudioFile($project, $section, $title, Request $request){
 	    $project_data = Project::find($project);
 		$section_data = ProjectSection::find($section);
@@ -607,7 +645,7 @@ class ProjectController extends Controller
 				$section_data->save();
 				
 			    $response_array['status'] = 'success';
-			    $response_array['message'] = 'Your audio file was completed. You may now close this box.';
+			    $response_array['message'] = 'Your audio file was completed. This page will refresh. <script>setTimeout(function() { window.location=window.location;},1000);</script>';
 			    header('Content-type: application/json');
 				echo json_encode($response_array); exit;
 			}

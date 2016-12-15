@@ -174,7 +174,7 @@
 				<a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;">
 					<span id="player-icon" class="fa fa-play"></span>
 				</a>
-			<? } ?>
+			<?php } ?>
 		</span>
 		
 		{{-- DOWNLOAD --}}
@@ -187,7 +187,7 @@
 				<a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;">
 					<span id="download-icon" class="fa fa-download"></span>
 				</a>
-			<? } ?>
+			<?php } ?>
 		</span>
 
 								</div>
@@ -249,7 +249,7 @@ Page Description:
 		<a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;">
 			<span id="player-icon" class="fa fa-play"></span>
 		</a>
-	<? } ?>
+	<?php } ?>
 </span>
 
 {{-- DOWNLOAD --}}
@@ -262,7 +262,7 @@ Page Description:
 		<a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;">
 			<span id="download-icon" class="fa fa-download"></span>
 		</a>
-	<? } ?>
+	<?php } ?>
 </span>
 
 								</div>

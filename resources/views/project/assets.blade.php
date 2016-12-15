@@ -73,7 +73,8 @@
 								<div class="panel-body white">
 									<?php $c = false; foreach ($assets as $a): ?>
 										<div class="row" style="<?php echo (($c = !$c)?'background-color: #f5f5f5':'') ?>; padding: 10px;">
-											<h4 class="media-heading"><a target="_blank" href="/assets/projects/<?php echo $project->id; ?>/assets/<?php echo $a['title']; ?>"><?php echo $a['title']; ?></a></h4>
+											<h4 class="media-heading"><a target="_blank" href="/assets/projects/<?php echo $project->id; ?>/assets/<?php echo $a['title']; ?>"><?php echo $a['title']; ?></a><span data-asset_id="<?php echo $a['id']; ?>" class="toc-icon asset-delete label pull-right label-danger" style="width: 28px;" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa fa-times"></span></span></h4>
+                                            
 											Uploaded by <a href="mailto:<?php echo $a->user->email; ?>"><?php echo $a->user->name; ?></a> on <?php echo date('F jS, Y'); ?>
 										</div>
 									<?php endforeach; ?>
@@ -208,93 +209,56 @@
 	
 	$(document).ready(function() {
 		
-		$('.toc-arrow').on('click', function() {
-	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
+	  	$('.asset-delete').on('click', function(event) {
+
+/*
+	    	var section_id = $(this).data('section_id');
+			var section = $(this);
+			
+			//$(section).addClass('label-success');
+			//$(section).removeClass('label-default');
+
+			var deleted = 0;
+			if ($(section).children().hasClass("fa-times")) {
+				$(section).children().removeClass('fa-times');
+				deleted = 1;
+			}
+			else {
+				$(section).children().removeClass('fa-undo');
+			}
+			
+			$(section).children().addClass("fa-spinner fa-spin");
+*/
+			
+			var formData = { 
+				_token: $('input[name=_token]').val(),
+				deleted: 1,
+				id: $(this).data('asset_id')
+			};
+
+			if (confirm('Are you sure you want to delete this?')) {	
+				// Set it completed
+				$.ajax({
+					url : "/account/project/asset/delete",
+					type: "POST",
+					data : formData,
+					success: function(data, textStatus, jqXHR)
+					{
+						if (data.status) {
+							location.reload();
+							//$(section).children().removeClass("fa-spinner fa-spin");
+							//$(section).removeClass('label-success');
+							//$(section).addClass('label-default');
+							//location.reload();
+						}
+						else {
+							alert('Error: contact the site admin');
+						}
+					}
+				});
+			}
 	  	});
-	    
-		//$(":file").filestyle({buttonBefore: true, badge: false, placeHolder: 'Project asset', buttonText: '&nbsp;Upload asset', size: 'lg', iconName: "fa fa-file"});
-	    
-	    // Take the nav bar into account
-	    $(window).on("hashchange", function () {
-		    window.scrollTo(window.scrollX, window.scrollY - 60);
-		});
-		
-		var not_started_count = 0;
-		var total_count = 0;
-		$('textarea', $('div.creator')).each(function(index) {
 
-			total_count++;
-			
-			var label_match = $(this).attr('id').match(/(\d+)/);
-			var section_id = label_match[0];
-			var length = $(this).val().length;
-			var section_label = $('span.section-'+section_id+'-label');
-			
-			$(section_label).removeClass('label-default label-primary label-success label-info label-warning label-danger');
-			
-			var new_label_class = '';
-			if (length == 0) {
-				new_label_class = 'label-default';
-				new_label_text = 'Not Started';
-				not_started_count++;
-			}
-			else if (length <= 20) {
-				new_label_class = 'label-danger';
-				new_label_text = 'Not Enough Text';
-			}
-			else if (length <= 100) {
-				new_label_class = 'label-warning';
-				new_label_text = 'Text Seems Short';
-			}
-			else if (length <= 300) {
-				new_label_class = 'label-info';
-				new_label_text = 'Good Text Length';
-			}
-			else {
-				new_label_class = 'label-success';
-				new_label_text = 'Great Text Length';
-			}
-			
-			$(section_label).addClass(new_label_class);
-			$(section_label).html(new_label_text)
-
-		});
-		
-		$('textarea', $('div.creator')).keyup(function(event) {
-			var label_match = $(event.currentTarget).attr('id').match(/(\d+)/);
-			var section_id = label_match[0];
-			var length = $(event.currentTarget).val().length;
-			var section_label = $('span.section-'+section_id+'-label');
-			
-			$(section_label).removeClass('label-default label-primary label-success label-info label-warning label-danger');
-			
-			var new_label_class = '';
-			if (length == 0) {
-				new_label_class = 'label-default';
-				new_label_text = 'Not Started';
-			}
-			else if (length <= 20) {
-				new_label_class = 'label-danger';
-				new_label_text = 'Not Enough Text';
-			}
-			else if (length <= 100) {
-				new_label_class = 'label-warning';
-				new_label_text = 'Text Seems Short';
-			}
-			else if (length <= 300) {
-				new_label_class = 'label-info';
-				new_label_text = 'Good Text Length';
-			}
-			else {
-				new_label_class = 'label-success';
-				new_label_text = 'Great Text Length';
-			}
-			
-			$(section_label).addClass(new_label_class);
-			$(section_label).html(new_label_text)
-	
-		});
-	
 	});
 
 

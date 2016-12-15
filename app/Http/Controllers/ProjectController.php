@@ -520,6 +520,24 @@ class ProjectController extends Controller
 		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
 	}
 	
+	public function postDeleteAsset(Request $request)
+	{
+		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
+		//var_dump($request);
+		//exit;
+		//echo "<PRE>".print_R($request,true)."</pre>";exit;
+		$asset = ProjectAsset::find($request->id);
+		$asset->delete();
+		//echo "<PRE>"."/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title))."</pre>";exit;
+
+	    $response_array['status'] = 'success';
+	    $response_array['message'] = 'Asset Deleted';
+	    header('Content-type: application/json');
+		echo json_encode($response_array); exit;
+		
+		//return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
+	}
+	
     public function getDeleteconfirm($id)
     {
 	    if (!$id) {

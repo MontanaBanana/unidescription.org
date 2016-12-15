@@ -9,8 +9,8 @@
     <header>
 	    <div class="centerpiece" style="background-image:url({{ SITEROOT }}/slideshow/ad_photo1-cropped.jpg)">
 			<div style="padding-top: 25%;">
-				<div class="getting-started" style="margin-left: 50%; width: 39%;">
-					<p style="font-size: 22px;"><a href="{{ SITEROOT }}/auth/register">Create a free account</a>... AUDIO DESCRIBE THE WORLD</p>
+				<div class="getting-started" style="margin-left: 55%; width: 24%;">
+					<p style="font-size: 22px;"><a href="{{ SITEROOT }}/auth/register">Create a free account</a><br />... AUDIO DESCRIBE THE WORLD</p>
 				</div>
 			</div>
     </header>
@@ -86,13 +86,13 @@
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/denali_homepage.jpg" alt="Photo of Denali with a tourbus in the foreground">
-				<p>Denali National Park and Preserve</p>
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/sf_maritime_homepage.jpg" alt="Photo of a tall ship at SF Maritime national park">
+				<p>San Francisco Maritime National Historical Park</p>
 			</div>
 			
 			<div class="col-md-4 col-sm-6" style="padding-bottom: 15px;">
-				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/sf_maritime_homepage.jpg" alt="Photo of a tall ship at SF Maritime national park">
-				<p>San Francisco Maritime National Historical Park</p>
+				<img class="img-responsive img-portfolio img-hover" src="{{ SITEROOT }}/images/denali_homepage.jpg" alt="Photo of Denali with a tourbus in the foreground">
+				<p>Denali National Park and Preserve</p>
 			</div>
         </div>
         <!-- /.row -->

@@ -49,10 +49,11 @@
 						      <h4 class="panel-title">
 						        
 						          {{ $section->title }} 
-						          <?php 
+						          <?php
 							          if($section->audio_title!=''){$this_audio = '/audio/'.$section->audio_title;}
-							          else{$this_audio = $section->audio_file_url;}
+							          else{$this_audio = $section->audio_file_title;}
 							      ?>
+							      {{$section->id}}
 						          <audio controls>
                                         <source src='{{$this_audio}}' type='audio/wav'>
                                     </audio>
@@ -120,7 +121,7 @@
 	                                                            <b>{{ $chch->title }}</b> 
 	                                                            <?php if (strlen($chch->description)): ?>
 	                                                                <audio controls>
-	                                                                    <source src='{{ $chch->audio_file_url }}' type='audio/wav'>
+	                                                                    <source src='{{ $chch->audio_file_title }}' type='audio/wav'>
 	                                                                </audio>
 	
 	                                                                <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>

@@ -50,6 +50,7 @@ class UserController extends Controller
 		curl_setopt($ch, CURLOPT_URL, 'https://build.phonegap.com/authorize/token?client_id='.env('PHONEGAP_BUILD_CLIENT_ID').'&client_secret='.env('PHONEGAP_BUILD_CLIENT_SECRET').'&code='.$user->pg_build_code);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'client_id='.env('PHONEGAP_BUILD_CLIENT_ID').'&client_secret='.env('PHONEGAP_BUILD_CLIENT_SECRET').'&code='.$user->pg_build_code );
 
 		

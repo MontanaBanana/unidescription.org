@@ -1,3 +1,5 @@
+<?php echo 'upload.blade - not being used'; exit; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 	

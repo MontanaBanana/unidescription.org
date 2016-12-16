@@ -159,7 +159,7 @@
 		
 		{{-- UPLOAD --}}
 		<span class="pull-right" style="padding-right: 5px;">
-			<a href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_title')}}" style="position: relative; top: -5px;" class="btn btn-sm btn-primary popup">
+			<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadTitle">
 				<span id="microphone-icon" class="fa fa-upload"></span>
 			</a>
 		</span>
@@ -174,7 +174,7 @@
 				<a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;">
 					<span id="player-icon" class="fa fa-play"></span>
 				</a>
-			<? } ?>
+			<?php } ?>
 		</span>
 		
 		{{-- DOWNLOAD --}}
@@ -187,7 +187,7 @@
 				<a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;">
 					<span id="download-icon" class="fa fa-download"></span>
 				</a>
-			<? } ?>
+			<?php } ?>
 		</span>
 
 								</div>
@@ -234,7 +234,7 @@ Page Description:
 
 {{-- UPLOAD --}}
 <span class="pull-right" style="padding-right: 5px;">
-	<a href="{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_description')}}" style="position: relative; top: -5px;" class="btn btn-sm btn-primary popup">
+	<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadDescription">
 		<span id="microphone-icon" class="fa fa-upload"></span>
 	</a>
 </span>
@@ -249,7 +249,7 @@ Page Description:
 		<a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;">
 			<span id="player-icon" class="fa fa-play"></span>
 		</a>
-	<? } ?>
+	<?php } ?>
 </span>
 
 {{-- DOWNLOAD --}}
@@ -262,7 +262,7 @@ Page Description:
 		<a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;">
 			<span id="download-icon" class="fa fa-download"></span>
 		</a>
-	<? } ?>
+	<?php } ?>
 </span>
 
 								</div>
@@ -342,17 +342,6 @@ Page Description:
 									
 									<table id="recordingslist"></table>
 									
-									<script type="text/javascript">
-									$(document).ready(function(){
-										$('.upload_audio').click(function(e){
-											e.preventDefault();
-											console.log('upload this'); 
-										});
-										$('.editor.container').addClass('invisible');
-									});
-									</script>
-								    
-                                    
                                 </div>
                             </div>
                         </div>
@@ -949,6 +938,78 @@ Page Description:
 	       $('#section_form').submit();
 	        
         });
+        
+        
+        	$("#uploadAudioTitle").click(function(e){
+				e.preventDefault();
+				
+				var formData = new FormData($("#upload_audio_title")[0]);
+				$.ajax({
+					url:"{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_title')}}",
+					data:formData,
+					dataType:"json",
+					async:true,
+					type:"post",
+					processData: false,
+					contentType: false,
+					beforeSend: function() {
+		               console.log('about to send: {{$section->audio_title}}');
+		            },
+					success:function(response){
+						if(response.status == 'success'){
+							$("button.mfp-close").css("background-color", "yellow");
+							$("#upload_audio_title").html(response.message);
+						}
+						if(response.status == 'deleted'){
+							$("#upload_audio_title").html(response.message);
+							alert(response.message);
+						}
+						if(response.status == 'error'){
+							alert(response.message);
+						}
+					},
+					error:function(response){
+						console.log('error: '+response.statusText);
+					}
+				});
+			});
+			
+			
+        	$("#uploadAudioDescription").click(function(e){
+				e.preventDefault();
+				
+				var formData = new FormData($("#upload_audio_description")[0]);
+				$.ajax({
+					url:"{{url('account/project/edit/audio/add/'.$project->id.'/'.$section->id.'/audio_description')}}",
+					data:formData,
+					dataType:"json",
+					async:true,
+					type:"post",
+					processData: false,
+					contentType: false,
+					beforeSend: function() {
+		               console.log('about to send: {{$section->audio_description}}');
+		            },
+					success:function(response){
+						if(response.status == 'success'){
+							$("button.mfp-close").css("background-color", "yellow");
+							$("#upload_audio_description").html(response.message);
+						}
+						if(response.status == 'deleted'){
+							$("#upload_audio_description").html(response.message);
+							alert(response.message);
+						}
+						if(response.status == 'error'){
+							alert(response.message);
+						}
+					},
+					error:function(response){
+						console.log('error: '+response.statusText);
+					}
+				});
+			});
+			
+			
 	});
 	
 	
@@ -963,8 +1024,75 @@ Page Description:
 			}	
 		?>
 		});
+		
+		
+		
 
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="uploadTitle" tabindex="-1" role="dialog" aria-labelledby="myModalUploadTitle">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalUploadTitle">Upload Audio Title</h4>
+      </div>
+      <div class="modal-body col-md-12">
+                
+		    <h3>Upload your audio file to the title field: <?php echo ucwords(preg_replace("/_/", " ", $section->title));?></h3>
+		    
+		    <form enctype="multipart/form-data" id="upload_audio_title" role="form" method="POST">
+				<div class="form-group">
+					<input type="file" id="audio" name="audio" accept=".wav" style="text-align: center;display: block;margin: 15px auto;padding: 5px 20px;border: 1px dotted #999;">
+					<p class="">Upload your audio title file. Only .wav format is accepted</p>
+				</div>
+				<input type="hidden" name="type" value="audio_title">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div><button id="uploadAudioTitle" value="Submit">SUBMIT</button></div>
+			</form>
+			
+      </div>
+      <div class="modal-footer">
+        <button id="modalClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="uploadDescription" tabindex="-1" role="dialog" aria-labelledby="myModalUploadDescription">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalUploadDescription">Upload Audio Description</h4>
+      </div>
+      <div class="modal-body col-md-12">
+                
+		    <h3>Upload your audio file to the description field: <?php echo ucwords(preg_replace("/_/", " ", $section->description));?></h3>
+		    
+		    <form enctype="multipart/form-data" id="upload_audio_description" role="form" method="POST">
+				<div class="form-group">
+					<input type="file" id="audio" name="audio" accept=".wav" style="text-align: center;display: block;margin: 15px auto;padding: 5px 20px;border: 1px dotted #999;">
+					<p class="">Upload your audio description file. Only .wav format is accepted</p>
+				</div>
+				<input type="hidden" name="type" value="audio_description">
+				<input type="hidden" name="_token" value="{{ csrf_token()}}">
+				<div><button id="uploadAudioDescription" value="Submit">SUBMIT</button></div>
+			</form>
+			
+      </div>
+      <div class="modal-footer">
+        <button id="modalClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="cropModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

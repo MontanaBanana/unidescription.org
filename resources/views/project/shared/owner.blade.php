@@ -33,8 +33,8 @@
 </div>
 
     <script type="text/javascript">
-        var clientId = '1024439531736-nmgb80hc0oi8i0d938a37u2d6ev68jgc.apps.googleusercontent.com';
-        var apiKey = 'AIzaSyCpU-RMg5M0HABTwFc5UQsHnGvoqBPBguk';
+        var clientId = '{{config('services.google')['clientId']}}';
+        var apiKey = '{{config('services.google')['apiKey']}}';
         var scopes = 'https://www.googleapis.com/auth/contacts.readonly';
 
 		window.name_email = [];

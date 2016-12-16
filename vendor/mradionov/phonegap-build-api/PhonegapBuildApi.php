@@ -812,6 +812,7 @@ class PhonegapBuildApi
 
         curl_setopt($handle, CURLOPT_URL, $url);
         curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($handle, CURLOPT_CUSTOMREQUEST, strtoupper($method));
         curl_setopt($handle, CURLOPT_HTTPHEADER, array(
             'Content-type: multipart/form-data;',

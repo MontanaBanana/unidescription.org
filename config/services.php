@@ -51,7 +51,8 @@ return [
     ],
 
     'google' => [
-
+	    'clientId' => env('GOOGLE_CLIENT_ID'),
+	    'apiKey' => env('GOOGLE_API_KEY'),
     ],
 
     'github' => [

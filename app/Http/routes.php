@@ -95,7 +95,7 @@ Route::get(WEBROOT.'account/project/delete/{id}', 'ProjectController@getDelete')
 
 Route::get(WEBROOT.'account/project/assets/{id}/{title}', 'ProjectController@getAssets');
 Route::post(WEBROOT.'account/project/assets', 'ProjectController@postAssets');
-
+Route::post(WEBROOT.'account/project/asset/delete', 'ProjectController@postDeleteAsset');
 
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');

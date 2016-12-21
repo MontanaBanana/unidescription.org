@@ -54,6 +54,7 @@
     <script type="text/javascript" src="{{ SITEROOT }}/js/bootstrap-filestyle.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/jquery-sortable.min.js"></script>
     <script type="text/javascript" src="{{ SITEROOT }}/js/autosize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.16/clipboard.min.js"></script>
     <!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>-->
 
     <!-- RTE -->

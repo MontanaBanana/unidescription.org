@@ -642,7 +642,9 @@ div.project .tips-column .panel ul.standard-list li a {
 
 div.version {
     white-space: nowrap;
-    overflow: hidden;
+    overflow: auto;
+    height:100%;
+    max-height:600px;
     text-overflow: ellipsis;
 }
 

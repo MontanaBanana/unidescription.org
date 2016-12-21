@@ -114,19 +114,21 @@
 	                    	<li class="dropdown">
 		                        <a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
 		                        <ul class="dropdown-menu">
+			                        <li><a href="{{SITEROOT}}/account/project">All Projects</a></li>
+			                        <li class="divider"></li>
 		                        	<li><a href="{{ SITEROOT }}/account/project/details/0/new">Create New Project</a></li>
 			                        <li class="divider"></li>
-			                        <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
+			                        <li><a href="{{ SITEROOT }}/account/project">My Recently Edited Projects</a></li>
                                     <?php 
-                                        $my_projects = Auth::user()->projects; 
-                                        $shared_projects = Auth::user()->shared_projects; 
+                                        $my_projects = Auth::user()->projects->take(10); 
+                                        $shared_projects = Auth::user()->shared_projects->take(10);
                                     ?>
 			                        @foreach ($my_projects as $project)
 				                        <li class="small">
 				                        	<a href="{{ SITEROOT }}/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>
 			                        @endforeach
 			                        <li class="divider"></li>
-			                        <li><a href="{{ SITEROOT }}/account/project">Shared Projects</a></li>
+			                        <li><a href="{{ SITEROOT }}/account/project">Recently Edited Shared Projects</a></li>
 			                        @foreach ($shared_projects as $project)
 				                        <li class="small">
 				                        	<a href="{{ SITEROOT }}/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">{{ $project->title }}</a></li>

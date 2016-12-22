@@ -53,7 +53,6 @@
 							          if($section->audio_title!=''){$this_audio = '/audio/'.$section->audio_title;}
 							          else{$this_audio = $section->audio_file_title;}
 							      ?>
-							      {{$section->id}}
 						          <audio controls>
                                         <source src='{{$this_audio}}' type='audio/wav'>
                                     </audio>

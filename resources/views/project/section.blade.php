@@ -277,16 +277,40 @@ Page Description:
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
-                                    <span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-player-icon" class="fa fa-play"></span></a></span>
-                                    <span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic-description" style="position: relative; top: -5px;"><span id="phonetic-download-icon" class="fa fa-download"></span></a></span>
+																		
+																		
+									{{-- PLAY --}}
+									<span class="pull-right" style="padding-right: 5px;">
+										<a class="btn btn-sm btn-primary play-audio" rel="phonetic_description" style="position: relative; top: -5px;">
+											<span id="player-icon" class="fa fa-play"></span>
+										</a>
+									</span>
+									
+									{{-- DOWNLOAD --}}
+									<span class="pull-right" style="padding-right: 5px;">
+										<?php if($section->phonetic_description!=''){ ?>			
+											<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->phonetic_description)}}">
+												<span id="download-icon" class="fa fa-download"></span>
+											</a>
+									    <?php } else { ?>
+											<a class="btn btn-sm btn-primary download-phonetic_description" style="position: relative; top: -5px;">
+												<span id="download-icon" class="fa fa-download"></span>
+											</a>
+										<?php } ?>
+									</span>
+									
+									
 								</div>
-								<div class="panel-body form-element">
-									<div class="audio-player play-phonetic-description play_phonetic_description">
-										<audio id="play-phonetic-description" controls></audio>
+								<div class="panel-body form-element" id="phonetic_description_container">
+									<div class="audio-player play-phonetic_description play_phonetic_description">
+										<audio id="play-phonetic_description" controls></audio>
 									</div>
-									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
+									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" placeholder="<?php echo get_placeholder_text($section->phonetic_description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 								</div>
 							</div>
+									
+									
+									
 				        						
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -462,7 +486,6 @@ Page Description:
 	
 		$(".removeAudio").click(function(e){
 			e.preventDefault();
-			console.log($(this).attr('href'));
 			$.ajax({
 				url: $(this).attr('href'),
 				data:'',
@@ -539,7 +562,6 @@ Page Description:
 			if ($(this).find('#player-icon').hasClass('fa-play')) {
 				$(this).find('#player-icon').removeClass('fa-play');
 				$(this).find('#player-icon').addClass('fa-stop');
-				
 				var request = $.ajax({
 					url: "https://api.montanab.com/tts/tts.php",
 					method: "POST",
@@ -589,7 +611,7 @@ Page Description:
 			var this_link = $(this).attr('href');
 			var this_section = $(this).attr('rel');
 			stopPlayers();
-			console.log(this_section);
+			
 			// define the audio element
 			var audio = $("#play-"+this_section);
 			audio.attr('src', this_link);
@@ -609,46 +631,51 @@ Page Description:
 		
 		
 		$('.download-title').on('click', function(event) {
-				var request = $.ajax({
-				  url: "https://api.montanab.com/tts/tts.php",
-				  method: "POST",
-				  data: { t : $('#title').val().replace(/(<([^>]+)>)/ig,"\n") },
-				  dataType: "json"
-				});
-				 
-				request.done(function( msg ) {
-					window.open(msg.fn);
-				});
-				 
+			var request = $.ajax({
+			  url: "https://api.montanab.com/tts/tts.php",
+			  method: "POST",
+			  data: { t : $('#title').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  dataType: "json"
+			});
+			request.done(function( msg ) {
+				window.open(msg.fn);
+			});
 		});		
 		
 		$('.download-phonetic_title').on('click', function(event) {
-				var request = $.ajax({
-				  url: "https://api.montanab.com/tts/tts.php",
-				  method: "POST",
-				  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n") },
-				  dataType: "json"
-				});
-				 console.log($('#phonetic_title').val());
-				request.done(function( msg ) {
-					window.open(msg.fn);
-				});
-				 
+			var request = $.ajax({
+			  url: "https://api.montanab.com/tts/tts.php",
+			  method: "POST",
+			  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  dataType: "json"
+			});
+			request.done(function( msg ) {
+				window.open(msg.fn);
+			});
 		});		
 		
 		$('.download-description').on('click', function(event) {
-
-				var request = $.ajax({
-				  url: "https://api.montanab.com/tts/tts.php",
-				  method: "POST",
-				  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
-				  dataType: "json"
-				});
-				 
-				request.done(function( msg ) {
-					window.open(msg.fn);
-				});
-				 
+			var request = $.ajax({
+			  url: "https://api.montanab.com/tts/tts.php",
+			  method: "POST",
+			  data: { t : $('#description').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  dataType: "json"
+			});
+			request.done(function( msg ) {
+				window.open(msg.fn);
+			});
+		});		
+		
+		$('.download-phonetic_description').on('click', function(event) {
+			var request = $.ajax({
+			  url: "https://api.montanab.com/tts/tts.php",
+			  method: "POST",
+			  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  dataType: "json"
+			});
+			request.done(function( msg ) {
+				window.open(msg.fn);
+			});
 		});		
 	
 		$('.has-image-rights').on('click', function(event) {

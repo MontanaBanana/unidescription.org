@@ -703,7 +703,7 @@ class ProjectController extends Controller
 
 		if(!$project_data OR !$section_data OR !$title){abort(404);}
 		
-		if($section_data->$title){
+		if($section_data->$title){ 
 			$old_file = base_path().'/public/audio/'.$section_data->$title;
 	
 			$section_data->$title = '';
@@ -712,7 +712,9 @@ class ProjectController extends Controller
 			$section_data = ProjectSection::find($section);
 			if($section_data->$title==''){
 				if(file_exists($old_file)){
-					if(unlink($old_file)){					
+					if(unlink($old_file)){
+						$section_data->audio_file_description='';
+						$section_data->save();
 						$response_array['status'] = 'success';
 					    $response_array['message'] = 'Your audio file was deleted.';
 					}

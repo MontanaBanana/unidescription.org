@@ -58,7 +58,7 @@ foreach ($section->project_section_versions as $v):
 						<ul>
 							<?php
 								foreach($l AS $t){
-									if(trim($v->$t['column']) != trim($section->$t['column'])){$this_bold = 'style="font-weight:bold"';}else{$this_bold = FALSE;}
+									if(trim($v->{$t['column']}) != trim($section->{$t['column']})){$this_bold = 'style="font-weight:bold"';}else{$this_bold = FALSE;}
 									echo '<li><a href="#tab_'.$v->id.'_'.$t["column"].'" class="tab_'.$v->id.'_'.$t["column"].'"'.$this_bold.'>'.$t['name'].'</a></li>';
 								}
 							?>
@@ -76,7 +76,7 @@ foreach ($section->project_section_versions as $v):
 										<div class="panel-body col-md-12">
 											<div class="col-md-12">
 												<?php 
-													$htmlDiff = new Icap\HtmlDiff\HtmlDiff($v->$t['column'], $section->$t['column'], true);
+													$htmlDiff = new Icap\HtmlDiff\HtmlDiff($v->{$t['column']}, $section->{$t['column']}, true);
 													$out = $htmlDiff->outputDiff();
 													echo $out->toString();
 												?>
@@ -96,7 +96,7 @@ foreach ($section->project_section_versions as $v):
 														Current Version: <i class="fa fa-files-o btn" aria-hidden="true" data-clipboard-target="#content_<?php echo $v->id;?>_current"></i>
 													</div>
 													<div class="panel-body" id="content_<?php echo $v->id;?>_current">
-														<?php echo $section->$t['column']; ?>
+														<?php echo $section->{$t['column']}; ?>
 													</div>
 												</div>
 										    </div>
@@ -106,7 +106,7 @@ foreach ($section->project_section_versions as $v):
 														Old Version: <i class="fa fa-files-o btn" aria-hidden="true" data-clipboard-target="#content_<?php echo $v->id;?>_old"></i>
 													</div>
 													<div class="panel-body" id="content_<?php echo $v->id;?>_old">
-														<?php echo $v->$t['column']; ?>
+														<?php echo $v->{$t['column']}; ?>
 													</div>
 												</div>
 										    </div>

@@ -97,9 +97,6 @@
                     <p>	
                         All inquiries about this project should be directed to him, either <a href="mailto:brett.oppegaard@gmail.com">by email</a> or <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu">phone</a>
                     </p>
-                    <p>
-                        More behind-the-scenes: Our regularly updated blog about this project also is available on <a href="https://npsaudiodescription.wordpress.com/" target="_blank">our blog</a>.
-                    </p>
                 </div>
             </div>
         </div>
@@ -364,8 +361,8 @@
                 <p>Hawaii Volcanoes</p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/sf_maritime_homepage.jpg" alt="SF Maritime">
-                <p>SF Maritime</p>
+                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/truman.png" alt="Truman">
+                <p>Harry S Truman National Historic Site</p>
             </div>
             <div class="col-md-4 col-sm-4 col-xs-6">
                 <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Washington Monument photo from the air">

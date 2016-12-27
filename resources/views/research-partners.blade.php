@@ -55,51 +55,46 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		$('.grid').masonry({
+		var $grid = $('.grid').masonry({
 		  itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
 		  columnWidth: '.grid-sizer',
 		  percentPosition: true
 		});
+
+        $grid.imagesLoaded().progress( function() {
+              $grid.masonry('layout');
+        });
 	});
 </script>
-		
-		<div class="container-fluid">
-		  <!-- add extra container element for Masonry -->
-		  <div class="grid">
-			<!-- add sizing element for columnWidth -->
-			<div class="grid-sizer col-xs-4"></div>
-			<!-- items use Bootstrap .col- classes -->
-			
-			<?php
-				foreach ($research_partners as $k => $r):
-					?>
-						<div class="grid-item col-md-4 col-sm-4 col-xs-6">
-							<div class="grid-item-content">
-								<img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
-								<p>{{ $k }}</p>
-							</div>
-						</div>
-					<?php
-				endforeach;
-			?>
-			
-		  </div>
-		</div>
-        <!-- Our Customers -->
         <div class="row">
             <div class="col-lg-12">
                 <h2 class="page-header">Research Partners</h2>
             </div>
-			<?php
-				foreach ($research_partners as $k => $r):
-					?>
-						<div class="col-md-4 col-sm-4 col-xs-6">
-							<img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
-							<p>{{ $k }}</p>
-						</div>
-					<?php
-				endforeach;
-			?>
+        </div>
+
+        <div class="row">
+            <div class="container-fluid">
+              <!-- add extra container element for Masonry -->
+              <div class="grid">
+                <!-- add sizing element for columnWidth -->
+                <div class="grid-sizer col-xs-4"></div>
+                <!-- items use Bootstrap .col- classes -->
+                
+                <?php
+                    foreach ($research_partners as $k => $r):
+                        ?>
+                            <div class="grid-item col-md-4 col-sm-4 col-xs-6">
+                                <div class="grid-item-content">
+                                    <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
+                                    <p>{{ $k }}</p>
+                                </div>
+                            </div>
+                        <?php
+                    endforeach;
+                ?>
+                
+              </div>
+            </div>
         </div>
         <!-- /.row -->
 		

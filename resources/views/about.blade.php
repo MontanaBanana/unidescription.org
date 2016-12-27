@@ -343,38 +343,6 @@
 	        </div>
         </div>
 
-        <!-- Our Customers -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Research Partners</h2>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/denali_homepage.jpg" alt="Denali Mountain">
-                <p>Denali</p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/golden_gate.jpg" alt="Golden Gate photo from the distance">
-                <p>Golden Gate</p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/hmm-lava-rises.jpg" alt="Lava aerial view">
-                <p>Hawaii Volcanoes</p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/truman.png" alt="Truman">
-                <p>Harry S Truman National Historic Site</p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/washington_monument.jpg" alt="Washington Monument photo from the air">
-                <p>Washington Monument</p>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-                <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg" alt="Yellowstone Rainbow Pool">
-                <p>Yellowstone</p>
-            </div>
-        </div>
-        <!-- /.row -->
-
         <hr>
         
 @endsection

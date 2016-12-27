@@ -103,6 +103,7 @@
 				<a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/about" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 				    <li><a href="{{ SITEROOT }}/about">About Us</a></li>
+					<li><a href="{{ SITEROOT }}/research-partners">Research Partners</a></li>
 				    <li><a href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>
 				</ul>
 			    </li>

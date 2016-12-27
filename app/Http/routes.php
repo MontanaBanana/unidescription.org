@@ -53,6 +53,7 @@ $basic_pages = array(
 	'unid-academy',	
 	'license', 
 	'auth/password',
+	'research-partners',
 	'comp' // jason's new project comps, standalone
 	);
 

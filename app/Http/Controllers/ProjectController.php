@@ -15,6 +15,7 @@ use App\User;
 use App\Http\Controllers;
 use Response;
 use Auth;
+use Input;
 use Validator;
 use PhonegapBuildApi;
 use GrahamCampbell\GitHub\Facades\GitHub;
@@ -499,26 +500,29 @@ class ProjectController extends Controller
 	{
 		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
 		$p = Project::find($request->project_id);
-
-		//echo "<PRE>"."/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title))."</pre>";exit;
-
-		if ($request->hasFile('asset')) {
-            
-            $request->file('asset')->move(
-                base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $_FILES['asset']['name']
-            );
-
+    
+		$files = Input::file('asset');
+		$file_count = count($files);
+		$uploadcount = 0;
+		foreach ($files as $file) {
+			$destinationPath = 'uploads';
+			$filename = $file->getClientOriginalName();
+			$upload_success = $file->move(base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $filename);
+			$uploadcount ++;
+			
+			
 			$pa = ProjectAsset::create(
 				[
 					'project_id' => $request->project_id,
 					'user_id' => Auth::user()->id, 
-					'title' => $_FILES['asset']['name'],
+					'title' => $filename,
 					'description' => '',
 					'priority' => 1
 				]
 			);
-			$pa->save();   
-        }
+			$pa->save(); 
+		}
+		
 		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
 	}
 	

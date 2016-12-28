@@ -83,7 +83,7 @@
 											{{ csrf_field() }}
 											<input type="hidden" name="project_id" id="id" value="{{ $project->id }}"  />
 											<p>
-												<input type="file" id="asset" name="asset" onchange="javascript:this.form.submit();"><br />
+												<input type="file" id="asset" name="asset[]" onchange="javascript:this.form.submit();" multiple><br />
 												This section allows you to store all assets related to this project.
 												The assets are not automatically included in the export of the app.<br />
 											</p>

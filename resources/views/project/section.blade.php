@@ -951,6 +951,7 @@ Page Description:
                 },
                 dataType: "json",
                 success: function(response) {
+                    location.reload();
                     //$('#deleteModalClose').click();
                     //$('#save-page').click();
                     //$('#was_autosave').val(0);

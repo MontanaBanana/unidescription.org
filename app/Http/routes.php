@@ -89,6 +89,7 @@ Route::post(WEBROOT.'account/project/edit/audio/save/{project}/{id}', 'ProjectCo
 
 Route::get(WEBROOT.'account/project/details/{id}/{title}', 'ProjectController@getDetails');
 Route::post(WEBROOT.'account/project/details', 'ProjectController@postDetails');
+Route::post(WEBROOT.'/account/project/deleteProjectImage', 'ProjectController@postDeleteProjectImage');
 
 Route::get(WEBROOT.'account/project/deleteconfirm/{id}', 'ProjectController@getDeleteconfirm');
 Route::get(WEBROOT.'account/project/delete/{id}', 'ProjectController@getDelete');

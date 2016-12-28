@@ -167,6 +167,9 @@
 									<div class="col-md-6">
 								        @if ($project->image_url)
 								        	<img src="{{ $project->image_url }}" style="width: 100%;" class="thumbnail" />
+											<button type="button" class="btn btn-primary btn-lg btn-icon label-danger" id="deleteProjectImage" style="width: 100%;">
+													<span class="fa fa-remove"></span> Delete photo
+											</button>
 								        @endif
 									</div>
 									<div class="col-md-6">
@@ -174,6 +177,7 @@
 										<input type="file" id="project_image" name="project_image">
 										<!--<a href="#" class="btn btn-primary btn-icon"><span class="fa fa-camera-retro"></span> Upload Photo</a>-->
 									</div>
+
 								</div>
 							</div>
 
@@ -228,7 +232,25 @@
 			//console.log( $(e).data() );
 		});
 		
-		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
+        $('#deleteProjectImage').click(function() {
+            $.ajax({
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN' : $('input[name="_token"]').val()  },
+                url: '/account/project/deleteProjectImage',
+                data: {
+                    project_id: $('#id').val(),
+                },
+                dataType: "json",
+                success: function(response) {
+                    location.reload();
+                    //$('#deleteModalClose').click();
+                    //$('#save-page').click();
+                    //$('#was_autosave').val(0);
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post'});
+
+                }
+            });
+        });		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 
 	});
 

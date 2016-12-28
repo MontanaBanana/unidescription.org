@@ -357,6 +357,14 @@ class ProjectController extends Controller
         return json_encode( array('status' => 'success', 'file' => $destination_fn) );
     }
     
+	public function postDeleteProjectImage(Request $request)
+    {
+		$p = Project::find($request->project_id);
+        $p->image_url = '';
+        $p->save();
+        return json_encode( array('status' => 'success') );
+    }
+    
 	public function postDeleteImage(Request $request)
     {
 		$ps = ProjectSection::find($request->project_section_id);

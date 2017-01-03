@@ -4,6 +4,17 @@
 
 @section('content')
 
+
+<style>
+.hover:hover{
+	background-color:rgba(122,143,82,0.5);
+	color:#FFF
+}
+.hover:hover a{
+	color:#FFF
+}
+</style>
+
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="container">	
@@ -27,10 +38,13 @@
 	    
 	    <h2 class="page-header" style="margin-top:0; text-align:center">User Activity for the last hour</h2>
     
+    	<?php $count = 0; ?>
+    	
     	@if($activity)
     		<div class="col-xs-12">
 		    	@foreach ($activity as $a)
-			    	<div class="row">
+		    		<?php ++$count;?>
+			    	<div class="row hover">
 				    	<div class="col-xs-3 col-lg-4">{{$a->name}}</div>
 				    	<div class="col-xs-5 col-lg-4"><a href="{{$a->last_url}}" target="_blank">{{$a->last_url}}</a></div>
 				    	<div class="col-xs-4 col-lg-4">{{timeAgo($a->last_url_time)}}</div>
@@ -40,7 +54,9 @@
 	    @else
 	    	There is no user activity currently logged.
 	    @endif
-    
+		@if(!$count)
+			There is no user activity currently logged.
+		@endif
 	</div>
 </div>
 

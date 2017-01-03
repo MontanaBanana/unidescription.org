@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers;
 use App\User;
+use DB;
 use Auth;
 use Hash;
 use Validator;
@@ -77,6 +78,13 @@ class AccountController extends Controller
     {
 	    //return view('project.edit', ['section_templates' => $st, 'project' => new Project]);
 	    return view('account.settings');
+    }
+    
+    public function activity()
+    {
+	    $within = 3600;
+		$activity = Auth::user()->latest_activity($within);
+	    return view('account.activity', ['activity' => $activity]);
     }
     
     public function postSettings(Request $request)

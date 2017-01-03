@@ -71,8 +71,20 @@ foreach ($basic_pages as $p) {
 	});
 }
 
+Route::filter('pagecapture', function() {
+    if ($user = Auth::user()) {
+        $url = Request::url();
+        $user->last_url = $url;
+        $user->last_url_time = time();
+        $user->save();
+    }
+});
+Route::when('*', 'pagecapture', array('get'));
+
+
 // Account routes
 Route::get(WEBROOT.'account', 'AccountController@index');
+Route::get(WEBROOT.'account/activity', 'AccountController@activity');
 Route::get(WEBROOT.'account/settings', 'AccountController@getSettings');
 Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Auth\Authenticatable;
@@ -75,4 +76,18 @@ class User extends Model implements AuthenticatableContract,
 	    
 	    //return $this->projects->merge( $this->shared_projects )->sortBy(function($sort){ $sort->created_at; })->reverse();
     }
+    
+    /**
+	 * get last users activity
+	 *
+	 * sort options include title and created, add more here and project's index.blade.php
+	 */
+    public function latest_activity($before = '900')
+    {
+	    $this_user = Auth::user()->id;
+		$within = time() - $before;
+		$users = User::where('last_url_time','>', $within)->where('id','!=', $this_user)->orderBy('last_url_time', 'desc')->limit(50)->get();
+	    return $users;
+    }
+    
 }

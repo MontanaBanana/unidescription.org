@@ -20,7 +20,7 @@
                     <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" />
                     <span class="btn input-group-addon" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
                 </div>
-                <span class="btn googleContactsButton"><i class="fa fa-envelope fa-fw"></i> Authorize Google contacts</span>
+                <span class="btn btn-wide googleContactsButton">Authorize Google contacts</span>
                 <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
                 <strong>Change owner:</strong>
                 <div class="input-group" id="owner-input-group">

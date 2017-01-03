@@ -17,7 +17,7 @@
  */
 if (App::environment('jason-local')) {
 	// at ~/Sites/MontanaBanana/unidescription.com
-	define('WEBROOT', 'MontanaBanana/unidescription.com');
+	define('WEBROOT', '');
 } else if (App::environment('joe-local')) {
 	// at ~/Sites/unidescription.com
 	define('WEBROOT', '');

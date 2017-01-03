@@ -1,0 +1,119 @@
+/**
+ * Responsive CSS file for unidescriptions.org
+ * 
+ * site colors:
+ * cream 	#f9f7f1
+ * gray		#918f7f
+ * green	#7a8f52
+ * gold		#b17f1b / #e6a422
+ *
+ * site/device sizes:
+ * ---
+ */
+
+@media only screen and (max-width: 800px) {
+
+	.navbar .container {
+		height:60px;
+	}
+	.navbar-header .navbar-toggle {
+		margin-top:16px;
+		margin-bottom:16px;
+		margin-right:20px;
+		line-height:10px;
+	}
+	.navbar-brand img {
+		height: 46px;
+		padding-left:0px;
+	}
+	.navbar .navbar-collapse {
+		background:rgba(0,0,0,0.8);
+		-webkit-backdrop-filter:blur(3px);
+		padding-bottom:12px;
+	}
+	.navbar ul li,
+	.navbar ul li a,
+	.navbar .dropdown.open,
+	.navbar .dropdown.open a,
+	.navbar .dropdown.open ul
+	.navbar .dropdown.open ul li,
+	.navbar .dropdown.open ul li a {
+		background:none !important;
+	}
+	.navbar .dropdown-menu {
+		background:none !important;
+	}
+
+	header {
+		margin-top:-10px;
+	}
+	header .centerpiece {
+		min-height:400px;
+	}
+	header .centerpiece .slide {
+		top:55%;
+	}
+	header .centerpiece .slide .tagline {
+		font-size:28px;
+		padding:12px 40px;
+	}
+	header .centerpiece .slide .button a {
+		padding:12px 40px;
+		font-size:20px;
+	}	
+	
+	nav .container,
+	.blade .container,
+	.row .container,
+	footer .container {
+		font-size:15px;
+		line-height:26px;
+		padding:0px 10px;
+		width:calc(100% - 20px);
+		max-width:100%;
+	}
+	
+	.home-boxes .panel.panel-default {
+		min-height:auto;
+	}
+	.home-boxes .panel.panel-default .panel-body p {
+		min-height:auto;
+		padding-bottom:14px;
+	}
+	.home-boxes .panel.panel-default .panel-body {
+		padding-bottom:20px;
+		background:#fff;
+	}
+	
+	.featured-project-thumbnail {
+		display:none;
+	}
+	ul.featured-projects li.selected,
+	ul.featured-projects li:hover {
+		background:none;
+		cursor:default;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+	}
+	
+	img.photo {
+		margin-bottom:20px;
+	}
+}
+
+@media only screen and (max-width: 990px) {
+	footer a {
+		color:#fff;
+		text-decoration:none;
+	}
+	footer .footer-brand {
+		display:block;
+		width:30%;
+		margin:0px auto;
+	}
+	footer .col-with-border {
+		border-top:none;
+		padding-top:20px;
+	}
+}

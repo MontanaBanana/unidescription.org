@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $section->title);
+@section('title', $section->title)
 
 @section('header')
 	
@@ -43,387 +43,389 @@
 
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
-    <div class="col-lg-12">
-        <!--<h1 class="page-header">
-	            @if ($project->id)
-            		{{ $project->title }}
-            	@else
-            		Create New Project
-            	@endif
-        </h1>-->
-        
-        <ol class="breadcrumb">
-            <li><a href="{{ SITEROOT }}/">Home</a></li>
-            <li><a href="{{ SITEROOT }}/account">Account</a></li>
-            <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
-            <li class="active">
-            	@if ($project->id)
-            		{{ $project->title }}
-            	@else
-            		Create New Project
-            	@endif
-            </li>
-        </ol>
-    </div>
-
-    <div class="col-lg-12">
-        <nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-project-navbar-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<span class="navbar-brand">My Project:</span>
-				</div>
-
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-						<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
-						<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
-						<li class="active"><a href="#">{{ $section->title }}</a></li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-    </div>
-    
-	
-	<div class="row project">
+	<div class="container">
 	    <div class="col-lg-12">
-
-			<?php if ($was_locked): ?>
-				<form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
-			<?php else: ?>
-				<form method="GET" action="#" enctype="multipart/form-data" id="section_form">
-			<?php endif; ?>
-		
-				<?php if ($was_locked): ?>
-					{!! csrf_field() !!}
-					<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
-					<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />
-					<input type="hidden" name="was_autosave" id="was_autosave" value="0" />
-				<?php endif; ?>
-				
-				<div class="row">
-			        <div class="col-md-8 edit-column">
-				        <div class="wrapper">
-										
-							<?php if ($was_locked): ?>
-								<p>
-									<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-unlock" aria-hidden="true"></i> You can edit this page.</span>
-									<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
-								</p>
-								<br clear="all" />
-							<?php else: ?>
-								<p>
-									<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-lock" aria-hidden="true"></i> This page was locked by <?php echo $section->locked_by_user()->name; ?> <?php echo prettyDate($section->locked_at); ?>. <a href="?force_unlock=1">Force unlock.</a></span>
-									<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
-								</p>
-								<br clear="all" />
-							<?php endif; ?>
-							
-							<?php /*				        
-					        <div class="panel panel-default">
-								<div class="panel-heading">
-									Page Name:
-									<!--<span class="label pull-right label-info">Good Text Length</span>-->
-								</div>
-								<div class="panel-body form-element">
-									<input type="text" class="large" name="title" value="{{ $section->title }}" <?php if (!$was_locked) { echo 'readonly'; } ?>>
-								</div>
-							</div>
-							*/ ?>
-							
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									
-		Page Name: 
-		
-		<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
-		
-		{{-- DELETE --}}
-		<?php if($section->audio_title!=''){ ?>			
-			<span class="pull-right" style="padding-right: 5px;">
-				<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">
-			        <span class="fa fa-times"></span>
-		        </a>
-			</span>
-	    <?php } ?>
-		
-		{{-- UPLOAD --}}
-		<span class="pull-right" style="padding-right: 5px;">
-			<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadTitle">
-				<span id="microphone-icon" class="fa fa-upload"></span>
-			</a>
-		</span>
-		
-		{{-- PLAY --}}
-		<span class="pull-right" style="padding-right: 5px;">
-			<?php if($section->audio_title!=''){ ?>
-			    <a href="{{url('audio/'.$section->audio_title)}}" class="btn btn-sm btn-primary playAudio" rel="title" style="position: relative; top: -5px;">
-			        <span id="player-icon" class="fa fa-play"></span>
-		        </a>
-		    <?php } else { ?>
-				<a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;">
-					<span id="player-icon" class="fa fa-play"></span>
-				</a>
-			<?php } ?>
-		</span>
-		
-		{{-- DOWNLOAD --}}
-		<span class="pull-right" style="padding-right: 5px;">
-			<?php if($section->audio_title!=''){ ?>			
-				<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_title)}}">
-					<span id="download-icon" class="fa fa-download"></span>
-				</a>
-		    <?php } else { ?>
-				<a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;">
-					<span id="download-icon" class="fa fa-download"></span>
-				</a>
-			<?php } ?>
-		</span>
-
-								</div>
-								<div class="panel-body form-element">
-									<div class="audio-player play-title">
-										<audio id="play-title" controls></audio>
-									</div>
-								</div>
-							</div>
-
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Phonetic Page Name: 
-									<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
-									<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic_title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
-									<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
-								</div>
-								<div class="panel-body form-element">
-									<div class="audio-player play-phonetic_title">
-										<audio id="play-phonetic_title" controls></audio>
-									</div>
-								</div>
-							</div>
-
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									
-									
-											
-									
-									
-Page Description:
-
-{{-- DELETE --}}
-<?php if($section->audio_description!=''){ ?>			
-	<span class="pull-right" style="padding-right: 5px;">
-		<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">
-	        <span class="fa fa-times"></span>
-        </a>
-	</span>
-<?php } ?>
-
-{{-- UPLOAD --}}
-<span class="pull-right" style="padding-right: 5px;">
-	<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadDescription">
-		<span id="microphone-icon" class="fa fa-upload"></span>
-	</a>
-</span>
-
-{{-- PLAY --}}
-<span class="pull-right" style="padding-right: 5px;">
-	<?php if($section->audio_description!=''){ ?>
-	    <a href="{{url('audio/'.$section->audio_description)}}" class="btn btn-sm btn-primary playAudio" rel="description" style="position: relative; top: -5px;">
-	        <span id="player-icon" class="fa fa-play"></span>
-        </a>
-    <?php } else { ?>
-		<a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;">
-			<span id="player-icon" class="fa fa-play"></span>
-		</a>
-	<?php } ?>
-</span>
-
-{{-- DOWNLOAD --}}
-<span class="pull-right" style="padding-right: 5px;">
-	<?php if($section->audio_description!=''){ ?>			
-		<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_description)}}">
-			<span id="download-icon" class="fa fa-download"></span>
-		</a>
-    <?php } else { ?>
-		<a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;">
-			<span id="download-icon" class="fa fa-download"></span>
-		</a>
-	<?php } ?>
-</span>
-
-								</div>
-								<div class="panel-body form-element" id="description_container">
-									<div class="audio-player play-description play_description">
-										<audio id="play-description" controls></audio>
-									</div>
-									<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
-								</div>
-							</div>
-				        						
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
-																		
-																		
-									{{-- PLAY --}}
-									<span class="pull-right" style="padding-right: 5px;">
-										<a class="btn btn-sm btn-primary play-audio" rel="phonetic_description" style="position: relative; top: -5px;">
-											<span id="player-icon" class="fa fa-play"></span>
-										</a>
-									</span>
-									
-									{{-- DOWNLOAD --}}
-									<span class="pull-right" style="padding-right: 5px;">
-										<?php if($section->phonetic_description!=''){ ?>			
-											<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->phonetic_description)}}">
-												<span id="download-icon" class="fa fa-download"></span>
-											</a>
-									    <?php } else { ?>
-											<a class="btn btn-sm btn-primary download-phonetic_description" style="position: relative; top: -5px;">
-												<span id="download-icon" class="fa fa-download"></span>
-											</a>
-										<?php } ?>
-									</span>
-									
-									
-								</div>
-								<div class="panel-body form-element" id="phonetic_description_container">
-									<div class="audio-player play-phonetic_description play_phonetic_description">
-										<audio id="play-phonetic_description" controls></audio>
-									</div>
-									<textarea class="tall rte" name="phonetic_description" id="phonetic_description" placeholder="<?php echo get_placeholder_text($section->phonetic_description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
-								</div>
-							</div>
-									
-									
-									
-				        						
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									Page Notes:<br /><small>internal use only</small>
-								</div>
-								<div class="panel-body form-element">
-									<textarea class="tall rte" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
-								</div>
-							</div>
-							<?php if ($was_locked): ?>
-								<div class="wrapper-footer">
-									<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
-									<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
-								</div>
-							<?php endif; ?>
-				        </div>				        
-			        </div>
-			        <div class="col-md-4 tips-column">
-				        
-				        <!--
-	                	<div class="help">
-				        	<span class="fa fa-question-circle"></span>
-				        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
-			        	</div>
-			        	-->
-						<div class="panel panel-default">
-							<div class="panel-heading">Component Navigation:</div>
-							<div class="panel-body">
-                                <div class="col-sm-6 truncate" style="text-align: left;">
-                                    @if ($prev_ps)
-                                        <a href="/account/project/section/{{ $project->id }}/{{ $prev_ps->id }}">&larr; Previous<br /><small>{{ $prev_ps->title }}</small></a>
-                                    @endif
-                                </div>
-                                <div class="col-sm-6 truncate" style="text-align: right;">
-                                    @if ($next_ps)
-                                        <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        
-                        
-						<div class="panel panel-default">
-							<div class="panel-heading">Audio Recorder:</div>
-							<div class="panel-body">
-                                <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
-
-									<p>
-										<div id="audio_record" class="btn btn-primary" onclick="changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
-										<div id="audio_stop" class="btn btn-warning" onclick="changeVolume(0); stopRecording(this);" disabled>Stop</div>
-										<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
-									</p>
-									
-									<table id="recordingslist"></table>
-									
-                                </div>
-                            </div>
-                        </div>
-						
-						<div class="panel panel-default">
-							<div class="panel-heading">Component Photo:</div>
-							<div class="panel-body">
-								<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
-                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
-                                @if ($section->image_url)
-                                    <div>
-                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
-                                    </div>
-                                    <!-- Button trigger modal -->
-									<?php if ($was_locked): ?>
-										<p>
-											<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
-										</p>
-										<p>
-											<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
-												<span class="fa fa-file-image-o"></span> Crop photo
-											</button>
-										</p>
-										<p>
-											<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
-												<span class="fa fa-remove"></span> Delete photo
-											</button>
-										</p>
-									<?php endif; ?>
-                                @endif
-							</div>
-						</div>
-    				      	
-						<?php if ($was_locked): ?>
-							<div class="panel panel-default">
-								<div class="panel-heading">Save &amp; Complete:</div>
-								<div class="panel-body">
-									<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
-									<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
-								</div>
-							</div>
-						<?php endif; ?>
-						
-                        @include('project.todo.main')
-
-						@include('project.shared.section_version')
-
-			        </div>
-				</div>
-				<!-- /.row -->
-						        
-			    <div class="row creator">
-			        
-			       
-			    </div>
-			    
-			</form>
+	        <h1 class="page-header">
+		            @if ($project->id)
+	            		{{ $project->title }}
+	            	@else
+	            		Create New Project
+	            	@endif
+	        </h1>
+	        
+	        <ol class="breadcrumb">
+	            <li><a href="{{ SITEROOT }}/">Home</a></li>
+	            <li><a href="{{ SITEROOT }}/account">Account</a></li>
+	            <li><a href="{{ SITEROOT }}/account/project">My Projects</a></li>
+	            <li class="active">
+	            	@if ($project->id)
+	            		{{ $project->title }}
+	            	@else
+	            		Create New Project
+	            	@endif
+	            </li>
+	        </ol>
 	    </div>
+	
+	    <div class="col-lg-12">
+	        <nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-project-navbar-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!--<span class="navbar-brand">My Project:</span>-->
+					</div>
+	
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
+						<ul class="nav navbar-nav">
+							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
+							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
+							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li class="active"><a href="#">{{ $section->title }}</a></li>
+						</ul>
+					</div><!-- /.navbar-collapse -->
+				</div><!-- /.container-fluid -->
+			</nav>
+	    </div>
+	    
+		
+		<div class="row project">
+		    <div class="col-lg-12">
+	
+				<?php if ($was_locked): ?>
+					<form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
+				<?php else: ?>
+					<form method="GET" action="#" enctype="multipart/form-data" id="section_form">
+				<?php endif; ?>
+			
+					<?php if ($was_locked): ?>
+						{!! csrf_field() !!}
+						<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
+						<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />
+						<input type="hidden" name="was_autosave" id="was_autosave" value="0" />
+					<?php endif; ?>
+					
+					<div class="row">
+				        <div class="col-md-8 edit-column">
+					        <div class="wrapper">
+											
+								<?php if ($was_locked): ?>
+									<p>
+										<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-unlock" aria-hidden="true"></i> You can edit this page.</span>
+										<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+									</p>
+									<br clear="all" />
+								<?php else: ?>
+									<p>
+										<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-lock" aria-hidden="true"></i> This page was locked by <?php echo $section->locked_by_user()->name; ?> <?php echo prettyDate($section->locked_at); ?>. <a href="?force_unlock=1">Force unlock.</a></span>
+										<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+									</p>
+									<br clear="all" />
+								<?php endif; ?>
+								
+								<?php /*				        
+						        <div class="panel panel-default">
+									<div class="panel-heading">
+										Page Name:
+										<!--<span class="label pull-right label-info">Good Text Length</span>-->
+									</div>
+									<div class="panel-body form-element">
+										<input type="text" class="large" name="title" value="{{ $section->title }}" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+									</div>
+								</div>
+								*/ ?>
+								
+								
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										
+			Page Name: 
+			
+			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+			
+			{{-- DELETE --}}
+			<?php if($section->audio_title!=''){ ?>			
+				<span class="pull-right" style="padding-right: 5px;">
+					<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">
+				        <span class="fa fa-times"></span>
+			        </a>
+				</span>
+		    <?php } ?>
+			
+			{{-- UPLOAD --}}
+			<span class="pull-right" style="padding-right: 5px;">
+				<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadTitle">
+					<span id="microphone-icon" class="fa fa-upload"></span>
+				</a>
+			</span>
+			
+			{{-- PLAY --}}
+			<span class="pull-right" style="padding-right: 5px;">
+				<?php if($section->audio_title!=''){ ?>
+				    <a href="{{url('audio/'.$section->audio_title)}}" class="btn btn-sm btn-primary playAudio" rel="title" style="position: relative; top: -5px;">
+				        <span id="player-icon" class="fa fa-play"></span>
+			        </a>
+			    <?php } else { ?>
+					<a class="btn btn-sm btn-primary play-audio" rel="title" style="position: relative; top: -5px;">
+						<span id="player-icon" class="fa fa-play"></span>
+					</a>
+				<?php } ?>
+			</span>
+			
+			{{-- DOWNLOAD --}}
+			<span class="pull-right" style="padding-right: 5px;">
+				<?php if($section->audio_title!=''){ ?>			
+					<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_title)}}">
+						<span id="download-icon" class="fa fa-download"></span>
+					</a>
+			    <?php } else { ?>
+					<a class="btn btn-sm btn-primary download-title" style="position: relative; top: -5px;">
+						<span id="download-icon" class="fa fa-download"></span>
+					</a>
+				<?php } ?>
+			</span>
+	
+									</div>
+									<div class="panel-body form-element">
+										<div class="audio-player play-title">
+											<audio id="play-title" controls></audio>
+										</div>
+									</div>
+								</div>
+	
+								
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										Phonetic Page Name: 
+										<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+										<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic_title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
+										<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+									</div>
+									<div class="panel-body form-element">
+										<div class="audio-player play-phonetic_title">
+											<audio id="play-phonetic_title" controls></audio>
+										</div>
+									</div>
+								</div>
+	
+								
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										
+										
+												
+										
+										
+	Page Description:
+	
+	{{-- DELETE --}}
+	<?php if($section->audio_description!=''){ ?>			
+		<span class="pull-right" style="padding-right: 5px;">
+			<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">
+		        <span class="fa fa-times"></span>
+	        </a>
+		</span>
+	<?php } ?>
+	
+	{{-- UPLOAD --}}
+	<span class="pull-right" style="padding-right: 5px;">
+		<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadDescription">
+			<span id="microphone-icon" class="fa fa-upload"></span>
+		</a>
+	</span>
+	
+	{{-- PLAY --}}
+	<span class="pull-right" style="padding-right: 5px;">
+		<?php if($section->audio_description!=''){ ?>
+		    <a href="{{url('audio/'.$section->audio_description)}}" class="btn btn-sm btn-primary playAudio" rel="description" style="position: relative; top: -5px;">
+		        <span id="player-icon" class="fa fa-play"></span>
+	        </a>
+	    <?php } else { ?>
+			<a class="btn btn-sm btn-primary play-audio" rel="description" style="position: relative; top: -5px;">
+				<span id="player-icon" class="fa fa-play"></span>
+			</a>
+		<?php } ?>
+	</span>
+	
+	{{-- DOWNLOAD --}}
+	<span class="pull-right" style="padding-right: 5px;">
+		<?php if($section->audio_description!=''){ ?>			
+			<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_description)}}">
+				<span id="download-icon" class="fa fa-download"></span>
+			</a>
+	    <?php } else { ?>
+			<a class="btn btn-sm btn-primary download-description" style="position: relative; top: -5px;">
+				<span id="download-icon" class="fa fa-download"></span>
+			</a>
+		<?php } ?>
+	</span>
+	
+									</div>
+									<div class="panel-body form-element" id="description_container">
+										<div class="audio-player play-description play_description">
+											<audio id="play-description" controls></audio>
+										</div>
+										<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+									</div>
+								</div>
+					        						
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
+																			
+																			
+										{{-- PLAY --}}
+										<span class="pull-right" style="padding-right: 5px;">
+											<a class="btn btn-sm btn-primary play-audio" rel="phonetic_description" style="position: relative; top: -5px;">
+												<span id="player-icon" class="fa fa-play"></span>
+											</a>
+										</span>
+										
+										{{-- DOWNLOAD --}}
+										<span class="pull-right" style="padding-right: 5px;">
+											<?php if($section->phonetic_description!=''){ ?>			
+												<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->phonetic_description)}}">
+													<span id="download-icon" class="fa fa-download"></span>
+												</a>
+										    <?php } else { ?>
+												<a class="btn btn-sm btn-primary download-phonetic_description" style="position: relative; top: -5px;">
+													<span id="download-icon" class="fa fa-download"></span>
+												</a>
+											<?php } ?>
+										</span>
+										
+										
+									</div>
+									<div class="panel-body form-element" id="phonetic_description_container">
+										<div class="audio-player play-phonetic_description play_phonetic_description">
+											<audio id="play-phonetic_description" controls></audio>
+										</div>
+										<textarea class="tall rte" name="phonetic_description" id="phonetic_description" placeholder="<?php echo get_placeholder_text($section->phonetic_description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
+									</div>
+								</div>
+										
+										
+										
+					        						
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										Page Notes:<br /><small>internal use only</small>
+									</div>
+									<div class="panel-body form-element">
+										<textarea class="tall rte" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
+									</div>
+								</div>
+								<?php if ($was_locked): ?>
+									<div class="wrapper-footer">
+										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
+										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
+									</div>
+								<?php endif; ?>
+					        </div>				        
+				        </div>
+				        <div class="col-md-4 tips-column">
+					        
+					        <!--
+		                	<div class="help">
+					        	<span class="fa fa-question-circle"></span>
+					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
+				        	</div>
+				        	-->
+							<div class="panel panel-default">
+								<div class="panel-heading">Component Navigation:</div>
+								<div class="panel-body">
+	                                <div class="col-sm-6 truncate" style="text-align: left;">
+	                                    @if ($prev_ps)
+	                                        <a href="/account/project/section/{{ $project->id }}/{{ $prev_ps->id }}">&larr; Previous<br /><small>{{ $prev_ps->title }}</small></a>
+	                                    @endif
+	                                </div>
+	                                <div class="col-sm-6 truncate" style="text-align: right;">
+	                                    @if ($next_ps)
+	                                        <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
+	                                    @endif
+	                                </div>
+	                            </div>
+	                        </div>
+	                        
+	                        
+							<div class="panel panel-default">
+								<div class="panel-heading">Audio Recorder:</div>
+								<div class="panel-body">
+	                                <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
+	
+										<p>
+											<div id="audio_record" class="btn btn-primary" onclick="changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
+											<div id="audio_stop" class="btn btn-warning" onclick="changeVolume(0); stopRecording(this);" disabled>Stop</div>
+											<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
+										</p>
+										
+										<table id="recordingslist"></table>
+										
+	                                </div>
+	                            </div>
+	                        </div>
+							
+							<div class="panel panel-default">
+								<div class="panel-heading">Component Photo:</div>
+								<div class="panel-body">
+									<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
+	                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
+	                                @if ($section->image_url)
+	                                    <div>
+	                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
+	                                    </div>
+	                                    <!-- Button trigger modal -->
+										<?php if ($was_locked): ?>
+											<p>
+												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+													<span class="fa fa-file-image-o"></span> Crop photo
+												</button>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
+													<span class="fa fa-remove"></span> Delete photo
+												</button>
+											</p>
+										<?php endif; ?>
+	                                @endif
+								</div>
+							</div>
+	    				      	
+							<?php if ($was_locked): ?>
+								<div class="panel panel-default">
+									<div class="panel-heading">Save &amp; Complete:</div>
+									<div class="panel-body">
+										<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
+										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
+									</div>
+								</div>
+							<?php endif; ?>
+							
+	                        @include('project.todo.main')
+	
+							@include('project.shared.section_version')
+	
+				        </div>
+					</div>
+					<!-- /.row -->
+							        
+				    <div class="row creator">
+				        
+				       
+				    </div>
+				    
+				</form>
+		    </div>
+		</div>
 	</div>
 </div>
 

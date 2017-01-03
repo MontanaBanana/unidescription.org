@@ -2,7 +2,7 @@
 
 @section('header')
 
-@section('title', 'Authorize');
+@section('title', 'Authorize')
 
 @endsection
 

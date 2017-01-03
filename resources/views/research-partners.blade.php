@@ -1,23 +1,25 @@
 @extends('layouts.app')
 
-@section('title', 'About');
+@section('title', 'About')
 
 @section('content')
 
-        <!-- Page Heading/Breadcrumbs -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Research Partners
-                    <small>UniDescription</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li><a href="{{ SITEROOT }}/">Home</a></li>
-					<li><a href="{{ SITEROOT }}/about">About</a></li>
-                    <li class="active">Research Partners</li>
-                </ol>
-            </div>
-        </div>
-        <!-- /.row -->
+		<!-- Page Heading/Breadcrumbs -->
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12">
+					<h1 class="page-header">Research Partners
+						<small>UniDescription</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li><a href="{{ SITEROOT }}/">Home</a></li>
+						<li><a href="{{ SITEROOT }}/about">About</a></li>
+						<li class="active">Research Partners</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
 
 		<?php
 		$research_partners = array(
@@ -52,54 +54,60 @@
 		
 		?>
 		<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
-        <script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
+		<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.js"></script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
+		<script type="text/javascript">
+			$(document).ready(function() {
+				
+				var $grid = $('.grid').masonry({
+				  itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
+				  columnWidth: '.grid-sizer',
+				  percentPosition: true
+				});
 		
-		var $grid = $('.grid').masonry({
-		  itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
-		  columnWidth: '.grid-sizer',
-		  percentPosition: true
-		});
+				$grid.imagesLoaded().progress( function() {
+					  $grid.masonry('layout');
+				});
+			});
+		</script>
+		<?php
+		/*
+		<div class="row">
+			<div class="container">
+				<div class="col-lg-12">
+					<h2 class="page-header">Research Partners</h2>
+				</div>
+			</div>
+		</div>
+		*/
+		?>
 
-        $grid.imagesLoaded().progress( function() {
-              $grid.masonry('layout');
-        });
-	});
-</script>
-        <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header">Research Partners</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="container-fluid">
-              <!-- add extra container element for Masonry -->
-              <div class="grid">
-                <!-- add sizing element for columnWidth -->
-                <div class="grid-sizer col-xs-4"></div>
-                <!-- items use Bootstrap .col- classes -->
-                
-                <?php
-                    foreach ($research_partners as $k => $r):
-                        ?>
-                            <div class="grid-item col-md-4 col-sm-4 col-xs-6">
-                                <div class="grid-item-content">
-                                    <img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
-                                    <p>{{ $k }}</p>
-                                </div>
-                            </div>
-                        <?php
-                    endforeach;
-                ?>
-                
-              </div>
-            </div>
-        </div>
-        <!-- /.row -->
+		<div class="row">
+			<div class="container container-fluid">
+			  <!-- add extra container element for Masonry -->
+			  <div class="grid">
+				<!-- add sizing element for columnWidth -->
+				<div class="grid-sizer col-xs-4"></div>
+				<!-- items use Bootstrap .col- classes -->
+				
+				<?php
+					foreach ($research_partners as $k => $r):
+						?>
+							<div class="grid-item col-md-4 col-sm-4 col-xs-6">
+								<div class="grid-item-content">
+									<img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
+									<p>{{ $k }}</p>
+								</div>
+							</div>
+						<?php
+					endforeach;
+				?>
+				
+			  </div>
+			</div>
+		</div>
+		<!-- /.row -->
 		
-        <hr>
-        
+		<hr>
+		
 @endsection

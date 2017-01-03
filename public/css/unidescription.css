@@ -72,6 +72,16 @@ a img {
 .btn.btn-big {
 	padding:16px 0px;
 }
+.btn.input-group-addon {
+	background:none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+.btn.btn-sm {
+	width:auto;
+	padding:7px 10px;
+}
 
 /* Navbar */
 .navbar {	

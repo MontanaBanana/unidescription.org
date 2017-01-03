@@ -1,14 +1,31 @@
 @extends('layouts.app')
 
-@section('title', 'Account Activity');
+@section('title', 'About')
 
 @section('content')
 
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+	<div class="container">	
+		<div class="col-lg-12">
+			<h1 class="page-header">Account
+				<small>Activity</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="{{ SITEROOT }}/">Home</a>
+				</li>
+				<li class="active">Account Activity</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<!-- /.row -->
 
-<div class="row settings">
-    <div class="col-lg-12">
+<!-- Content -->
+<div class="row" style="margin-bottom:40px">
+	<div class="container">	
 	    
-	    <h1>User Activity for the last hour</h1>
+	    <h2 class="page-header" style="margin-top:0; text-align:center">User Activity for the last hour</h2>
     
     	@if($activity)
     		<div class="col-xs-12">
@@ -23,8 +40,11 @@
 	    @else
 	    	There is no user activity currently logged.
 	    @endif
-	    
-    </div>
+    
+	</div>
 </div>
 
+<!-- /.row -->
+		
 @endsection
+		    

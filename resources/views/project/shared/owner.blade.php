@@ -18,14 +18,18 @@
         @if ($project->is_owner())
                 <div class="input-group" id="share-input-group">
                     <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" />
-                    <span class="btn input-group-addon" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
+                    <span class="btn btn-sm btn-primary btn-inline" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
                 </div>
-                <span class="btn btn-wide googleContactsButton">Authorize Google contacts</span>
+                
+                <span class="btn btn-lg btn-warning btn-wide btn-icon"><span class="fa fa-google"></span> Authorize Contacts</span>
                 <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
+                
+                <p>&nbsp;</p>
+                
                 <strong>Change owner:</strong>
                 <div class="input-group" id="owner-input-group">
                     <input type="text" class="form-control" id="change-owner" placeholder="Name / Email" aria-describedby="owner-button" />
-                    <span class="btn input-group-addon" id="owner-button"><i id="owner-icon" class="fa fa-user fa-fw"></i> </span>
+                    <span class="btn btn-sm btn-primary btn-inline" id="owner-button"><i id="owner-icon" class="fa fa-user fa-fw"></i> </span>
                 </div><small>Must already have an account</small>
         @endif
 

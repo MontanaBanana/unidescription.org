@@ -187,5 +187,17 @@ $(document).ready(function(){
 		exclude: ".new-component",
 		nested: true
     });
+    
+    /* homepage featured projects */
+    $('.phone-with-headphones path.st0').css('fill', 'url(#img1)');
+	$('ul.featured-projects li').hover(function(){
+		$('ul.featured-projects li').removeClass('selected');
+		$(this).addClass('selected');
+		
+		var imageUrl = $(this).data('image');
+		var imageRef = $(this).data('ref');
+		//$('.image-behind-phone-with-headphones').css('background-image', 'url(' + imageUrl + ')');
+		$('.phone-with-headphones path.st0').css('fill', 'url(#' + imageRef + ')');
+	});
 
 });

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' table of contents');
+@section('title', $project->title . ' table of contents')
 
 @section('header')
 

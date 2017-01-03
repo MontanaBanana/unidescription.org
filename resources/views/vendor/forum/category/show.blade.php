@@ -160,7 +160,7 @@
                         {!! csrf_field() !!}
                         {!! method_field('patch') !!}
                         <input type="hidden" name="category_id" value="{{ $category->id }}">
-                        <button class="btn btn-default btn-small">{{ trans('forum::categories.mark_read') }}</button>
+                        <button class="btn btn-default btn-small btn-wide">{{ trans('forum::categories.mark_read') }}</button>
                     </form>
                 </div>
             @endcan

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $project->title . ' Build');
+@section('title', $project->title . ' Build')
 
 @section('content')
 

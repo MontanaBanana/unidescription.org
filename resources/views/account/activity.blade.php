@@ -45,9 +45,14 @@
 		    	@foreach ($activity as $a)
 		    		<?php ++$count;?>
 			    	<div class="row hover">
-				    	<div class="col-xs-3 col-lg-4">{{$a->name}}</div>
-				    	<div class="col-xs-5 col-lg-4"><a href="{{$a->last_url}}" target="_blank">{{$a->last_url}}</a></div>
-				    	<div class="col-xs-4 col-lg-4">{{timeAgo($a->last_url_time)}}</div>
+				    	<div class="row">
+					    	<div class="col-xs-6 col-sm-4 col-md-4">{{$a->name}}</div>
+					    	<div class="col-xs-6 col-sm-4">{{$a->email}}</div>
+					    	<div class="col-xs-12 col-sm-4">{{timeAgo($a->last_url_time)}}</div>
+				    	</div>
+				    	<div class="row">
+					    	<div class="col-xs-12"><a href="{{$a->last_url}}" target="_blank">{{$a->last_url}}</a></div>
+				    	</div>
 			    	</div>
 		    	@endforeach
     		</div>

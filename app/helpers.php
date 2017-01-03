@@ -196,7 +196,7 @@ function timeAgo($time_ago) {
 		// seconds
 		case $time <= 60; return 'less than a minute ago'; break;
 		// minutes
-		case $time >= 60 && $time < 3600; return (round($time/60) == 1) ? 'a minute' : round($time/60).' minutes ago'; break;
+		case $time >= 60 && $time < 3600; return (round($time/60) == 1) ? 'a minute ago' : round($time/60).' minutes ago'; break;
 		// hours
 		case $time >= 3600 && $time < 86400; return (round($time/3600) == 1) ? 'a hour ago' : round($time/3600).' hours ago'; break;
 		// days

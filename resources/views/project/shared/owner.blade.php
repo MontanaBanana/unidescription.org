@@ -21,7 +21,7 @@
                     <span class="btn btn-sm btn-primary btn-inline" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
                 </div>
                 
-                <span class="btn btn-lg btn-warning btn-wide btn-icon"><span class="fa fa-google"></span> Authorize Contacts</span>
+                <span class="btn btn-lg btn-warning btn-wide btn-icon googleContactsButton"><span class="fa fa-google"></span> Authorize Contacts</span>
                 <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
                 
                 <p>&nbsp;</p>
@@ -80,7 +80,7 @@
 		  
           function handleAuthorization(authorizationResult) {
             if (authorizationResult && !authorizationResult.error) {
-              $.get("https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=500&v=3.0",
+              $.get("https://www.google.com/m8/feeds/contacts/default/thin?alt=json&access_token=" + authorizationResult.access_token + "&max-results=100000&v=3.0",
                 function(result){
 				    $.each( result.feed.entry, function( i, entry ){
 						var name = 'undefined';
@@ -91,7 +91,7 @@
 						//console.log( entry );
 						if (typeof entry.gd$email !== 'undefined') {
 							$.each( entry.gd$email, function( j, address ){
-								//console.log(name + ' = ' + address.address);
+								console.log(name + ' = ' + address.address);
 								window.name_email.push( name + ' <' + address.address + '>' );
 							});
 						}

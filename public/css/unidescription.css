@@ -847,7 +847,7 @@ div.todo-description {
 input.todo-title {
     border: none;
     padding: 3px;
-    width: 160px;
+    width: 140px;
 }
 
 div.todo-description textarea {

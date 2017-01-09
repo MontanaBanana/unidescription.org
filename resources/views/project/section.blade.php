@@ -41,6 +41,16 @@
 
 @section('content')
 
+<?php
+	$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
+	$c = array_shift($c);
+	$editable = 0;
+	if($c){
+		$editable = $c->can_edit;
+	}
+	if($project->user_id == Auth::user()->id){$editable = 1;}
+?>
+
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="container">
@@ -105,29 +115,35 @@
 				<?php endif; ?>
 			
 					<?php if ($was_locked): ?>
-						{!! csrf_field() !!}
+						@if($editable)
+							{!! csrf_field() !!}
+						@endif
+						
+						@if($editable)
 						<input type="hidden" name="project_id" id="id" value="{{ $project->id }}" />
 						<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />
 						<input type="hidden" name="was_autosave" id="was_autosave" value="0" />
+						@endif
 					<?php endif; ?>
 					
 					<div class="row">
 				        <div class="col-md-8 edit-column">
 					        <div class="wrapper">
-											
-								<?php if ($was_locked): ?>
-									<p>
-										<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-unlock" aria-hidden="true"></i> You can edit this page.</span>
-										<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
-									</p>
-									<br clear="all" />
-								<?php else: ?>
-									<p>
-										<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-lock" aria-hidden="true"></i> This page was locked by <?php echo $section->locked_by_user()->name; ?> <?php echo prettyDate($section->locked_at); ?>. <a href="?force_unlock=1">Force unlock.</a></span>
-										<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
-									</p>
-									<br clear="all" />
-								<?php endif; ?>
+								@if($editable)			
+									<?php if ($was_locked): ?>
+										<p>
+											<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-unlock" aria-hidden="true"></i> You can edit this page.</span>
+											<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+										</p>
+										<br clear="all" />
+									<?php else: ?>
+										<p>
+											<span class="pull-left label label-warning" style="font-size: 100%;"><i class="fa fa-lock" aria-hidden="true"></i> This page was locked by <?php echo $section->locked_by_user()->name; ?> <?php echo prettyDate($section->locked_at); ?>. <a href="?force_unlock=1">Force unlock.</a></span>
+											<span class="pull-right label label-info" style="font-size: 100%; display: none;" id="saving"><i class="fa fa-save" aria-hidden="true"></i> Saving section...</span>
+										</p>
+										<br clear="all" />
+									<?php endif; ?>
+								@endif
 								
 								<?php /*				        
 						        <div class="panel panel-default">
@@ -147,9 +163,10 @@
 										
 			Page Name: 
 			
-			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 			
 			{{-- DELETE --}}
+			@if($editable)
 			<?php if($section->audio_title!=''){ ?>			
 				<span class="pull-right" style="padding-right: 5px;">
 					<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_title')}}">
@@ -157,13 +174,16 @@
 			        </a>
 				</span>
 		    <?php } ?>
+		    @endif
 			
 			{{-- UPLOAD --}}
+			@if($editable)
 			<span class="pull-right" style="padding-right: 5px;">
 				<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadTitle">
 					<span id="microphone-icon" class="fa fa-upload"></span>
 				</a>
 			</span>
+			@endif
 			
 			{{-- PLAY --}}
 			<span class="pull-right" style="padding-right: 5px;">
@@ -179,6 +199,7 @@
 			</span>
 			
 			{{-- DOWNLOAD --}}
+			@if($editable)
 			<span class="pull-right" style="padding-right: 5px;">
 				<?php if($section->audio_title!=''){ ?>			
 					<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_title)}}">
@@ -190,6 +211,7 @@
 					</a>
 				<?php } ?>
 			</span>
+			@endif
 	
 									</div>
 									<div class="panel-body form-element">
@@ -203,9 +225,9 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										Phonetic Page Name: 
-										<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked) { echo 'readonly'; } ?>>
+										<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 										<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic_title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
-										<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>
+										@if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>@endif
 									</div>
 									<div class="panel-body form-element">
 										<div class="audio-player play-phonetic_title">
@@ -225,6 +247,7 @@
 	Page Description:
 	
 	{{-- DELETE --}}
+	@if($editable)
 	<?php if($section->audio_description!=''){ ?>			
 		<span class="pull-right" style="padding-right: 5px;">
 			<a class="btn btn-sm btn-primary label-danger removeAudio" style="position: relative; top: -5px;" href="{{url('account/project/edit/audio/delete/'.$project->id.'/'.$section->id.'/audio_description')}}">
@@ -232,13 +255,16 @@
 	        </a>
 		</span>
 	<?php } ?>
+	@endif
 	
 	{{-- UPLOAD --}}
+	@if($editable)
 	<span class="pull-right" style="padding-right: 5px;">
 		<a style="position: relative; top: -5px;" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#uploadDescription">
 			<span id="microphone-icon" class="fa fa-upload"></span>
 		</a>
 	</span>
+	@endif
 	
 	{{-- PLAY --}}
 	<span class="pull-right" style="padding-right: 5px;">
@@ -254,6 +280,7 @@
 	</span>
 	
 	{{-- DOWNLOAD --}}
+	@if($editable)
 	<span class="pull-right" style="padding-right: 5px;">
 		<?php if($section->audio_description!=''){ ?>			
 			<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->audio_description)}}">
@@ -265,13 +292,14 @@
 			</a>
 		<?php } ?>
 	</span>
+	@endif
 	
 									</div>
 									<div class="panel-body form-element" id="description_container">
 										<div class="audio-player play-description play_description">
 											<audio id="play-description" controls></audio>
 										</div>
-										<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
+										<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 									</div>
 								</div>
 					        						
@@ -288,6 +316,7 @@
 										</span>
 										
 										{{-- DOWNLOAD --}}
+										@if($editable)
 										<span class="pull-right" style="padding-right: 5px;">
 											<?php if($section->phonetic_description!=''){ ?>			
 												<a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" href="{{url('audio/'.$section->phonetic_description)}}">
@@ -299,6 +328,7 @@
 												</a>
 											<?php } ?>
 										</span>
+										@endif
 										
 										
 									</div>
@@ -306,7 +336,7 @@
 										<div class="audio-player play-phonetic_description play_phonetic_description">
 											<audio id="play-phonetic_description" controls></audio>
 										</div>
-										<textarea class="tall rte" name="phonetic_description" id="phonetic_description" placeholder="<?php echo get_placeholder_text($section->phonetic_description); ?>" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
+										<textarea class="tall rte" name="phonetic_description" id="phonetic_description" placeholder="<?php echo get_placeholder_text($section->phonetic_description); ?>" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->phonetic_description }}</textarea>
 									</div>
 								</div>
 										
@@ -318,7 +348,7 @@
 										Page Notes:<br /><small>internal use only</small>
 									</div>
 									<div class="panel-body form-element">
-										<textarea class="tall rte" name="notes" <?php if (!$was_locked) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
+										<textarea class="tall rte" name="notes" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
 									</div>
 								</div>
 								<?php if ($was_locked): ?>
@@ -353,7 +383,7 @@
 	                            </div>
 	                        </div>
 	                        
-	                        
+	                        @if($editable)
 							<div class="panel panel-default">
 								<div class="panel-heading">Audio Recorder:</div>
 								<div class="panel-body">
@@ -370,7 +400,9 @@
 	                                </div>
 	                            </div>
 	                        </div>
+	                        @endif
 							
+							@if($editable)
 							<div class="panel panel-default">
 								<div class="panel-heading">Component Photo:</div>
 								<div class="panel-body">
@@ -399,7 +431,9 @@
 	                                @endif
 								</div>
 							</div>
+							@endif
 	    				      	
+	    				    @if($editable)
 							<?php if ($was_locked): ?>
 								<div class="panel panel-default">
 									<div class="panel-heading">Save &amp; Complete:</div>
@@ -409,6 +443,7 @@
 									</div>
 								</div>
 							<?php endif; ?>
+							@endif
 							
 	                        @include('project.todo.main')
 	
@@ -631,7 +666,7 @@
 			});
 		});
 		
-		
+		@if($editable)
 		$('.download-title').on('click', function(event) {
 			var request = $.ajax({
 			  url: "https://api.montanab.com/tts/tts.php",
@@ -1038,7 +1073,7 @@
 					}
 				});
 			});
-			
+		@endif	
 			
 	});
 	

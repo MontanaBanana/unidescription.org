@@ -146,6 +146,7 @@ Route::get(WEBROOT.'/phonegapbuild/callback', 'UserController@getBuildCallback')
 //Route::get('user/search/{string}', 'UserController@search');
 Route::post(WEBROOT.'/account/project/share', 'ProjectController@postShare');
 Route::post(WEBROOT.'/account/project/change_owner', 'ProjectController@postChangeOwner');
+Route::post(WEBROOT.'/account/project/permissions', 'ProjectController@changePermissions');
 
 // Authentication routes...
 Route::get(WEBROOT.'auth/login', 'Auth\AuthController@getLogin');

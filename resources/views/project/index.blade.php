@@ -63,6 +63,17 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 
 		<!-- Project Listing -->
 		@foreach ($projects as $project)
+		
+			
+		<?php
+			$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
+			$c = array_shift($c);
+			$editable = 0;
+			if($c){
+				$editable = $c->can_edit;
+			}
+			if($project->user_id == Auth::user()->id){$editable = 1;}			
+		?>
 			<!-- row -->
 			<div class="row">
 				<div class="container">
@@ -98,8 +109,10 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 									@endforeach
 							</p>
 						<?php endif; ?>
+						@if($editable)
 						<a class="btn btn-primary btn-icon" href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}"><span class="fa fa-eye"></span> Edit Project</i></a>
 						<a class="btn btn-primary btn-icon label-danger delete-project" href="/account/project/deleteconfirm/{{ $project->id }}" data-id="{{ $project->id }}"><span class="fa fa-times"></span> Delete Project</i></a>
+						@endif
 					</div>
 				</div>
 			</div>

@@ -208,6 +208,35 @@ class ProjectController extends Controller
 
 		return view('project.build', ['project' => $project, 'owner' => $owner, 'pg_build' => $pg_build]);
     }
+    
+    /**
+     * Accept user permission
+     *
+     * @return Response
+     */
+    public function changePermissions(Request $request)
+    {
+	    $project_id = $request->project_id;
+	    $user_id = $request->user_id;
+	    $can_edit = $request->can_edit;
+	    
+	    $project = Project::find($project_id);
+		if (!$project->id) {
+			return response()->json([ 'status' => false ]); exit;
+		}
+		$user = User::find($user_id);
+		if (!$user->id) {
+			return response()->json([ 'status' => false ]); exit;
+		}
+		
+		$u = DB::update('UPDATE project_user SET can_edit=:canedit WHERE project_id=:projectid AND user_id=:userid', ['canedit'=>$can_edit, 'projectid'=>$project_id, 'userid'=>$user_id]);
+		if($u){
+			return response()->json(['status' => true ]);
+		}
+		else{
+			return response()->json(['status' => false ]);
+		}
+    }    
 
     /**
      * Accept owner change update
@@ -265,7 +294,7 @@ class ProjectController extends Controller
 		}
 		//echo "$email";exit;
 	    $add_or_del = $request->add_or_del;
-	    
+
 	    $project = Project::find($project_id);
 		if (!$project->id) {
 			return response()->json([ 'status' => false ]);
@@ -275,10 +304,9 @@ class ProjectController extends Controller
 	    if ($project->user->id != Auth::user()->id) {
 		    return response()->json([ 'status' => false ]);
 		}
-
-	    $project = Project::find($project_id);
+	    
 		$user = User::where('email', $email)->first();
-		
+				
 		if ($user && $user->id) {
 			// User already exists in the database,
 			// now see if they are already shared with this

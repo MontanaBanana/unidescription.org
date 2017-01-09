@@ -10,7 +10,15 @@
                         @if ($project->is_owner())
                             <span class="glyphicon glyphicon-trash pull-right" style="cursor: pointer;" aria-hidden="true" data-email="{{ $user->email }}"></span>
                         @endif
+                        <?php
+	                       $c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>$user->id]);
+	                       $c = array_shift($c);
+	                    ?>
                         <span class="email">{{ $user->email }}</span>
+                         @if ($project->is_owner())
+                         	<span><input type="checkbox" class="canedit" name="canedit" value="{{$user->id}}" <?php if($c->can_edit){echo 'checked';} ?>></span>
+                         @endif
+                        
                     </li>
                 @endforeach
             </ul>
@@ -108,8 +116,46 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+	    
+        $('.canedit').click(function(event) {
+            var this_id = $(this).val();
+            var this_project = {{$project->id}};
+            if($(this).is(':checked')) {
+	            var can_edit = 1;
+	        }
+	        else{
+		        var can_edit = 0;
+	        }
+	            
+            if ($.isNumeric(this_id) && $.isNumeric(this_project)) {
+	            
+		        var formData = {
+                    _token: '{{ csrf_token() }}',
+                    project_id: $('#id').val(),
+                    user_id: this_id,
+                    can_edit: can_edit
+                };
+                $.ajax({
+                    url : "/account/project/permissions",
+                    type: "POST",
+                    data : formData,
+                    success: function(data, textStatus, jqXHR)
+                    {
+                        if (data.status) {
+                            //location.reload();
+                        }
+                    }
+                });
+            }
+            else {
+	            console.log('error');
+                //$('#owner-input-group').addClass('has-error');
+            }
+
+        });
+
+	    
         $('.share-list-group').on('click', 'span.glyphicon-trash', function(event) {
-           console.log($(event.currentTarget).data('email'));
             $('#share-input-group').removeClass('has-error');
 
             $('#share-icon').removeClass("fa fa-plus fa-fw");

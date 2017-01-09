@@ -82,6 +82,12 @@ a img {
 	width:auto;
 	padding:7px 10px;
 }
+#share-button{
+	color:#ccc
+}
+#share-button:hover{
+	color:#000
+}
 
 /* Navbar */
 .navbar {	

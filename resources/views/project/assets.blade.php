@@ -8,6 +8,16 @@
 
 @section('content')
 
+<?php
+	$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
+	$c = array_shift($c);
+	$editable = 0;
+	if($c){
+		$editable = $c->can_edit;
+	}
+	if($project->user_id == Auth::user()->id){$editable = 1;}
+?>
+
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="container">
@@ -67,7 +77,8 @@
 					<div class="row">
 				        <div class="col-md-8 edit-column">
 					        <div class="wrapper">
-									        
+								
+								@if($editable)
 								<!-- app store assets -->
 								<div class="panel panel-default">
 									<div class="panel-heading">Project assets:</div>
@@ -92,6 +103,7 @@
 										</div>
 									</div>
 								</div>
+								@endif
 		<!--						
 								<div class="panel panel-default">
 									<div class="panel-heading">App Store Icons:</div>
@@ -168,14 +180,16 @@
 										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
-										<textarea name="description">{{ $project->description }}</textarea>
+										<textarea name="description" <?php if(!$editable){echo 'disabled';}?>>{{ $project->description }}</textarea>
 									</div>
 								</div>
 					
-								<div class="wrapper-footer">
-									<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
-									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
-								</div>
+								@if($editable)
+									<div class="wrapper-footer">
+										<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
+										<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
+									</div>
+								@endif
 					        </div>
 	
 				        </div>
@@ -207,6 +221,7 @@
 
 @section('js')
 
+@if($editable)
 <script type="text/javascript">
 	
 	$(document).ready(function() {
@@ -266,5 +281,6 @@
 
 
 </script>
+@endif
 
 @endsection

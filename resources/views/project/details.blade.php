@@ -8,6 +8,16 @@
 
 @section('content')
 
+<?php
+	$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
+	$c = array_shift($c);
+	$editable = 0;
+	if($c){
+		$editable = $c->can_edit;
+	}
+	if($project->user_id == Auth::user()->id){$editable = 1;}
+?>
+
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="container">
@@ -32,7 +42,6 @@
 				</li>
 			</ol>
 		</div>
-	
 		<div class="col-lg-12">
 			<nav class="navbar navbar-default">
 				<div class="container-fluid">
@@ -69,8 +78,11 @@
 		<div class="row project">
 			<div class="col-lg-12">
 				<form method="POST" action="/account/project/details" enctype="multipart/form-data">
+					
+					@if($editable)
 					{!! csrf_field() !!}
 					<input type="hidden" name="id" id="id" value="{{ $project->id }}" />			
+					@endif
 					
 					<div class="row">
 						<div class="col-md-8 edit-column">
@@ -78,8 +90,10 @@
 											
 								<!-- project details -->
 								@if (!$project->id)
+								@if($editable)
 								<input type="hidden" id="chosen_template" name="chosen_template" value="template-none" />
-	
+								@endif
+								
 								<div class="panel panel-default">
 									<div class="panel-heading">Project Template:</div>
 									<div class="panel-body">
@@ -102,7 +116,7 @@
 										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="title" value="{{ $project->title }}" />
+										<input type="text" class="large" name="title" value="{{ $project->title }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
@@ -112,7 +126,7 @@
 										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
-										<textarea name="description">{{ $project->description }}</textarea>
+										<textarea name="description" <?php if(!$editable){echo ' disabled';}?>>{{ $project->description }}</textarea>
 									</div>
 								</div>
 								
@@ -121,7 +135,7 @@
 										GPO #:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="gpo" value="{{ $project->gpo }}" />
+										<input type="text" class="large" name="gpo" value="{{ $project->gpo }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 	
@@ -130,8 +144,7 @@
 										Version / Version Notes:
 									</div>
 									<div class="panel-body form-element">
-										<!--<input type="text" class="large" name="version" value="{{ $project->version }}" />-->
-										<textarea name="version">{{ $project->version }}</textarea>
+										<textarea name="version" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
 									</div>
 								</div>
 	
@@ -140,7 +153,7 @@
 										Metatags: (comma separated list. i.e.: National Historial Site, Oregon, bison, Midwest.)
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="metatags" value="{{ $project->metatags }}" />
+										<input type="text" class="large" name="metatags" value="{{ $project->metatags }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
@@ -149,7 +162,7 @@
 										Author:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="author" value="{{ $project->author }}" />
+										<input type="text" class="large" name="author" value="{{ $project->author }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
@@ -158,7 +171,7 @@
 										Publication year of brochure:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" />
+										<input type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 																																				
@@ -168,25 +181,29 @@
 										<div class="col-md-6">
 											@if ($project->image_url)
 												<img src="{{ $project->image_url }}" style="width: 100%;" class="thumbnail" />
+												@if($editable)
 												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger" id="deleteProjectImage" style="width: 100%;">
 														<span class="fa fa-remove"></span> Delete photo
 												</button>
+												@endif
 											@endif
 										</div>
+										@if($editable)
 										<div class="col-md-6">
 											<p>Uploaded image should be at least 800x600 pixels.</p>
 											<input type="file" id="project_image" name="project_image">
 											<!--<a href="#" class="btn btn-primary btn-icon"><span class="fa fa-camera-retro"></span> Upload Photo</a>-->
 										</div>
-	
+										@endif
 									</div>
 								</div>
 	
-	  
+								@if($editable)
 								<div class="wrapper-footer">
 									<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
+								@endif
 							</div>
 	
 						</div>
@@ -222,7 +239,7 @@
 @section('js')
 
 <script type="text/javascript">
-	
+	@if($editable)
 	$(document).ready(function() {
 		
 		$('.select-template').on('click', function(e) {
@@ -255,6 +272,7 @@
 		});		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 
 	});
+	@endif
 
 </script>
 

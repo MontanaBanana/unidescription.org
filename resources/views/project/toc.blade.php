@@ -8,6 +8,16 @@
 
 @section('content')
 
+<?php
+	$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
+	$c = array_shift($c);
+	$editable = 0;
+	if($c){
+		$editable = $c->can_edit;
+	}
+	if($project->user_id == Auth::user()->id){$editable = 1;}
+?>
+
 <!-- Page Heading/Breadcrumbs -->
 <div class="row">
 	<div class="container">
@@ -62,10 +72,15 @@
 		<div class="row project">
 		    <div class="col-lg-12">
 				<form method="POST" action="/account/project/toc" enctype="multipart/form-data" id="toc-form">
-					{!! csrf_field() !!}
+					@if($editable)
+						{!! csrf_field() !!}
+					@endif
+					
+					@if($editable)
 					<input type="hidden" name="id" id="id" value="{{ $project->id }}" />			
 					<input type="hidden" name="new_sections" id="new_sections" value="{{ $new_sections }}" />
 					<input type="hidden" name="json_toc" id="json_toc" value="" />
+					@endif
 					
 					<div class="row">
 				        <div class="col-md-8 edit-column">
@@ -76,7 +91,8 @@
 									<div class="panel-body white unid-list table-of-contents">
 										<div data-role="content" data-theme="c">
 											
-											<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+											
+											<ul data-role="listview" data-inset="true" data-theme="d" <?php if($editable){echo 'id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded"';}?>>
 												<?php foreach ($sections as $index => $section): ?>
 													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
 														<div>
@@ -84,8 +100,10 @@
 															<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
 															<span class="fa fa-bars" style="cursor: move;"></span>
 															<i class="fa fa-chevron-down toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+															@if($editable)
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
 															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+															@endif
 															<!--<span class="label pull-right text-length label-info">Good Text Length</span>-->
 														</div>
 														<ul>
@@ -98,8 +116,10 @@
 	
 																			<span class="fa fa-bars" style="cursor: move;"></span>
 																			<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+																			@if($editable)
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+																			@endif
 																			<!--<span class="label pull-right text-length label-default section-{{ $child->id }}-label">Not Started</span>-->
 																		</div>
 	                                                                    <ul>
@@ -112,8 +132,10 @@
 	
 	                                                                                        <span class="fa fa-bars" style="cursor: move;"></span>
 	                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
+	                                                                                        @if($editable)
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+	                                                                                        @endif
 	                                                                                        <!--<span class="label pull-right text-length label-default section-{{ $chch->id }}-label">Not Started</span>-->
 	                                                                                    </div>
 	                                                                                </li>
@@ -123,12 +145,15 @@
 																	</li>
 																@endforeach
 															@endif
+															
+															@if($editable)
 															<li class="new-component">
 																<div class="input-group">
 																	<input type="text" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
 																	<span class="btn input-group-addon add-page" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}">ADD</span>
 																</div>
 															</li>
+															@endif
 															<!--<li>
 																<div>
 																	<p><button class="btn btn-sm btn-primary btn-icon"><span class="fa fa-plus"></span> Add Sub Page</button></p>
@@ -138,12 +163,15 @@
 													</li>
 												<?php endforeach; ?>
 	                                            <?php unset($section); ?>
+	                                            
+	                                            @if($editable)
 												<li id="final-leaf" class="new-component">
 													<div class="input-group">
 														<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
 														<span class="btn input-group-addon add-page" id="section-0-add" data-project_section_id="0">ADD</span>
 													</div>
 												</li>
+												@endif
 											</ul>
 											
 										</div>
@@ -207,6 +235,7 @@
 		
 		$('[data-toggle="tooltip"]').tooltip();
 		
+		@if($editable)
 		$('.form-control').bind('keypress', function(e){
 			if ( e.keyCode == 13 ) {
 				//console.log('the span:');
@@ -216,7 +245,9 @@
 				e.preventDefault();
 			}
 		});
+		@endif
 		
+		@if($editable)
 		$('.toc-check-complete').on('click', function(event) {
 
 			if ($(this).hasClass('label-default')) {
@@ -293,7 +324,9 @@
 			}
 			
 	  	});
+	  	@endif
 	  	
+	  	@if($editable)
 	  	$('.add-page').one('click', function(event) {
 		  	//console.log( $(this).data() );
 		  	//console.log($(this).prev().val());
@@ -321,6 +354,7 @@
 			});
 			
 	  	});
+	  	@endif
 
 		$('.toc-arrow').on('click', function() {
 	    	$(this).toggleClass('glyphicon-chevron-right').toggleClass('glyphicon-chevron-down');
@@ -328,7 +362,7 @@
 	  	
 	  	$('.fa-chevron-right', $('.table-of-contents')).click();
 	  	
-	  	
+	  	@if($editable)
 	  	$('.toc-delete').on('click', function(event) {
 
 	    	var section_id = $(this).data('section_id');
@@ -376,6 +410,7 @@
 				});
 			}
 	  	});
+	  	@endif
 	    
 		//$(":file").filestyle({buttonBefore: true, placeHolder: 'Project Photo', buttonText: '&nbsp;Project photo', size: 'md', input: false, iconName: "fa fa-camera-retro"});
 	    
@@ -384,6 +419,7 @@
 		    window.scrollTo(window.scrollX, window.scrollY - 60);
 		});
 		
+		@if($editable)
 		var not_started_count = 0;
 		var total_count = 0;
 		$('textarea', $('div.creator')).each(function(index) {
@@ -459,6 +495,7 @@
 			$(section_label).html(new_label_text)
 	
 		});
+		@endif
 	
 	});
 

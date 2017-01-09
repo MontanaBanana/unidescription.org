@@ -43,11 +43,11 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Free, open-source, and university-backed project
+						Free, open-source, and<br/>university-backed project
 					</div>
 					<div class="panel-body">
-						<p>This government-funded effort features research, community engagement and many public benefits </p>
-						<a href="{{ SITEROOT }}/about" class="btn btn-primary">ABOUT US</a>
+						<p>This government-funded effort features research, community engagement, and many public benefits </p>
+						<a href="{{ SITEROOT }}/unid-academy" class="btn btn-primary">LEARN MORE</a>
 					</div>
 				</div>
 			</div>
@@ -57,8 +57,9 @@
 						Embracing diversity, inclusion, and accessibility
 					</div>
 					<div class="panel-body">
-						<p>As a grant-funded project, led by academics and federal employees, we want to openly share and develop this project, so we have built it in open-source code and offer it freely to anyone who wants to participate.</p>
-						<a href="{{ SITEROOT }}/unid-academy" class="btn btn-primary">LEARN MORE</a>
+						<!--<p>As a grant-funded project, led by academics and federal employees, we want to openly share and develop this project, so we have built it in open-source code and offer it freely to anyone who wants to participate.</p>-->
+                        <p>This project has included stakeholders who are blind and visually impaired at each and every design phase</p>
+						<a href="{{ SITEROOT }}/about" class="btn btn-primary">ABOUT US</a>
 					</div>
 				</div>
 			</div>
@@ -71,8 +72,7 @@
 				<h2 class="page-header">What can the UniD project do for you?</h2>
 			</div>
 			<div class="col-lg-12">
-				<p>Anything visual can be made more accessible through acoustic media, simply by having a sighted person thoughtfully describe its appearance. When audio description began, this process usually was just friend to friend, voice to ear. Emerging technologies, though, have expanded the possibilities.</p>
-				<p>With our free web tool, anyone can create audio description about anything, including visual media and attractions (such as audio versions of photographs, illustrations, maps, paintings, sculptures, historical artifacts, architecture, natural landscapes, etc.). All you have to do is login and start describing the world you see. Then, let our tool create an audio file, web text, or mobile app for you to share with others.</p><br />
+				<p>Anything visual can be made more accessible through acoustic media, simply by having a sighted person thoughtfully describe its appearance. When audio description began, this process usually was just friend to friend, voice to ear. Emerging technologies, though, have expanded the possibilities. With our free web tool, anyone can create audio description about anything, including visual media and attractions (such as audio versions of photographs, illustrations, maps, paintings, sculptures, historical artifacts, architecture, natural landscapes, etc.). All you have to do is login and start describing the world you see. Then, let our tool create an audio file, web text, or mobile app for you to share with others.</p><br />
 			</div>
 		</div>
 	</div>
@@ -94,7 +94,7 @@
 							<image xlink:href="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg" x="0" y="0" width="200" height="200" />
 						</pattern>
 						<pattern id="img2" patternUnits="userSpaceOnUse" width="200" height="200">
-							<image xlink:href="{{ SITEROOT }}/images/sf_maritime_homepage.jpg" x="0" y="0" width="200" height="200" />
+                            <image xlink:href="{{ SITEROOT }}/images/truman.png" x="0" y="0" width="200" height="200" />
 						</pattern>
 						<pattern id="img3" patternUnits="userSpaceOnUse" width="200" height="200">
 							<image xlink:href="{{ SITEROOT }}/images/denali_homepage.jpg" x="0" y="0" width="200" height="200" />
@@ -125,15 +125,15 @@
 				<ul class="featured-projects">
 					<li class="selected" data-ref="img1" data-image="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg">
 						<h3>Yellowstone National Park</h3>
-						<p>Something about this project as a tagline or description would go here. Something short but with keywords.</p>
+						<p>Visit Yellowstone and experience the world's first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers.</p>
 					</li>
 					<li data-ref="img2" data-image="{{ SITEROOT }}/images/sf_maritime_homepage.jpg">
-						<h3>San Francisco Maritime National Historical Park</h3>
-						<p>Something about this project as a tagline or description would go here. Something short but with keywords.</p>
+						<h3>Harry S Truman National Historic Site</h3>
+						<p>President Harry S Truman took America from its traditional isolationism into the age of international involvement. Despite his power, he never forgot where he came from.</p>
 					</li>
 					<li data-ref="img3" data-image="{{ SITEROOT }}/images/denali_homepage.jpg">
 						<h3>Denali National Park and Preserve</h3>
-						<p>Something about this project as a tagline or description would go here. Something short but with keywords.</p>
+						<p>Denali is six million acres of wild land, bisected by one ribbon of road. Wild animals large and small roam un-fenced lands, living as they have for ages. Solitude, tranquility and wilderness await.</p>
 					</li>
 				</ul>
 			</div>
@@ -149,11 +149,12 @@
 			</div>
 			<div class="col-lg-6 col-md-6">
 				<img src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="" class="photo" />
-					<p class="caption">UniD researcher Megan Conway examining and assessing media accessibility at Haleakalā National Park on Maui in Hawaii.</p>
+                    <p class="caption">
+UniD researcher Megan Conway, left, from UH, is visually and hearing-impaired and has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii. Above, University of Hawai'i student Sajja Koirala, who is blind, has been among the visually impaired collaborators who have been helping the UniD research team design better audio description tools and products for free public use.
+                    </p>
 			</div>
 			<div class="col-lg-6 col-md-6">	
-				<p>The UniDescription project was designed as a research initiative with public benefits. We needed certain web tools to conduct our academic studies, so we thought we might as well design those for the greater good while we were at it. This site includes a UniD Academy, as a place for you to learn more about audio description and its best practices, as well as the unique UniD builder tool, which allows you to easily create and share audio description.</p>
-				<p>More about this project can be found on the <a href="{{ SITEROOT }}/about" style="color: white; text-decoration: underline;">About Us</a> page. If you have specific questions or comments, please contact the principal investigator, <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank" style="color: white; text-decoration: underline;">Dr. Brett Oppegaard</a>, at University of Hawaii.</p><br />
+				<p>The UniDescription project was designed as a research initiative with public benefits. We needed certain web tools to conduct our academic studies, so we thought we might as well design those for the greater good while we were at it. This site includes a UniD Academy, as a place for you to learn more about audio description and its best practices, as well as the unique UniD builder tool, which allows you to easily create and share audio description. More about this project can be found on the <a href="{{ SITEROOT }}/about" style="color: white; text-decoration: underline;">About Us</a> page. If you have specific questions or comments, please contact the principal investigator, <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank" style="color: white; text-decoration: underline;">Dr. Brett Oppegaard</a>, at University of Hawai‘i.</p><br />
 				<a href="{{ SITEROOT }}/about" class="btn btn-default">Learn More</a>
 			</div>
 		</div>

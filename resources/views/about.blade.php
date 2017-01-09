@@ -25,8 +25,10 @@
 		<div class="row blade">
 			<div class="container">	
 				<div class="col-md-12">
-					<img class="photo" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
-					<p class="caption">UniD researcher Megan Conway, from UH, who is visually and hearing impaired, has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii.</p>
+					<!--<img class="photo" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
+                    <p class="caption">UniD researcher Megan Conway, from UH, who is visually and hearing impaired, has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii.</p>-->
+                    <img class="photo" src="{{ SITEROOT }}/images/conference-room.jpg" alt="Conference room at Harper's Ferry">
+                    <p class="caption">Some of the Unid research team members in Harpers Ferry Center, W.V., in September 2016, working on the National Park Service's first "Descriptathon," an event that brought together parks from throughout the country to audio describe their brochures. Clockwise, from the far right, is principal investigator Brett Oppegaard, research assistant Phil Jordan, web developer Joe Oppegaard, and NPS Media Accessibility Coordinator Michele Hartley.</p>
 					
 					<h2 class="page-header">About the UniD Project:</h2>
 						

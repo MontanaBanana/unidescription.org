@@ -92,7 +92,7 @@
 				</div>
 				<div class="col-md-6">
 					<img class="photo" src="{{ SITEROOT }}/images/sushil_at_lincoln_memorial.jpg" alt="Sushil at the Lincoln Memorial">
-					<p class="caption">Sushil at the Lincoln Memorial</p>
+					<p class="caption">During their fall 2016 visit to the Lincoln Memorial, Sushil Adhikari, from Nepal (right), and Nang Attal, from Afghanistan, discovered there was no audio description available at the site. So, Attal read the wall text to Adhikari and did his best to describe the surroundings. The UniD project is intended to help visitors, like Adhikari, who are blind or visually impaired, have equivalent experiences, vetted by park staff, which allow more people to participate fully in important societal and cultural discussions.</p>
 				</div>
 			</div>
 		</div>

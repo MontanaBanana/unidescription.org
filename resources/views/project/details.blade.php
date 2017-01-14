@@ -9,13 +9,26 @@
 @section('content')
 
 <?php
+
+// if adding new, user has permission
+$editable = 1;
+
+if(isset($project) && $project->id > 0){
+	// check if user has permission to edit
+	
 	$c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>Auth::user()->id]);
 	$c = array_shift($c);
+	
 	$editable = 0;
 	if($c){
 		$editable = $c->can_edit;
 	}
-	if($project->user_id == Auth::user()->id){$editable = 1;}
+	
+	if($project->user_id == Auth::user()->id){
+		$editable = 1;
+	}
+}
+
 ?>
 
 <!-- Page Heading/Breadcrumbs -->

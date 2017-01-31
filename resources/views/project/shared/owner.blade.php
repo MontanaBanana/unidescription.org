@@ -2,7 +2,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">Owner: {{ $project->user->name }}</h3></div>
     <div class="panel-body">
-        <strong>Shared with:</strong> <div style="inline-block; float:right; font-size:11px">&#10003; = editng ability</div>
+        <strong>Shared with:</strong> <div style="inline-block; float:right; font-size:11px">&#10003; = editing ability</div>
         @if (count($project->users))
             <ul class="list-group share-list-group">
                 @foreach ($project->users as $user)
@@ -23,7 +23,7 @@
                 @endforeach
             </ul>
         @endif
-        @if ($project->is_owner())
+        {{-- @if ($project->is_owner()) --}}
                 <div class="input-group" id="share-input-group">
                     <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" />
                     <span class="btn btn-sm btn-primary btn-inline" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
@@ -33,14 +33,14 @@
                 <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
                 
                 <p>&nbsp;</p>
-                
+                @if ($project->is_owner())
                 <strong>Change owner:</strong>
                 <div class="input-group" id="owner-input-group">
                     <input type="text" class="form-control" id="change-owner" placeholder="Name / Email" aria-describedby="owner-button" />
                     <span class="btn btn-sm btn-primary btn-inline" id="owner-button"><i id="owner-icon" class="fa fa-user fa-fw"></i> </span>
                 </div><small>Must already have an account</small>
-        @endif
-
+                @endif
+        {{-- @endif --}}
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-@if ($project->id && $project->is_owner())
+@if ($project->id)
 <div class="panel panel-default">
     <div class="panel-heading">Tip: Exporting</div>
     <div class="panel-body">

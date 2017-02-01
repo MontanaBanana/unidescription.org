@@ -42,12 +42,12 @@ class User extends Model implements AuthenticatableContract,
     
     public function projects()
     {
-        return $this->hasMany('App\Project')->orderBy('title');
+        return $this->hasMany('App\Project')->orderBy('updated_at', 'desc');
     }
     
     public function shared_projects()
     {
-        return $this->belongsToMany('App\Project')->withTimestamps()->orderBy('title');
+        return $this->belongsToMany('App\Project')->withTimestamps()->orderBy('updated_at', 'desc');
     }
     
     /**

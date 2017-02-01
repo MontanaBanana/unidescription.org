@@ -536,7 +536,10 @@ class ProjectController extends Controller
 	{
 		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
 		$p = Project::find($request->project_id);
-    
+		// NOW UPDATE THE PROJECT updated_at
+		$p->updated_at = date("Y-m-d H:i:s", time());
+		$p->save();
+		
 		$files = Input::file('asset');
 		$file_count = count($files);
 		$uploadcount = 0;
@@ -932,7 +935,12 @@ class ProjectController extends Controller
 			$ps->locked_at = date('Y-m-d H:i:s');
 		}
 		
-		$ps->save();
+		if($ps->save()){
+			$p = Project::find($request->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 
         if ($go_back) {
 			return redirect('/account/project/section/'.$ps->project_id.'/'.$ps->id);
@@ -1043,6 +1051,12 @@ class ProjectController extends Controller
 
 	    }
 */
+		
+		$p = Project::find($request->id);
+		// NOW UPDATE THE PROJECT updated_at
+		$p->updated_at = date("Y-m-d H:i:s", time());
+		$p->save();
+		
 		return redirect()->back();
 	}    
 
@@ -1052,7 +1066,12 @@ class ProjectController extends Controller
         if (isset($request->project_section_id)) {
             $pt->project_section_id = $request->project_section_id;
         }
-		$pt->save();
+		if($pt->save()){
+			$p = Project::find($request->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);
 	}
 
@@ -1065,7 +1084,12 @@ class ProjectController extends Controller
         elseif ($request->description) {
             $pt->description = $request->description;
         }
-		$pt->save();
+		if($pt->save()){
+			$p = Project::find($request->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);
 	}
 
@@ -1073,7 +1097,12 @@ class ProjectController extends Controller
 	{
 		$pt = ProjectTodo::find($request->id);
 		$pt->completed = $request->completed;
-		$pt->save();
+		if($pt->save()){
+			$p = Project::find($pt->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);
 	}
 	
@@ -1081,7 +1110,12 @@ class ProjectController extends Controller
 	{
 		$pt = ProjectTodo::find($request->id);
 		$pt->deleted = $request->deleted;
-		$pt->save();
+		if($pt->save()){
+			$p = Project::find($pt->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);		
 	}
 	
@@ -1089,7 +1123,12 @@ class ProjectController extends Controller
 	{
 		$ps = ProjectSection::find($request->id);
 		$ps->completed = $request->completed;
-		$ps->save();
+		if($ps->save()){
+			$p = Project::find($ps->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);
 	}
 	
@@ -1097,7 +1136,12 @@ class ProjectController extends Controller
 	{
 		$ps = ProjectSection::find($request->id);
 		$ps->deleted = $request->deleted;
-		$ps->save();
+		if($pt->save()){
+			$p = Project::find($ps->project_id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+		}
 		return response()->json([ 'status' => true ]);		
 	}
 	
@@ -1111,7 +1155,12 @@ class ProjectController extends Controller
 			$status = false;
 			$ps = false;
 		}
-
+		
+		$p = Project::find($request->project_id);
+		// NOW UPDATE THE PROJECT updated_at
+		$p->updated_at = date("Y-m-d H:i:s", time());
+		$p->save();
+		
 		return response()->json([ 'status' => $status, 'section' => $ps ]);
 	}
 	        
@@ -1164,8 +1213,14 @@ class ProjectController extends Controller
 					}
 			    }
 		    }
-    	    
+			$project->updated_at = date("Y-m-d H:i:s", time());
     	    $project->save();
+    	    
+    	    $p = Project::find($request->id);
+			// NOW UPDATE THE PROJECT updated_at
+			$p->updated_at = date("Y-m-d H:i:s", time());
+			$p->save();
+			
 			return redirect()->back();
 		    
 	    }

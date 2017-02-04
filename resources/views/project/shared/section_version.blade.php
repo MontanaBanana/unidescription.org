@@ -48,8 +48,8 @@ foreach ($section->project_section_versions as $v):
 					<div id="tabs_<?php echo $v->id;?>">
 						<?php
 							$l = array(
-								array('name'=>'Page Name', 'column'=>'title'),
-								array('name'=>'Phonetic Page Name', 'column'=>'phonetic_title'),
+								array('name'=>'Component Name', 'column'=>'title'),
+								array('name'=>'Phonetic Component Name', 'column'=>'phonetic_title'),
 								array('name'=>'Description', 'column'=>'description'),
 								array('name'=>'Phonetic Description', 'column'=>'phonetic_description'),
 								array('name'=>'Notes', 'column'=>'notes'),

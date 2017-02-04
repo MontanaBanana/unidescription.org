@@ -148,7 +148,7 @@
 								<?php /*				        
 						        <div class="panel panel-default">
 									<div class="panel-heading">
-										Page Name:
+										Component Name:
 										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
@@ -161,7 +161,7 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										
-			Page Name: 
+			Component Name: 
 			
 			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 			
@@ -224,7 +224,7 @@
 								
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										Phonetic Page Name: 
+										Phonetic Component Name: 
 										<input type="text" id="phonetic_title" class="large" name="phonetic_title" value="{{ $section->phonetic_title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 										<span class="pull-right"><a class="btn btn-sm btn-primary play-audio" rel="phonetic_title" style="position: relative; top: -5px;"><span id="player-icon" class="fa fa-play"></span></a></span>
 										@if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary download-phonetic_title" style="position: relative; top: -5px;"><span id="download-icon" class="fa fa-download"></span></a></span>@endif
@@ -244,7 +244,7 @@
 												
 										
 										
-	Page Description:
+	Component Description:
 	
 	{{-- DELETE --}}
 	@if($editable)
@@ -305,7 +305,7 @@
 					        						
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										Phonetic Page Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
+										Phonetic Component Description:<br /><small>if you fill this field out, this text will be used in the text to speech audio instead<br/> of the description above. You might want to use this if the text to speech software<br/> isn't properly pronouncing your text.</small>
 																			
 																			
 										{{-- PLAY --}}
@@ -345,7 +345,7 @@
 					        						
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										Page Notes:<br /><small>internal use only</small>
+										Component Notes:<br /><small>internal use only</small>
 									</div>
 									<div class="panel-body form-element">
 										<textarea class="tall rte" name="notes" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->notes }}</textarea>
@@ -354,7 +354,7 @@
 								<?php if ($was_locked): ?>
 									<div class="wrapper-footer">
 										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
-										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a>
+										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Component Complete</a>
 									</div>
 								<?php endif; ?>
 					        </div>				        
@@ -447,7 +447,7 @@
 									<div class="panel-heading">Save &amp; Complete:</div>
 									<div class="panel-body">
 										<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
-										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Page Complete</a></p>
+										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Component Complete</a></p>
 									</div>
 								</div>
 							<?php endif; ?>

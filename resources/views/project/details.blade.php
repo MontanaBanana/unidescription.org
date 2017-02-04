@@ -90,7 +90,7 @@ if(isset($project) && $project->id > 0){
 		
 		<div class="row project">
 			<div class="col-lg-12">
-				<form method="POST" action="/account/project/details" enctype="multipart/form-data">
+				<form id="project_details_form" method="POST" action="/account/project/details" enctype="multipart/form-data">
 					
 					@if($editable)
 					{!! csrf_field() !!}
@@ -251,6 +251,7 @@ if(isset($project) && $project->id > 0){
 
 @section('js')
 
+<script type="text/javascript" src="/js/jquery.form.js"></script>
 <script type="text/javascript">
 	@if($editable)
 	$(document).ready(function() {
@@ -263,6 +264,12 @@ if(isset($project) && $project->id > 0){
 			$('#chosen_template').val( $(e.currentTarget).data('template') );
 			//console.log( $(e).data() );
 		});
+
+
+        $(window).on('beforeunload', function(){
+            $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
+        });
+
 		
 		$('#deleteProjectImage').click(function() {
 			$.ajax({

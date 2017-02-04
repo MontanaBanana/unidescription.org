@@ -809,8 +809,19 @@ class ProjectController extends Controller
             exit;
         }
 
-        $prev_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order-1))->first();
-        $next_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order+1))->first();
+        $prev_ps = DB::table('project_sections')
+            ->where('project_id', '=', $project_id)
+            ->where('sort_order', '<', $ps->sort_order)
+            ->where('deleted', '=', 0)
+            ->orderBy('sort_order', 'desc')
+            ->first();
+        $next_ps = DB::table('project_sections')
+            ->where('project_id', '=', $project_id)
+            ->where('sort_order', '>', $ps->sort_order)
+            ->where('deleted', '=', 0)
+            ->orderBy('sort_order', 'asc')
+            ->first();
+        //$next_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order+1))->first();
 
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
 		$sections = buildTree($project->project_sections, 'project_section_id');

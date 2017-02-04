@@ -370,16 +370,24 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">Component Navigation:</div>
 								<div class="panel-body">
+									<?php $f = FALSE;?>
 	                                <div class="col-sm-6 truncate" style="text-align: left;">
 	                                    @if ($prev_ps)
+	                                    	<?php $f = TRUE;?>
 	                                        <a href="/account/project/section/{{ $project->id }}/{{ $prev_ps->id }}">&larr; Previous<br /><small>{{ $prev_ps->title }}</small></a>
 	                                    @endif
 	                                </div>
 	                                <div class="col-sm-6 truncate" style="text-align: right;">
 	                                    @if ($next_ps)
+	                                    	<?php $f = TRUE;?>
 	                                        <a href="/account/project/section/{{ $project->id }}/{{ $next_ps->id }}">Next &rarr;<br /><small>{{ $next_ps->title }}</small></a>
 	                                    @endif
 	                                </div>
+	                                <?php if(!$f){ ?>
+		                                <div class="col-sm-12" style="text-align: center;">
+			                                <a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Please save the TOC ordering to enable this feature</a>
+		                                </div>
+		                            <?php } ?>
 	                            </div>
 	                        </div>
 	                        

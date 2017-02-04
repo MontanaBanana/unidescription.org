@@ -82,6 +82,26 @@
 					<input type="hidden" name="json_toc" id="json_toc" value="" />
 					@endif
 					
+							
+		
+					<?php 
+					$needs_updating = FALSE;
+					foreach($sections AS $sec){
+						if($sec->sort_order==99){$needs_updating = TRUE;
+						}
+					}
+					
+					if($needs_updating){ ?>
+					<div class="row">
+				        <div class="col-md-8 edit-column" style="margin-bottom:20px">
+					        <div class="wrapper" style="background-color:yellow; padding:5px 12px">
+						        Update the ordering below to enable the Component Navigation.<br>This process only needs to be done once.
+					        </div>
+				        </div>
+					</div>
+					<?php } ?>
+					
+					
 					<div class="row">
 				        <div class="col-md-8 edit-column">
 					        <div class="wrapper">

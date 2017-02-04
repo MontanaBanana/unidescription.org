@@ -114,7 +114,8 @@
 											
 											<ul data-role="listview" data-inset="true" data-theme="d" <?php if($editable){echo 'id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded"';}?>>
 												<?php foreach ($sections as $index => $section): ?>
-													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
+                                                    <?php if (!@$_GET['show_deleted'] && $section->deleted) { continue; } ?>
+													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded">
 														<div>
 													        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 															<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
@@ -227,7 +228,7 @@
 									-->
 									<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
 	
-									<p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" /> Show deleted items</label> </p>
+                                    <p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" <?php if (@$_GET['show_deleted']) { echo 'checked'; } ?>/> Show deleted items</label> </p>
 								</div>
 							</div>
 				        	

@@ -1147,7 +1147,7 @@ class ProjectController extends Controller
 	{
 		$ps = ProjectSection::find($request->id);
 		$ps->deleted = $request->deleted;
-		if($pt->save()){
+		if($ps->save()){
 			$p = Project::find($ps->project_id);
 			// NOW UPDATE THE PROJECT updated_at
 			$p->updated_at = date("Y-m-d H:i:s", time());

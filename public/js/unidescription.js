@@ -6,12 +6,24 @@ function validateEmail(email) {
 }
 
 function toggleDeleted() {
+    var url = window.location.href
 	if ($('input#toggle-deleted').is(':checked')) {
-		$('.deleted').show();
+        if (url.indexOf('?') > -1){
+           url += '&show_deleted=1'
+        } else {
+           url += '?show_deleted=1'
+        }
 	}
 	else {
+        if (url.indexOf('?') > -1){
+           url += '&show_deleted=0'
+        } else {
+           url += '?show_deleted=0'
+        }
 		$('.deleted').hide();
 	}
+    window.location.href = url;
+    return true;
 }
 
 $(document).ready(function(){
@@ -169,6 +181,9 @@ $(document).ready(function(){
 		    //console.log('afterMove');
 		    //console.log($placeholder, container, $closestItemOrContainer);
 		},
+        onCancel: function ($item, container, _super, event) {
+            console.log('onCancel was called');
+        },
 		onDrop: function ($item, container, _super) {
 			var data = group.sortable("serialize").get();
 			var jsonString = JSON.stringify(data, null, ' ');
@@ -179,9 +194,11 @@ $(document).ready(function(){
 			_super($item, container);
 			$('#toc-form').submit();
 		},
+        /*
 		isValidTarget: function ($item, container) {
 		    return true;    
 		},
+        */
 		//tolerance: 6,
 		//distance: 10,
 		exclude: ".new-component",

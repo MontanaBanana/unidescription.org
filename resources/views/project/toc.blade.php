@@ -248,11 +248,39 @@
 @section('js')
 
 <script type="text/javascript">
+
+var isDragging = false;
+var $elems = $("html, body");
+var delta = 0;
+
+$(document).on("mousemove", function(e) {
+    var h = $(window).height();
+    var y = e.clientY - h / 2;
+    delta = y * 0.01;
+});
+
+$(window).on("blur mouseleave", function() {
+    delta = 0;
+});
+
+(function f() {
+    if(delta && isDragging) {
+        $elems.scrollTop(function(i, v) {
+            return v + delta;
+        });
+    }
+    webkitRequestAnimationFrame(f);
+})();
 	
 	$(document).ready(function() {
-		
-		
-		
+
+        $(document).mousedown(function() {
+            isDragging = true;
+        });		
+        $(document).mouseup(function() {
+            isDragging = false;
+        });		
+
 		$('[data-toggle="tooltip"]').tooltip();
 		
 		@if($editable)

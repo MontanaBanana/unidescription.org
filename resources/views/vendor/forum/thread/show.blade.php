@@ -34,12 +34,14 @@
 
         @can ('reply', $thread)
             <div class="row">
+<!-- MB - disabled on 2/6/2017, just let the user scroll down and reply from there
                 <div class="col-xs-4">
                     <div class="btn-group" role="group">
                         <a href="{{ Forum::route('post.create', $thread) }}" class="btn btn-primary">{{ trans('forum::general.new_reply') }}</a>
                         <a href="#quick-reply" class="btn btn-primary">{{ trans('forum::general.quick_reply') }}</a>
                     </div>
                 </div>
+-->
                 <div class="col-xs-8 text-right">
                     {!! $thread->postsPaginated->render() !!}
                 </div>
@@ -77,7 +79,7 @@
         {!! $thread->postsPaginated->render() !!}
 
         @can ('reply', $thread)
-            <h3>{{ trans('forum::general.quick_reply') }}</h3>
+            <h3>{{ trans('forum::general.reply') }}</h3>
             <div id="quick-reply">
                 <form method="POST" action="{{ Forum::route('post.store', $thread) }}">
                     {!! csrf_field() !!}

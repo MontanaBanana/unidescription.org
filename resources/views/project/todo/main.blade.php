@@ -34,7 +34,7 @@
         <li class="new-component">
             <div class="input-group">
                 <input type="text" class="form-control" id="todo-new" name="todo-new" onKeyPress="addOnEnter(event, this);" placeholder="Add a new To Do..." aria-describedby="todo-add" />
-                <span class="btn input-group-addon add-todo" id="todo-add">ADD</span>
+                <span class="btn btn-sm btn-primary btn-inline add-todo" id="todo-add"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD</span>
             </div>
         </li>
     </ul>

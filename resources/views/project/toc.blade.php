@@ -170,8 +170,8 @@
 															@if($editable)
 															<li class="new-component">
 																<div class="input-group">
-																	<input type="text" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
-																	<span class="btn input-group-addon add-page" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}">ADD</span>
+																	<input type="text" style="width: 84%" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
+																	<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 80px;" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD</span>
 																</div>
 															</li>
 															@endif

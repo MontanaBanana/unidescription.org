@@ -642,7 +642,6 @@ footer img {
 	margin-top:20px;
 }
 
-
 /* Register styles */
 .form-register {
   max-width: 330px;
@@ -671,6 +670,14 @@ footer img {
 .form-register input {
   margin-bottom: 3px;
 
+}
+
+.form-signin .input-group input.form-control {
+    width: 100%;
+}
+
+.form-register .input-group input.form-control {
+    width: 100%;
 }
 
 .toc-arrow {

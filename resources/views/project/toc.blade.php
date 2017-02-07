@@ -188,8 +188,8 @@
 	                                            @if($editable)
 												<li id="final-leaf" class="new-component">
 													<div class="input-group">
-														<input type="text" class="form-control" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
-														<span class="btn input-group-addon add-page" id="section-0-add" data-project_section_id="0">ADD</span>
+														<input type="text" class="form-control" style="width: 487px;" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
+														<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 80px;" id="section-0-add" data-project_section_id="0"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD</span>
 													</div>
 												</li>
 												@endif

@@ -91,7 +91,7 @@
 						}
 					}
 					
-					if($needs_updating){ ?>
+					if($needs_updating && false){ ?>
 					<div class="row">
 				        <div class="col-md-8 edit-column" style="margin-bottom:20px">
 					        <div class="wrapper" style="background-color:yellow; padding:5px 12px">
@@ -250,6 +250,9 @@
 
 <script type="text/javascript">
 
+var posX = 0;
+var posY = 0;
+var secondsDragging = 0;
 var isDragging = false;
 var $elems = $("html, body");
 var delta = 0;
@@ -265,18 +268,25 @@ $(window).on("blur mouseleave", function() {
 });
 
 (function f() {
-    if(delta && isDragging) {
+    if(delta && isDragging && secondsDragging > 0 && (posY < 30 || posY > 30)) {
         $elems.scrollTop(function(i, v) {
             return v + delta;
         });
     }
-    webkitRequestAnimationFrame(f);
+    requestAnimationFrame(f);
 })();
 	
 	$(document).ready(function() {
 
+        $("body").mousemove(function(e) {
+            posX = e.pageX/window.innerWidth*100;
+            posY = e.pageY/window.innerHeight*100;
+        });
+        
         $(document).mousedown(function() {
             isDragging = true;
+            secondsDragging = 0;
+            setTimeout(function(){secondsDragging += 2},2000);
         });		
         $(document).mouseup(function() {
             isDragging = false;

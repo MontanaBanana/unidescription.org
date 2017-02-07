@@ -13,6 +13,7 @@ return array(
     'AddAudioTitle' => $baseDir . '/database/migrations/2016_12_12_192632_add_audio_title.php',
     'AddCanEditToUserProject' => $baseDir . '/database/migrations/2017_01_06_202342_add_can_edit_to_user_project.php',
     'AddGithubBranchName' => $baseDir . '/database/migrations/2016_07_14_223640_add_github_branch_name.php',
+    'AddLinkToTodos' => $baseDir . '/database/migrations/2017_02_07_043412_add_link_to_todos.php',
     'AddLockToProjectSection' => $baseDir . '/database/migrations/2016_09_21_193410_add_lock_to_project_section.php',
     'AddMetatags' => $baseDir . '/database/migrations/2016_07_11_204820_add_metatags.php',
     'AddOriginalImageField' => $baseDir . '/database/migrations/2016_07_20_034621_add_original_image_field.php',

@@ -25,6 +25,9 @@
                 <div class="todo-description">
                     <textarea data-todo_id="{{ $todo->id }}" class="todo-textarea">{{ $todo->description }}</textarea>
                 </div>
+                <?php if (strlen($todo->url)): ?>
+                    <a href="{{ $todo->url }}" target="_blank">Click for activity</a>
+                <?php endif; ?>
             </div>
         </li>
     <?php

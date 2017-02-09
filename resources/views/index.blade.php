@@ -8,8 +8,8 @@
     <header style="background-image:url({{ SITEROOT }}/slideshow/ad_photo1-cropped.jpg)">
 		<div class="container centerpiece">
 			<div class="slide">
-				<p class="tagline">Audio Describe the World</p>
-				<p class="button"><a href="{{ SITEROOT }}/auth/register">Learn More</a></p>
+				<p class="tagline" id="tagline">Audio Describe the World</p>
+				<p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p>
 			</div>
 		</div>
 	</header>
@@ -19,9 +19,9 @@
 		<div class="container">
 			<div class="col-lg-12">
 				<h1 class="page-header">
-					<center><strong>The UniD Project</strong>
-					<div class="small">To Create Acoustic Spaces and More Accessible Places</div></center>
+					<center><strong>The UniD Project</strong></center>
 				</h1>
+                <center><strong>To Create Acoustic Spaces and More Accessible Places</strong></center>
 			</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Free, open-source, and<br/>university-backed project
+						Free, open-source, and<br/>university-backed
 					</div>
 					<div class="panel-body">
 						<p>This government-funded effort features research, community engagement, and many public benefits </p>
@@ -86,8 +86,7 @@
 			
 			<div class="col-lg-6 col-md-6 featured-project-thumbnail">
 				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-					 viewBox="0 0 171 183" style="enable-background:new 0 0 171 183;" xml:space="preserve" class="phone-with-headphones">
-					<title>Mobile phone icon with headphones</title>
+					 viewBox="0 0 171 183" style="enable-background:new 0 0 171 183;" xml:space="preserve" class="phone-with-headphones" alt="">
 					
 					<defs>
 						<pattern id="img1" patternUnits="userSpaceOnUse" width="200" height="200">
@@ -148,14 +147,13 @@
 				<h2 class="page-header">About the UniD Project</h2>
 			</div>
 			<div class="col-lg-6 col-md-6">
-				<img src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="" class="photo" />
+				<img src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Photo of Megan Conway on a visit to Haleakalā. She is standing in front of a sign board with a map of the park." class="photo" />
                     <p class="caption">
 UniD researcher Megan Conway, left, from UH, is visually and hearing-impaired and has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii. Above, University of Hawai'i student Sajja Koirala, who is blind, has been among the visually impaired collaborators who have been helping the UniD research team design better audio description tools and products for free public use.
                     </p>
 			</div>
 			<div class="col-lg-6 col-md-6">	
 				<p>The UniDescription project was designed as a research initiative with public benefits. We needed certain web tools to conduct our academic studies, so we thought we might as well design those for the greater good while we were at it. This site includes a UniD Academy, as a place for you to learn more about audio description and its best practices, as well as the unique UniD builder tool, which allows you to easily create and share audio description. More about this project can be found on the <a href="{{ SITEROOT }}/about" style="color: white; text-decoration: underline;">About Us</a> page. If you have specific questions or comments, please contact the principal investigator, <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank" style="color: white; text-decoration: underline;">Dr. Brett Oppegaard</a>, at University of Hawai‘i.</p><br />
-				<a href="{{ SITEROOT }}/about" class="btn btn-default">Learn More</a>
 			</div>
 		</div>
 	</div>

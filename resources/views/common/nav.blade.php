@@ -16,7 +16,7 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
-							<a href="{{ SITEROOT }}/guide" class="dropdown-toggle" data-toggle="dropdown">Guide <b class="caret"></b></a>
+							<a href="{{ SITEROOT }}/guide" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Guide <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<!--<li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
 								<li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>-->
@@ -25,7 +25,7 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="{{ SITEROOT }}/about" class="dropdown-toggle" data-toggle="dropdown">About <b class="caret"></b></a>
+							<a href="{{ SITEROOT }}/about" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="{{ SITEROOT }}/about">About Us</a></li>
 								<li><a href="{{ SITEROOT }}/research-partners">Research Partners</a></li>
@@ -42,7 +42,7 @@
 					?>
 					<?php if (Auth::check()): ?>							
 						<li class="dropdown">
-							<a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">Projects <b class="caret"></b></a>
+							<a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Projects <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="{{SITEROOT}}/account/project">All Projects</a></li>
 								<li class="divider"></li>
@@ -66,7 +66,7 @@
 							</ul>
 						</li>	
 						<li class="dropdown">
-							<a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+							<a href="{{ SITEROOT }}/account" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">My Account <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li><a href="{{ SITEROOT }}/account">Account Activity</a></li>
 								<li><a href="{{ SITEROOT }}/account/settings">Settings</a></li>

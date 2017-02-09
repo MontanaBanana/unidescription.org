@@ -3,8 +3,8 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
-                <div class="panel-heading">To Do:</div>
-                <div class="panel-body white unid-list todos">
+                <div class="panel-heading" id="todo-header">To Do:</div>
+                <div class="panel-body white unid-list todos" aria-labelledby="todo-header">
 
 <div data-role="content" data-theme="c">
     <ul data-role="listview" data-inset="true" data-theme="d" id="todo-sortable" class="sortable ui-sortable">

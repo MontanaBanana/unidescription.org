@@ -124,67 +124,65 @@ if(isset($project) && $project->id > 0){
 								@endif
 				
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="project-name-label">
 										Project Name:
-										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="title" value="{{ $project->title }}" <?php if(!$editable){echo ' disabled';}?> />
+										<input aria-labelledby="project-name-label" type="text" class="large" name="title" value="{{ $project->title }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="app-store-description-label">
 										App Store Description:
-										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
-										<textarea name="description" <?php if(!$editable){echo ' disabled';}?>>{{ $project->description }}</textarea>
+										<textarea aria-labelledby="app-store-description-label" name="description" <?php if(!$editable){echo ' disabled';}?>>{{ $project->description }}</textarea>
 									</div>
 								</div>
 								
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="gpo-label">
 										GPO #:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="gpo" value="{{ $project->gpo }}" <?php if(!$editable){echo ' disabled';}?> />
+										<input aria-labelledby="gpo-label" type="text" class="large" name="gpo" value="{{ $project->gpo }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 	
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="version-label">
 										Version / Version Notes:
 									</div>
 									<div class="panel-body form-element">
-										<textarea name="version" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
+										<textarea aria-labelledby="version-label" name="version-label" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
 									</div>
 								</div>
 	
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="metatags-label">
 										Metatags: (comma separated list. i.e.: National Historial Site, Oregon, bison, Midwest.)
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="metatags" value="{{ $project->metatags }}" <?php if(!$editable){echo ' disabled';}?> />
+										<input aria-labelledby="metatags-label" type="text" class="large" name="metatags" value="{{ $project->metatags }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="author-label">
 										Author:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="author" value="{{ $project->author }}" <?php if(!$editable){echo ' disabled';}?> />
+										<input aria-labelledby="author-label" type="text" class="large" name="author" value="{{ $project->author }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 								
 								<div class="panel panel-default">
-									<div class="panel-heading">
+									<div class="panel-heading" id="publication-label">
 										Publication year of brochure:
 									</div>
 									<div class="panel-body form-element">
-										<input type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" <?php if(!$editable){echo ' disabled';}?> />
+										<input aria-labelledby="publication-label" type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
 																																				

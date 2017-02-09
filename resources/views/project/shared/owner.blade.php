@@ -2,7 +2,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><h3 class="panel-title">Owner: {{ $project->user->name }}</h3></div>
     <div class="panel-body">
-        <strong>Shared with:</strong> @if ($project->is_owner())<div style="inline-block; float:right; font-size:11px">&#10003; = editing ability</div>@endif
+        <strong>Shared with:</strong> @if ($project->is_owner())<div style="inline-block; float:right; font-size:11px">&#10003; = <span id="editing">editing ability</span></div>@endif
         @if (count($project->users))
             <ul class="list-group share-list-group">
                 @foreach ($project->users as $user)
@@ -14,9 +14,9 @@
 	                       $c = DB::select('SELECT can_edit FROM project_user WHERE project_id=:projectid AND user_id=:userid LIMIT 1', ['projectid'=>$project->id, 'userid'=>$user->id]);
 	                       $c = array_shift($c);
 	                    ?>
-                        <span class="email">{{ $user->email }}</span>
+                        <span class="email" id="email">{{ $user->email }}</span>
                          @if ($project->is_owner())
-                         	<span><input type="checkbox" class="canedit" name="canedit" value="{{$user->id}}" <?php if($c->can_edit){echo 'checked';} ?>></span>
+                         	<span><input aria-labelledby="editing email" type="checkbox" class="canedit" name="canedit" value="{{$user->id}}" <?php if($c->can_edit){echo 'checked';} ?>></span>
                          @endif
                         
                     </li>

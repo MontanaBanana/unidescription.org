@@ -8,7 +8,7 @@
 		<meta name="author" content="{{ $project->user->email }}">
 	    
 	     <!-- phonegap -->
-	    <script type="text/javascript" src="phonegap.js"></script>
+	    <!--<script type="text/javascript" src="phonegap.js"></script>-->
 	    
 	    <!-- Bootstrap -->
 	    <link rel="stylesheet" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/css/nps-bootstrap.css">
@@ -26,130 +26,134 @@
 	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/jquery.min.js"></script>
 	    <!-- Include all compiled plugins (below), or include individual files as needed -->
 	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/nps-bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/autosize.js"></script>
+        <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/jquery-sortable.min.js"></script>
+
 	
 	    <!-- Unidescription custom JS -->
 	    <script type="text/javascript" src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/js/unidescription.js"></script>	
 	    
 	    <link href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/css/unidescription.css" rel="stylesheet">
 
+        <!-- Dependencies -->
+        <script src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/thirdparty/modernizr.custom.js"></script>
+        <script src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/thirdparty/js.cookie.js"></script>
+
+        <!-- CSS --> 
+        <link rel="stylesheet" href="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/build/ableplayer.min.css" type="text/css"/>
+
+        <!-- JavaScript -->
+        <script src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/build/ableplayer.min.js"></script>
+
 	</head>
 	<body style="padding: 0 5px 0 5px;">
 
-		<div class="row">
-	    	<div class="col-md-12">
-				<h1>{{ $project->title }}</h1>
-				<p>{{ $project->description }}</p>
-				
-				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					
-					<?php foreach ($project->section_tree() as $section): ?>
-						<?php if ($section['completed'] && !$section['deleted']): ?>
-				    	<div class="panel panel-default">
-						    <div class="panel-heading" role="tab" id="section-{{ $section->id }}-heading">
-						      <h4 class="panel-title">
-						        
-						          {{ $section->title }} 
-						          <?php
-							          if($section->audio_title!=''){$this_audio = '/audio/'.$section->audio_title;}
-							          else{$this_audio = $section->audio_file_title;}
-							      ?>
-						          <audio controls>
-                                        <source src='{{$this_audio}}' type='audio/wav'>
-                                    </audio>
-						        
-						      </h4>
-						    </div>
-						    <div id="section-{{ $section->id }}" class="panel" role="tabpanel" aria-labelledby="section-{{ $section->id }}-heading">
-						    	<div class="panel-body">
-                                    <?php if (strlen($section->description) OR strlen($section->audio_description)): ?>
-                                        <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
-                                            <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
-                                        <?php endif; ?>
-										<?php
-											if($section->audio_description!=''){
-												?>												
-										          <audio controls>
-				                                        <source src='/audio/{{$section->audio_description}}' type='audio/wav'>
-				                                    </audio>
-												<?php
-											}else{ ?>																							
-										          <audio controls>
-				                                        <source src='{{$section->audio_file_description}}' type='audio/wav'>
-				                                    </audio>
+        <h1>{{ $project->title }}</h1>
+        <p>{{ $project->description }}</p>
+        
+        <main>
+            
+            <?php foreach ($project->section_tree() as $section): ?>
+                <?php if ($section['completed'] && !$section['deleted']): ?>
+                      <h2 id="{{ $section->id }}">{{ $section->title }}</h2>
 
-											<?php }
-										?>
-                                        <p><?php echo nl2br($section->description); ?></p>
-                                    <?php endif; ?>
+                      <?php
+                          if($section->audio_title!=''){$this_audio = '/audio/'.$section->audio_title;}
+                          else{$this_audio = $section->audio_file_title;}
+                      ?>
+<!--
+                      <audio style="float: right; position: relative; top: -8px;" controls>
+                            <source src='{{$this_audio}}' type='audio/wav'>
+                      </audio>
+-->
 
-                                    <?php if (strlen($section->image_url) && !strlen($section->description) && $section->has_image_rights): ?>
-                                        <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
-                                    <?php endif; ?>
-									
-									@if (count($section->children))
-										@foreach ($section->children as $s)
-											@if ($s->completed && !$s->deleted)
-											<div style="margin-left:20px">
-												<p>
-													<h4 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;">
-														{{ $s->title }} <audio controls>
-	                                                        <source src='{{ $s->audio_title ? '/audio/'.$s->audio_title : $s->audio_file_title }}' type='audio/wav'>
-	                                                    </audio>
-														
-													</h4>
 
-	                                                <?php if (strlen($s->description)): ?>
-	                                                    <audio controls>
-	                                                        <source src='{{ $s->audio_description ? '/audio/'.$s->audio_description : $s->audio_file_description }}' type='audio/wav'>
-	                                                    </audio>
-	
-	                                                    <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
-	                                                        <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
-	                                                    <?php endif; ?>
-	
-	                                                    <div><?php echo nl2br($s->description); ?></div>
-	                                                <?php endif; ?>
-	
-	                                                <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
-	                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
-	                                                <?php endif; ?>
-	                                                @if (count($s->children))
-	                                                    @foreach ($s->children as $chch)
-	                                                        @if ($chch->completed && !$chch->deleted)
-	                                                        <p style="margin-left: 20px; padding:12px 0; border-top:1px dotted #000;">
-	                                                            <b>{{ $chch->title }}</b> 
-	                                                            <?php if (strlen($chch->description)): ?>
-	                                                                <audio controls>
-	                                                                    <source src='{{ $chch->audio_file_title }}' type='audio/wav'>
-	                                                                </audio>
-	
-	                                                                <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
-	                                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
-	                                                                <?php endif; ?>
-	
-	                                                                <div style="margin-left: 20px;"><?php echo nl2br($chch->description); ?></div>
-	                                                            <?php endif; ?>
-	
-	                                                            <?php if (strlen($chch->image_url) && !strlen($chch->description) && $chchection->has_image_rights): ?>
-	                                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
-	                                                            <?php endif; ?>
-	                                                        </p>
-	                                                        @endif
-	                                                    @endforeach
-	                                                @endif
-												</p>
-											</div>
-											@endif
-										@endforeach
-									@endif
-						    	</div><!-- end panel-body -->
-						    </div>
-				    	</div><!-- end panel-default -->
-				    	<?php endif; ?>
-					<?php endforeach; ?>
-			  	</div>
-	    	</div>
-		</div>
-	
+                            <?php if (strlen($section->description) OR strlen($section->audio_description)): ?>
+                                <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
+                                    <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
+                                <?php endif; ?>
+                                    <div style="width: 20%;">
+                                <?php
+                                    if($section->audio_description!=''){
+                                        ?>												
+                                          <audio data-able-player>
+                                                <source src='/audio/{{$section->audio_description}}' type='audio/wav'>
+                                            </audio>
+                                        <?php
+                                    }else{ ?>																							
+                                          <audio data-able-player>
+                                                <source src='{{$section->audio_file_description}}' type='audio/wav'>
+                                            </audio>
+
+                                    <?php }
+                                ?>
+                                    </div>
+                                <?php if (preg_match("/</", $section->description)) { echo $section->description; } else { echo nl2br($section->description); } ?>
+                            <?php endif; ?>
+
+                            <?php if (strlen($section->image_url) && !strlen($section->description) && $section->has_image_rights): ?>
+                                <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
+                            <?php endif; ?>
+                            
+                            @if (count($section->children))
+                                @foreach ($section->children as $s)
+                                    @if ($s->completed && !$s->deleted)
+                                            <h3 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;"> {{ $s->title }} </h3>
+<!--
+                                                <audio data-able-player controls>
+                                                    <source src='{{ $s->audio_title ? '/audio/'.$s->audio_title : $s->audio_file_title }}' type='audio/wav'>
+                                                </audio>
+-->
+
+                                            <?php if (strlen($s->description)): ?>
+                                                <div style="width: 20%;">
+                                                    <audio data-able-player>
+                                                        <source src='{{ $s->audio_description ? '/audio/'.$s->audio_description : $s->audio_file_description }}' type='audio/wav'>
+                                                    </audio>
+                                                </div>
+
+                                                <?php if (strlen($s->image_url) && $s->has_image_rights): ?>
+                                                    <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+                                                <?php endif; ?>
+                                                <?php if (preg_match("/</", $s->description)) { echo $s->description; } else { echo nl2br($s->description); } ?>
+                                            <?php endif; ?>
+
+                                            <?php if (strlen($s->image_url) && !strlen($s->description) && $section->has_image_rights): ?>
+                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $s->image_url; ?>" alt="{{ $s->title }} section image" />
+                                            <?php endif; ?>
+                                            @if (count($s->children))
+                                                @foreach ($s->children as $chch)
+                                                    @if ($chch->completed && !$chch->deleted)
+                                                    <p style="margin-left: 20px; padding:12px 0; border-top:1px dotted #000;">
+                                                        <h4>{{ $chch->title }}</h4> 
+                                                        <?php if (strlen($chch->description)): ?>
+                                                            <div style="width: 20%;">
+                                                                <audio data-able-player>
+                                                                    <source src='{{ $chch->audio_file_title }}' type='audio/wav'>
+                                                                </audio>
+                                                            </div>
+
+                                                            <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
+                                                                <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+                                                            <?php endif; ?>
+
+                                                            <div style="margin-left: 20px;"><?php if (preg_match("/</", $chch->description)) { echo $chch->description; } else { echo nl2br($chch->description); } ?></div>
+                                                        <?php endif; ?>
+
+                                                        <?php if (strlen($chch->image_url) && !strlen($chch->description) && $chchection->has_image_rights): ?>
+                                                            <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
+                                                        <?php endif; ?>
+                                                    </p>
+                                                    @endif
+                                                @endforeach
+                                            @endif
+                                    @endif
+                                @endforeach
+                            @endif
+                <?php endif; ?>
+            <?php endforeach; ?>
+
+        </main>
+        
 	</body>
 </html>

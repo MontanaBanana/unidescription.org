@@ -301,9 +301,11 @@ class ProjectController extends Controller
 		}
 
 	    // Only allow the owner of the project to modify the shared users
+        /*
 	    if ($project->user->id != Auth::user()->id) {
 		    return response()->json([ 'status' => false ]);
 		}
+         */
 	    
 		$user = User::where('email', $email)->first();
 				

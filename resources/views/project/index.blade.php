@@ -55,6 +55,9 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 								   
 							?>
 							</a></li>
+						<li>
+							<input type="text" name="filter" id="filter" value="" style="color:#888" placeholder="Filter by Title">
+						</li>
 					</ol>
 				</div>
 			</div>
@@ -75,7 +78,7 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 			if($project->user_id == Auth::user()->id){$editable = 1;}			
 		?>
 			<!-- row -->
-			<div class="row">
+			<div class="row project_row p_{{$project->id}}" title="{{strtolower(str_replace(' ', '', preg_replace("/[^a-z0-9]/i", "", $project->title)))}}">
 				<div class="container">
 					<div class="col-md-5">
 						<a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
@@ -115,9 +118,30 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 						@endif
 					</div>
 				</div>
-			</div>
 			<!-- /.row -->
 			<hr />
+			</div>
 		@endforeach
 		
+@endsection
+
+
+@section('js')
+<script type="text/javascript">
+	$('#filter').on('input',function(e){
+		var f = $(this).val().replace(/\s/g,'').replace(/[^a-zA-Z 0-9]+/g, '').toLowerCase();
+		var l = f.length;
+		if(l > 2){
+			$(".project_row").hide();
+			$.each($('[title*="'+f+'"]'), function() {
+				console.log(f);
+			    $(this).show();
+			});
+			
+		}
+		else{
+			$(".project_row").show();
+		}
+    });
+</script>
 @endsection

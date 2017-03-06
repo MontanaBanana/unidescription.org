@@ -252,7 +252,7 @@
 						<div class="caption" style="height: 145px;">
 							<h4>Michele Hartley</h4>
 							<h5>NPS Liaison</h5>
-							<p>Media accessibility coordinator at Harpers Ferry Center</p>
+							<p>Media accessibility coordinator at Harpers Ferry Center, WV</p>
 						</div>
 						<!--
 						<ul class="list-inline">
@@ -273,7 +273,7 @@
 						<div class="caption" style="height: 145px;">
 							<h4>Joe Oppegaard</h4>
 							<h5>Chief Technology Officer</h5>
-							<p>Montana Banana</p>
+							<p>Montana Banana<br />Seattle, WA</p>
 						</div>
 						<!--
 						<ul class="list-inline">
@@ -293,7 +293,7 @@
 						<div class="caption" style="height: 145px;">
 							<h4>Jason Kenison</h4>
 							<h5>Senior Programmer</h5>
-							<p>Montana Banana</p>
+							<p>Montana Banana<br />Seattle, WA</p>
 						</div>
 						<!--
 						<ul class="list-inline">
@@ -313,7 +313,7 @@
 						<div class="caption" style="height: 145px;">
 							<h4>Tuyet Hayes</h4>
 							<h5>Research Assistant</h5>
-							<p>University of Hawai‘i</p>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
 					</div>
 				</div>
@@ -323,13 +323,8 @@
 						<div class="caption" style="height: 145px;">
 							<h4>Philipp Jordan</h4>
 							<h5>Research Assistant</h5>
-							<p>University of Hawai‘i</p>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
-					</div>
-				</div>
-				<div class="col-md-3 text-center">
-					<div class="thumbnail">
-						&nbsp;
 					</div>
 				</div>
 				<div class="col-md-3 text-center">
@@ -337,7 +332,8 @@
 						<img class="img-responsive img-person" src="/images/team/sina.jpg" alt="Sina Bahram's bio photo">
 						<div class="caption" style="height: 145px;">
 							<h4>Sina Bahram</h4>
-							<h5>Accessibility Consultant</h5>
+							<h5>Consultant</h5>
+                            <p>Prime Access Consulting, NC</p>
 						</div>
 					</div>
 				</div>
@@ -346,7 +342,8 @@
 						<img class="img-responsive img-person" src="/images/team/annie.jpg" alt="Annie Leist's bio photo">
 						<div class="caption" style="height: 145px;">
 							<h4>Annie Leist</h4>
-							<h5>Accessibility Consultant</h5>
+							<h5>Consultant</h5>
+                            <p>Art Beyond Sight, NY</p>
 						</div>
 					</div>
 				</div>

@@ -30,4 +30,10 @@
 					</div>
 				</div>
 			</div>
+            <div class="row">
+                <div class="container">
+                    <div class="col-12">
+                        <p class="text-right"><small><a href="http://www.montanab.com" title="Website Design &amp; Development by Montana Banana" target="_blank" class="site-by">Website Design by Montana Banana</a></small></p>
+                    </div>
+            </div>
 		</footer>

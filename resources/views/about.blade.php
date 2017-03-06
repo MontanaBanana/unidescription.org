@@ -327,6 +327,29 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						&nbsp;
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/sina.jpg" alt="Sina Bahram's bio photo">
+						<div class="caption" style="height: 145px;">
+							<h4>Sina Bahram</h4>
+							<h5>Accessibility Consultant</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/annie.jpg" alt="Annie Leist's bio photo">
+						<div class="caption" style="height: 145px;">
+							<h4>Annie Leist</h4>
+							<h5>Accessibility Consultant</h5>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /.row -->

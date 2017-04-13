@@ -46,7 +46,7 @@
         <script src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/build/ableplayer.min.js"></script>
 
 	</head>
-	<body style="padding: 0 5px 0 5px;">
+	<body style="padding: 0 80px 0 80px;">
 
         <h1>{{ $project->title }}</h1>
         <p>{{ $project->description }}</p>

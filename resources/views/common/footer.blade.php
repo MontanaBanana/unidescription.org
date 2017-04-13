@@ -25,8 +25,8 @@
 						<a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" title="Fork on Github!"><img src="{{ SITEROOT }}/images/fork-us-on-github.png" alt="Fork on Github!" /></a>
 					</div>
 					<div class="col-lg-4 col-md-4 col-xs-6 col-with-border logos">
-						<a href="#" target="_blank" title=""><img src="{{ SITEROOT }}/images/nps-logo.png" alt="nps-logo" width="61" height="71"></a>
-						<a href="#" target="_blank" title=""><img src="{{ SITEROOT }}/images/university-of-hawaii.png" alt="university-of-hawaii" width="71" height="71"></a>
+						<a href="https://www.nps.gov" target="_blank" title=""><img src="{{ SITEROOT }}/images/nps-logo.png" alt="nps-logo" width="61" height="71"></a>
+						<a href="https://manoa.hawaii.edu/" target="_blank" title=""><img src="{{ SITEROOT }}/images/university-of-hawaii.png" alt="university-of-hawaii" width="71" height="71"></a>
 					</div>
 				</div>
 			</div>

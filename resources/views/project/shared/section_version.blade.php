@@ -7,7 +7,12 @@ if (count($section->project_section_versions)):
     <div class="panel-body">
         <div class="version">
 			<?php
+                $count = 0;
 				foreach ($section->project_section_versions->reverse() as $v) {
+                    if ($count++ > 10) {
+                        break;
+                    }
+
                     if ($v->user_id) {
                         $user = App\User::find($v->user_id);
                     }
@@ -25,7 +30,11 @@ if (count($section->project_section_versions)):
 <?php
 endif;
 
+$count = 0;
 foreach ($section->project_section_versions as $v):
+        if ($count++ > 10) {
+            break;
+        }
 	?>
 	
 	<script>

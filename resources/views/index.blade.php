@@ -123,15 +123,15 @@
 			<div class="col-lg-6 col-md-6">	
 				<ul class="featured-projects">
 					<li class="selected" data-ref="img1" data-image="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg">
-						<h3>Yellowstone National Park</h3>
+						<a href="/account/project/export/91" target="_blank"><h3>Yellowstone National Park</h3></a>
 						<p>Visit Yellowstone and experience the world's first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers.</p>
 					</li>
 					<li data-ref="img2" data-image="{{ SITEROOT }}/images/sf_maritime_homepage.jpg">
-						<h3>Harry S Truman National Historic Site</h3>
+						<a href="/account/project/export/123" target="_blank"><h3>Harry S Truman National Historic Site</h3></a>
 						<p>President Harry S Truman took America from its traditional isolationism into the age of international involvement. Despite his power, he never forgot where he came from.</p>
 					</li>
 					<li data-ref="img3" data-image="{{ SITEROOT }}/images/denali_homepage.jpg">
-						<h3>Denali National Park and Preserve</h3>
+						<a href="/account/project/export/101" target="_blank"><h3>Denali National Park and Preserve</h3></a>
 						<p>Denali is six million acres of wild land, bisected by one ribbon of road. Wild animals large and small roam un-fenced lands, living as they have for ages. Solitude, tranquility and wilderness await.</p>
 					</li>
 				</ul>

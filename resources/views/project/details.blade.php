@@ -264,9 +264,11 @@ if(isset($project) && $project->id > 0){
 		});
 
 
-        $(window).on('beforeunload', function(){
-            $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
-        });
+        @if ($project->id)
+            $(window).on('beforeunload', function(){
+                $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
+            });
+        @endif
 
 		
 		$('#deleteProjectImage').click(function() {

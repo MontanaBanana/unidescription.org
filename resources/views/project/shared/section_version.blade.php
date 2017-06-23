@@ -10,7 +10,7 @@ if (count($section->project_section_versions)):
                 $count = 0;
 				foreach ($section->project_section_versions->reverse() as $v) {
                     if ($count++ > 10) {
-                        break;
+                        //break;
                     }
 
                     if ($v->user_id) {
@@ -33,7 +33,7 @@ endif;
 $count = 0;
 foreach ($section->project_section_versions as $v):
         if ($count++ > 10) {
-            break;
+            //break;
         }
 	?>
 	

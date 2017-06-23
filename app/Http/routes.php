@@ -88,6 +88,9 @@ Route::get(WEBROOT.'account/activity', 'AccountController@activity');
 Route::get(WEBROOT.'account/settings', 'AccountController@getSettings');
 Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 
+Route::get(WEBROOT.'library', 'LibraryController@getIndex');
+Route::post(WEBROOT.'library/add', 'LibraryController@postAdd');
+Route::post(WEBROOT.'library/delete', 'LibraryController@postDelete');
 
 // Project routes
 Route::get(WEBROOT.'account/project', 'ProjectController@index');

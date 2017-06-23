@@ -110,6 +110,7 @@ reader.readAsBinaryString(blob);
 
   var url = URL.createObjectURL(blob);
   var newRow   = tableRef.insertRow(currentEditedSoundIndex);
+  var newRow2  = tableRef.insertRow(currentEditedSoundIndex);
   newRow.className = 'soundBite';
 
   var newCell = newRow.insertCell(-1);
@@ -122,29 +123,28 @@ reader.readAsBinaryString(blob);
   newCell.appendChild(audioElement);
   newCell = newRow.insertCell(-1);
   
-  var saveText = document.createElement('div');
+  /*var saveText = document.createElement('div');
   saveText.style = 'font-weight:bold';
   saveText.innerHTML = 'Apply to:';
   
   newCell.appendChild(saveText);
-  newCell = newRow.insertCell(-1);
+  newCell = newRow.insertCell(-1);*/
+  
+  applyDescription.href = '#';
+  applyDescription.innerHTML = 'Save as Description';
+  applyDescription.className = 'btn btn-primary saveAudio';
+  applyDescription.rel = 'audio_description';
+  
+  newCell.appendChild(applyDescription);
+  newCell = newRow2.insertCell(-1);
   
   applyName.href = '#';
-  applyName.innerHTML = 'Name';
+  applyName.innerHTML = 'Save as Title';
   applyName.className = 'btn btn-primary saveAudio';
   applyName.rel = 'audio_title';
   
   newCell.appendChild(applyName);
   newCell = newRow.insertCell(-1);
-  
-  applyDescription.href = '#';
-  applyDescription.innerHTML = 'Description';
-  applyDescription.className = 'btn btn-primary saveAudio';
-  applyDescription.rel = 'audio_description';
-  
-  newCell.appendChild(applyDescription);
-  newCell = newRow.insertCell(-1);
-  
 }
 
 window.onload = function init() {

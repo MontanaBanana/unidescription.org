@@ -163,7 +163,7 @@
 										
 			Component Name: 
 			
-			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:50%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+			<input type="text" id="title" class="large" name="title" value="{{ $section->title }}" style="color:#000; width:47%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 			
 			{{-- DELETE --}}
 			@if($editable)
@@ -354,7 +354,7 @@
 								<?php if ($was_locked): ?>
 									<div class="wrapper-footer">
 										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
-										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Component Complete</a>
+										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Complete</a>
 									</div>
 								<?php endif; ?>
 					        </div>				        
@@ -398,8 +398,8 @@
 	                                <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
 	
 										<p>
-											<div id="audio_record" class="btn btn-primary" onclick="changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
-											<div id="audio_stop" class="btn btn-warning" onclick="changeVolume(0); stopRecording(this);" disabled>Stop</div>
+											<div id="audio_record" class="btn btn-primary" onclick="$('#audio_stop').toggle(); $('#audio_record').toggle(); changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
+											<div style="display: none;" id="audio_stop" class="btn btn-warning" onclick="$('#audio_stop').toggle(); $('#audio_record').toggle(); changeVolume(0); stopRecording(this);" disabled>Stop</div>
 											<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
 										</p>
 										
@@ -446,7 +446,7 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">Save &amp; Complete:</div>
 									<div class="panel-body">
-										<!--<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>-->
+										<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
 										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-default @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Component Complete</a></p>
 									</div>
 								</div>

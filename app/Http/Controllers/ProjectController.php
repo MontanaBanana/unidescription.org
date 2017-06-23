@@ -29,6 +29,14 @@ class ProjectController extends Controller
 	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getTextExport')]);
 	}
 	
+    private function _cleanText($text)
+    {
+        $text = preg_replace("/<p>/", "", $text);
+        $text = preg_replace("/<\/p>/", "\n", $text);
+        $text = preg_replace("/&nbsp;/", " ", $text);
+        $text = strip_tags($text);
+        return $text;
+    }
     
 	public function index(Request $request, $sortBy = null, $direction = null)
 	{
@@ -88,10 +96,11 @@ class ProjectController extends Controller
 				$ch = curl_init();
 	
 				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
-				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
-				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+                $text = $this->_cleanText($text);
+				//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+				//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 
-				curl_setopt($ch, CURLOPT_URL, 'http://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				curl_setopt($ch, CURLOPT_POST, 1);
@@ -111,8 +120,7 @@ class ProjectController extends Controller
 				$ch = curl_init();
 	
 				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
-				$text = preg_replace("/(<([^>]+)>)/i", '', $text);
-				$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+                $text = $this->_cleanText($text);
 				
 				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -896,9 +904,10 @@ class ProjectController extends Controller
 					$ch = curl_init();
 				
 					$text = $request->phonetic_title ? $request->phonetic_title : $request->title;
+                    $text = $this->_cleanText($text);
 					
-					$text = preg_replace("/(<([^>]+)>)/i", '', $text);
-					$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+					//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+					//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 					
 					curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -918,9 +927,10 @@ class ProjectController extends Controller
 					$ch = curl_init();
 		
 					$text = $request->phonetic_description ? $request->phonetic_description : $request->description;
+                    $text = $this->_cleanText($text);
 					
-					$text = preg_replace("/(<([^>]+)>)/i", '', $text);
-					$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+					//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+					//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 					
 					curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

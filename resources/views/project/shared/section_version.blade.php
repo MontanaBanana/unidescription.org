@@ -9,17 +9,17 @@ if (count($section->project_section_versions)):
 			<?php
                 $count = 0;
 				foreach ($section->project_section_versions->reverse() as $v) {
-                    if ($count++ > 10) {
-                        //break;
+                    if ($count++ > 100) {
+                        break;
                     }
 
                     if ($v->user_id) {
-                        $user = App\User::find($v->user_id);
+                        $edit_user = App\User::find($v->user_id);
                     }
 					?>
 					<a data-toggle="modal" href="#<?php echo $v->id; ?>" data-target="#<?php echo $v->id; ?>">
 						<?php echo prettyDate($v->created_at->addHours(-7)->format('D, d M Y h:i:s')); ?>
-                    </a> @if ($v->user_id) - <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>@endif <br />
+                    </a> @if ($v->user_id) - <a href="mailto:{{ $edit_user->email }}">{{ $edit_user->email }}</a>@endif <br />
 					<?php
 				}
 			?>
@@ -31,9 +31,9 @@ if (count($section->project_section_versions)):
 endif;
 
 $count = 0;
-foreach ($section->project_section_versions as $v):
-        if ($count++ > 10) {
-            //break;
+foreach ($section->project_section_versions->reverse() as $v):
+        if ($count++ > 100) {
+            break;
         }
 	?>
 	
@@ -85,9 +85,15 @@ foreach ($section->project_section_versions as $v):
 										<div class="panel-body col-md-12">
 											<div class="col-md-12">
 												<?php 
-													$htmlDiff = new Icap\HtmlDiff\HtmlDiff($v->{$t['column']}, $section->{$t['column']}, true);
-													$out = $htmlDiff->outputDiff();
-													echo $out->toString();
+                                                    if (strlen($v->{$t['column']}) && strlen($section->{$t['column']})) {
+                                                        $htmlDiff = new Icap\HtmlDiff\HtmlDiff($v->{$t['column']}, $section->{$t['column']}, true);
+                                                            echo "<PRE>".print_R($v->{$t['column']},true)."</pre>";
+                                                            echo "<PRE>".print_r($section->{$t['column']},true)."</pre>";
+                                                            //echo "<PRE>".print_R($v->{$t['column']},true)."</pre>";
+                                                            //echo "<PRE>".print_r($section->{$t['column']},true)."</pre>";
+                                                            //$out = $htmlDiff->outputDiff();
+                                                            //echo $out->toString();
+                                                        }
 												?>
 											</div>
 										</div>

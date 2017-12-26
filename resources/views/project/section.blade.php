@@ -49,6 +49,7 @@
 		$editable = $c->can_edit;
 	}
 	if($project->user_id == Auth::user()->id){$editable = 1;}
+
 ?>
 
 <!-- Page Heading/Breadcrumbs -->
@@ -95,8 +96,8 @@
 					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 						<ul class="nav navbar-nav">
 							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
 							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/library" target="_blank">Phonetic Library</a></li>
 							<li class="active"><a href="#">{{ $section->title }}</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
@@ -107,7 +108,7 @@
 		
 		<div class="row project">
 		    <div class="col-lg-12">
-	
+
 				<?php if ($was_locked): ?>
 					<form method="POST" action="/account/project/section" enctype="multipart/form-data" id="section_form">
 				<?php else: ?>
@@ -398,7 +399,7 @@
 	                                <div class="col-sm-12 truncate" style="padding:0; text-align: left;">
 	
 										<p>
-											<div id="audio_record" class="btn btn-primary" onclick="$('#audio_stop').toggle(); $('#audio_record').toggle(); changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record</div>
+											<div id="audio_record" class="btn btn-primary" onclick="$('#audio_stop').toggle(); $('#audio_record').toggle(); changeVolume({{config('app.mic_volume')}}); startRecording(this);">Record / Upload</div>
 											<div style="display: none;" id="audio_stop" class="btn btn-warning" onclick="$('#audio_stop').toggle(); $('#audio_record').toggle(); changeVolume(0); stopRecording(this);" disabled>Stop</div>
 											<div style="inline-block; display:none" id="recording_light"><i class="fa fa-circle text-danger blink"></i>&nbsp; RECORDING</div>
 										</p>
@@ -565,7 +566,8 @@
 		
         $('textarea.rte').trumbowyg({
 		    removeformatPasted: true,
-	        autogrow: true
+                autogrow: true,
+                svgPath: '/js/ui/icons.svg'
 		}).on('tbwchange', function() {
 			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {
 				// Reset the count, so we save again in another 15 characters
@@ -607,10 +609,15 @@
 			if ($(this).find('#player-icon').hasClass('fa-play')) {
 				$(this).find('#player-icon').removeClass('fa-play');
 				$(this).find('#player-icon').addClass('fa-stop');
+                console.log(this_section);
+                var use_library = true;
+                if (this_section.includes('phonetic')) {
+                    use_library = false;
+                }
 				var request = $.ajax({
 					url: "https://api.montanab.com/tts/tts.php",
 					method: "POST",
-					data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, '') },
+					data: { t : $('#'+this_section).val().replace(/(<([^>]+)>)/ig,"\n").replace(/&#?[a-z0-9]{2,8};/ig, ''), use_library : use_library },
 					dataType: "json"
 				});
 				
@@ -676,6 +683,7 @@
 		
 		@if($editable)
 		$('.download-title').on('click', function(event) {
+            $('#showLoading').modal("show")
 			var request = $.ajax({
 			  url: "https://api.montanab.com/tts/tts.php",
 			  method: "POST",
@@ -683,23 +691,27 @@
 			  dataType: "json"
 			});
 			request.done(function( msg ) {
-				window.open(msg.fn);
+				window.open(msg.fn, 'Download');
+                $('#showLoading').modal("hide")
 			});
 		});		
 		
 		$('.download-phonetic_title').on('click', function(event) {
+            $('#showLoading').modal("show")
 			var request = $.ajax({
 			  url: "https://api.montanab.com/tts/tts.php",
 			  method: "POST",
-			  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  data: { t : $('#phonetic_title').val().replace(/(<([^>]+)>)/ig,"\n"), use_library : false },
 			  dataType: "json"
 			});
 			request.done(function( msg ) {
-				window.open(msg.fn);
+				window.open(msg.fn, 'Download');
+                $('#showLoading').modal("hide")
 			});
 		});		
 		
 		$('.download-description').on('click', function(event) {
+            $('#showLoading').modal("show")
 			var request = $.ajax({
 			  url: "https://api.montanab.com/tts/tts.php",
 			  method: "POST",
@@ -707,19 +719,22 @@
 			  dataType: "json"
 			});
 			request.done(function( msg ) {
-				window.open(msg.fn);
+				window.open(msg.fn, 'Download');
+                $('#showLoading').modal("hide")
 			});
 		});		
 		
 		$('.download-phonetic_description').on('click', function(event) {
+            $('#showLoading').modal("show")
 			var request = $.ajax({
 			  url: "https://api.montanab.com/tts/tts.php",
 			  method: "POST",
-			  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n") },
+			  data: { t : $('#phonetic_description').val().replace(/(<([^>]+)>)/ig,"\n"), use_library : false },
 			  dataType: "json"
 			});
 			request.done(function( msg ) {
-				window.open(msg.fn);
+				window.open(msg.fn, 'Download');
+                $('#showLoading').modal("hide")
 			});
 		});		
 	
@@ -1134,6 +1149,24 @@
   </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="showLoading" tabindex="-1" role="dialog" aria-labelledby="myModalUploadDescription">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalUploadDescription">Creating audio file...</h4>
+      </div>
+      <div class="modal-body col-md-12">
+            <p>Loading...</p>     
+      </div>
+      <div class="modal-footer">
+        <button id="modalClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="uploadDescription" tabindex="-1" role="dialog" aria-labelledby="myModalUploadDescription">

@@ -40,7 +40,7 @@ return [
 
         'main' => [
             'username' => 'radiojoe',
-            'password' => '28e696d2aa6e13af35c9566eeb092639c00e793a',
+            'password' => 'b440a5dfbd76c77baf05057a2bd73a51c27238d0',
             'method'   => 'password',
             'cache'    => false 
         ],

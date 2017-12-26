@@ -12,6 +12,7 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/account/project/section'
+        '/account/project/section',
+        '/library/replacetext'
     ];
 }

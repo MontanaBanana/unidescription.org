@@ -48,7 +48,7 @@
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" ="#bs-example-navbar-collapse-1">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -63,6 +63,7 @@
 							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
 							<li class="active"><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/library" target="_blank">Phonetic Library</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
@@ -107,7 +108,7 @@
 					        <div class="wrapper">
 								<!-- table of contents see http://forresst.github.io/2012/06/22/Make-a-list-jQuery-Mobile-sortable-by-drag-and-drop/ -->
 								<div class="panel panel-default">
-									<div class="panel-heading">Table of Contents:</div>
+									<div class="panel-heading">Table of Contents: (<strong>The way elements are moved has been updated and is still being tested.</strong>)</div>
 									<div class="panel-body white unid-list table-of-contents">
 										<div data-role="content" data-theme="c">
 											
@@ -119,7 +120,7 @@
 														<div>
 													        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 															<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
-															<span class="fa fa-bars" style="cursor: move;"></span>
+                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $section->id }})" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
 															<i class="fa fa-chevron-down toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 															@if($editable)
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
@@ -135,7 +136,7 @@
 																			<input type="hidden" name="sort_order[]" value="{{ $child->id }}" />
 																			<input type="hidden" name="section-{{ $child->id }}-parent" value="{{ $index }}" />
 	
-																			<span class="fa fa-bars" style="cursor: move;"></span>
+                                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $child->id }})" data-id="section-{{ $child->id }}-parent" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
 																			<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																			@if($editable)
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
@@ -151,7 +152,7 @@
 	                                                                                        <input type="hidden" name="sort_order[]" value="{{ $chch->id }}" />
 	                                                                                        <input type="hidden" name="section-{{ $chch->id }}-parent" value="{{ $child->id }}" />
 	
-	                                                                                        <span class="fa fa-bars" style="cursor: move;"></span>
+                                                                                            <!--<a href="#moveModal" onclick="$('#move_component_id').val({{ $chch->id }})" role="button" data-id="section-{{ $chch->id }}-parent" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
 	                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 	                                                                                        @if($editable)
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
@@ -199,8 +200,9 @@
 										<!--<p><button class="btn btn-sm btn-primary btn-icon"><span class="fa fa-plus"></span> Add New Page</button></p>-->
 									</div>
 								</div>   
-								<div class="wrapper-footer" style="display: none;">
-									<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>
+								<div class="wrapper-footer">
+									<!--<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>-->
+									<button class="btn btn-lg btn-primary btn-icon" style="width: 280px;"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 					        </div>
@@ -210,7 +212,7 @@
 					        
 		                	<div class="help">
 					        	<span class="fa fa-question-circle"></span>
-					        	<p>Need to learn more about best practices for audio descriptions? <a href="/guide">Read our guide</a> for more details!</p>
+					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 				        	</div>
 				        	
 				        	@include('project.shared.version')
@@ -555,11 +557,126 @@ $(window).on("blur mouseleave", function() {
 	
 		});
 		@endif
+
+
+        //var ref = document.referrer;
+        //alert(ref);
+        if (document.referrer != window.location.href) {
+            group = $("ul#sortable");
+            var data = group.sortable("serialize").get();
+            var jsonString = JSON.stringify(data, null, ' ');
+            console.log(jsonString);
+            $('#json_toc').val(jsonString);
+            console.log($('#json_toc'));
+            //_super($item, container);
+            //alert('about to submit');
+            $('#toc-form').submit();
+        }
 	
 	});
 
+    var called = 0;
+    function move_component(id, direction)
+    {
+        called++;
+        called++;
+        var e = $("li[data-section-id='"+id+"']");
+        if (direction == 'up') {
+            e.prev().insertAfter(e);
+        }
+        else if (direction == 'down') {
+            e.next().insertBefore(e);
+        }
+        else if (direction == 'left') {
+            e.removeClass('li-section-child');
+            e.addClass('li-section');
+            e.addClass('mjs-nestedSortable-branch');
+            e.addClass('mjs-nestedSortable-expanded');
+            e.parent().parent().before(e[0].outerHTML);
+            e.remove();
+        }
+        else if (direction == 'right') {
+            e.addClass('li-section-child');
+            e.removeClass('li-section');
+            e.removeClass('mjs-nestedSortable-branch');
+            e.removeClass('mjs-nestedSortable-expanded');
+            //$('.li-section-child', e.prev())[0].append( e[0].outerHTML );
+            $('.li-section-child:last', e.prev()).after( e[0].outerHTML );
+            e.remove();
+            //e.parent().parent().before(e[0].outerHTML);
+        } 
+    
+    }
 
+        
+function submittoc() {
+        var group = $("ul#sortable").sortable({
+            handle: "span.fa-bars",
+            afterMove: function ($placeholder, container, $closestItemOrContainer) {
+                //console.log('afterMove');
+                //console.log($placeholder, container, $closestItemOrContainer);
+            },
+            onCancel: function ($item, container, _super, event) {
+                console.log('onCancel was called');
+            },
+            onDrop: function ($item, container, _super) {
+                var data = group.sortable("serialize").get();
+                var jsonString = JSON.stringify(data, null, ' ');
+                //console.log('onDrop');
+                console.log(jsonString);
+                $('#json_toc').val(jsonString);
+                //$('#serialize_output').html("<PRE>"+jsonString+"</pre>");
+                _super($item, container);
+                $('#toc-form').submit();
+            },
+            /*
+            isValidTarget: function ($item, container) {
+                return true;
+            },
+            */
+            //tolerance: 6,
+            //distance: 10,
+            exclude: ".new-component",
+            nested: true
+        });
+
+        var data = group.sortable("serialize").get();
+        var jsonString = JSON.stringify(data, null, ' ');
+        //console.log('onDrop');
+        console.log(jsonString);
+        $('#json_toc').val(jsonString);
+        $('#toc-form').submit();
+
+}
+
+/*
+$(window).bind('beforeunload', function(){
+          submittoc();
+});
+ */
 
 </script>
+
+
+<div class="modal fade" id="moveModal" tabindex="-1" role="dialog" aria-labelledby="moveModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="moveModalLabel">Select direction to move component</h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="move_component_id" name="move_component_id" value="" />
+        <button style="margin: 5px; display: inline;" onclick="move_component($('#move_component_id').val(), 'up');" type="button" class="btn btn-primary" aria-label="Move component up"><span aria-hidden="true">&uarr;</span></button>
+        <button style="margin: 5px; display: inline;" onclick="move_component($('#move_component_id').val(), 'down');" type="button" class="btn btn-primary" aria-label="Move component down"><span aria-hidden="true">&darr;</span></button>
+        <button style="margin: 5px; display: inline;" onclick="move_component($('#move_component_id').val(), 'left');" type="button" class="btn btn-primary" aria-label="Move component left"><span aria-hidden="true">&larr;</span></button>
+        <button style="margin: 5px; display: inline;" onclick="move_component($('#move_component_id').val(), 'right');" type="button" class="btn btn-primary" aria-label="Move component right"><span aria-hidden="true">&rarr;</span></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

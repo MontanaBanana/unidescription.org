@@ -63,6 +63,7 @@ class Project extends Model
         $all_branches = GitHub::repo()->branches('MontanaBanana', 'unidescription-projects');
         $found = false;
         $master_sha = '';
+        //echo "<PRE>".print_r($all_branches,true)."</pre>";exit;
         foreach ($all_branches as $b) {
             if ($b['name'] == $branch) {
                 // Already exists
@@ -73,6 +74,8 @@ class Project extends Model
                 $master_sha = $b['commit']['sha'];
             }
         }
+
+        $master_sha = '8abc7058ed2db3e77e1eaaa761aa7960a2bfe46a';
 
         if ($found) {
             // Found it, but delete it and create a new branch based

@@ -35,8 +35,14 @@ trait RegistersUsers
             );
         }
 
-        Auth::login($this->create($request->all()));
-
-        return redirect($this->redirectPath());
+        $all = $request->all();
+        $captcha = $all['g-recaptcha-response'];
+        $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LeRyCcUAAAAABLAVR27aE_ghOr8oaLxCBakoHEu&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']), true);
+    //echo "<PRE>".print_r($response,true)."</pre>";exit;
+        if ($response['success'] == '1') {
+          Auth::login($this->create($request->all()));
+          return redirect($this->redirectPath());
+        }
+        return redirect('/');
     }
 }

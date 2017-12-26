@@ -78,6 +78,7 @@ if(isset($project) && $project->id > 0){
 							<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
 							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/library" target="_blank">Phonetic Library</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 					<?php
@@ -155,7 +156,7 @@ if(isset($project) && $project->id > 0){
 										Version / Version Notes:
 									</div>
 									<div class="panel-body form-element">
-										<textarea aria-labelledby="version-label" name="version-label" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
+										<textarea aria-labelledby="version-label" name="version" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
 									</div>
 								</div>
 	
@@ -164,7 +165,7 @@ if(isset($project) && $project->id > 0){
 										Metatags: (comma separated list. i.e.: National Historial Site, Oregon, bison, Midwest.)
 									</div>
 									<div class="panel-body form-element">
-										<input aria-labelledby="metatags-label" type="text" class="large" name="metatags" value="{{ $project->metatags }}" <?php if(!$editable){echo ' disabled';}?> />
+										<textarea aria-labelledby="metatags-label" name="metatags" <?php if(!$editable){echo ' disabled';}?>>{{ $project->metatags }}</textarea>
 									</div>
 								</div>
 								

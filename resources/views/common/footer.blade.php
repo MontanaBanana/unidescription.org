@@ -22,7 +22,9 @@
 						</ul>
 					</div>
 					<div class="col-lg-2 col-md-2 col-xs-6 col-with-border">
-						<a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" title="Fork on Github!"><img src="{{ SITEROOT }}/images/fork-us-on-github.png" alt="Fork on Github!" /></a>
+						<p><a href="https://github.com/MontanaBanana/unidescription.com" target="_blank" title="Fork on Github!"><img src="{{ SITEROOT }}/images/fork-us-on-github.png" alt="Fork on Github!" /></a></p>
+						<p><a href="https://itunes.apple.com/us/app/unidescription/id1288434078?mt=8" target="_blank" title=""><img src="{{ SITEROOT }}/images/app_store_available.png" alt="Available on the Apple App store" width="159"></a></p>
+						<p><a href="https://play.google.com/store/apps/details?id=org.unidescription.npsapp&hl=en" target="_blank" title=""><img src="{{ SITEROOT }}/images/play_store_available.png" alt="Available on the Google Play store" width="159"></a></p>
 					</div>
 					<div class="col-lg-4 col-md-4 col-xs-6 col-with-border logos">
 						<a href="https://www.nps.gov" target="_blank" title=""><img src="{{ SITEROOT }}/images/nps-logo.png" alt="nps-logo" width="61" height="71"></a>

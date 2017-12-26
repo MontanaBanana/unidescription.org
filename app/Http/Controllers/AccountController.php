@@ -40,7 +40,7 @@ class AccountController extends Controller
 		foreach ($projects as $project) {
 			//echo "<PRE>".print_R($project,true)."</pre>";
 			$p_ts = strtotime($project->created_at);
-            if (strlen($project->user->name)) {
+            if (@strlen($project->user->name)) {
                 $activities[$p_ts]['text'] = '<a href="mailto:'.$project->user->email.'">'.$project->user->name.'</a> created <a href="/account/project/details/'.$project->id.'/'.strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)).'">'.$project->title.'</a>.';
                 $activities[$p_ts]['user_image'] = $project->user->image_url;
                 $activities[$p_ts]['project_image'] = $project->image_url;

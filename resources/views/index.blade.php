@@ -21,7 +21,7 @@
 				<h1 class="page-header">
 					<center><strong>The UniD Project</strong></center>
 				</h1>
-                <center><strong>To Create Acoustic Spaces and More Accessible Places</strong></center>
+                <h2><center><strong>To Create Digital Audio Spaces and More Accessible Places</strong></center></h2>
 			</div>
 		</div>
 	</div>

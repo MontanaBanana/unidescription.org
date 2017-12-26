@@ -20,10 +20,13 @@
 							<ul class="dropdown-menu">
 								<!--<li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
 								<li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>-->
+								<li><a href="{{ SITEROOT }}/about">About Us</a></li>
 								<li><a href="{{ SITEROOT }}/unid-academy">UniD Academy</a></li>
 								<li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+								<li><a href="{{ SITEROOT }}/research">Research</a></li>
 							</ul>
 						</li>
+<!--
 						<li class="dropdown">
 							<a href="{{ SITEROOT }}/about" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">About <b class="caret"></b></a>
 							<ul class="dropdown-menu">
@@ -32,6 +35,7 @@
 								<li><a href="https://npsaudiodescription.wordpress.com/" target="_blank">Blog</a></li>
 							</ul>
 						</li>
+-->
 					<?php
 					/*
 						<li><a style="font-size: 18px; line-height: 88px; height: 88px; padding-top: 0px" href="{{ SITEROOT }}/guide">Guide</a></li>
@@ -50,8 +54,8 @@
 								<li class="divider"></li>
 								<li><a href="{{ SITEROOT }}/account/project">My Recently Edited Projects</a></li>
 								<?php 
-									$my_projects = Auth::user()->projects->take(10); 
-									$shared_projects = Auth::user()->shared_projects->take(10);
+									$my_projects = Auth::user()->projects->take(3); 
+									$shared_projects = Auth::user()->shared_projects->take(3);
 								?>
 								@foreach ($my_projects as $project)
 									<li class="small">

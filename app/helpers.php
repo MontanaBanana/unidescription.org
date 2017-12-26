@@ -2,6 +2,15 @@
 	
 //use App\SectionTemplate;
 
+
+function title_cmp($a, $b)
+{
+    if ($a['title'] == $b['title']) {
+        return 0;
+    }
+    return ($a['title'] < $b['title']) ? -1 : 1;
+}
+
 	
 function buildTree(Illuminate\Database\Eloquent\Collection $elements, $parent_column, $parentId = 0) {
     $branch = array();

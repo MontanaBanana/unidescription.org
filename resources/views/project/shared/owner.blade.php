@@ -1,6 +1,6 @@
 @if ($project->id)
 <div class="panel panel-default">
-    <div class="panel-heading"><h3 class="panel-title">Owner: {{ $project->user->name }}</h3></div>
+<div class="panel-heading"><h3 class="panel-title">Owner: <?php echo $project->user->email; ?></h3></div>
     <div class="panel-body">
         <strong>Shared with:</strong> @if ($project->is_owner())<div style="inline-block; float:right; font-size:11px">&#10003; = <span id="editing">editing ability</span></div>@endif
         @if (count($project->users))
@@ -53,7 +53,7 @@
         window.potential_owners = [
             <?php
                 foreach (App\User::all() as $u) {
-                    echo "'".$u->name . " <".$u->email.">',";
+                    echo "'".str_replace("'", '\\\'', $u->name) . " <".str_replace("'", '\\\'', $u->email).">',";
                 }
             ?>
         ];

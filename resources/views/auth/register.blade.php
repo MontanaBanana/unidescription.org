@@ -2,6 +2,8 @@
 
 @section('content')
 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <div class="row blade">
 	<div class="container">
 
@@ -36,6 +38,8 @@
 			  <label for="password_confirmation">Confirm Password</label>
 			  <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
 			</div>
+
+            <div class="g-recaptcha" data-sitekey="6LeRyCcUAAAAAPywPBDCQcG8imBSdWKqRjgtBgXz"></div>
 			    
 		    <div class="checkbox">
 				<label><input type="checkbox" value="remember"> Remember me</label>

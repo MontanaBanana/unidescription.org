@@ -23,33 +23,33 @@
 
 		<?php
 		$research_partners = array(
-'César E. Chávez National Monument' => array('image' => 'Cesar.jpg'),
-'Channel Islands National Park' => array('image' => 'Channel Islands.jpg'),
-'Denali National Park' => array('image' => 'Denali.jpg'),
-'Everglades National Park' => array('image' => 'Everglades.jpg'),
-'Fort Smith National Historic Site' => array('image' => 'Fort Smith.jpg'),
-'Fort Vancouver National Historic Site' => array('image' => 'Fort Vancouver.jpg'),
-'George Washington Memorial Parkway' => array('image' => 'George Washington Parkway.jpg'),
-'Gettysburg National Military Park' => array('image' => 'Gettysburg.jpg'),
-'Golden Gate National Recreation Area' => array('image' => 'Golden Gate.jpg'),
-'Hagerman Fossil Beds National Monument' => array('image' => 'Hagerman Fossil Beds.jpg'),
-'Hawai‘i Volcanoes National Park' => array('image' => 'Volcanoes.jpg'),
-'Harry S Truman National Historic Site' => array('image' => 'Truman.png'),
-'Herbert Hoover National Historic Site' => array('image' => 'Herbert Hoover.jpg'),
-'John Day Fossil Beds National Monument' => array('image' => 'John Day Fossil Beds.jpg'),
-'Joshua Tree National Park' => array('image' => 'Joshua Tree.jpg'),
-'Katmai National Park and Preserve' => array('image' => 'Katmai.jpg'),
-'Lowell National Historical Park' => array('image' => 'Lowell.jpg'),
-'Manzanar National Historic Site' => array('image' => 'Manzanar.jpg'),
-'Morristown National Historical Park' => array('image' => 'Morristown.jpg'),
-'National Park Service System Map and Guide' => array('image' => 'National Park Service guide.jpg'),
-'Pu‘ukohola Heiau National Historic Site' => array('image' => 'Puukohola Heiau.jpg'),
-'San Francisco Maritime National Historic Park' => array('image' => 'Maritime.jpg'),
-'Sitka National Historical Park' => array('image' => 'Sitka.jpg'),
-'Steamtown National Historic Site' => array('image' => 'Steamtown.jpg'),
-'Thomas Edison National Historic Site' => array('image' => 'Thomas Edison.jpg'),
-'Washington Monument' => array('image' => 'Washington Monument.jpg'),
-'Yellowstone National Park' => array('image' => 'Yellowstone Rainbow Pool.jpg')
+'César E. Chávez National Monument' => array('image' => 'Cesar.jpg', 'link' => '/account/project/export/124'),
+'Channel Islands National Park' => array('image' => 'Channel Islands.jpg', 'link' => '/account/project/export/125'),
+'Denali National Park' => array('image' => 'Denali.jpg', 'link' => '/account/project/export/101'),
+'Everglades National Park' => array('image' => 'Everglades.jpg', 'link' => '/account/project/export/103'),
+'Fort Smith National Historic Site' => array('image' => 'Fort Smith.jpg', 'link' => '/account/project/export/126'),
+'Fort Vancouver National Historic Site' => array('image' => 'Fort Vancouver.jpg', 'link' => '/account/project/export/89'),
+'George Washington Memorial Parkway' => array('image' => 'George Washington Parkway.jpg', 'link' => '/account/project/export/128'),
+'Gettysburg National Military Park' => array('image' => 'Gettysburg.jpg', 'link' => '/account/project/export/98'),
+'Golden Gate National Recreation Area' => array('image' => 'Golden Gate.jpg', 'link' => '/account/project/export/76'),
+'Hagerman Fossil Beds National Monument' => array('image' => 'Hagerman Fossil Beds.jpg', 'link' => '/account/project/export/136'),
+'Hawai‘i Volcanoes National Park' => array('image' => 'Volcanoes.jpg', 'link' => '/account/project/export/252'),
+'Harry S Truman National Historic Site' => array('image' => 'Truman.png', 'link' => '/account/project/export/123'),
+'Herbert Hoover National Historic Site' => array('image' => 'Herbert Hoover.jpg', 'link' => '/account/project/export/107'),
+'John Day Fossil Beds National Monument' => array('image' => 'John Day Fossil Beds.jpg', 'link' => '/account/project/export/99'),
+'Joshua Tree National Park' => array('image' => 'Joshua Tree.jpg', 'link' => '/account/project/export/102'),
+'Katmai National Park and Preserve' => array('image' => 'Katmai.jpg', 'link' => '/account/project/export/131'),
+'Lowell National Historical Park' => array('image' => 'Lowell.jpg', 'link' => '/account/project/export/132'),
+'Manzanar National Historic Site' => array('image' => 'Manzanar.jpg', 'link' => '/account/project/export/133'),
+'Morristown National Historical Park' => array('image' => 'Morristown.jpg', 'link' => '/account/project/export/134'),
+'National Park Service System Map and Guide' => array('image' => 'National Park Service guide.jpg', 'link' => '/account/project/export/148'),
+'Pu‘ukohola Heiau National Historic Site' => array('image' => 'Puukohola Heiau.jpg', 'link' => '/account/project/export/94'),
+'San Francisco Maritime National Historic Park' => array('image' => 'Maritime.jpg', 'link' => '/account/project/export/92'),
+'Sitka National Historical Park' => array('image' => 'Sitka.jpg', 'link' => '/account/project/export/108'),
+'Steamtown National Historic Site' => array('image' => 'Steamtown.jpg', 'link' => '/account/project/export/122'),
+'Thomas Edison National Historic Site' => array('image' => 'Thomas Edison.jpg', 'link' => '/account/project/export/93'),
+'Washington Monument' => array('image' => 'Washington Monument.jpg', 'link' => '/account/project/export/242'),
+'Yellowstone National Park' => array('image' => 'Yellowstone Rainbow Pool.jpg', 'link' => '/account/project/export/91')
 		);
 		
 		?>
@@ -95,8 +95,8 @@
 						?>
 							<div class="grid-item col-md-4 col-sm-4 col-xs-6">
 								<div class="grid-item-content">
-									<img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}">
-									<p>{{ $k }}</p>
+                                    <a target="_blank" href="<?php echo $r['link']; ?>"><img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}"></a>
+                                    <p><a target="_blank" href="<?php echo $r['link']; ?>">{{ $k }}</a></p>
 								</div>
 							</div>
 						<?php

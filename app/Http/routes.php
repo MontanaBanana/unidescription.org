@@ -52,8 +52,10 @@ $basic_pages = array(
 	'best-practices',
 	'unid-academy',	
 	'license', 
+	'share', 
 	'auth/password',
 	'research-partners',
+	'research',
 	'comp' // jason's new project comps, standalone
 	);
 
@@ -89,10 +91,16 @@ Route::get(WEBROOT.'account/settings', 'AccountController@getSettings');
 Route::post(WEBROOT.'account/settings', 'AccountController@postSettings');
 
 Route::get(WEBROOT.'library', 'LibraryController@getIndex');
+Route::get(WEBROOT.'library/new', 'LibraryController@getNew');
+Route::get(WEBROOT.'library/updateword/{id}', 'LibraryController@getUpdateWord');
+Route::post(WEBROOT.'library/replacetext', 'LibraryController@postReplaceText');
 Route::post(WEBROOT.'library/add', 'LibraryController@postAdd');
 Route::post(WEBROOT.'library/delete', 'LibraryController@postDelete');
+Route::post(WEBROOT.'library/update', 'LibraryController@postUpdate');
 
 // Project routes
+Route::get(WEBROOT.'project/npsProjects', 'ProjectController@getNpsProjects');
+
 Route::get(WEBROOT.'account/project', 'ProjectController@index');
 Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
 Route::post(WEBROOT.'account/project/edit', 'ProjectController@postEdit');
@@ -114,6 +122,7 @@ Route::get(WEBROOT.'account/project/assets/{id}/{title}', 'ProjectController@get
 Route::post(WEBROOT.'account/project/assets', 'ProjectController@postAssets');
 Route::post(WEBROOT.'account/project/asset/delete', 'ProjectController@postDeleteAsset');
 
+Route::get(WEBROOT.'account/project/arrowtoc/{id}/{title}', 'ProjectController@getArrowToc');
 Route::get(WEBROOT.'account/project/toc/{id}/{title}', 'ProjectController@getToc');
 Route::post(WEBROOT.'account/project/toc', 'ProjectController@postToc');
 
@@ -133,6 +142,7 @@ Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@po
 Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController@postHasImageRights');
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
+Route::get(WEBROOT.'/account/project/export_json/{id}', 'ProjectController@getJsonExport');
 Route::get(WEBROOT.'/account/project/export_text/{id}', 'ProjectController@getTextExport');
 Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/build/index/{id}', 'ProjectController@getBuildIndex');

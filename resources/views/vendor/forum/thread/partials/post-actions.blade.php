@@ -1,3 +1,4 @@
+<?php if (@$_GET['admin_override'] == '1'): ?>
 <div class="panel panel-inverse hidden" data-actions data-bulk-actions>
     <div class="panel-heading">{{ trans('forum::general.with_selection') }}</div>
     <div class="panel-body">
@@ -14,3 +15,4 @@
         <button type="submit" class="btn btn-default pull-right">{{ trans('forum::general.proceed') }}</button>
     </div>
 </div>
+<?php endif; ?>

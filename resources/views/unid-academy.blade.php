@@ -25,13 +25,10 @@
 		<div class="row blade" style="padding-top: 0;">
             <div class="container">
                 <div class="col-md-12">
-                    <center><blockquote style="border-left: 0;">Where We've Been: Audio Description Created Around the U.S. (and World)</blockquote></center>
-                    <center><iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="792" height="594"></iframe></center>
+                    <!--<center><blockquote style="border-left: 0;">Where We've Been: Audio Description Created Around the U.S. (and World)</blockquote></center>
+                    <center><iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="792" height="594"></iframe></center>-->
                     <iframe width="100%" height="1200" src="https://sites.google.com/a/hawaii.edu/unidescriptionproject/" frameborder="0"></iframe>
                     <center><blockquote style="border-left: 0;">UniD Project Research</blockquote></center>
-                    <center><img style="width: 792px" class="photo" src="{{ SITEROOT }}/images/unid-poster-2.jpg" alt="Brett's UniD research poster"></center>
-                    <p class="caption">UniD research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Silver Spring, Maryland, in 2016.</p>
-                            
                 </div>
             </div>
 		</div>

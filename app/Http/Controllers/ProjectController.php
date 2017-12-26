@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Mail;
 use Illuminate\Http\Request;
+use App\Library;
 use App\Project;
 use App\SectionTemplate;
 use App\ProjectSection;
@@ -26,7 +27,7 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getTextExport')]);
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getJsonExport', 'getTextExport', 'getNpsProjects')]);
 	}
 	
     private function _cleanText($text)
@@ -76,6 +77,153 @@ class ProjectController extends Controller
 		//echo "<PRE>".print_R($_SERVER,true)."</pre>";exit;
 		//return view('project.export', ['project' => $project]);
     }
+
+    public function getNpsProjects()
+    {
+        $name_items = array(
+                    array('id' => '281', 'title' => 'About Us - The UniDescription Project'),
+                    array('id' => '97', 'title' => 'Cabrillo National Monument - California'),
+                    array('id' => '141', 'title' => 'Cape Cod National Seashore - Massachusetts'),
+                    array('id' => '124', 'title' => 'César E. Chávez National Monument - California'),
+                    array('id' => '125', 'title' => 'Channel Islands National Park - California'),
+                    array('id' => '101', 'title' => 'Denali National Park and Preserve - Alaska'),
+                    array('id' => '256', 'title' => 'Devils Postpile National Monument - California'),
+                    array('id' => '257', 'title' => 'Eugene O\'Neill National Historic Site - California'),
+                    array('id' => '103', 'title' => 'Everglades National Park - Florida'),
+                    array('id' => '154', 'title' => 'Flight 93 National Memorial - Pennsylvania'),
+                    array('id' => '275', 'title' => 'Fort Point National Historic Site - California'),
+                    array('id' => '126', 'title' => 'Fort Smith National Historic Site - Arkansas'),
+                    array('id' => '143', 'title' => 'Fort Stanwix National Monument - New York'),
+                    array('id' => '89', 'title' => 'Fort Vancouver National Historic Site - Washington'),
+                    array('id' => '144', 'title' => 'Gates of the Arctic National Park and Preserve - Alaska'),
+                    array('id' => '128', 'title' => 'George Washington Memorial Parkway - Virginia, Maryland, District of Columbia'),
+                    array('id' => '76', 'title' => 'Golden Gate National Recreation Area - California'),
+                    array('id' => '136', 'title' => 'Hagerman Fossil Beds National Monument - Idaho'),
+                    array('id' => '123', 'title' => 'Harry S Truman National Historic Site - Missouri'),
+                    array('id' => '252', 'title' => 'Hawaii Volcanoes National Park - Hawaii'),
+                    array('id' => '107', 'title' => 'Herbert Hoover National Historic Site - Iowa'),
+                    array('id' => '145', 'title' => 'Home of Franklin D. Roosevelt National Historic Site - New York'),
+                    array('id' => '142', 'title' => 'Jamestowne at Colonial National Historical Park - Virginia'),
+                    array('id' => '99', 'title' => 'John Day Fossil Beds National Monument - Oregon'),
+                    array('id' => '277', 'title' => 'John Muir National Historic Site - California'),
+                    array('id' => '146', 'title' => 'Johnstown Flood National Memorial - Pennsylvania'),
+                    array('id' => '102', 'title' => 'Joshua Tree National Park - California'),
+                    array('id' => '131', 'title' => 'Katmai National Park and Preserve - Alaska'),
+                    array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
+                    array('id' => '254', 'title' => 'Lassen Volcanic National Park - California'),
+                    array('id' => '132', 'title' => 'Lowell National Historical Park - Massachusetts'),
+                    array('id' => '133', 'title' => 'Manzanar National Historic Site - California'),
+                    array('id' => '147', 'title' => 'Minute Man National Historical Park - Massachusetts'),
+                    array('id' => '134', 'title' => 'Morristown National Historical Park - New Jersey'),
+                    array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
+                    array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
+                    array('id' => '53', 'title' => 'NPS System Map and Guide - District of Columbia'),
+                    array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                    array('id' => '267', 'title' => 'Pinnacles National Park - California'),
+                    array('id' => '261', 'title' => 'Point Reyes National Seashore - California'),
+                    array('id' => '273', 'title' => 'Port Chicago Naval Magazine National Memorial - California'),
+                    array('id' => '94', 'title' => 'Pu‘ukohola Heiau National Historic Site - Hawaii'),
+                    array('id' => '262', 'title' => 'Redwood National Park - California'),
+                    array('id' => '271', 'title' => 'Rosie the Riveter/World War II Home Front National Historic Park - California'),
+                    array('id' => '92', 'title' => 'San Francisco Maritime National Historical Park - California'),
+                    array('id' => '108', 'title' => 'Sitka National Historical Park - Alaska'),
+                    array('id' => '150', 'title' => 'Statue of Liberty National Monument - New York, New Jersey'),
+                    array('id' => '122', 'title' => 'Steamtown National Historic Site - Pennsylvania'),
+                    array('id' => '93', 'title' => 'Thomas Edison National Historical Park - New Jersey'),
+                    array('id' => '151', 'title' => 'Valley Forge National Historical Park - Pennsylvania'),
+                    array('id' => '242', 'title' => 'Washington Monument - District of Columbia'),
+                    array('id' => '274', 'title' => 'Whiskeytown—Shasta—Trinity National Recreation Area - California'),
+                    array('id' => '152', 'title' => 'Women\'s Rights National Historical Park - New York'),
+                    array('id' => '91', 'title' => 'Yellowstone National Park - Wyoming, Idaho, Montana'),
+                    array('id' => '266', 'title' => 'Yosemite National Park - California'),
+        );
+
+        $state_items = [];
+        foreach ($name_items as $ni) {
+            $si = $ni;
+            $si['title'] = preg_replace("/(^[^-]*) - (.*$)/", '\2 - \1', $si['title']);
+            $state_items[] = $si;
+        }
+
+        $type_items = [];
+        foreach ($name_items as $ni) {
+            $ti = $ni;
+            if (preg_match("/(^.*) (National Seashore) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+            }
+            elseif (preg_match("/(^.*) (National Monument) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Park) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Park and Preserve) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Memorial) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Historic Site) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Historic Park) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (Memorial Parkway) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Military Park) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Recreation Area) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National Historical Park) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (Monument) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (National River) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+            }
+            elseif (preg_match("/(^.*) (System Map and Guide) - (.*$)/", $ti['title'], $m)) {
+                $ti['title'] = "$m[2] - $m[1] - $m[3]";
+            }
+            elseif (preg_match("/NPS Unigrid Guide - (.*$)/", $ti['title'], $m)) {
+                //array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                $ti['title'] = $ti['title'];
+            }
+            else {
+                //echo "Fix: $ti[title]";
+                $ti['title'] = $ti['title'];
+            }
+            $type_items[] = $ti;
+        }
+
+        usort($state_items, "title_cmp");
+        usort($type_items, "title_cmp");
+
+        echo json_encode(array(
+            'name' => $name_items,
+            'state' => $state_items,
+            'type' => $type_items
+        ));
+        exit;
+    }
+
     
     public function getTextExport($id)
     {
@@ -104,7 +252,12 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                if (strlen($s->phonetic_title)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                }
 				
 				$result = json_decode(curl_exec($ch));
 				
@@ -125,7 +278,12 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                if (strlen($s->phonetic_description)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                }
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				
 				$result = json_decode(curl_exec($ch));
@@ -137,6 +295,71 @@ class ProjectController extends Controller
 			}
 		}
 		return view('project.export', ['project' => $project]);
+    }
+
+    public function getJsonExport($id)
+    {
+	    $project = Project::find($id);
+		
+		foreach ($project->project_sections as $s) {
+			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update){
+				//////////////////////////////////
+				// Generate the TITLE audio file
+				//////////////////////////////////
+				$ch = curl_init();
+	
+				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
+                $text = $this->_cleanText($text);
+				//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+				//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                if (strlen($s->phonetic_title)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                }
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_title = $result->fn;
+				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
+				$s->save();
+			}
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update){
+				//////////////////////////////////
+				// Generate the DESCRIPTION audio file
+				//////////////////////////////////
+				$ch = curl_init();
+	
+				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
+                $text = $this->_cleanText($text);
+				
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                if (strlen($s->phonetic_description)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                }
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_description = $result->fn;
+				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
+				$s->save();
+			}
+		}
+		return view('project.export_json', ['project' => $project]);
     }
     
     public function getBuildIndex(Request $request, $id)
@@ -819,18 +1042,98 @@ class ProjectController extends Controller
             exit;
         }
 
-        $prev_ps = DB::table('project_sections')
-            ->where('project_id', '=', $project_id)
-            ->where('sort_order', '<', $ps->sort_order)
-            ->where('deleted', '=', 0)
-            ->orderBy('sort_order', 'desc')
-            ->first();
+        $parent_deleted = true;
+        $sort_order = $ps->sort_order;
+        $count = 0;
+        while ($parent_deleted) {
+            if ($count++ > 20) { break; }
+            $prev_ps = DB::table('project_sections')
+                ->where('project_id', '=', $project_id)
+                ->where('sort_order', '<', $sort_order--)
+                ->where('deleted', '=', 0)
+                ->orderBy('sort_order', 'desc')
+                ->first();
+
+            if ($prev_ps) {
+                if ($prev_ps->project_section_id == 0 || !$prev_ps->id) {
+                    $parent_deleted = false;
+                }
+                else {
+                    // There is a parent, so we need to check if it was deleted.
+                    $prev_ps_parent = ProjectSection::find($prev_ps->project_section_id);
+                    if ($prev_ps_parent->deleted) {
+                        $prev_ps = false;
+                    }
+                    elseif ($prev_ps_parent->project_section_id) {
+                        // There is a parent, so we need to check if it was deleted.
+                        $prev_ps_gparent = ProjectSection::find($prev_ps->project_section_id);
+                        if ($prev_ps_gparent->deleted) {
+                            $prev_ps = false;
+                        }
+                        else {
+                            $parent_deleted = false;
+                        }
+                    }
+                    else {
+                        $parent_deleted = false;
+                    }
+                }
+            }
+            else {
+                $parent_deleted = false;
+            }
+        }
+
+        $parent_deleted = true;
+        $sort_order = $ps->sort_order;
+        $count = 0;
+        while ($parent_deleted) {
+            if ($count++ > 20) { break; }
+            $next_ps = DB::table('project_sections')
+                ->where('project_id', '=', $project_id)
+                ->where('sort_order', '>', $sort_order++)
+                ->where('deleted', '=', 0)
+                ->orderBy('sort_order', 'asc')
+                ->first();
+
+            if ($next_ps) {
+                if ($next_ps->project_section_id == 0 || !$next_ps->id) {
+                    $parent_deleted = false;
+                }
+                else {
+                    // There is a parent, so we need to check if it was deleted.
+                    $next_ps_parent = ProjectSection::find($next_ps->project_section_id);
+                    if ($next_ps_parent->deleted) {
+                        $next_ps = false;
+                    }
+                    elseif ($next_ps_parent->project_section_id) {
+                        // There is a parent, so we need to check if it was deleted.
+                        $next_ps_gparent = ProjectSection::find($next_ps->project_section_id);
+                        if ($next_ps_gparent->deleted) {
+                            $next_ps = false;
+                        }
+                        else {
+                            $parent_deleted = false;
+                        }
+                    }
+                    else {
+                        $parent_deleted = false;
+                    }
+                }
+            }
+            else {
+                $parent_deleted = false;
+            }
+        }
+
+        /*
         $next_ps = DB::table('project_sections')
             ->where('project_id', '=', $project_id)
             ->where('sort_order', '>', $ps->sort_order)
             ->where('deleted', '=', 0)
             ->orderBy('sort_order', 'asc')
             ->first();
+         */
         //$next_ps = DB::table('project_sections')->where('project_id', $project_id)->where('sort_order', ($ps->sort_order+1))->first();
 
 		//echo '<PRE>'.print_R($ps->project_section_versions,true)."</pre>";exit;
@@ -840,6 +1143,7 @@ class ProjectController extends Controller
     
     public function postSection(Request $request)
     {
+		//return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
         if (!isset($request->project_section_id)) {
 			return redirect('/account/');
         }
@@ -913,7 +1217,12 @@ class ProjectController extends Controller
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-					curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    if (strlen($request->phonetic_title)) {
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    }
+                    else {
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    }
 					
 					$result = json_decode(curl_exec($ch));
 					
@@ -936,7 +1245,12 @@ class ProjectController extends Controller
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-					curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    if (strlen($request->phonetic_description)) {
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    }
+                    else {
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    }
 					
 					$result = json_decode(curl_exec($ch));
 					
@@ -969,6 +1283,29 @@ class ProjectController extends Controller
 			return redirect('/account/project/section/'.$ps->project_id.'/'.$ps->id);
 		}
 		return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
+    }
+
+    public function getArrowToc($id)
+    {
+	    if (!$id) {
+			$sections = buildTree(SectionTemplate::all()->sortBy('sort_order'), 'section_template_id');
+		    return view('project.toc', ['sections' => $sections, 'project' => new Project]);
+	    }
+	    else {
+			$project = Project::find($id);
+			if (!$project) {
+				abort(404);
+			}
+			$new_sections = 0;
+			$sections = buildTree($project->project_sections, 'project_section_id');
+			/*if (!count($sections)) {
+				$sections = buildTree(SectionTemplate::all()->sortBy('sort_order'), 'section_template_id');
+				$new_sections = 1;
+			}*/
+			//echo "<PRE>".print_R($sections,true)."</pre>";exit;
+		    return view('project.arrowtoc', ['sections' => $sections, 'project' => $project, 'new_sections' => $new_sections]);
+	    }
+	    
     }
     
     public function getToc($id)
@@ -1291,3 +1628,4 @@ class ProjectController extends Controller
     }
     
 }
+

@@ -1,3 +1,4 @@
+<?php if (@$_GET['admin_override'] == '1'): ?>
 <form action="{{ Forum::route('category.store') }}" method="POST">
     {!! csrf_field() !!}
 
@@ -48,3 +49,4 @@
         </div>
     </div>
 </form>
+<?php endif; ?>

@@ -1,3 +1,4 @@
+<?php if (@$_GET['admin_override'] == 1): ?>
 <div class="panel panel-inverse" data-actions>
     <div class="panel-heading">
         <span class="glyphicon glyphicon-option-vertical"></span>
@@ -56,3 +57,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>

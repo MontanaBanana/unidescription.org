@@ -11,6 +11,8 @@
  * also gets $sortBy and $direction values from URL or defaults to 'created' 'asc'
  */
 $projects = Auth::user()->all_projects($sortBy, $direction); 
+foreach ($projects as $k => $v) {
+}
 
 ?>
 
@@ -131,7 +133,7 @@ $projects = Auth::user()->all_projects($sortBy, $direction);
 	$('#filter').on('input',function(e){
 		var f = $(this).val().replace(/\s/g,'').replace(/[^a-zA-Z 0-9]+/g, '').toLowerCase();
 		var l = f.length;
-		if(l > 2){
+		if(l > 0){
 			$(".project_row").hide();
 			$.each($('[title*="'+f+'"]'), function() {
 				console.log(f);

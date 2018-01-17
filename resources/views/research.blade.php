@@ -31,7 +31,8 @@ SIGDOC_Oppegaard_2017.docx
 		<div class="row blade" style="padding-top: 0;">
             <div class="container">
                 <div class="col-md-12">
-<center><blockquote style="border-left: 0;">Where We've Been: Audio Description Created Around the U.S. (and World)</blockquote></center>
+                    <h2 class="page-header" style="top: -40px; position: relative; margin-bottom: 0">Where We've Been<br/><span style="font-size: 16px;">Audio Description Created Around the U.S. (and World)</span></h2>
+
                     <center><iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="792" height="594"></iframe></center>
 
                     <center><blockquote style="border-left: 0;"><h2>UniD Project Research</h2></blockquote></center>
@@ -56,6 +57,8 @@ SIGDOC_Oppegaard_2017.docx
 
 
                     <section>
+<h3>Related peer-reviewed publications, presentations, and external funding</h3>
+
 <strong>Published:</strong>
 <ul>
 <li>Conway, T., Oppegaard, B., & Conway, M. (2016). <a href="/images/toward_cultural_inclusion.pdf">Toward cultural inclusion: Using mobile technologies to increase access to audio description</a>, The Review of Disability Studies: An International Journal, 11(4), 5-8.</li>

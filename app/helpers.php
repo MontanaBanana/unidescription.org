@@ -180,10 +180,11 @@ function create_zip($files = array(),$destination = '',$overwrite = false) {
 		}
 		//add the files
 		foreach($valid_files as $file) {
-			$zip->addFile($file,$file);
+			$zip->addFile($file,basename($file));
 		}
 		//debug
 		//echo 'The zip archive contains ',$zip->numFiles,' files with a status of ',$zip->status;
+        //exit;
 		
 		//close the zip -- done!
 		$zip->close();

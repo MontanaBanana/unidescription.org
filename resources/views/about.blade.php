@@ -28,12 +28,12 @@
                     <h2 class="page-header" style="top: -70px; position: relative;">About the UniD Project:</h2>
                     <div style="position: relative; top: -70px;">
                         <center><iframe width="560" height="315" src="https://www.youtube.com/embed/nxbgvqkWLh0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></center>
-                        <br /><center style="font-size: 24px;">UniD: Uniting and Empowering for Greater Accessibility</center><br />
+                        <br /><center style="font-size: 24px;">UniD: Our backstory, our mission, and our plans for future development</center><br />
 					<!--<img class="photo" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
                     <p class="caption">UniD researcher Megan Conway, from UH, who is visually and hearing impaired, has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii.</p>-->
 					
                         <div style="float: right; align: right; width: 660px; margin-left: 15px;"><img class="photo" src="{{ SITEROOT }}/images/conference-room.jpg" alt="Conference room at Harpers Ferry"> <p class="caption">Some of the Unid research team members in Harpers Ferry Center, W.V., in September 2016, working on the National Park Service's first "Descriptathon," an event that brought together parks from throughout the country to audio describe their brochures. Clockwise, from the far right, is principal investigator Brett Oppegaard, research assistant Phil Jordan, web developer Joe Oppegaard, and NPS Media Accessibility Coordinator Michele Hartley.</p></div>
-						<p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Tom Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
+						<p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Dr. Thomas Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
 						<p>For a bit of additional background, in the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.</p>
 						<p>Our web-based project – with direct connections to Harpers Ferry Center, the National Park Service, those brochures, and those basic beliefs – has been called UniD, in tribute. That name should be pronounced like "unity," serving as both an abbreviation of the more wonky original label of "unidescription" and as an inspiration for our mission:</p>
 						<blockquote>To bring unity to the world of audio description. </blockquote>
@@ -56,7 +56,7 @@
 					<?php if (Auth::check()): ?>	
 						<a class="btn btn-lg btn-primary btn-block btn-big" href="{{ SITEROOT }}/account/project/details/0/new">Create now!</a>
 					<?php else: ?>						
-						<a class="btn btn-lg btn-primary btn-block btn-big" href="{{ SITEROOT }}/auth/register">Join now!</a>
+						<a class="btn btn-lg btn-primary btn-block btn-big" href="{{ SITEROOT }}/auth/register">Free Account</a>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -98,6 +98,27 @@
 		</div>
 		<!-- /.row -->
 
+		<!-- Accessibility Standards we use -->
+		<div class="row blade green">
+			<div class="container">	
+                <div class="col-lg-12">
+                    <h2 class="page-header">Accessibility Standards We Use</h2>
+                </div>
+
+				<div class="col-md-12">
+<p>The UniDescription Project is committed to ensuring the accessibility of its web and mobile-app content to people with disabilities. All of the content on our website and in our mobile apps meets the World Wide Web Consortium Web Accessibility Initiative - W3C WAI's <a href="https://www.w3.org/TR/WCAG/" target="_blank">Web Content Accessibility Guidelines</a> 2.0, Level AA conformance.</p>
+
+<p>The UniDescription Project reviews its web content policy once a year (in December) to ensure it is up-to-date and reflects the latest standards as directed by the W3C. At that time, we also conduct a review of our content to ensure adherence to those standards. This includes a review of the mobile applications linked to the <a href="http://www.unidescription.org/" target="_blank">www.UniDescription.org website</a> and promoted by the project for use in delivering audio description for blind and visually impaired users.</p>
+
+<p>We try our best to catch any mistakes, but if we missed something, please let us know via email at: <a href="mailto:brett.oppegaard@hawaii.edu">brett.oppegaard@hawaii.edu</a>. </p>
+
+<p>The UniDescription Project was last reviewed Jan. 1, 2018.</p>
+
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+		
 		<!-- The Team -->
 		<div class="row blade gray the-team">
 			<div class="container">	
@@ -182,7 +203,7 @@
 				<!-- List of people involved -->
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/Google.png" alt="Google logo"></a>
+						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
 						<div class="caption" style="height: 165px;">
 							<h4>Google</h4>
 							<h5>Collaborator</h5>
@@ -393,17 +414,28 @@
 					</div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 117px;">2017</small>
 				</div>
-			</div>
-		</div>
-		<!-- /.row -->
-		
-		<div class="row gray">
-			<div class="container">
-				<div class="col-lg-12">
-					<p><strong>Additional contributions by:</strong> Sean Zdenek (Texas Tech University, 2014) and Marsha Matta (graphic designer, 2014)</p>
-					<p>&nbsp;</p>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/zdenek_mug.png" alt="Sean Zdenek's bio photo">
+						<div class="caption" style="height: 165px;">
+							<h4>Sean Zdenek</h4>
+							<p>Texas Tech University<br />Lubbock, TX</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 117px;">2014</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/matta_mug.png" alt="Marsha Matta's bio photo">
+						<div class="caption" style="height: 165px;">
+							<h4>Marsha Matta</h4>
+							<h5>Graphic Designer</h5>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 117px;">2014</small>
 				</div>
 			</div>
 		</div>
+		<!-- /.row -->
 		
 @endsection

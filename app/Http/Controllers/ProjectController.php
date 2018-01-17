@@ -51,6 +51,41 @@ class ProjectController extends Controller
 	    return view('project.view', ['project' => $project]);
     }
 
+    public function getExportAudio($id)
+    {
+		if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id)) {
+			mkdir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id);
+		}
+		$html = file_get_contents('http://'.$_SERVER['SERVER_NAME'].'/account/project/export/'.$id);
+        preg_match_all('/<li data-mp3="([^"]+)">([^<]+)<\/li>/', $html, $matches);
+
+        $files = array();
+        foreach ($matches[1] as $index => $value) {
+            $mp3 = file_get_contents($value);
+            $files[] = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3';
+            file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3', $mp3);
+        }
+
+        @unlink($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$id.'.zip');
+        create_zip($files, $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$id.'.zip');
+
+        
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename='.$id.'.zip');
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+		header('Content-Length: ' . filesize($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$id.'.zip'));
+		ob_clean();
+		flush();
+		readfile($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$id.'.zip');
+        
+        exit;
+
+    }
+
     public function getZip($id)
     {
 	    $project = Project::find($id);

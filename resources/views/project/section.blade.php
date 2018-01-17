@@ -97,7 +97,6 @@
 						<ul class="nav navbar-nav">
 							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
 							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
-							<li><a href="/library" target="_blank">Phonetic Library</a></li>
 							<li class="active"><a href="#">{{ $section->title }}</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->

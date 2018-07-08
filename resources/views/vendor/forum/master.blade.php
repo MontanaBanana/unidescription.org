@@ -24,7 +24,7 @@
 	<meta name="msapplication-TileImage" content="/favicons/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 	
-	<title>UniDescription.com - @yield('title')</title>
+	<title>UniD - Forums</title>
 
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="{{ SITEROOT }}/css/nps-bootstrap.css">

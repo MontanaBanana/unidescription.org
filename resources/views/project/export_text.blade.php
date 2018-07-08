@@ -1,5 +1,5 @@
 {{ $project->title }}
-{{ $project->description }}
+<!--{{ $project->description }}-->
 
 <?php foreach ($project->section_tree() as $section): ?>
 

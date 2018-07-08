@@ -34,7 +34,7 @@
 	    </div>
 	
 	    <div class="col-lg-12">
-	        <nav class="navbar navbar-default">
+	        <nav class="navbar navbar-default" style="border-radius: 4px;">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -50,9 +50,9 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
+							<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Backstage<span class="sr-only">(current)</span></a></li>
 							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
-							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Frontstage</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
@@ -71,7 +71,7 @@
 					        <div class="wrapper">
 								<!-- table of contents see http://forresst.github.io/2012/06/22/Make-a-list-jQuery-Mobile-sortable-by-drag-and-drop/ -->
 								<div class="panel panel-default">
-									<div class="panel-heading">Table of Contents:</div>
+									<div class="panel-heading">Frontstage:</div>
 									<div class="panel-body white table-of-contents">
 										<div data-role="content" data-theme="c">
 											<ul data-role="listview" data-inset="true" data-theme="d" id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded">
@@ -126,7 +126,7 @@
 					        </div>
 					        
 					        <!--
-				    		<h3>Table of Contents - Full Template</h3>
+				    		<h3>Frontstage - Full Template</h3>
 				            <ul class="list-group well">
 							<?php foreach ($sections as $section): ?>
 					            <li class="list-group-item">
@@ -157,10 +157,12 @@
 				        <div class="col-md-4 tips-column">
 					        
 					        
+<!--
 		                	<div class="help">
 					        	<span class="fa fa-question-circle"></span>
 					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 				        	</div>
+-->
 				        	
 				        	<div class="panel panel-default">
 								<div class="panel-heading">Project Progress:</div>
@@ -180,7 +182,7 @@
 									<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
 									<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
 									-->
-									<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
+									<p>The Frontstage lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
 									<p>After you are done making changes, be sure to click the Save button at the bottom of the page.</p>
 								</div>
 							</div>

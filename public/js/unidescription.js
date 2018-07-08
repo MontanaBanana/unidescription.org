@@ -13,6 +13,7 @@ function toggleDeleted() {
         } else {
            url += '?show_deleted=1'
         }
+		$('.deleted').show();
 	}
 	else {
         if (url.indexOf('?') > -1){
@@ -22,7 +23,7 @@ function toggleDeleted() {
         }
 		$('.deleted').hide();
 	}
-    window.location.href = url;
+    //window.location.href = url;
     return true;
 }
 

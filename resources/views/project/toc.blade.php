@@ -44,11 +44,11 @@
 	    </div>
 	
 	    <div class="col-lg-12">
-	        <nav class="navbar navbar-default">
+	        <nav class="navbar navbar-default" style="border-radius: 4px;">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" ="#bs-example-navbar-collapse-1">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sub-navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -58,11 +58,11 @@
 					</div>
 	
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
+					<div class="collapse navbar-collapse" id="sub-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
-							<li class="active"><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Backstage <span class="sr-only">(current)</span></a></li>
+							<!--<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>-->
+							<li class="active"><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Frontstage</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
@@ -70,7 +70,7 @@
 	    </div>
 		
 		<div class="row project">
-		    <div class="col-lg-12">
+		    <div>
 				<form method="POST" action="/account/project/toc" enctype="multipart/form-data" id="toc-form">
 					@if($editable)
 						{!! csrf_field() !!}
@@ -104,10 +104,13 @@
 					
 					<div class="row">
 				        <div class="col-md-8 edit-column">
-					        <div class="wrapper">
+					        <div class="">
 								<!-- table of contents see http://forresst.github.io/2012/06/22/Make-a-list-jQuery-Mobile-sortable-by-drag-and-drop/ -->
 								<div class="panel panel-default">
-									<div class="panel-heading">Table of Contents: (<strong>The way elements are moved has been updated and is still being tested.</strong>)</div>
+                                    <div class="panel-heading">
+                                    Frontstage: <p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" <?php if (@$_GET['show_deleted']) { echo 'checked'; } ?>/> Show deleted items</label> </p>
+
+                                    </div>
 									<div class="panel-body white unid-list table-of-contents">
 										<div data-role="content" data-theme="c">
 											
@@ -116,48 +119,48 @@
 												<?php foreach ($sections as $index => $section): ?>
                                                     <?php if (!@$_GET['show_deleted'] && $section->deleted) { continue; } ?>
 													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded">
-														<div>
+														<div style="overflow: hidden; width: 100%;">
 													        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 															<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
-                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $section->id }})" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
+                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $section->id }})" data-toggle="modal">--><span class="fa fa-bars hidden-xs hidden-sm" style="cursor: move;"></span><!--</a>-->
 															<i class="fa fa-chevron-down toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 															@if($editable)
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
 															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 															@endif
-															<!--<span class="label pull-right text-length label-info">Good Text Length</span>-->
+															<!--<span class="label pull-right hidden-xs hidden-sm text-length label-info">Good Text Length</span>-->
 														</div>
 														<ul>
 															@if (count($section->children))
 														  		@foreach ($section->children as $child)
 																	<li data-title="{{ $child->title }}" data-section-id="{{ $child->id }}" class="li-section-child @if ($child->deleted) deleted @endif">
-																		<div>
+																		<div style="overflow: hidden; width: 100%;">
 																			<input type="hidden" name="sort_order[]" value="{{ $child->id }}" />
 																			<input type="hidden" name="section-{{ $child->id }}-parent" value="{{ $index }}" />
 	
-                                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $child->id }})" data-id="section-{{ $child->id }}-parent" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
+                                                                            <!--<a href="#moveModal" role="button" onclick="$('#move_component_id').val({{ $child->id }})" data-id="section-{{ $child->id }}-parent" data-toggle="modal">--><span class="fa fa-bars hidden-xs hidden-sm" style="cursor: move;"></span><!--</a>-->
 																			<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																			@if($editable)
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 																			@endif
-																			<!--<span class="label pull-right text-length label-default section-{{ $child->id }}-label">Not Started</span>-->
+																			<!--<span class="label pull-right hidden-xs hidden-sm text-length label-default section-{{ $child->id }}-label">Not Started</span>-->
 																		</div>
 	                                                                    <ul>
 	                                                                        @if (count($child->children))
 	                                                                            @foreach ($child->children as $chch)
 	                                                                                <li data-title="{{ $chch->title }}" data-section-id="{{ $chch->id }}" class="li-section-child @if ($chch->deleted) deleted @endif">
-	                                                                                    <div>
+	                                                                                    <div style="overflow: hidden; width: 100%;">
 	                                                                                        <input type="hidden" name="sort_order[]" value="{{ $chch->id }}" />
 	                                                                                        <input type="hidden" name="section-{{ $chch->id }}-parent" value="{{ $child->id }}" />
 	
-                                                                                            <!--<a href="#moveModal" onclick="$('#move_component_id').val({{ $chch->id }})" role="button" data-id="section-{{ $chch->id }}-parent" data-toggle="modal">--><span class="fa fa-bars" style="cursor: move;"></span><!--</a>-->
+                                                                                            <!--<a href="#moveModal" onclick="$('#move_component_id').val({{ $chch->id }})" role="button" data-id="section-{{ $chch->id }}-parent" data-toggle="modal">--><span class="fa fa-bars hidden-xs hidden-sm" style="cursor: move;"></span><!--</a>-->
 	                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 	                                                                                        @if($editable)
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
 	                                                                                        @endif
-	                                                                                        <!--<span class="label pull-right text-length label-default section-{{ $chch->id }}-label">Not Started</span>-->
+	                                                                                        <!--<span class="label pull-right hidden-xs hidden-sm text-length label-default section-{{ $chch->id }}-label">Not Started</span>-->
 	                                                                                    </div>
 	                                                                                </li>
 	                                                                            @endforeach
@@ -168,12 +171,14 @@
 															@endif
 															
 															@if($editable)
+<!--
 															<li class="new-component">
 																<div class="input-group">
-																	<input type="text" style="width: 84%" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
-																	<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 80px;" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD</span>
+																	<input type="text" style="width: 80%" class="form-control" placeholder="Enter a new component label here..." aria-describedby="section-{{ $section->id }}-add" />
+																	<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 18%;" id="section-{{ $section->id }}-add" data-project_section_id="{{ $section->id }}"><i id="plus-icon" class="fa fa-plus fa-fw"></i> <span class="hidden-xs hidden-sm">ADD</span></span>
 																</div>
 															</li>
+-->
 															@endif
 															<!--<li>
 																<div>
@@ -188,8 +193,8 @@
 	                                            @if($editable)
 												<li id="final-leaf" class="new-component">
 													<div class="input-group">
-														<input type="text" class="form-control" style="width: 487px;" placeholder="Enter a new section label here..." aria-describedby="section-0-add" />
-														<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 80px;" id="section-0-add" data-project_section_id="0"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD</span>
+														<input type="text" class="form-control" style="width: 80%;" placeholder="Enter a new section or component label here..." aria-describedby="section-0-add" />
+														<span class="btn btn-sm btn-primary btn-inline add-page" style="width: 18%;" id="section-0-add" data-project_section_id="0"><i id="plus-icon" class="fa fa-plus fa-fw"></i> <span class="hidden-xs hidden-sm">ADD</span></span>
 													</div>
 												</li>
 												@endif
@@ -200,8 +205,8 @@
 									</div>
 								</div>   
 								<div class="wrapper-footer">
-									<!--<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>-->
-									<button class="btn btn-lg btn-primary btn-icon" style="width: 280px;"><span class="fa fa-floppy-o"></span> Save Table of Contents</button>
+									<!--<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Frontstage</button>-->
+									<button class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save </button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 					        </div>
@@ -209,31 +214,9 @@
 				        </div>
 				        <div class="col-md-4 tips-column">
 					        
-		                	<div class="help">
-					        	<span class="fa fa-question-circle"></span>
-					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
-				        	</div>
-				        	
-				        	@include('project.shared.version')
-	
-	                        @include('project.todo.main')
-				        	
 	                        @include('project.shared.progress')
-	
-				        	<div class="panel panel-default">
-								<div class="panel-heading">Tip: Table of Contents</div>
-								<div class="panel-body">
-									<!--
-									<p>When your project is completed, click below to export your app as an Android APK file or iOS project ready to upload to the App Store.</p>
-									<a href="#" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-download"></span> Export Project</a>
-									-->
-									<p>The Table of Contents lists all of the pages within your project. Click on a page title to edit. You can add pages or subpages as well as re-order the pages by dragging them within this list.</p>
-	
-                                    <p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" <?php if (@$_GET['show_deleted']) { echo 'checked'; } ?>/> Show deleted items</label> </p>
-								</div>
-							</div>
-				        	
-				          	@include('project.shared.export')
+
+                            @include('project.todo.main')
 	
 				        </div>
 					</div>
@@ -250,6 +233,25 @@
 @section('js')
 
 <script type="text/javascript">
+
+
+$(document).ready(function() {
+   $('input.form-control').blur(function(event){
+        if ($(event.currentTarget).val().length > 0) {
+            $(event.currentTarget).next().click();
+            event.preventDefault();
+        }
+        //$(event.currentTarget).next().click();
+   });
+   $('input.form-control').keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        $(event.currentTarget).next().click();
+        return false;
+      }
+   });
+});
+
 
 var posX = 0;
 var posY = 0;

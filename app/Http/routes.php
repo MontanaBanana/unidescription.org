@@ -98,8 +98,10 @@ Route::post(WEBROOT.'library/add', 'LibraryController@postAdd');
 Route::post(WEBROOT.'library/delete', 'LibraryController@postDelete');
 Route::post(WEBROOT.'library/update', 'LibraryController@postUpdate');
 
+
 // Project routes
 Route::get(WEBROOT.'project/npsProjects', 'ProjectController@getNpsProjects');
+Route::get(WEBROOT.'project/npsProjectsV2', 'ProjectController@getNpsProjectsV2');
 
 Route::get(WEBROOT.'account/project', 'ProjectController@index');
 Route::get(WEBROOT.'account/project/edit/{id}/{title}', 'ProjectController@getEdit');
@@ -143,6 +145,7 @@ Route::post(WEBROOT.'account/project/section/hasImageRights', 'ProjectController
 
 Route::get(WEBROOT.'/account/project/export/{id}', 'ProjectController@getExport');
 Route::get(WEBROOT.'/account/project/export_json/{id}', 'ProjectController@getJsonExport');
+Route::get(WEBROOT.'/account/project/export_jsonv2/{id}', 'ProjectController@getJsonExportV2');
 Route::get(WEBROOT.'/account/project/export_text/{id}', 'ProjectController@getTextExport');
 Route::get(WEBROOT.'/account/project/zip/{id}', 'ProjectController@getZip');
 Route::get(WEBROOT.'/account/project/export_audio/{id}', 'ProjectController@getExportAudio');

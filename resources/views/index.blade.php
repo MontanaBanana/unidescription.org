@@ -5,17 +5,23 @@
 @section('content')
 
     <!-- Header Carousel -->
-    <header style="background-image:url({{ SITEROOT }}/slideshow/ad_photo1-cropped.jpg)">
+    <header style="background-image:url({{ SITEROOT }}/slideshow/joe_parthenon.jpg)" title="The UniDescription Project's mantra is to 'audio describe the world,' and this image shows UniD developer Joe Oppegaard at the base of the Acropolis in Athens, Greece, testing the UniD system. Joe is wearing a black shirt and dark sunglasses, contrasting with his blond hair and white earbuds, which are connected to his smartphone, as he listens to content on the phone underneath the massive marble columns at the remains of the Parthenon. The UniD Project team has worked with the University of Piraeus in Athens to audio describe parts of the Acropolis as well as various other major public attractions around the world, including more than 50 U.S. National Park Service sites.">
 		<div class="container centerpiece">
+<!--
 			<div class="slide">
 				<p class="tagline" id="tagline">Audio Describe the World</p>
 				<p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p>
 			</div>
+-->
 		</div>
 	</header>
+        <div width="100%" style="background: black; height: 80px;" class="slide">
+            <div style="float: left;"><p class="tagline" id="tagline">Audio Describe the World</p></div>
+            <div style="float: right; padding-top: 20px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p></div>
+        </div>
 
     <!-- Page Content -->
-	<div class="row blade introduction">
+	<div class="row blade introduction" style="clear: both;">
 		<div class="container">
 			<div class="col-lg-12">
 				<h1 class="page-header">
@@ -147,9 +153,9 @@
 				<h2 class="page-header">About the UniD Project</h2>
 			</div>
 			<div class="col-lg-6 col-md-6">
-				<img src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Photo of Megan Conway on a visit to Haleakalā. She is standing in front of a sign board with a map of the park." class="photo" />
+				<img src="{{ SITEROOT }}/images/acb_members_enter_muir_woods.jpg" alt="Photo showing members of the Silicon Valley and San Francisco chapters of the American Council of the Blind field testing the UniD app at Muir Woods National Monument in April 2018. A group of about a dozen people, with three guide dogs in tow, are shown entering the park, with their backs to the camera, underneath an aged and wooden Muir Woods sign that is hung over the middle of an entryway gate. Photo courtesy of: The National Park Service." class="photo" />
                     <p class="caption">
-UniD researcher Megan Conway, left, from UH, is visually and hearing-impaired and has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii. Above, University of Hawai'i student Sajja Koirala, who is blind, has been among the visually impaired collaborators who have been helping the UniD research team design better audio description tools and products for free public use.
+Members of the Silicon Valley and San Francisco chapters of the American Council of the Blind field tested the UniD app at Muir Woods National Monument in April 2018.<br/>Photo courtesy of: Alison Taggart-Barone/NPS.
                     </p>
 			</div>
 			<div class="col-lg-6 col-md-6">	

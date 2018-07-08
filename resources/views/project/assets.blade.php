@@ -44,11 +44,11 @@
 	    </div>
 	
 	    <div class="col-lg-12">
-	        <nav class="navbar navbar-default">
+	        <nav class="navbar navbar-default" style="border-radius: 4px;">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
-						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sub-navbar-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
@@ -58,11 +58,11 @@
 					</div>
 	
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
+					<div class="collapse navbar-collapse" id="sub-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
+							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Backstage <span class="sr-only">(current)</span></a></li>
 							<li class="active"><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
-							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Frontstage</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
@@ -70,13 +70,13 @@
 	    </div>
 	    
 		
-		<div class="row project">
-		    <div class="col-lg-12">
+		<div class="col-lg-12 project">
+		    <div class="">
 				<!--<form method="POST" action="/account/project/edit" enctype="multipart/form-data">-->		
 					
-					<div class="row">
-				        <div class="col-md-8 edit-column">
-					        <div class="wrapper">
+					<div class="">
+				        <div class="col-md-8 col-sm-12 edit-column">
+					        <div class="">
 								
 								@if($editable)
 								<!-- app store assets -->
@@ -174,16 +174,17 @@
 	-->
 	
 								
+<!--
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										App Store Description:
-										<!--<span class="label pull-right label-info">Good Text Length</span>-->
 									</div>
 									<div class="panel-body form-element">
 										<textarea name="description" <?php if(!$editable){echo 'disabled';}?>>{{ $project->description }}</textarea>
 									</div>
 								</div>
 					
+-->
 								@if($editable)
 									<div class="wrapper-footer">
 										<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
@@ -194,19 +195,22 @@
 	
 				        </div>
 				        <div class="col-md-4 tips-column">
+<!--
 		                	<div class="help">
 					        	<span class="fa fa-question-circle"></span>
 					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 				        	</div>
+-->
+	
+	                        @include('project.shared.owner')
+	
+	                        @include('project.shared.export')
+
 	                        @include('project.todo.main')
 	
 				        	@include('project.shared.version')
 				        	
 	                        @include('project.shared.progress')
-	
-	                        @include('project.shared.export')
-	
-	                        @include('project.shared.owner')
 	
 				        </div>
 					</div>

@@ -19,3 +19,5 @@
 </IfModule>
 
 Header set Access-Control-Allow-Origin "*"
+ModPagespeed unplugged
+

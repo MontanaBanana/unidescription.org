@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+error_reporting(0);
 
 use DB;
 use Mail;
@@ -27,7 +28,7 @@ class ProjectController extends Controller
 {
 	public function __construct()
 	{
-	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getJsonExport', 'getTextExport', 'getNpsProjects')]);
+	    $this->middleware('auth', ['except' => array('getZip', 'getExport', 'getJsonExport', 'getTextExport', 'getNpsProjects', 'getNpsProjectsV2', 'getJsonExportV2')]);
 	}
 	
     private function _cleanText($text)
@@ -113,6 +114,204 @@ class ProjectController extends Controller
 		//return view('project.export', ['project' => $project]);
     }
 
+    public function getNpsProjectsV2()
+    {
+        $letter_items = array(
+                'A' => array(
+                    array('id' => '281', 'title' => 'About Us - The UniDescription Project'),
+                ),
+                'C' => array(
+                    array('id' => '97', 'title' => 'Cabrillo National Monument - California'),
+                    array('id' => '141', 'title' => 'Cape Cod National Seashore - Massachusetts'),
+                    array('id' => '124', 'title' => 'César E. Chávez National Monument - California'),
+                    array('id' => '125', 'title' => 'Channel Islands National Park - California'),
+                ),
+                'D' => array(
+                    array('id' => '101', 'title' => 'Denali National Park and Preserve - Alaska'),
+                    array('id' => '256', 'title' => 'Devils Postpile National Monument - California'),
+                ),
+                'E' => array(
+                    array('id' => '257', 'title' => 'Eugene O\'Neill National Historic Site - California'),
+                    array('id' => '103', 'title' => 'Everglades National Park - Florida'),
+                ),
+                'F' => array(
+                    array('id' => '154', 'title' => 'Flight 93 National Memorial - Pennsylvania'),
+                    array('id' => '275', 'title' => 'Fort Point National Historic Site - California'),
+                    array('id' => '126', 'title' => 'Fort Smith National Historic Site - Arkansas'),
+                    array('id' => '143', 'title' => 'Fort Stanwix National Monument - New York'),
+                    array('id' => '89', 'title' => 'Fort Vancouver National Historic Site - Washington'),
+                ),
+                'G' => array(
+                    array('id' => '144', 'title' => 'Gates of the Arctic National Park and Preserve - Alaska'),
+                    array('id' => '128', 'title' => 'George Washington Memorial Parkway - Virginia, Maryland, District of Columbia'),
+                    array('id' => '76', 'title' => 'Golden Gate National Recreation Area - California'),
+                ),
+                'H' => array(
+                    array('id' => '136', 'title' => 'Hagerman Fossil Beds National Monument - Idaho'),
+                    array('id' => '123', 'title' => 'Harry S Truman National Historic Site - Missouri'),
+                    array('id' => '252', 'title' => 'Hawaii Volcanoes National Park - Hawaii'),
+                    array('id' => '107', 'title' => 'Herbert Hoover National Historic Site - Iowa'),
+                    array('id' => '145', 'title' => 'Home of Franklin D. Roosevelt National Historic Site - New York'),
+                ),
+                'J' => array(
+                    array('id' => '142', 'title' => 'Jamestowne at Colonial National Historical Park - Virginia'),
+                    array('id' => '99', 'title' => 'John Day Fossil Beds National Monument - Oregon'),
+                    array('id' => '277', 'title' => 'John Muir National Historic Site - California'),
+                    array('id' => '146', 'title' => 'Johnstown Flood National Memorial - Pennsylvania'),
+                    array('id' => '102', 'title' => 'Joshua Tree National Park - California'),
+                ),
+                'K' => array(
+                    array('id' => '131', 'title' => 'Katmai National Park and Preserve - Alaska'),
+                ),
+                'L' => array(
+                    array('id' => '254', 'title' => 'Lassen Volcanic National Park - California'),
+                    array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
+                    array('id' => '132', 'title' => 'Lowell National Historical Park - Massachusetts'),
+                ),
+                'M' => array(
+                    array('id' => '133', 'title' => 'Manzanar National Historic Site - California'),
+                    array('id' => '147', 'title' => 'Minute Man National Historical Park - Massachusetts'),
+                    array('id' => '134', 'title' => 'Morristown National Historical Park - New Jersey'),
+                    array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
+                ),
+                'N' => array(
+                    array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
+                    array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                ),
+                'P' => array(
+                    array('id' => '267', 'title' => 'Pinnacles National Park - California'),
+                    array('id' => '261', 'title' => 'Point Reyes National Seashore - California'),
+                    array('id' => '273', 'title' => 'Port Chicago Naval Magazine National Memorial - California'),
+                    array('id' => '94', 'title' => 'Pu‘ukohola Heiau National Historic Site - Hawaii'),
+                ),
+                'R' => array(
+                    array('id' => '262', 'title' => 'Redwood National Park - California'),
+                    array('id' => '271', 'title' => 'Rosie the Riveter/World War II Home Front National Historic Park - California'),
+                ),
+                'S' => array(
+                    array('id' => '92', 'title' => 'San Francisco Maritime National Historical Park - California'),
+                    array('id' => '108', 'title' => 'Sitka National Historical Park - Alaska'),
+                    array('id' => '150', 'title' => 'Statue of Liberty National Monument - New York, New Jersey'),
+                    array('id' => '122', 'title' => 'Steamtown National Historic Site - Pennsylvania'),
+                ),
+                'T' => array(
+                    array('id' => '93', 'title' => 'Thomas Edison National Historical Park - New Jersey'),
+                ),
+                'V' => array(
+                    array('id' => '151', 'title' => 'Valley Forge National Historical Park - Pennsylvania'),
+                ),
+                'W' => array(
+                    array('id' => '242', 'title' => 'Washington Monument - District of Columbia'),
+                    array('id' => '274', 'title' => 'Whiskeytown—Shasta—Trinity National Recreation Area - California'),
+                    array('id' => '152', 'title' => 'Women\'s Rights National Historical Park - New York'),
+                ),
+                'Y' => array(
+                    array('id' => '91', 'title' => 'Yellowstone National Park - Wyoming, Idaho, Montana'),
+                    array('id' => '266', 'title' => 'Yosemite National Park - California'),
+                ),
+        );
+
+        $state_items = [];
+        foreach ($letter_items as $letter => $name_items) {
+            foreach ($name_items as $ni) {
+                $si = $ni;
+                $si['title'] = preg_replace("/(^[^-]*) - (.*$)/", '\2 - \1', $si['title']);
+                if (preg_match("/^(\w)/", $si['title'], $word_match)) {
+                    $state_items[$word_match[1]][] = $si['title'];
+                }
+            }
+        }
+
+        $type_items = [];
+        foreach ($letter_items as $name_items) {
+            foreach ($name_items as $ni) {
+                $ti = $ni;
+                if (preg_match("/(^.*) (National Seashore) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+                }
+                elseif (preg_match("/(^.*) (National Monument) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Park) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Park and Preserve) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Memorial) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Historic Site) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Historic Park) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (Memorial Parkway) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Military Park) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Recreation Area) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National Historical Park) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (Monument) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (National River) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+
+                }
+                elseif (preg_match("/(^.*) (System Map and Guide) - (.*$)/", $ti['title'], $m)) {
+                    $ti['title'] = "$m[2] - $m[1] - $m[3]";
+                }
+                elseif (preg_match("/NPS Unigrid Guide - (.*$)/", $ti['title'], $m)) {
+                    //array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                    $ti['title'] = $ti['title'];
+                }
+                else {
+                    //echo "Fix: $ti[title]";
+                    $ti['title'] = $ti['title'];
+                }
+
+                if (preg_match("/^(\w)/", $ti['title'], $word_match)) {
+                    $type_items[$word_match[1]][] = $ti['title'];
+                }
+            }
+        }
+
+        //usort($state_items, "title_cmp");
+        //usort($type_items, "title_cmp");
+        ksort($state_items);
+        ksort($type_items);
+
+        //print_r($letter_items);
+        //print_r($state_items);
+        //print_r($type_items);
+
+        echo json_encode(array(
+            'name' => $letter_items,
+            'state' => $state_items,
+            'type' => $type_items
+        ));
+        exit;
+    }
+
     public function getNpsProjects()
     {
         $name_items = array(
@@ -144,15 +343,15 @@ class ProjectController extends Controller
                     array('id' => '146', 'title' => 'Johnstown Flood National Memorial - Pennsylvania'),
                     array('id' => '102', 'title' => 'Joshua Tree National Park - California'),
                     array('id' => '131', 'title' => 'Katmai National Park and Preserve - Alaska'),
-                    array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
                     array('id' => '254', 'title' => 'Lassen Volcanic National Park - California'),
+                    array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
                     array('id' => '132', 'title' => 'Lowell National Historical Park - Massachusetts'),
                     array('id' => '133', 'title' => 'Manzanar National Historic Site - California'),
                     array('id' => '147', 'title' => 'Minute Man National Historical Park - Massachusetts'),
                     array('id' => '134', 'title' => 'Morristown National Historical Park - New Jersey'),
                     array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
                     array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
-                    array('id' => '53', 'title' => 'NPS System Map and Guide - District of Columbia'),
+                    //array('id' => '53', 'title' => 'NPS System Map and Guide - District of Columbia'),
                     array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
                     array('id' => '267', 'title' => 'Pinnacles National Park - California'),
                     array('id' => '261', 'title' => 'Point Reyes National Seashore - California'),
@@ -272,7 +471,8 @@ class ProjectController extends Controller
 	    $project = Project::find($id);
 		
 		foreach ($project->project_sections as $s) {
-			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update){
+            $combined = '';
+			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update || !$s->audio_file_combined){
 				//////////////////////////////////
 				// Generate the TITLE audio file
 				//////////////////////////////////
@@ -280,6 +480,7 @@ class ProjectController extends Controller
 	
 				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
                 $text = $this->_cleanText($text);
+                $combined = $text;
 				//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 
@@ -287,11 +488,15 @@ class ProjectController extends Controller
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				curl_setopt($ch, CURLOPT_POST, 1);
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
                 if (strlen($s->phonetic_title)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                 }
 				
 				$result = json_decode(curl_exec($ch));
@@ -301,7 +506,7 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
-			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update){
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
 				//////////////////////////////////
 				// Generate the DESCRIPTION audio file
 				//////////////////////////////////
@@ -309,15 +514,20 @@ class ProjectController extends Controller
 	
 				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
                 $text = $this->_cleanText($text);
+                $combined .= ". ".$text;
 				
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
 				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
                 if (strlen($s->phonetic_description)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                 }
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				
@@ -328,8 +538,122 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
+            if (strlen($combined)) {
+				$ch = curl_init();
+	
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$combined.$polly);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_combined = $result->fn;
+				$s->save();
+
+            }
 		}
 		return view('project.export', ['project' => $project]);
+    }
+
+    public function getJsonExportV2($id)
+    {
+	    $project = Project::find($id);
+		
+		foreach ($project->project_sections as $s) {
+            $combined = '';
+			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update || !$s->audio_file_combined){
+				//////////////////////////////////
+				// Generate the TITLE audio file
+				//////////////////////////////////
+				$ch = curl_init();
+	
+				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
+                $text = $this->_cleanText($text);
+                $combined = $text;
+				//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
+				//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
+
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                if (strlen($s->phonetic_title)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
+                }
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_title = $result->fn;
+				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
+				$s->save();
+			}
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
+				//////////////////////////////////
+				// Generate the DESCRIPTION audio file
+				//////////////////////////////////
+				$ch = curl_init();
+	
+				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
+                $text = $this->_cleanText($text);
+                $combined .= ". ".$text;
+				
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                if (strlen($s->phonetic_description)) {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
+                }
+                else {
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
+                }
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_description = $result->fn;
+				$s->audio_file_needs_update = false;
+				$s->audio_file_url = '';
+				$s->save();
+			}
+            if (strlen($combined)) {
+				$ch = curl_init();
+	
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$combined.$polly);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_combined = $result->fn;
+				$s->save();
+
+            }
+		}
+		return view('project.export_jsonv2', ['project' => $project]);
     }
 
     public function getJsonExport($id)
@@ -337,7 +661,8 @@ class ProjectController extends Controller
 	    $project = Project::find($id);
 		
 		foreach ($project->project_sections as $s) {
-			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update){
+            $combined = '';
+			if (!strlen($s->audio_file_title) || $s->audio_file_needs_update || !$s->audio_file_combined){
 				//////////////////////////////////
 				// Generate the TITLE audio file
 				//////////////////////////////////
@@ -345,18 +670,23 @@ class ProjectController extends Controller
 	
 				$text = $s->phonetic_title ? $s->phonetic_title : $s->title;
                 $text = $this->_cleanText($text);
+                $combined = $text;
 				//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 				//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
 				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				curl_setopt($ch, CURLOPT_POST, 1);
                 if (strlen($s->phonetic_title)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                 }
 				
 				$result = json_decode(curl_exec($ch));
@@ -366,7 +696,7 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
-			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update){
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
 				//////////////////////////////////
 				// Generate the DESCRIPTION audio file
 				//////////////////////////////////
@@ -374,15 +704,20 @@ class ProjectController extends Controller
 	
 				$text = $s->phonetic_description ? $s->phonetic_description : $s->description;
                 $text = $this->_cleanText($text);
+                $combined .= ". ".$text;
 				
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
 				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_POST, 1);
                 if (strlen($s->phonetic_description)) {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                 }
                 else {
-                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                 }
 				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 				
@@ -393,6 +728,25 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
+            if (strlen($combined)) {
+				$ch = curl_init();
+	
+                $polly = '';
+                if ($project->id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$combined.$polly);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$s->audio_file_combined = $result->fn;
+				$s->save();
+
+            }
 		}
 		return view('project.export_json', ['project' => $project]);
     }
@@ -415,6 +769,9 @@ class ProjectController extends Controller
 		    	return view('project.authorize', ['project' => $project, 'owner' => $owner]);
 		    }
 	    }
+        // TODO REMOVE THIS 
+		return view('project.build', ['project' => $project, 'owner' => $owner, 'pg_build' => $pg_build]);
+
 
         // Create a new branch of the master template in github
         $project->create_github_branch();
@@ -639,7 +996,8 @@ class ProjectController extends Controller
 				abort(404);
 			}
 			$sections = buildTree($project->project_sections, 'project_section_id');
-			return view('project.details', ['sections' => $sections, 'project' => $project]);
+            $assets = ProjectAsset::where('project_id', $project_id)->orderBy('priority', 'asc')->get();
+			return view('project.details', ['sections' => $sections, 'project' => $project, 'assets' => $assets]);
 		}
     }
 
@@ -681,10 +1039,45 @@ class ProjectController extends Controller
 	public function postDetails(Request $request)
     {
 	    //echo "<PRE>".print_R($request->all(),true)."</pre>";exit;
+        $files = Input::file('asset');
+        $file_count = count($files);
+        if ($file_count > 0 && $request->id > 0) {
+            $p = Project::find($request->id);
+            // NOW UPDATE THE PROJECT updated_at
+            $p->updated_at = date("Y-m-d H:i:s", time());
+            $p->save();
+
+            $uploadcount = 0;
+            foreach ($files as $file) {
+                if ($file !== NULL) {
+                    $destinationPath = 'uploads';
+                    $filename = $file->getClientOriginalName();
+                    $upload_success = $file->move(base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $filename);
+                    $uploadcount ++;
+
+                    $pa = ProjectAsset::create(
+                        [
+                            'project_id' => $request->project_id,
+                            'user_id' => Auth::user()->id,
+                            'title' => $filename,
+                            'description' => '',
+                            'priority' => 1
+                        ]
+                    );
+                    $pa->save();
+                }
+            }
+            return redirect("/account/project/details/".$p->id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->id)));
+        }
+
 	    
         $this->validate($request, [
 	        'title' => 'required',
 		]);
+
+        if (!strlen($request->description)) {
+            $request->description = 'description';
+        }
     
 	    if ($request->id) {
 		    $project = Project::find($request->id);
@@ -802,6 +1195,7 @@ class ProjectController extends Controller
     
 	public function postAssets(Request $request)
 	{
+return;
 		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
 		$p = Project::find($request->project_id);
 		// NOW UPDATE THE PROJECT updated_at
@@ -1061,7 +1455,7 @@ class ProjectController extends Controller
 		$ps = ProjectSection::find($project_section_id);
 		
 		$was_locked = false;
-		if (! $ps->locked) {
+		if (! $ps->locked || $project_id >= 286) {
 			// Lock it.
 			$ps->locked = true;
 			$ps->locked_by_user_id = Auth::user()->id;
@@ -1204,6 +1598,8 @@ class ProjectController extends Controller
 					'description' => trim($request->description),
 					'phonetic_description' => trim($request->phonetic_description),
 					'notes' => $request->notes,
+					'latitude' => $request->latitude,
+					'longitude' => $request->longitude,
 					'audio_file_url' => $ps->audio_file_url,
 					'audio_file_needs_update' => $ps->audio_file_needs_update,
 					'sort_order' => $ps->sort_order,
@@ -1235,28 +1631,34 @@ class ProjectController extends Controller
 		//combined the if statement, previous statement was redundant and repeating
 
 		if ($ps->title != $request->title || $ps->description != $request->description || $ps->phonetic_title != $request->phonetic_title || $ps->phonetic_description != $request->phonetic_description) {
+            $combined = '';
 			
 			//////////////////////////////////
 			// Generate the TITLE audio file
 			//////////////////////////////////
-				if($ps->title != $request->title || $ps->phonetic_title != $request->phonetic_title){
+				if($ps->title != $request->title || $ps->phonetic_title != $request->phonetic_title || !$s->audio_file_combined){
 					$ch = curl_init();
 				
 					$text = $request->phonetic_title ? $request->phonetic_title : $request->title;
                     $text = $this->_cleanText($text);
+                    $combined = $text;
 					
 					//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 					//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 					
+                    $polly = '';
+                    if ($ps->project_id > 281) { 
+                        $polly = "&polly=1";
+                    }
 					curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
                     if (strlen($request->phonetic_title)) {
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                     }
                     else {
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                     }
 					
 					$result = json_decode(curl_exec($ch));
@@ -1267,37 +1669,63 @@ class ProjectController extends Controller
 			//////////////////////////////////
 			// Generate the DESCRIPTION audio file
 			//////////////////////////////////
-				if($ps->description != $request->description || $ps->phonetic_description != $request->phonetic_description){
+				if($ps->description != $request->description || $ps->phonetic_description != $request->phonetic_description || !$s->audio_file_combined){
 					$ch = curl_init();
 		
 					$text = $request->phonetic_description ? $request->phonetic_description : $request->description;
                     $text = $this->_cleanText($text);
+                    $combined .= ". ".$text;
 					
 					//$text = preg_replace("/(<([^>]+)>)/i", '', $text);
 					//$text = preg_replace("/&#?[a-zA-Z0-9]{2,8};/", '', $text);
 					
+                    $polly = '';
+                    if ($ps->project_id > 281) { 
+                        $polly = "&polly=1";
+                    }
 					curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 					curl_setopt($ch, CURLOPT_POST, 1);
 					curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
                     if (strlen($request->phonetic_description)) {
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false');
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.'&use_library=false'.$polly);
                     }
                     else {
-                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$text.$polly);
                     }
 					
 					$result = json_decode(curl_exec($ch));
 					
 					$ps->audio_file_description = $result->fn;
 				}
+
+            if (strlen($combined)) {
+				$ch = curl_init();
+	
+                $polly = '';
+                if ($ps->project_id > 281) { 
+                    $polly = "&polly=1";
+                }
+				curl_setopt($ch, CURLOPT_URL, 'https://api.montanab.com/tts/tts.php');
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, 't='.$combined.$polly);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+				
+				$result = json_decode(curl_exec($ch));
+				
+				$ps->audio_file_combined = $result->fn;
+				$ps->save();
+
+            }
 			$ps->audio_file_needs_update = true;
 		}
 		$ps->description = $request->description;
 		$ps->title = trim($request->title);
 		$ps->phonetic_description = $request->phonetic_description;
 		$ps->phonetic_title = $request->phonetic_title;
-
+		$ps->latitude = $request->latitude;
+		$ps->longitude = $request->longitude;
 		$ps->notes = $request->notes;
 
 		$ps->locked = false;

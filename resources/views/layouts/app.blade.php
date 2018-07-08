@@ -61,7 +61,7 @@
 	<script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js"></script>
 
 	<!-- Unidescription custom JS -->
-	<script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js"></script>
+	<script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js?ts=1234"></script>
 
 	<!-- cropper -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css">

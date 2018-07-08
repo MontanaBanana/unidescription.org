@@ -24,7 +24,8 @@
                                     <div class="panel-heading">Phonetic library:</div>
                                     <div class="panel-body white">
                                         <p>The words in the phonetic library will automatically substitute words found in the primary text of a component, unless that component is already overridden with custom phonetics.</p><p>Note that only the person who created a word can edit or delete it. If you wish to override that specific word, you'll have to do it in your Phonetic Description for the component.</p>
-                                        <div style="float: left;">Filter words: <input name="filter" id="filter" type="text" /></div>
+                                        <!--<div style="float: left;">Filter words: <input name="filter" id="filter" type="text" /></div>-->
+                                        <div style="float: left;">Search words: <form method="GET"><input name="search" id="search" type="text" /> <input class="btn-btn-sm btn-primary btn-inline" type="submit" value="Search"></form>  </div>
                                         <div style="float: right;"><a href="/library/new" class="btn btn-sm btn-primary btn-inline" style="width: 180px;"><i id="plus-icon" class="fa fa-plus fa-fw"></i> ADD NEW WORD</a></div>
                                         <table width="100%">
                                             <tr><th width="28%">Word</th><th width="10%">Play</th><th width="28%">Phonetic</th><th width="10%">Play</th><th width="24%" align="right" style="text-align: right"></th></tr>
@@ -45,7 +46,14 @@
  * get projects
  * also gets $sortBy and $direction values from URL or defaults to 'created' 'asc'
  */
-$libraries = App\Library::orderBy('word')->get();
+$used_page = false;
+if (isset($_GET['search']) && strlen($_GET['search'])) {
+    $libraries = App\Library::where('word', 'like', '%'.$_GET['search'].'%')->orderBy('word')->get();
+}
+else {
+    $used_page = true;
+    $libraries = App\Library::orderBy('word')->simplePaginate(20);
+}
 foreach ($libraries as $lib):
 
     ?>
@@ -88,6 +96,17 @@ endforeach;
 ?>
 
     </table>
+    
+<p>
+<?php if ($used_page && $libraries->previousPageUrl()): ?>
+    <a href="{{ $libraries->previousPageUrl() }}" style="float: left">&larr; Previous page</a>
+<?php endif; ?>
+
+<?php if ($used_page && $libraries->nextPageUrl()): ?>
+    <a href="{{ $libraries->nextPageUrl() }}" style="float: right">Next page &rarr;</a>
+<?php endif; ?>
+</p>
+
 
                 </div>
             </div>

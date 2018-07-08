@@ -1,5 +1,5 @@
 @if ($project->id)
-<div class="panel panel-default">
+<div class="panel panel-default hidden-xs hidden-sm">
     <div class="panel-heading">Tip: Exporting</div>
     <div class="panel-body">
         <p>When your project is completed, you can preview the app by clicking on the Preview App button below. Only sections marked as completed will be in the export. When you're ready to upload the app to the app store, click on the Create App button.</p>

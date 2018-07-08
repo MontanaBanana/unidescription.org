@@ -29,8 +29,8 @@
 				<p>Your app has successfully been built. </p>
 				<p>From this page you can preview the generated app in your web browser, go to the mobile app download page, or share a link to the mobile download page.</p>
 				<p><strong>Note:</strong> it can take up to 15 minutes before the mobile app packages are ready to download (though usually it only takes about 1 minute).</p>
-				<p><a class="btn btn-lg btn-primary btn-icon" target="_blank" href="{{ SITEROOT }}/account/project/export/{{ $project->id }}"><span class="fa fa-eye"></span> Preview project in web browser</a></p>
-				<p><a class="btn btn-lg btn-primary btn-icon" target="_blank" href="<?php echo $pg_build['install_url']; ?>"><span class="fa fa-mobile"></span> Mobile download link</a></p>
+				<p><a class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank" href="{{ SITEROOT }}/account/project/export/{{ $project->id }}"><span class="fa fa-eye"></span> Preview project in web browser</a></p>
+				<p><a class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank" href="<?php echo $pg_build['install_url']; ?>"><span class="fa fa-mobile"></span> Mobile download link</a></p>
 				<p><input name="share_url" value="<?php echo $pg_build['install_url']; ?>" style="width: 500px;" onclick="this.select();" /></p>
             </div>
         </div>

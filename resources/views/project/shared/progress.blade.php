@@ -4,7 +4,7 @@ if (!isset($sections) && isset($project)) {
 }
 ?>
 
-<div class="panel panel-default">
+<div class="panel panel-default hidden-xs hidden-sm">
     <div class="panel-heading">Project Progress:</div>
     <div class="panel-body">
         <div class="progress">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'UniD Academy')
+@section('title', 'Research')
 
 @section('content')
 
@@ -33,38 +33,44 @@ SIGDOC_Oppegaard_2017.docx
                 <div class="col-md-12">
                     <h2 class="page-header" style="top: -40px; position: relative; margin-bottom: 0">Where We've Been<br/><span style="font-size: 16px;">Audio Description Created Around the U.S. (and World)</span></h2>
 
-                    <center><iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="792" height="594"></iframe></center>
+                    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="100%" height="594"></iframe>
 
-                    <center><blockquote style="border-left: 0;"><h2>UniD Project Research</h2></blockquote></center>
+                    <h2 class="page-header" style="position: relative; margin-bottom: 0">Field Research<br/><span style="font-size: 16px;">Studying Audio Description On Site</span></h2>
 
 <section>
-<center><img class="photo" src="{{ SITEROOT }}/images/veronica.jpg" alt="Veronica Hernandez, Joey Ruiz, Nikki Richards, Chenier Derrick in back row, left to right, and Sajja Koirala and Martha Espitia in front row, Yosemite, Nov 2017, photo by Jamie Gibson-Barrows.jpg" /></center>
+<center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/muir_woods_field_test-20180427.jpg" alt="This photo shows Silicon Valley and San Francisco chapters of the American Council of the Blind participating in field tests of the UniD apps in April 2018 at Muir Woods National Monument. The seven people shown, including Park Ranger Michael Faw, in the middle of the screen, are either looking at, or listening to, their mobile devices in a setting of enormous redwood trees. Those blind or visually impaired members included Frank Welte, Sally McGuire, Park Ranger Michael Faw, Michael Keithley, and Susan Glass. Photo courtesy of: Dr. Thomas Conway, University of Hawaii." /></center>
+<p>Silicon Valley and San Francisco chapters of the American Council of the Blind participated in field tests of the UniD apps in April 2018 at Muir Woods National Monument. Those blind or visually impaired members included Frank Welte, Sally McGuire, Park Ranger Michael Faw, Michael Keithley, and Susan Glass. Photo courtesy of: Dr. Thomas Conway, University of Hawaii.</p>
+<br /><br />
+</section>
+
+<section>
+<center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/veronica.jpg" alt="Veronica Hernandez, Joey Ruiz, Nikki Richards, Chenier Derrick in back row, left to right, and Sajja Koirala and Martha Espitia in front row, Yosemite, Nov 2017, photo by Jamie Gibson-Barrows.jpg" /></center>
 <p>Dozens of visually impaired or blind people (plus four seeing-eye dogs) visited Yosemite National Park in November 2017 to help us field test the UniDescription project's free mobile apps. This Google-sponsored test (with a chartered bus provided by the American Council of the Blind) was a collaboration among our University of Hawaii-based research team and its partners, including the California Council of the Blind's Fresno chapter, the national American Council of the Blind organization, the National Park Service, and Google. This photo (provided by CCB's Jamie Gibson-Barrows) shows: Veronica Hernandez, Joey Ruiz, Nikki Richards, and Chenier Derrick in the back row, from left to right, and Sajja Koirala (our UH research assistant) and Martha Espitia in the front row.</p>
 <br /><br />
 </section>
 
+
                     <section>
-                    <center><img style="width: 792px" class="photo" src="{{ SITEROOT }}/images/sigdoc_2017.PNG" alt="Brett's 2017 SIGDOC UniD research poster"></center>
+                    <h2 class="page-header" style="position: relative; margin-bottom: 0">Scholarly Products<br/><span style="font-size: 16px;">Related peer-reviewed publications, presentations, and external funding</span></h2>
+
+                    <section>
+                    <center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/sigdoc_2017.PNG" alt="Brett's 2017 SIGDOC UniD research poster"></center>
                     <center><strong><a href="{{ SITEROOT }}/images/SIGDOC_Oppegaard_2017.docx">Download the paper</a></strong></center>
                     <p>"To Bracket or Not Bracket: Experiments in Gamification in the Wilds of Technical Communication" research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Halifax, Nova Scotia, Canada, in 2017.</p>
                     </section>
 
                     <section style="padding-top: 30px;">
-                    <center><img style="width: 792px" class="photo" src="{{ SITEROOT }}/images/SIGDOC_poster_2016.jpg" alt="Brett's 2016 SIGDOC UniD research poster"></center>
+                    <center><img style="width: 100%" class="photo" src="{{ SITEROOT }}/images/SIGDOC_poster_2016.jpg" alt="Brett's 2016 SIGDOC UniD research poster"></center>
                     <center><strong><a href="{{ SITEROOT }}/images/62_Oppegaard_FINAL_SIGDOC_submitted.docx">Download the paper</a></strong></center>
                     <p>"From seeing to hearing: Lessons learned from a research-based design project focused upon audio description, print-to-acoustic remediation, and mobile-app delivery" research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Silver Spring, Maryland, U.S., in 2016.</p>
                     </section>
 
-
-                    <section>
-<h3>Related peer-reviewed publications, presentations, and external funding</h3>
-
-<strong>Published:</strong>
+<strong style="font-size: 24px;">Published:</strong>
 <ul>
 <li>Conway, T., Oppegaard, B., & Conway, M. (2016). <a href="/images/toward_cultural_inclusion.pdf">Toward cultural inclusion: Using mobile technologies to increase access to audio description</a>, The Review of Disability Studies: An International Journal, 11(4), 5-8.</li>
 </ul>
 
-<strong>Presented:</strong>
+<strong style="font-size: 24px;">Presented:</strong>
 <ul>
 <li>Oppegaard, Brett. “Insider Positionality: Creating Tools and Translations to Investigate Audio Description,” paper / presentation, International Communication Association (ICA, San Diego, CA, U.S., 2017).</li>
 <li>Oppegaard, Brett, Conway, Megan, and Conway, Thomas. “To Bracket or Not Bracket: Experiments in Gamification in the Wilds of Technical Communication,” poster / presentation, The Association for Computer Machinery Special Interest Group on Design of Communication (SIGDOC, Halifax, Nova Scotia, Canada, 2017).</li>
@@ -82,9 +88,10 @@ SIGDOC_Oppegaard_2017.docx
 <li>Oppegaard, Brett. “Mobile for everyone? An analysis of National Park Service audio description as a step toward improving universal design through mobile,” paper / presentation, (International Communication Association, ICA Mobile Preconference, San Juan, Puerto Rico, U.S., 2015).</li>
 </ul> 
 
-<strong>Funding for this project provided by:</strong>
+<strong style="font-size: 24px;">Funding:</strong>
 <ul>
-<li>Google ($75,000), 2017 – present</li>
+<li>American Council of the Blind (in-kind services), 2017 - present</li>
+<li>Google ($125,000), 2017 – present</li>
 <li>National Park Service ($344,800 + in-kind services), 2014 – present</li>
 <li>University of Hawaii at Manoa’s School of Communications and Center on Disability Studies (in-kind services), 2014 – present</li>
 </ul>
@@ -202,7 +209,7 @@ SIGDOC_Oppegaard_2017.docx
 				<?php
 					foreach ($research_partners as $k => $r):
 						?>
-							<div class="grid-item col-md-4 col-sm-4 col-xs-6">
+							<div class="grid-item col-md-4 col-sm-4 col-xs-4">
 								<div class="grid-item-content">
                                     <a target="_blank" href="<?php echo $r['link']; ?>"><img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}"></a>
                                     <p><a target="_blank" href="<?php echo $r['link']; ?>">{{ $k }}</a></p>

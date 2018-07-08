@@ -24,6 +24,7 @@
 	}
 	.navbar-brand img {
 		height: 46px;
+        width: auto;
 		padding-left:0px;
 	}
 	.navbar .navbar-collapse {

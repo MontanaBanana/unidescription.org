@@ -44,7 +44,7 @@
 	    </div>
 	
 	    <div class="col-lg-12">
-	        <nav class="navbar navbar-default">
+	        <nav class="navbar navbar-default" style="border-radius: 4px;">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -60,7 +60,7 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
+							<li><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Backstage <span class="sr-only">(current)</span></a></li>
 							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
 							<li class="active"><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
 						</ul>
@@ -220,16 +220,20 @@
 				        </div>
 				        <div class="col-md-4 tips-column">
 					        
-		                	<div class="help">
+<!--
+		                	<div class="help hidden-xs hidden-sm">
 					        	<span class="fa fa-question-circle"></span>
 					        	<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 				        	</div>
+-->
+				        	
+				          	@include('project.shared.export')
+				        	
+	                        @include('project.shared.progress')
 				        	
 				        	@include('project.shared.version')
 	
 	                        @include('project.todo.main')
-				        	
-	                        @include('project.shared.progress')
 	
 				        	<div class="panel panel-default">
 								<div class="panel-heading">Tip: Table of Contents</div>
@@ -243,8 +247,6 @@
                                     <p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" <?php if (@$_GET['show_deleted']) { echo 'checked'; } ?>/> Show deleted items</label> </p>
 								</div>
 							</div>
-				        	
-				          	@include('project.shared.export')
 	
 				        </div>
 					</div>

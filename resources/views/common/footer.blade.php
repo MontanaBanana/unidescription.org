@@ -1,6 +1,6 @@
 		<!-- Footer -->
-		<footer>
-			<div class="row">
+		<footer style="margin-top: 20px;">
+			<div class="row" style="padding-top: 10px;">
 				<div class="container">
 					<div class="col-lg-2 col-md-2">
 						<!--<img src="{{ SITEROOT }}/images/unid_logo_white.svg" alt="UniDescription logo" class="footer-brand" />-->

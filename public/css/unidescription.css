@@ -53,6 +53,12 @@ a img {
 	-o-transition:background 200ms ease-out;
 	transition:background 200ms ease-out;
 }
+.btn.btn-success {
+    background-color: #449d44;
+}
+.btn.btn-red {
+    background-color: red;
+}
 .btn.btn-primary {
 	background:#b17f1b;
 	color:#fff;
@@ -83,10 +89,10 @@ a img {
 	padding:7px 10px;
 }
 #share-button{
-	color:#ccc
+	/*color:#ccc*/
 }
 #share-button:hover{
-	color:#000
+	/*color:#000*/
 }
 .btn.btn-inline {
 	display:inline-block;
@@ -400,23 +406,21 @@ header .centerpiece .slide {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-header .centerpiece .slide .tagline {
+.slide .tagline {
 	font-family: 'Open Sans', sans-serif;
 	font-weight:300;
-	background:rgba(0,0,0,0.8);
-	-webkit-backdrop-filter:blur(3px);
+	background:rgba(0,0,0);
 	color:#fff;
-	font-size:42px;
+	font-size:34px;
 	text-transform:uppercase;
 	letter-spacing:2px;
 	margin:0px;
 	padding:16px 60px;
 }
-header .centerpiece .slide .button {
+.slide .button {
 	text-align:right;
-	padding-top:11px;
 }
-header .centerpiece .slide .button a {
+.slide .button a {
 	padding:12px 60px;
 	font-family: 'Open Sans', sans-serif;
 	font-weight:400;
@@ -431,7 +435,7 @@ header .centerpiece .slide .button a {
 	-o-transition:background 200ms ease-out;
 	transition:background 200ms ease-out;
 }
-header .centerpiece .slide .button a:hover {
+.slide .button a:hover {
 	background:#e6a422;
 	color:#fff;
 	text-decoration:none;	
@@ -1057,10 +1061,10 @@ div.project .tips-column .panel ul.standard-list li a {
 	}
 	
 	div.project .edit-column,
-	dif.project .tips-column {
-		margin:0px 15px;
+	div.project .tips-column {
+		margin:0px 0px;
 		padding:0px;
-		width:calc(100% - 30px);
+		width:100%;
 	}
 	div.project .wrapper .col-md-4,
 	div.project .wrapper .col-md-6,

@@ -45,6 +45,18 @@
 </div>
 
     <script type="text/javascript">
+
+
+$(document).ready(function() {
+   $('#share-email').keydown(function(event){
+       if(event.keyCode == 13) {
+           event.preventDefault();
+           $('#share-button').click();
+           return false;
+       }
+   });
+});
+
         var clientId = '{{config('services.google')['clientId']}}';
         var apiKey = '{{config('services.google')['apiKey']}}';
         var scopes = 'https://www.googleapis.com/auth/contacts.readonly';

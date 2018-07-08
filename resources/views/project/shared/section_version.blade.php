@@ -1,3 +1,5 @@
+@include('project.shared.library')
+
 <?php
 if (count($section->project_section_versions)):
 ?>

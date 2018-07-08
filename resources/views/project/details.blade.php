@@ -56,7 +56,7 @@ if(isset($project) && $project->id > 0){
 			</ol>
 		</div>
 		<div class="col-lg-12">
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default" style="border-radius: 4px;">
 				<div class="container-fluid">
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
@@ -75,9 +75,9 @@ if(isset($project) && $project->id > 0){
 					?> 
 					<div class="collapse navbar-collapse" id="bs-project-navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Overview <span class="sr-only">(current)</span></a></li>
-							<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>
-							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Table of Contents</a></li>
+							<li class="active"><a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Backstage <span class="sr-only">(current)</span></a></li>
+							<!--<li><a href="/account/project/assets/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Media Assets</a></li>-->
+							<li><a href="/account/project/toc/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">Frontstage</a></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 					<?php
@@ -89,7 +89,6 @@ if(isset($project) && $project->id > 0){
 		
 		
 		<div class="row project">
-			<div class="col-lg-12">
 				<form id="project_details_form" method="POST" action="/account/project/details" enctype="multipart/form-data">
 					
 					@if($editable)
@@ -97,9 +96,8 @@ if(isset($project) && $project->id > 0){
 					<input type="hidden" name="id" id="id" value="{{ $project->id }}" />			
 					@endif
 					
-					<div class="row">
 						<div class="col-md-8 edit-column">
-							<div class="wrapper">
+							<div class="">
 											
 								<!-- project details -->
 								@if (!$project->id)
@@ -131,6 +129,7 @@ if(isset($project) && $project->id > 0){
 										<input aria-labelledby="project-name-label" type="text" class="large" name="title" value="{{ $project->title }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
+<!--
 								
 								<div class="panel panel-default">
 									<div class="panel-heading" id="app-store-description-label">
@@ -140,6 +139,7 @@ if(isset($project) && $project->id > 0){
 										<textarea aria-labelledby="app-store-description-label" name="description" <?php if(!$editable){echo ' disabled';}?>>{{ $project->description }}</textarea>
 									</div>
 								</div>
+-->
 								
 								<div class="panel panel-default">
 									<div class="panel-heading" id="gpo-label">
@@ -221,28 +221,47 @@ if(isset($project) && $project->id > 0){
 						<div class="col-md-4 tips-column">
 							
 							
+<!--
 							<div class="help">
 								<span class="fa fa-question-circle"></span>
 								<p>Need to learn more about best practices for audio descriptions? <a href="/unid-academy">Read our guide</a> for more details!</p>
 							</div>
-	
-							@include('project.todo.main')
-	
-							@include('project.shared.version')
-	
-							@include('project.shared.progress')
-							
-							@include('project.shared.export')
+-->
 	
 							@include('project.shared.owner')
-	
+							
+							@include('project.shared.export')
+
+                            @include('project.shared.library')
+
+                            @include('project.shared.assets')
+
+							@include('project.shared.version')
 						</div>
-					</div>
 					<!-- /.row -->
 				</form>
-			</div>
 		</div>
 	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myDeleteModalLabel">Delete Photo</h4>
+      </div>
+      <div class="modal-body col-md-12">
+        Are you sure you want to delete the component photo?
+      </div>
+      <div class="modal-footer">
+        <button id="deleteModalClose" type="button" class="btn btn-default" data-dismiss="modal">No, Close</button>
+        <button type="button" class="btn btn-primary label-danger" id="deleteImage">Yes, Delete Photo</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
 </div>
 
 @endsection
@@ -266,6 +285,10 @@ if(isset($project) && $project->id > 0){
 
         @if ($project->id)
             $(window).on('beforeunload', function(){
+                $('.modal-title').html('Please wait');
+                $('.modal-body').html('Saving component...');
+                $('.modal-footer').html('');
+                $('#deleteModal').modal({show: true});
                 $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
             });
         @endif

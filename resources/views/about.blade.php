@@ -104,8 +104,7 @@
                 <div class="col-lg-12">
                     <h2 class="page-header">Accessibility Standards We Use</h2>
                 </div>
-
-				<div class="col-md-12">
+				<div class="col-md-6">
 <p>The UniDescription Project is committed to ensuring the accessibility of its web and mobile-app content to people with disabilities. All of the content on our website and in our mobile apps meets the World Wide Web Consortium Web Accessibility Initiative - W3C WAI's <a href="https://www.w3.org/TR/WCAG/" target="_blank">Web Content Accessibility Guidelines</a> 2.0, Level AA conformance.</p>
 
 <p>The UniDescription Project reviews its web content policy once a year (in December) to ensure it is up-to-date and reflects the latest standards as directed by the W3C. At that time, we also conduct a review of our content to ensure adherence to those standards. This includes a review of the mobile applications linked to the <a href="http://www.unidescription.org/" target="_blank">www.UniDescription.org website</a> and promoted by the project for use in delivering audio description for blind and visually impaired users.</p>
@@ -115,6 +114,13 @@
 <p>The UniDescription Project was last reviewed Jan. 1, 2018.</p>
 
 				</div>
+
+                <div class="col-md-6">
+<img src="{{ SITEROOT }}/images/acb_member_testing_unid_app.jpg" alt="Photo showing an ACB member testing our UniD app at Muir Woods. That member is a middle-aged woman, with long-brown hair, wearing a bright pink sweater, holding a smartphone close to her ear and concentrating on what she's hearing. Courtesy of: The National Park Service." class="photo" />
+                    <p class="caption">
+An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-Barone/NPS.
+                    </p>
+                </div>
 			</div>
 		</div>
 		<!-- /.row -->
@@ -357,7 +363,7 @@
 							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
 					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2016 - Present</small>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2016 - 2018</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
@@ -368,7 +374,7 @@
 							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
 					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2016 - Present</small>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2016 - 2018</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
@@ -437,5 +443,30 @@
 			</div>
 		</div>
 		<!-- /.row -->
+
+
+		<div class="row blade">
+			<div class="container">
+				<div class="col-lg-12">
+					<h2 class="page-header">Media Coverage</h2>
+				</div>
+				<div class="col-md-6">
+                    <a style="font-size: 20px;" href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank">The UniDescription Project: Seeking to Bring Unity to the World of Audio Description, March 2018</a><br />
+                    <a href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank"><img style="margin-top: 16px;" src="/images/access_world-20180330.png" width="100%" /></a>
+                </div>
+				<div class="col-md-6">
+                    <a style="font-size: 20px;" href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank">Hawai‘i Residents Develop Apps to Aid People Who Are Deaf and Blind, March 6, 2018</a><br />
+                    <a href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank"><img style="margin-top: 16px;" src="/images/honolulu-20180306.png" width="100%" /></a>
+                </div>
+				<div class="col-md-6">
+                    <br /><br /><a style="font-size: 20px;" href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank">Yosemite Audio Description, American Council of the Blind, Dec. 1, 2017</a>
+                    <a href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank"><img style="margin-top: 16px;" src="/images/acb-news.png" width="100%" /></a>
+                </div>
+				<div class="col-md-6">
+                    <br /><br /><a style="font-size: 20px;" href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank">Why Hawaii Media Need To Better Serve The Visually Impaired, CivilBeat.org, April 17, 2017</a><br />
+                    <a href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank"><img style="margin-top: 16px;" src="/images/civil_beat-news.png" width="100%" height="351" /></a>
+                </div>
+            </div>
+        </div>
 		
 @endsection

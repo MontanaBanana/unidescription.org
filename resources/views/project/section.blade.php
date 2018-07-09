@@ -328,6 +328,7 @@
 										<div class="audio-player play-description play_description">
 											<audio id="play-description" controls></audio>
 										</div>
+                                        @if ($section->image_url)<div  class="hidden-md hidden-lg"><img src="{{ $section->image_url }}" style="width: 100%;"/></div>@endif
 										<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 									</div>
 								</div>

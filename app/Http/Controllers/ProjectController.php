@@ -1624,7 +1624,7 @@ return;
 
             $ps->image_url = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
             $ps->original_image = '/assets/projects/' . $request->project_id . '/sections/' . $imageName;
-			$ps->has_image_rights = 1;
+			$ps->has_image_rights = 0;
 			$go_back = true;
         }
 

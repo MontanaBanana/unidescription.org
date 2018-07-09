@@ -29,7 +29,9 @@
 					</div>
 					<div class="col-lg-4 col-md-4 col-xs-6 col-with-border logos">
 						<a href="https://www.nps.gov" target="_blank" title=""><img src="{{ SITEROOT }}/images/nps-logo.png" alt="nps-logo" width="61" height="71"></a>
-						<a href="https://manoa.hawaii.edu/" target="_blank" title=""><img src="{{ SITEROOT }}/images/university-of-hawaii.png" alt="university-of-hawaii" width="71" height="71"></a>
+						<a href="https://manoa.hawaii.edu/" target="_blank" title=""><img src="{{ SITEROOT }}/images/university-of-hawaii.png" alt="university-of-hawaii" width="71" height="71"></a><br />
+						<a href="https://www.google.com/" target="_blank" title=""><img src="{{ SITEROOT }}/images/google_square_transparent.png" alt="square google logo" width="71" height="71"></a>
+						<a href="http://acb.org/" target="_blank" title=""><img src="{{ SITEROOT }}/images/acb_transparent.png" alt="square American Council of the Blind logo" width="71" height="71"></a>
 					</div>
 				</div>
 			</div>

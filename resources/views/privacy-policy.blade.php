@@ -24,6 +24,11 @@
 				<div class="col-lg-12">
 	
 					<p>If you require any more information or have any questions about our privacy policy, please feel free to <a href="/contact">contact us</a>. At www.unidescription.com we consider the privacy of our visitors to be extremely important. This privacy policy document describes in detail the types of personal information is collected and recorded by www.unidescription.com and how we use it.</p>
+                    <h2>How We Handle Your Data</h2>
+                    <ul>
+                        <li>We take your data rights seriously. It is your data, now and always. We make no claim to it. You are using this site to make the world a better place, making media more accessible to more people. For as long as you want to do that here, we thank you! </li>
+                        <li>We will never sell your data.</li>
+                    </ul>
 					<h2>Log Files</h2>
 					<p>Like many other Web sites, www.unidescription.com makes use of log files. These files merely logs visitors to the site - usually a standard procedure for hosting companies and a part of hosting services's analytics. The information inside the log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamp, referring/exit pages, and possibly the number of clicks. This information is used to analyze trends, administer the site, track user's movement around the site, and gather demographic information. IP addresses, and other such information are not linked to any information that is personally identifiable.</p>
 					<h2>Cookies and Web Beacons</h2>

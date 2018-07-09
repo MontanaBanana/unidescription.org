@@ -17,7 +17,7 @@
 	</header>
         <div width="100%" style="background: black; height: 80px;" class="slide">
             <div style="float: left;"><p class="tagline" id="tagline">Audio Describe the World</p></div>
-            <div style="float: right; padding-top: 20px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p></div>
+            <div style="float: right; padding-top: 20px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Get Started</a></p></div>
         </div>
 
     <!-- Page Content -->
@@ -53,7 +53,7 @@
 					</div>
 					<div class="panel-body">
 						<p>This government-funded effort features research, community engagement, and many public benefits </p>
-						<a href="{{ SITEROOT }}/unid-academy" class="btn btn-primary">LEARN MORE</a>
+						<a href="{{ SITEROOT }}/research" class="btn btn-primary">LEARN MORE</a>
 					</div>
 				</div>
 			</div>
@@ -99,10 +99,10 @@
 							<image xlink:href="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg" x="0" y="0" width="200" height="200" />
 						</pattern>
 						<pattern id="img2" patternUnits="userSpaceOnUse" width="200" height="200">
-                            <image xlink:href="{{ SITEROOT }}/images/truman.png" x="0" y="0" width="200" height="200" />
+                            <image xlink:href="{{ SITEROOT }}/images/projects/76.jpeg" x="0" y="0" width="200" height="200" />
 						</pattern>
 						<pattern id="img3" patternUnits="userSpaceOnUse" width="200" height="200">
-							<image xlink:href="{{ SITEROOT }}/images/denali_homepage.jpg" x="0" y="0" width="200" height="200" />
+							<image xlink:href="{{ SITEROOT }}/images/yosemite_camping_homepage.jpg" x="0" y="0" width="200" height="200" />
 						</pattern>
 					</defs>
 
@@ -132,13 +132,25 @@
 						<a href="/account/project/export/91" target="_blank"><h3>Yellowstone National Park</h3></a>
 						<p>Visit Yellowstone and experience the world's first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers.</p>
 					</li>
+					<li data-ref="img2" data-image="{{ SITEROOT }}/images/projects/76.jpeg">
+						<a href="/account/project/export/76" target="_blank"><h3>Golden Gate National Recreation Area</h3></a>
+                        <p>Stretched across 80,000 acres north and south of the Golden Gate Bridge, these parks also constitute one of the world’s largest national parks in an urban setting.</p>
+					</li>
+<!--
 					<li data-ref="img2" data-image="{{ SITEROOT }}/images/sf_maritime_homepage.jpg">
 						<a href="/account/project/export/123" target="_blank"><h3>Harry S Truman National Historic Site</h3></a>
 						<p>President Harry S Truman took America from its traditional isolationism into the age of international involvement. Despite his power, he never forgot where he came from.</p>
 					</li>
+-->
+<!--
 					<li data-ref="img3" data-image="{{ SITEROOT }}/images/denali_homepage.jpg">
 						<a href="/account/project/export/101" target="_blank"><h3>Denali National Park and Preserve</h3></a>
 						<p>Denali is six million acres of wild land, bisected by one ribbon of road. Wild animals large and small roam un-fenced lands, living as they have for ages. Solitude, tranquility and wilderness await.</p>
+					</li>
+-->
+					<li data-ref="img3" data-image="{{ SITEROOT }}/images/yosemite_camping_homepage.jpg">
+						<a href="/account/project/export/266" target="_blank"><h3>Yosemite National Park</h3></a>
+                        <p>Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life, and the tranquility of the High Sierra. </p>
 					</li>
 				</ul>
 			</div>

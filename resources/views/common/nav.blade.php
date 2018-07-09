@@ -16,7 +16,7 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="header-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-left">
-                        <li><a href="{{ SITEROOT }}/"><strong>UniDescription</strong></a></li>
+                        <li><a href="{{ SITEROOT }}/" style="font-size: 34px;">UniDescription</a></li>
                     </ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">

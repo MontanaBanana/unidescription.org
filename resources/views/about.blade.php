@@ -9,12 +9,12 @@
 			<div class="container">	
 				<div class="col-lg-12">
 					<h1 class="page-header">About
-						<small>UniDescription</small>
+						<small>The UniDescription Project</small>
 					</h1>
 					<ol class="breadcrumb">
 						<li><a href="{{ SITEROOT }}/">Home</a>
 						</li>
-						<li class="active">About Unidescription</li>
+						<li class="active">About The UniDescription Project</li>
 					</ol>
 				</div>
 			</div>
@@ -22,27 +22,38 @@
 		<!-- /.row -->
 
 		<!-- Intro Content -->
-		<div class="row blade">
-			<div class="container">	
-				<div class="col-md-12">
-                    <h2 class="page-header" style="top: -70px; position: relative;">About the UniD Project:</h2>
+		<div class="row blade" style="padding-bottom: 0;">
+                    <h2 class="page-header" style="top: -70px; position: relative;">About The UniD Project<br/><span style="font-size: 16px;">Our backstory, our mission, and our plans for future development</span></h2>
                     <div style="position: relative; top: -70px;">
-                        <center><iframe width="560" height="315" src="https://www.youtube.com/embed/nxbgvqkWLh0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></center>
-                        <br /><center style="font-size: 24px;">UniD: Our backstory, our mission, and our plans for future development</center><br />
-					<!--<img class="photo" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
-                    <p class="caption">UniD researcher Megan Conway, from UH, who is visually and hearing impaired, has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii.</p>-->
+                        <div class="container">
+                            <div class="col-md-12">
+                                <center><iframe width="800" height="450" src="https://www.youtube.com/embed/nxbgvqkWLh0" frameborder="0" gesture="media" allow="encrypted-media" style="margin-bottom: 20px;" allowfullscreen></iframe></center>
+                                <p class="caption">Michele Hartley, Media Accessibility Coordinator for Harpers Ferry Center, the design hub of the National Park Service, gave this dynamic overview of The UniDescription Project at Fedstival 2017 (on Sept. 22, 2017).</p>
+                            <!--<img class="photo" src="{{ SITEROOT }}/images/haleakala-np-tech-user-and-map.jpg" alt="Haleakala - User and Map">
+                            <p class="caption">UniD researcher Megan Conway, from UH, who is visually and hearing impaired, has made many national park site visits, examining and assessing media accessibility, including this recent visit to Haleakalā National Park on Maui in Hawaii.</p>-->
+                                <hr />
+                            </div>
+                        </div>
 					
-                        <div style="float: right; align: right; width: 660px; margin-left: 15px;"><img class="photo" src="{{ SITEROOT }}/images/conference-room.jpg" alt="Conference room at Harpers Ferry"> <p class="caption">Some of the Unid research team members in Harpers Ferry Center, W.V., in September 2016, working on the National Park Service's first "Descriptathon," an event that brought together parks from throughout the country to audio describe their brochures. Clockwise, from the far right, is principal investigator Brett Oppegaard, research assistant Phil Jordan, web developer Joe Oppegaard, and NPS Media Accessibility Coordinator Michele Hartley.</p></div>
-						<p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Dr. Thomas Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
-						<p>For a bit of additional background, in the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.</p>
-						<p>Our web-based project – with direct connections to Harpers Ferry Center, the National Park Service, those brochures, and those basic beliefs – has been called UniD, in tribute. That name should be pronounced like "unity," serving as both an abbreviation of the more wonky original label of "unidescription" and as an inspiration for our mission:</p>
-						<blockquote>To bring unity to the world of audio description. </blockquote>
-                        <div style="float: right; align: right; width: 400px; margin-left: 15px;"><img class="photo"src="{{ SITEROOT }}/images/phil-at-map.jpg" style="width: 400px;" alt="Philipp Jordan -- a German graduate student at the University of Hawaii, dressed in jeans and a black t-shirt -- stands to the left of a tactile table-top map showing the Monocacy National Battlefield in the Frederick, MD, visitors center. He is looking down at the map and its details. " /><p class="caption">Translating a map from a visual experience to an acoustic experience has been one of the most complicated challenges of the UniD project. As part of our research, UH Communication and Information Science Ph.D. student, and Unid research assistant, Philipp Jordan went to Monocacy National Battlefield in Frederick, MD, to examine and experiment with the sights and sounds of its three-dimensional, fiber-optic map, which also included a soundtrack and closed captioning.</p></div>
-                        <p>Audio description (often called verbal description) can be thought of as a medium equivalent to open and closed captioning, only for audiences that need or want information in acoustic rather than visual forms. In some cases, that involves the simple verbalization of a transcript (as in text-to-voice translation), but what we mostly are concerned with here is the more complex audiovisual translation of visual into audible information, in particular, the organization and expression of complicated collages of visual media into an unavoidably more linear format without compromising the rich and dynamic experience visuals often present in the original format. For example, how would you describe an Ansel Adams photograph of a scene within Yellowstone National Park to a person who cannot see, or has low vision, or has difficulty interpreting print materials, or simply prefers information in audible forms? Those varied audiences (including people who are blind, with low-vision, print dyslexic, and audio-oriented) deserve full access to public discourse, and this project has been created to serve them.</p>
-						<p>In turn, this UniD project has been developed to help people create more audio description and to be a robust resource for those interested in this topic, including "best practices" guidelines, updated scholarly research, and a forum for related thoughts and discussions. Our hope is that like the impact Vignelli's system had on NPS brochures, the UniD Project will bring higher clarity and quality to this acoustic communication form, especially in public spaces.</p>
+                        <div class="container">
+                            <div class="col-md-12">
+                                <div style="float: right; align: right; width: 500px; max-width: 100%; margin-left: 15px;"><img class="photo" src="{{ SITEROOT }}/images/conference-room.jpg" alt="Conference room at Harpers Ferry"> <p class="caption">Some of the UniD research team members in Harpers Ferry Center, W.V., in September 2016, working on the National Park Service's first "Descriptathon," an event that brought together parks from throughout the country to audio describe their brochures. Clockwise, from the far right, is principal investigator Brett Oppegaard, research assistant Phil Jordan, web developer Joe Oppegaard, and NPS Media Accessibility Coordinator Michele Hartley.</p></div>
+                                <p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Dr. Thomas Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
+                                <p>For a bit of additional background, in the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.</p>
+                                <p>Our web-based project – with direct connections to Harpers Ferry Center, the National Park Service, those brochures, and those basic beliefs – has been called UniD, in tribute. That name should be pronounced like "unity," serving as both an abbreviation of the more wonky original label of "UniDescription" and as an inspiration for our mission:</p>
+                                <blockquote>To bring unity to the world of audio description. </blockquote>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="col-md-8">
+                                <p>Audio description (often called verbal description) can be thought of as a medium equivalent to open and closed captioning, only for audiences that need or want information in acoustic rather than visual forms. In some cases, that involves the simple verbalization of a transcript (as in text-to-voice translation), but what we mostly are concerned with here is the more complex audiovisual translation of visual into audible information, in particular, the organization and expression of complicated collages of visual media into an unavoidably more linear format without compromising the rich and dynamic experience visuals often present in the original format. For example, how would you describe an Ansel Adams photograph of a scene within Yellowstone National Park to a person who cannot see, or has low vision, or has difficulty interpreting print materials, or simply prefers information in audible forms? Those varied audiences (including people who are blind, with low-vision, print dyslexic, and audio-oriented) deserve full access to public discourse, and this project has been created to serve them.</p>
+                                <p>In turn, this project has been developed to help people create more audio description and to be a robust resource for those interested in this topic, including "best practices" guidelines, updated scholarly research, and a forum for related thoughts and discussions. Our hope is that like the impact Vignelli's system had on NPS brochures, The UniD Project will bring higher clarity and quality to this acoustic communication form, especially in public spaces.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <img class="photo"src="{{ SITEROOT }}/images/phil-at-map.jpg" style="width: 400px;" alt="Philipp Jordan -- a German graduate student at the University of Hawaii, dressed in jeans and a black t-shirt -- stands to the left of a tactile table-top map showing the Monocacy National Battlefield in the Frederick, MD, visitors center. He is looking down at the map and its details. " /><p class="caption">Translating a map from a visual experience to an acoustic experience has been one of the most complicated challenges of The UniD Project. As part of our research, UH Communication and Information Science Ph.D. student, and UniD research assistant, Philipp Jordan went to Monocacy National Battlefield in Frederick, MD, to examine and experiment with the sights and sounds of its three-dimensional, fiber-optic map, which also included a soundtrack and closed captioning.</p>
+                            </div>
+                        </div>
 					</div>
-				</div>
-			</div>
 		</div>
 		<!-- /.row -->
 		
@@ -64,10 +75,10 @@
 		<!-- /.row -->
 		
 		<!-- Features Section -->
-		<div class="row blade">
+		<div class="row blade" style="padding-top: 0;">
 			<div class="container">
 				<div class="col-lg-12">
-					<h2 class="page-header">What can the UniD project do for you?</h2>
+					<h2 class="page-header">What can The UniD Project do for you?</h2>
 				</div>
 				<div class="col-md-6">
 					<div>
@@ -92,15 +103,10 @@
 				</div>
 				<div class="col-md-6">
 					<img class="photo" src="{{ SITEROOT }}/images/sushil_at_lincoln_memorial.jpg" alt="Sushil at the Lincoln Memorial">
-					<p class="caption">During their fall 2016 visit to the Lincoln Memorial, Sushil Adhikari, from Nepal (right), and Nang Attal, from Afghanistan, discovered there was no audio description available at the site. So, Attal read the wall text to Adhikari and did his best to describe the surroundings. The UniD project is intended to help visitors, like Adhikari, who are blind or visually impaired, have equivalent experiences, vetted by park staff, which allow more people to participate fully in important societal and cultural discussions.</p>
+					<p class="caption">During their fall 2016 visit to the Lincoln Memorial, Sushil Adhikari, from Nepal (right), and Nang Attal, from Afghanistan, discovered there was no audio description available at the site. So, Attal read the wall text to Adhikari and did his best to describe the surroundings. The UniD Project is intended to help visitors, like Adhikari, who are blind or visually impaired, have equivalent experiences, vetted by park staff, which allow more people to participate fully in important societal and cultural discussions.</p>
 				</div>
-			</div>
-		</div>
-		<!-- /.row -->
 
-		<!-- Accessibility Standards we use -->
-		<div class="row blade green">
-			<div class="container">	
+                <hr />
                 <div class="col-lg-12">
                     <h2 class="page-header">Accessibility Standards We Use</h2>
                 </div>
@@ -124,7 +130,27 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 			</div>
 		</div>
 		<!-- /.row -->
+
+		<!-- Privacy Section -->
+		<div class="row blade green">
+			<div class="container">	
+				<div class="col-md-8">
+                    <p>
+                        <strong>How We Handle Your Data</strong>
+                        <ul>
+                            <li>We take your data rights seriously. It is your data, now and always. We make no claim to it. You are using this site to make the world a better place, making media more accessible to more people. For as long as you want to do that here, we thank you! </li>
+                            <li>We will never sell your data.</li>
+                        </ul>
+                    </p>
+				</div>
+				<div class="col-md-4">
+                    <a class="btn btn-lg btn-primary btn-block btn-big" href="{{ SITEROOT }}/privacy-policy">Our privacy policy</a>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
 		
+
 		<!-- The Team -->
 		<div class="row blade gray the-team">
 			<div class="container">	
@@ -451,20 +477,22 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 					<h2 class="page-header">Media Coverage</h2>
 				</div>
 				<div class="col-md-6">
-                    <a style="font-size: 20px;" href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank">The UniDescription Project: Seeking to Bring Unity to the World of Audio Description, March 2018</a><br />
-                    <a href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank"><img style="margin-top: 16px;" src="/images/access_world-20180330.png" width="100%" /></a>
+                    <a href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/access_world-20180330.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank">The UniDescription Project: Seeking to Bring Unity to the World of Audio Description, March 2018</a></p>
                 </div>
 				<div class="col-md-6">
-                    <a style="font-size: 20px;" href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank">Hawai‘i Residents Develop Apps to Aid People Who Are Deaf and Blind, March 6, 2018</a><br />
-                    <a href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank"><img style="margin-top: 16px;" src="/images/honolulu-20180306.png" width="100%" /></a>
+                    <a href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/honolulu-20180306.png" width="100%" /></a>
+                    <p><a style="font-size: 20px;" href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank">Hawai‘i Residents Develop Apps to Aid People Who Are Deaf and Blind, March 6, 2018</a></p>
+                </div>
+            </div>
+            <div class="container">
+				<div class="col-md-6">
+                    <a href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank"><img class="photo" src="/images/acb-news.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank">Yosemite Audio Description, American Council of the Blind, Dec. 1, 2017</a></p>
                 </div>
 				<div class="col-md-6">
-                    <br /><br /><a style="font-size: 20px;" href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank">Yosemite Audio Description, American Council of the Blind, Dec. 1, 2017</a>
-                    <a href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank"><img style="margin-top: 16px;" src="/images/acb-news.png" width="100%" /></a>
-                </div>
-				<div class="col-md-6">
-                    <br /><br /><a style="font-size: 20px;" href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank">Why Hawaii Media Need To Better Serve The Visually Impaired, CivilBeat.org, April 17, 2017</a><br />
-                    <a href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank"><img style="margin-top: 16px;" src="/images/civil_beat-news.png" width="100%" height="351" /></a>
+                    <a href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank"><img class="photo" src="/images/civil_beat-news.png" width="100%" height="351" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank">Why Hawaii Media Need To Better Serve The Visually Impaired, CivilBeat.org, April 17, 2017</a></p>
                 </div>
             </div>
         </div>

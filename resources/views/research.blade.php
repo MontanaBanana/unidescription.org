@@ -72,6 +72,11 @@ SIGDOC_Oppegaard_2017.docx
 
 <strong style="font-size: 24px;">Presented:</strong>
 <ul>
+<li>Oppegaard, Brett. "Mind on the Move: Mobile Learning Through Embodiment and Interactivity," paper / presentation, International Conference on Interactivity, Language & Cognition (CILC4, Honolulu, HI, U.S., 2018).</li>
+<li>Decker, Denise, Hartley, Michele, Bloomer, Ray, Conway, Megan, Conway, Thomas, Koirala, Sajja, and Barrows, Jamie Gibson. “The National Park Service and Audio Description,” panel / presentation, American Council of the Blind Audio Description Project Conference (ACB ADP, St. Louis, MO, U.S., 2018).</li>
+<li>Koirala, Sajja. “The UniDescription Project: Providing Tools, Training, and Mobile Apps to Spread Audio Description Through Our National Parks,” paper / presentation, American Council of the Blind Conference and Convention (ACB, St. Louis, MO, U.S., 2018).</li>
+<li>Oppegaard, Brett, Erdal, Ivar John, Frith, Jordan, Morais, Ana Rita, and Oie, Kjetil. “Locative Media En Plein Air: Categorizing, Analyzing, and Creating Location-Based Narratives, Counter Narratives, and Other Types of Mobile Media In Situ,” panel / presentation, International Communication Association Mobile Preconference (ICA Mobile, Prague, Czech Republic, 2018).</li>
+<li>Frith, Jordan, Farman, Jason, and Oppegaard, Brett. “The temporality of mobile media,” panel / presentation, Association of Internet Researchers (AOIR, Tartu, Estonia, 2017).</li>
 <li>Oppegaard, Brett. “Insider Positionality: Creating Tools and Translations to Investigate Audio Description,” paper / presentation, International Communication Association (ICA, San Diego, CA, U.S., 2017).</li>
 <li>Oppegaard, Brett, Conway, Megan, and Conway, Thomas. “To Bracket or Not Bracket: Experiments in Gamification in the Wilds of Technical Communication,” poster / presentation, The Association for Computer Machinery Special Interest Group on Design of Communication (SIGDOC, Halifax, Nova Scotia, Canada, 2017).</li>
 <li>Conway, Megan, Heyer, Katharina, Black, Rhonda, Oppegaard, Brett, Dalmiya, Vrinda, and Brown, Steven. “Disability Studies: Cultivating Critical Narrative Consciousness,” panel / presentation, Pacific Rim International Conference on Disability and Diversity (PAC-RIM, Honolulu, HI, U.S., 2017).</li>

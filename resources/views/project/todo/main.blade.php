@@ -268,6 +268,7 @@
         });
 
 
+        $('i.toggle', '#todo-sortable').click();
     });
     </script>
 

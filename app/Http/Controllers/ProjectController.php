@@ -506,7 +506,7 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
-			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined || strlen($combined)){
 				//////////////////////////////////
 				// Generate the DESCRIPTION audio file
 				//////////////////////////////////
@@ -601,7 +601,7 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
-			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined || strlen($combined)){
 				//////////////////////////////////
 				// Generate the DESCRIPTION audio file
 				//////////////////////////////////
@@ -696,7 +696,7 @@ class ProjectController extends Controller
 				$s->audio_file_url = '';
 				$s->save();
 			}
-			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined){
+			if (!strlen($s->audio_file_description) || $s->audio_file_needs_update || !$s->audio_file_combined || strlen($combined)){
 				//////////////////////////////////
 				// Generate the DESCRIPTION audio file
 				//////////////////////////////////
@@ -1669,7 +1669,7 @@ return;
 			//////////////////////////////////
 			// Generate the DESCRIPTION audio file
 			//////////////////////////////////
-				if($ps->description != $request->description || $ps->phonetic_description != $request->phonetic_description || !$s->audio_file_combined){
+				if($ps->description != $request->description || $ps->phonetic_description != $request->phonetic_description || !$s->audio_file_combined || strlen($combined)){
 					$ch = curl_init();
 		
 					$text = $request->phonetic_description ? $request->phonetic_description : $request->description;

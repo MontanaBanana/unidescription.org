@@ -41,6 +41,59 @@ class Project extends Model
 	    }
 	    return false;
     }
+
+    public function active_components()
+    {
+        $count = 0;
+        foreach ($this->section_tree() as $section) {
+            if ($section['completed'] && !$section['deleted']) {
+                $count++;
+                if (count($section->children)) {
+                    foreach ($section->children as $s) {
+                        if ($s['completed'] && !$s['deleted']) {
+                            $count++;
+                            if (count($s->children)) {
+                                foreach ($s->children as $chch) {
+                                    if ($chch['completed'] && !$chch['deleted']) {
+                                        $count++;
+                                    }
+                                }
+                            } 
+                        }
+                    }
+                }
+            }
+
+        }
+        return $count;
+
+    }
+
+    public function inactive_components()
+    {
+        $count = 0;
+        foreach ($this->section_tree() as $section) {
+            if (!$section['completed'] && !$section['deleted']) {
+                $count++;
+            }
+
+            if (count($section->children)) {
+                foreach ($section->children as $s) {
+                    if (!$s['deleted'] && ((!$s['completed'] && !$s['deleted']) || (!$section['completed'] && !$section['deleted']))) {
+                        $count++;
+                    }
+                    if (count($s->children)) {
+                        foreach ($s->children as $chch) {
+                            if (!$chch['deleted'] && ((!$chch['completed'] && !$chch['deleted']) || (!$s['completed'] && !$s['deleted']) || (!$section['completed'] && !$section['deleted']))) {
+                                $count++;
+                            }
+                        }
+                    } 
+                }
+            }
+        }
+        return $count;
+    }
     
     public function section_tree()
     {

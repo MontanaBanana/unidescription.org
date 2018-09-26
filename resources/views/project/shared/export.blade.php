@@ -6,6 +6,8 @@
 
         @if ($project->id)
           <ul style="list-style: none; padding-left: 0;">
+            <strong>Active components: {{ $project->active_components() }}<br />
+            Inactive components: {{ $project->inactive_components() }}<br /></strong>
             <li><a href="/account/project/export/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-eye"></span> Preview App</a></li>
             <li><a href="/account/project/export_text/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-file-text"></span> Download Text Export</a></li>
             <li><a href="/account/project/export_audio/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-headphones"></span> Download Audio Only</a></li>

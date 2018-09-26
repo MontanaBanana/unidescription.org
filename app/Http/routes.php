@@ -51,6 +51,7 @@ $basic_pages = array(
 	'tutorials', 
 	'best-practices',
 	'unid-academy',	
+	'unid-academy-lms',	
 	'license', 
 	'share', 
 	'auth/password',

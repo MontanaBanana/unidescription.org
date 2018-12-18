@@ -108,6 +108,7 @@ foreach ($projects as $k => $v) {
 						<?php endif; ?>
 						<?php if (count($project->users)): ?>
 							<p>
+								<strong>Owner:</strong> {{ $project->user->email }}<br />
 								<strong>Shared with:</strong>
 									@foreach ($project->users as $user)
 										{{ $user->email }}&nbsp;

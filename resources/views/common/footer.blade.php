@@ -17,7 +17,6 @@
 					<div class="col-lg-2 col-md-2 col-xs-6 col-with-border">
 						<ul class="list-unstyled">
 							<li><a href="{{ SITEROOT }}/site-map">Site Map</a></li>
-							<li><a href="{{ SITEROOT }}/contact">Contact</a></li>
 							<li><a href="{{ SITEROOT }}/privacy-policy">Privacy Policy</a></li>
 							<li><a href="{{ SITEROOT }}/license">License</a></li>
 						</ul>

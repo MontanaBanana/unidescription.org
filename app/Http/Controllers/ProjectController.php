@@ -352,6 +352,7 @@ class ProjectController extends Controller
                     array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
                     array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
                     //array('id' => '53', 'title' => 'NPS System Map and Guide - District of Columbia'),
+                    array('id' => '148', 'title' => 'NPS Centennial System Map and Guide - District of Columbia'),
                     array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
                     array('id' => '267', 'title' => 'Pinnacles National Park - California'),
                     array('id' => '261', 'title' => 'Point Reyes National Seashore - California'),
@@ -1195,7 +1196,12 @@ class ProjectController extends Controller
     
 	public function postAssets(Request $request)
 	{
-return;
+        $user = Auth::user();
+        $project_id = 0;
+        if (preg_match("|account/project/details/(\d+)/|", $_SERVER['HTTP_REFERER'], $m)) {
+            $project_id = $m[1];
+        }
+
 		//echo "<PRE>".print_R($_FILES,true)."</pre>";exit;
 		$p = Project::find($request->project_id);
 		// NOW UPDATE THE PROJECT updated_at
@@ -1204,17 +1210,19 @@ return;
 		
 		$files = Input::file('asset');
 		$file_count = count($files);
+
+        $file = $files;
 		$uploadcount = 0;
-		foreach ($files as $file) {
+		//foreach ($files as $file) {
 			$destinationPath = 'uploads';
 			$filename = $file->getClientOriginalName();
-			$upload_success = $file->move(base_path() . '/public/assets/projects/' . $request->project_id . '/assets/', $filename);
+			$upload_success = $file->move(base_path() . '/public/assets/projects/' . $project_id . '/assets/', $filename);
 			$uploadcount ++;
 			
 			
 			$pa = ProjectAsset::create(
 				[
-					'project_id' => $request->project_id,
+					'project_id' => $project_id,
 					'user_id' => Auth::user()->id, 
 					'title' => $filename,
 					'description' => '',
@@ -1222,9 +1230,9 @@ return;
 				]
 			);
 			$pa->save(); 
-		}
+		//}
 		
-		return redirect("/account/project/assets/".$request->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
+		return redirect("/account/project/assets/".$project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $p->title)));
 	}
 	
 	public function postDeleteAsset(Request $request)

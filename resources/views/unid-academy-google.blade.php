@@ -25,7 +25,9 @@
 		<div class="row blade" style="padding-top: 0;">
             <div class="container">
                 <div class="col-md-12">
-                    <iframe width="100%" height="1800" src="https://www.cds.hawaii.edu/projects/training/courses/unidescription/" frameborder="0"></iframe>
+                    <!--<center><blockquote style="border-left: 0;">Where We've Been: Audio Description Created Around the U.S. (and World)</blockquote></center>
+                    <center><iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="792" height="594"></iframe></center>-->
+                    <iframe width="100%" height="1200" src="https://sites.google.com/a/hawaii.edu/unidescriptionproject/" frameborder="0"></iframe>
                     <center><blockquote style="border-left: 0;">UniD Project Research</blockquote></center>
                 </div>
             </div>

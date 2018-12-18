@@ -44,7 +44,10 @@ $(document).ready(function(){
 
     autosize( $('textarea', '#todo-sortable') );
 	
-	
+    $('img').each(function () {
+        $(this).attr('title', jQuery(this).attr('alt'));
+    });
+
 	
 	
 	///////////////////////////////////

@@ -5,20 +5,26 @@
 @section('content')
 
     <!-- Header Carousel -->
-    <header style="background-image:url({{ SITEROOT }}/slideshow/joe_parthenon.jpg)" title="The UniDescription Project's mantra is to 'audio describe the world,' and this image shows UniD developer Joe Oppegaard at the base of the Acropolis in Athens, Greece, testing the UniD system. Joe is wearing a black shirt and dark sunglasses, contrasting with his blond hair and white earbuds, which are connected to his smartphone, as he listens to content on the phone underneath the massive marble columns at the remains of the Parthenon. The UniD Project team has worked with the University of Piraeus in Athens to audio describe parts of the Acropolis as well as various other major public attractions around the world, including more than 50 U.S. National Park Service sites.">
-		<div class="container centerpiece">
-<!--
-			<div class="slide">
-				<p class="tagline" id="tagline">Audio Describe the World</p>
-				<p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p>
-			</div>
--->
-		</div>
-	</header>
-        <div width="100%" style="background: black; height: 80px;" class="slide">
-            <div style="float: left;"><p class="tagline" id="tagline">Audio Describe the World</p></div>
-            <div style="float: right; padding-top: 20px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Get Started</a></p></div>
+	<div class="row blade introduction" style="clear: both;">
+		<div class="container">
+			<div class="col-lg-12">
+                <header style="background-image:url({{ SITEROOT }}/slideshow/joe_parthenon.jpg); border: 4px solid #fff; -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);" title="The UniDescription Project's mantra is to 'audio describe the world,' and this image shows UniD developer Joe Oppegaard at the base of the Acropolis in Athens, Greece, testing the UniD system. Joe is wearing a black shirt and dark sunglasses, contrasting with his blond hair and white earbuds, which are connected to his smartphone, as he listens to content on the phone underneath the massive marble columns at the remains of the Parthenon. The UniD Project team has worked with the University of Piraeus in Athens to audio describe parts of the Acropolis as well as various other major public attractions around the world, including more than 50 U.S. National Park Service sites.">
+                    <div class="container centerpiece">
+            <!--
+                        <div class="slide">
+                            <p class="tagline" id="tagline">Audio Describe the World</p>
+                            <p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Learn More</a></p>
+                        </div>
+            -->
+                    </div>
+                </header>
+                <div width="100%" style="margin-top: 8px; background: black; height: 80px;" class="slide">
+                    <div style="float: left;"><p class="tagline" style="padding-top: 24px;" id="tagline">Audio Describe the World</p></div>
+                    <div style="float: right; padding-top: 26px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Get Started</a></p></div>
+                </div>
+            </div>
         </div>
+    </div>
 
     <!-- Page Content -->
 	<div class="row blade introduction" style="clear: both;">
@@ -38,11 +44,11 @@
 			<div class="col-md-4">
 				<div class="panel panel-default">
 					<div class="panel-heading heading-single-line">
-						See something, give it voice
+                        See something; give it voice
 					</div>
 					<div class="panel-body">
-						<p>Translate our visual world into an audible one, helping to make it more accessible</p>
-						<a href="{{ SITEROOT }}/auth/login" class="btn btn-primary">Get Started</a>
+                        <p>Translate our visual world into an audible one, helping to make it more accessible; learn how</p>
+						<a href="{{ SITEROOT }}/unid-academy" class="btn btn-primary">Get Started</a>
 					</div>
 				</div>
 			</div>
@@ -96,7 +102,7 @@
 					
 					<defs>
 						<pattern id="img1" patternUnits="userSpaceOnUse" width="200" height="200">
-							<image xlink:href="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg" x="0" y="0" width="200" height="200" />
+							<image xlink:href="{{ SITEROOT }}/images/statue-head-1_1.jpg" x="0" y="0" width="200" height="200" />
 						</pattern>
 						<pattern id="img2" patternUnits="userSpaceOnUse" width="200" height="200">
                             <image xlink:href="{{ SITEROOT }}/images/projects/76.jpeg" x="0" y="0" width="200" height="200" />
@@ -128,10 +134,16 @@
 			</div>
 			<div class="col-lg-6 col-md-6">	
 				<ul class="featured-projects">
+					<li class="selected" data-ref="img1" data-image="{{ SITEROOT }}/images/statue-head-1_1.jpg">
+                        <a href="/account/project/export/150" target="_blank"><h3>Statue of Liberty National Monument</h3></a>
+						<p>This is the audio-only described version for the Statue of Liberty and Ellis Island park brochure. It contains maps, historic black and white and contemporary color photographs, timelines and text that present the history of the park and how to plan your visit.</p>
+					</li>
+<!--
 					<li class="selected" data-ref="img1" data-image="{{ SITEROOT }}/images/yellowstone_rainbow_pool_homepage.jpg">
 						<a href="/account/project/export/91" target="_blank"><h3>Yellowstone National Park</h3></a>
 						<p>Visit Yellowstone and experience the world's first national park. Marvel at a volcano’s hidden power rising up in colorful hot springs, mudpots, and geysers.</p>
 					</li>
+-->
 					<li data-ref="img2" data-image="{{ SITEROOT }}/images/projects/76.jpeg">
 						<a href="/account/project/export/76" target="_blank"><h3>Golden Gate National Recreation Area</h3></a>
                         <p>Stretched across 80,000 acres north and south of the Golden Gate Bridge, these parks also constitute one of the world’s largest national parks in an urban setting.</p>
@@ -164,13 +176,13 @@
 			<div class="col-lg-12">
 				<h2 class="page-header">About the UniD Project</h2>
 			</div>
-			<div class="col-lg-6 col-md-6">
+			<div class="col-lg-8 col-md-8">
 				<img src="{{ SITEROOT }}/images/acb_members_enter_muir_woods.jpg" alt="Photo showing members of the Silicon Valley and San Francisco chapters of the American Council of the Blind field testing the UniD app at Muir Woods National Monument in April 2018. A group of about a dozen people, with three guide dogs in tow, are shown entering the park, with their backs to the camera, underneath an aged and wooden Muir Woods sign that is hung over the middle of an entryway gate. Photo courtesy of: The National Park Service." class="photo" />
                     <p class="caption">
 Members of the Silicon Valley and San Francisco chapters of the American Council of the Blind field tested the UniD app at Muir Woods National Monument in April 2018.<br/>Photo courtesy of: Alison Taggart-Barone/NPS.
                     </p>
 			</div>
-			<div class="col-lg-6 col-md-6">	
+			<div class="col-lg-4 col-md-4">	
 				<p>The UniDescription project was designed as a research initiative with public benefits. We needed certain web tools to conduct our academic studies, so we thought we might as well design those for the greater good while we were at it. This site includes a UniD Academy, as a place for you to learn more about audio description and its best practices, as well as the unique UniD builder tool, which allows you to easily create and share audio description. More about this project can be found on the <a href="{{ SITEROOT }}/about" style="color: white; text-decoration: underline;">About Us</a> page. If you have specific questions or comments, please contact the principal investigator, <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank" style="color: white; text-decoration: underline;">Dr. Brett Oppegaard</a>, at University of Hawai‘i.</p><br />
 			</div>
 		</div>

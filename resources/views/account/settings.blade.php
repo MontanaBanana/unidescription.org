@@ -13,7 +13,7 @@
     <h2 class="form-signin-heading">Settings</h2>
     
     @if (Auth::user()->image_url)
-    	<img src="<?php echo Auth::user()->image_url; ?>?ts=<?php echo time(); ?>" class="img-responsive thumbnail" />
+    	<img src="<?php echo Auth::user()->image_url; ?>?ts=<?php echo time(); ?>" class="img-responsive thumbnail" onclick="$('#profile_photo').click();" />
     @endif
     
     <div class="input-group margin-bottom-sm">
@@ -37,6 +37,8 @@
 	</div>
 	
 	<div class="input-group">
+        
+	    <span>Profile Photo</span>
 		<input type="file" id="profile_photo" name="profile_photo">
 	</div>
     

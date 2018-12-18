@@ -46,24 +46,20 @@
         <script src="https://<?php echo $_SERVER['SERVER_NAME']; ?>/ableplayer/build/ableplayer.min.js"></script>
 
         <style>
-/*
-        html, body {
-            height: 100%;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-*/
+            h3 { font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000; }
+            p.chch { margin-left: 20px; padding:12px 0; border-top:1px dotted #000; }
+            div.lm { margin-left: 20px; }
         </style>
 
 	</head>
 	<body>
+        
+        <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
 
         <div id="toc">
             <h1>{{ $project->title }}</h1>
             <!--<p>{{ $project->description }}</p>-->
         </div>
-        
-        <main>
             <nav>
                 <div width="50%">
                         <ul>
@@ -138,7 +134,7 @@
                             @if (count($section->children))
                                 @foreach ($section->children as $s)
                                     @if ($s->completed && !$s->deleted)
-                                            <h3 style="font-weight:bold; margin-top:5px; margin-bottom:5px; padding:12px 0; border-top:1px dotted #000;"> {{ $s->title }} </h3>
+                                            <h3> {{ $s->title }} </h3>
                                             <a name="{{ $s->id }}"></a>
 
                                             <?php if (strlen($s->description)): ?>
@@ -164,7 +160,7 @@
                                             @if (count($s->children))
                                                 @foreach ($s->children as $chch)
                                                     @if ($chch->completed && !$chch->deleted)
-                                                    <p style="margin-left: 20px; padding:12px 0; border-top:1px dotted #000;">
+                                                    <p class="chch">
                                                         <h4>{{ $chch->title }}</h4> 
                                                         <a name="{{ $chch->id }}"></a>
                                                         <?php if (strlen($chch->description)): ?>
@@ -172,7 +168,7 @@
                                                                 <img width="100%" src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $chch->image_url; ?>" alt="{{ $chch->title }} section image" />
                                                             <?php endif; ?>
 
-                                                            <div style="margin-left: 20px;"><?php if (preg_match("/</", $chch->description)) { echo $chch->description; } else { echo nl2br($chch->description); } ?></div>
+                                                            <div class="lm"><?php if (preg_match("/</", $chch->description)) { echo $chch->description; } else { echo nl2br($chch->description); } ?></div>
                                                             <div>
                                                                 <audio id="audio-{{ $chch->id }}" preload="auto" data-able-player> </audio>
                                                                 <!-- first playlist (embedded) -->

@@ -407,23 +407,39 @@
 
 <div class="row">
 	    <div class="col-lg-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        GPS Latitude Coordinate:
-										@if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-location-arrow"></span></a></span>@endif
-                                        <input type="text" id="latitude" class="large" name="latitude" value="{{ $section->latitude }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
-                                    </div>
-                                </div>
-        </div>
-        <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        GPS Coordinate &amp; Radius
+                    </div>
+                    <p>The GPS coordinates and radius are used in the UniD app. If a person is using the app and goes within the radius of these coordinates, then their phone will vibrate and jump them to this section of the text.</p>
+                    <p>If you are in the field and in the location you want this component to trigger, you may simply click the compass icon to the right of the Latitude label. This will use the GPS on your phone to automatically populate these fields.</p>
+                </div>
 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        GPS Longitude Coordinate:
-										@if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-location-arrow"></span></a></span>@endif
-                                        <input type="text" id="longitude" class="large" name="longitude" value="{{ $section->longitude }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
-                                    </div>
-                                </div>
+        </div>
+	    <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Latitude:
+                        @if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-location-arrow"></span></a></span>@endif
+                        <input type="text" id="latitude" class="large" name="latitude" value="{{ $section->latitude }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Longitude:
+                        <input type="text" id="longitude" class="large" name="longitude" value="{{ $section->longitude }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Radius (in meters)
+                        <input type="text" id="gps_range" class="large" name="gps_range" value="{{ $section->gps_range }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+
+                    </div>
+                </div>
+
 
         </div>
 </div>

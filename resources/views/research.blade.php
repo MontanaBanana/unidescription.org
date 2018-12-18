@@ -51,7 +51,17 @@ SIGDOC_Oppegaard_2017.docx
 
 
                     <section>
-                    <h2 class="page-header" style="position: relative; margin-bottom: 0">Scholarly Products<br/><span style="font-size: 16px;">Related peer-reviewed publications, presentations, and external funding</span></h2>
+                    <h2 class="page-header" style="position: relative; margin-bottom: 8px;">Scholarly Products<br/><span style="font-size: 16px;">Related peer-reviewed publications, presentations, and external funding</span></h2>
+                    </section>
+
+                <div class="col-md-6">
+                     <a href="/images/toward_cultural_inclusion.pdf" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/review_of_disability_studies.png" width="100%" /></a>
+                    <p>Conway, T., Oppegaard, B., &amp; Conway, M. (2016). <a href="/images/toward_cultural_inclusion.pdf">Toward cultural inclusion: Using mobile technologies to increase access to audio description</a>, The Review of Disability Studies: An International Journal, 11(4), 5-8.</p>
+                </div>
+                <div class="col-md-6">
+                    <a href="/images/Media_Accessibility_Policy_edits.pdf" target="_blank"><img class="photo" style="margin-top: 16px; height: 374px;" src="/images/hicss52.png" width="100%" /></a>
+                    <p>Jordan, Philipp, and Oppegaard, Brett. "<a href="/images/Media_Accessibility_Policy_edits.pdf" target="_blank">Media Accessibility Policy in Theory and Reality: Empirical Outreach to Audio Description Users in the United States,</a>" paper / presentation, Hawai‘i International Conference on System Sciences (HICSS, Wailea, HI, U.S., 2019).    </p>
+                </div>
 
                     <section>
                     <center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/sigdoc_2017.PNG" alt="Brett's 2017 SIGDOC UniD research poster"></center>
@@ -65,13 +75,11 @@ SIGDOC_Oppegaard_2017.docx
                     <p>"From seeing to hearing: Lessons learned from a research-based design project focused upon audio description, print-to-acoustic remediation, and mobile-app delivery" research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Silver Spring, Maryland, U.S., in 2016.</p>
                     </section>
 
-<strong style="font-size: 24px;">Published:</strong>
-<ul>
-<li>Conway, T., Oppegaard, B., & Conway, M. (2016). <a href="/images/toward_cultural_inclusion.pdf">Toward cultural inclusion: Using mobile technologies to increase access to audio description</a>, The Review of Disability Studies: An International Journal, 11(4), 5-8.</li>
-</ul>
 
-<strong style="font-size: 24px;">Presented:</strong>
+<strong style="font-size: 24px;">And Also Presented:</strong>
 <ul>
+<li>Conway, Megan, Conway, Thomas, and Oppegaard, Brett. “Mobile Technology for Audio Description,” workshop, Association of University Centers on Disabilities Conference (AUCD, Washington, D.C., U.S., 2018).
+<li>Jordan, Philipp, and Oppegaard, Brett. "Media Accessibility Policy in Theory and Reality: Empirical Outreach to Audio Description Users in the United States," paper / presentation, Hawai‘i International Conference on System Sciences (HICSS, Wailea, HI, U.S., 2019).
 <li>Oppegaard, Brett. "Mind on the Move: Mobile Learning Through Embodiment and Interactivity," paper / presentation, International Conference on Interactivity, Language & Cognition (CILC4, Honolulu, HI, U.S., 2018).</li>
 <li>Decker, Denise, Hartley, Michele, Bloomer, Ray, Conway, Megan, Conway, Thomas, Koirala, Sajja, and Barrows, Jamie Gibson. “The National Park Service and Audio Description,” panel / presentation, American Council of the Blind Audio Description Project Conference (ACB ADP, St. Louis, MO, U.S., 2018).</li>
 <li>Koirala, Sajja. “The UniDescription Project: Providing Tools, Training, and Mobile Apps to Spread Audio Description Through Our National Parks,” paper / presentation, American Council of the Blind Conference and Convention (ACB, St. Louis, MO, U.S., 2018).</li>
@@ -93,13 +101,6 @@ SIGDOC_Oppegaard_2017.docx
 <li>Oppegaard, Brett. “Mobile for everyone? An analysis of National Park Service audio description as a step toward improving universal design through mobile,” paper / presentation, (International Communication Association, ICA Mobile Preconference, San Juan, Puerto Rico, U.S., 2015).</li>
 </ul> 
 
-<strong style="font-size: 24px;">Funding:</strong>
-<ul>
-<li>American Council of the Blind (in-kind services), 2017 - present</li>
-<li>Google ($125,000), 2017 – present</li>
-<li>National Park Service ($344,800 + in-kind services), 2014 – present</li>
-<li>University of Hawaii at Manoa’s School of Communications and Center on Disability Studies (in-kind services), 2014 – present</li>
-</ul>
                     </section>
 <!--
                     <center><img style="width: 792px" class="photo" src="{{ SITEROOT }}/images/unid-poster-2.jpg" alt="Brett's UniD research poster"></center>
@@ -230,6 +231,68 @@ SIGDOC_Oppegaard_2017.docx
 		<!-- /.row -->
 		
 		<hr>
+
+<div class="row blade the-team">
+            <div class="container">
+                <div class="col-lg-12">
+                    <h2 class="page-header">Funding</h2>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="thumbnail">
+                        <a href="https://manoa.hawaii.edu/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/uh_logo.jpg" alt="University of Hawaii Logo"></a>
+                        <div class="caption" style="height: 155px;">
+<h4>The University of Hawaii at Manoa</h4>
+<h5>School of Communications / <br>
+Center On Disability Studies</h5>
+<p>
+  In-Kind Services<br/>
+</p>
+                        </div>
+                    </div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2014 - Present</small>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="thumbnail">
+                        <a href="http://www.nps.gov" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/nps_square_logo.png" alt="National Park Service Logo"></a>
+                        <div class="caption" style="height: 155px;">
+<h4>The U.S. National Park Service</h4>
+<h5>Harpers Ferry Center<br>&nbsp;</h5>
+<p>
+$344,800 + In-Kind Services
+</p>
+                        </div>
+                    </div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2014 - Present</small>
+                </div>
+
+
+                <div class="col-md-3 text-center">
+                    <div class="thumbnail">
+                        <a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
+                        <div class="caption" style="height: 155px;">
+                            <h4>Google, Inc.<br>&nbsp;</h4>
+                            <h5>&nbsp;<br>&nbsp;</h5>
+                            <p>$225,000 + In-Kind Services</p>
+                        </div>
+                    </div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="thumbnail">
+                        <a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/acb.png" alt="American Council of the Blind Logo"></a>
+                        <div class="caption" style="height: 155px;">
+                            <h4>American Council of the Blind</h4>
+                            <h5>&nbsp;<br>&nbsp;</h5>
+                            <p>In-Kind Services</p>
+                        </div>
+                    </div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
+                </div>
+            </div>
+</div>
+
+<hr>
+
 
 <!-- END -->
 

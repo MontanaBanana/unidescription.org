@@ -139,6 +139,7 @@ Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
 
 Route::get(WEBROOT.'account/project/section/{id}/{section_id}', 'ProjectController@getSection');
 Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
+Route::get(WEBROOT.'account/project/unlock', 'ProjectController@getUnlock');
 Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
 Route::post(WEBROOT.'account/project/section/crop', 'ProjectController@postSectionCrop');
 Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@postDeleteImage');

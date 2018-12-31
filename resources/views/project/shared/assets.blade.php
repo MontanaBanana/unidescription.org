@@ -14,12 +14,11 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="project_id" id="id" value="{{ $project->id }}"  />
                             <p>
-                                <input type="file" id="asset" name="asset[]" onchange="javascript:location.reload();" multiple><br />
-                                This section allows you to store all assets related to this project.
-                                The assets are not automatically included in the export of the app.<br />
+                                <input type="file" id="asset" name="asset[]" multiple><br />
                             </p>
                         </form>
                     </div>
+                    <br />
                     <?php if (isset($assets)): ?>
                     <?php $c = false; foreach ($assets as $a): ?>
                         <div class="row" style="<?php echo (($c = !$c)?'background-color: #f5f5f5':'') ?>; padding: 10px;">
@@ -58,6 +57,16 @@ $('div#dropit').dropzone({
 });
 	
 	$(document).ready(function() {
+
+
+        $('#asset').on('change', function() {
+            $('.modal-title').html('Please wait');
+            $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+            $('.modal-footer').html('');
+            $('#deleteModal').modal({show: true});
+            setTimeout(function() { location.reload() }, 500);
+        });
+
 	  	$('.asset-delete').on('click', function(event) {
 
 /*

@@ -251,6 +251,39 @@
 								</div>
 
 
+							@if($editable)
+                            @if($section->image_url)
+							<div class="panel panel-default">
+								<div class="panel-heading">Component Photo:</div>
+								<div class="panel-body">
+									<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
+	                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
+	                                @if ($section->image_url)
+	                                    <div>
+	                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
+	                                    </div>
+	                                    <!-- Button trigger modal -->
+										<?php if ($was_locked || true): ?>
+											<p>
+                                            <a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+													<span class="fa fa-file-image-o"></span> Crop photo
+												</button>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
+													<span class="fa fa-remove"></span> Delete photo
+												</button>
+											</p>
+										<?php endif; ?>
+	                                @endif
+                                    <!--<button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
+								</div>
+							</div>
+                            @endif
+							@endif
 	
 								
 								<div class="panel panel-default">
@@ -328,12 +361,12 @@
 										<div class="audio-player play-description play_description">
 											<audio id="play-description" controls></audio>
 										</div>
-                                        @if ($section->image_url)<div  class=""><img src="{{ $section->image_url }}" style="width: 100%;"/></div>@endif
 										<textarea class="tall rte" name="description" id="description" placeholder="<?php echo get_placeholder_text($section->description); ?>" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>{{ $section->description }}</textarea>
 									</div>
 								</div>
 							
 							@if($editable)
+                            @if(!$section->image_url)
 							<div class="panel panel-default">
 								<div class="panel-heading">Component Photo:</div>
 								<div class="panel-body">
@@ -346,7 +379,7 @@
 	                                    <!-- Button trigger modal -->
 										<?php if ($was_locked || true): ?>
 											<p>
-												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> Image rights cleared</a>
+												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
 											</p>
 											<p>
 												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
@@ -360,9 +393,10 @@
 											</p>
 										<?php endif; ?>
 	                                @endif
-                                    <button type="submit" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>
+                                    <!--<button class="save-details btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
 								</div>
 							</div>
+                            @endif
 							@endif
 					        						
                                 <div class="panel panel-default" id="phonetic_description_box" <?php if ($section->phonetic_description == '') { echo 'style="display: none !important;"'; } ?>>
@@ -406,21 +440,20 @@
 
 
 <div class="row">
-	    <div class="col-lg-6">
+	    <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        GPS Coordinate &amp; Radius
-                    </div>
-                    <p>The GPS coordinates and radius are used in the UniD app. If a person is using the app and goes within the radius of these coordinates, then their phone will vibrate and jump them to this section of the text.</p>
-                    <p>If you are in the field and in the location you want this component to trigger, you may simply click the compass icon to the right of the Latitude label. This will use the GPS on your phone to automatically populate these fields.</p>
-                </div>
+                    <div class="panel-heading" style="height: 57px;">
+                        Geolocation Tag @if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-map-marker" style="font-size: 2em;" title="Click or tap to grab your current GPS coordinates"></span></a></span>@endif
 
+                    </div>
+                </div>
         </div>
+</div>
+<div class="row">
 	    <div class="col-lg-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Latitude:
-                        @if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-location-arrow"></span></a></span>@endif
                         <input type="text" id="latitude" class="large" name="latitude" value="{{ $section->latitude }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
                     </div>
                 </div>
@@ -434,12 +467,22 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Radius (in meters)
-                        <input type="text" id="gps_range" class="large" name="gps_range" value="{{ $section->gps_range }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+                        Radius (in meters, 1 to 10,000)
+                        <input type="text" id="gps_range" class="large" name="gps_range" <?php if (!strlen($section->gps_range) || $section->gps_range == 10): ?>placeholder<?php else: ?>value<?php endif; ?>="{{ $section->gps_range }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
 
                     </div>
                 </div>
 
+
+        </div>
+	    <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        GPS Coordinate &amp; Radius
+                    </div>
+                    <p>GPS coordinates are used in UniD apps to create a locational trigger for users, in which a device (with the app open and permissions allowed) will vibrate and present particular content in a particular place, within the radius selected.</p>
+                    <p>Designers can either input the coordinates remotely or go to the place, open the UniD design tool on a smartphone or tablet, and select the geolocation button, which will grab the current coordinates and link those to the UniD component.</p>
+                </div>
 
         </div>
 </div>
@@ -458,7 +501,7 @@
 								<?php if ($was_locked): ?>
 									<div class="wrapper-footer">
 										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
-										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Complete</a>
+										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span></a>
 									</div>
 								<?php endif; ?>
 					        </div>				        
@@ -500,8 +543,8 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">Save &amp; Complete:</div>
 									<div class="panel-body">
-										<p><button class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
-										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> Component Complete</a></p>
+										<p><button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
+										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->complete) Component Complete @else Component Incomplete @endif</span> </a></p>
 									</div>
 								</div>
 							<?php endif; ?>
@@ -660,14 +703,23 @@ $(document).ready(function() {
 			});
 		});
 
+        $("#section_form").data("changed",false);
+        $("#section_form :input").change(function() {
+               $("#section_form").data("changed",true);
+        });
 
         $(window).on('beforeunload', function(){
             $("#was_autosave").val(0);
-            $('.modal-title').html('Please wait');
-            $('.modal-body').html('Saving component...');
-            $('.modal-footer').html('');
-            $('#deleteModal').modal({show: true});
-            $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
+            if ($("#section_form").data("changed")) {
+                $('.modal-title').html('Please wait');
+                $('.modal-body').html('Saving component...');
+                $('.modal-footer').html('');
+                $('#deleteModal').modal({show: true});
+                $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
+            }
+            else {
+                $('#unlock_form').ajaxSubmit({url: '/account/project/unlock', type: 'get', async: false});
+            }
         });
 		
         $('textarea.rte').trumbowyg({
@@ -675,6 +727,7 @@ $(document).ready(function() {
                 autogrow: true,
                 svgPath: '/js/ui/icons.svg'
 		}).on('tbwchange', function() {
+            $('#section_form').data('changed', true);
 			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {
 				// Reset the count, so we save again in another 15 characters
 				console.log('submitting');
@@ -881,6 +934,7 @@ $(document).ready(function() {
 					        $(section).removeClass('btn-default');
 							$(section).addClass('btn-success');
 							$(section).children().addClass('fa-check-square-o');
+                            $('.image-rights-text').html('Image Rights Cleared');
 	
 				        }
 				        else {
@@ -923,6 +977,7 @@ $(document).ready(function() {
 					        $(section).removeClass('btn-success');
 							$(section).addClass('btn-default');
 							$(section).children().addClass('fa-square-o');
+                            $('.image-rights-text').html('NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY)');
 	
 				        }
 				        else {
@@ -977,7 +1032,7 @@ $(document).ready(function() {
 							$(section).removeClass('btn-red');
 							$(section).addClass('btn-success');
 							$(section).children().addClass('fa-check-square-o');
-	
+                            $('.component-complete-text').html('Component Complete');	
 				        }
 				        else {
 					        alert('Error: contact the site admin.');
@@ -1017,6 +1072,7 @@ $(document).ready(function() {
 					        $(section).removeClass('btn-success');
 							$(section).addClass('btn-red');
 							$(section).children().addClass('fa-square-o');
+                            $('.component-complete-text').html('Component Incomplete');	
 	
 				        }
 				        else {
@@ -1127,7 +1183,22 @@ $(document).ready(function() {
             });
         });
         
-        //$('#section_image').change(function(){});
+        $('#section_image').change(function(){
+            $('.modal-title').html('Please wait');
+            $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+            $('.modal-footer').html('');
+            $('#deleteModal').modal({show: true});
+            setTimeout(function() { $("#section_form").submit(); }, 500);
+        });
+
+        $('.save-details').on('change', function() {
+            $('.modal-title').html('Please wait');
+            $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+            $('.modal-footer').html('');
+            $('#deleteModal').modal({show: true});
+            setTimeout(function() { $("#project_details_form").submit(); }, 500);
+        });
+
         /*
         $('#section_image').change(function(){
 	       // When a file is chosen, auto-submit and refresh.
@@ -1368,5 +1439,8 @@ $(document).ready(function() {
   </div>
 </div>
 
+<form method="POST" action="/account/project/unlock" enctype="multipart/form-data" id="unlock_form" style="display: none;">
+<input type="hidden" name="project_section_id" id="project_section_id" value="{{ $section->id }}" />
+</form>
 
 @endsection

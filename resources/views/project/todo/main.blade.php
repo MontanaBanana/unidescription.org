@@ -23,7 +23,7 @@
                 <span data-todo_id="{{ $todo->id }}" class="toc-icon todo-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($todo->deleted) fa-undo @else fa-times @endif"></span></span>
                 <span data-todo_id="{{ $todo->id }}" class="todo-check-complete label pull-right @if ($todo->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($todo->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
                 <div class="todo-description">
-                    <textarea data-todo_id="{{ $todo->id }}" class="todo-textarea">{{ $todo->description }}</textarea>
+                    <textarea data-todo_id="{{ $todo->id }}" class="todo-textarea" placeholder="Any other instructions to add? Type here.">{{ $todo->description }}</textarea>
                 </div>
                 <?php if (strlen($todo->url)): ?>
                     <a href="{{ $todo->url }}" target="_blank">Click for activity</a>
@@ -266,7 +266,6 @@
                 }
             });
         });
-
 
         $('i.toggle', '#todo-sortable').click();
     });

@@ -39,8 +39,8 @@
 				    <div class="panel-heading">Are you sure you want to delete {{ $project->title }}?</div>
 				    <div class="panel-body">
 				        <p><strong>This action is irreversible!</strong></p>
-				        <a class="btn btn-primary btn-icon label-danger delete-project" href="/account/project/delete/{{ $project->id }}" data-id="{{ $project->id }}"><span class="fa fa-times"></span> Yes, I am sure. Delete {{ $project->title }}.</i></a><br /><br />
-				        <a class="btn btn-primary btn-icon" href="/account/project"><span class="fa fa-angle-left"></span> Do not delete {{ $project->title }}. Go back.</i></a>
+				        <a class="btn-danger btn btn-icon label-danger delete-project"  style="width: 100%;" href="/account/project/delete/{{ $project->id }}" data-id="{{ $project->id }}"><span class="fa fa-times"></span> Yes, I am sure. Delete {{ $project->title }}.</i></a><br /><br />
+				        <a class="btn btn-primary btn-icon" style="width: 100%;" href="/account/project"><span class="fa fa-angle-left"></span> Do not delete {{ $project->title }}. Go back.</i></a>
 
 				    </div>
 				</div>

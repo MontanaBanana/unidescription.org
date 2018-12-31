@@ -141,14 +141,14 @@ if(isset($project) && $project->id > 0){
 								</div>
 -->
 								
-								<div class="panel panel-default">
+								<!--<div class="panel panel-default">
 									<div class="panel-heading" id="gpo-label">
 										GPO #:
 									</div>
 									<div class="panel-body form-element">
 										<input aria-labelledby="gpo-label" type="text" class="large" name="gpo" value="{{ $project->gpo }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
-								</div>
+								</div>-->
 	
 								<div class="panel panel-default">
 									<div class="panel-heading" id="version-label">
@@ -211,7 +211,7 @@ if(isset($project) && $project->id > 0){
 	
 								@if($editable)
 								<div class="wrapper-footer">
-									<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
+									<button class="btn btn-lg btn-primary btn-icon save-details"><span class="fa fa-floppy-o"></span> Save Details</button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 								@endif
@@ -282,17 +282,43 @@ if(isset($project) && $project->id > 0){
 			//console.log( $(e).data() );
 		});
 
+        $("#project_details_form").data("changed",false);
+        $("#project_details_form :input").change(function() {
+            $("#project_details_form").data("changed",true);
+        });
+
 
         @if ($project->id)
             $(window).on('beforeunload', function(){
-                $('.modal-title').html('Please wait');
-                $('.modal-body').html('Saving component...');
-                $('.modal-footer').html('');
-                $('#deleteModal').modal({show: true});
-                $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
+                if ($("#project_details_form").data("changed")) {
+
+                    $('.modal-title').html('Please wait');
+                    $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+                    $('.modal-footer').html('');
+
+                    $('#deleteModal').modal({show: true});
+                    $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
+                }
             });
         @endif
 
+        $('#project_image').on('change', function() {
+                $('.modal-title').html('Please wait');
+                $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+                $('.modal-footer').html('');
+                $('#deleteModal').modal({show: true});
+                setTimeout(function() { $("#project_details_form").submit(); }, 500);
+
+        });
+
+        $('.save-details').on('change', function() {
+                $('.modal-title').html('Please wait');
+                $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
+                $('.modal-footer').html('');
+                $('#deleteModal').modal({show: true});
+                setTimeout(function() { $("#project_details_form").submit(); }, 500);
+
+        });
 		
 		$('#deleteProjectImage').click(function() {
 			$.ajax({

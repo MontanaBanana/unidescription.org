@@ -34,7 +34,7 @@
 	<link href="//fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,700" rel="stylesheet" type="text/css">
 
 	<!-- RTE -->
-	<link rel="stylesheet" href="{{ SITEROOT }}/css/trumbowyg.css">
+	<link rel="stylesheet" href="{{ SITEROOT }}/css/trumbowyg.css?v=2.13.0">
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -58,7 +58,7 @@
 	<!--<script type="text/javascript" src="{{ SITEROOT }}/js/jquery.mjs.nestedSortable.js"></script>-->
 
 	<!-- RTE -->
-	<script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js"></script>
+	<script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js?v=2.13.0"></script>
 
 	<!-- Unidescription custom JS -->
 	<script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js?ts=1234"></script>

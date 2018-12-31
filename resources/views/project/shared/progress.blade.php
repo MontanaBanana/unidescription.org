@@ -9,8 +9,8 @@ if (!isset($sections) && isset($project)) {
     <div class="panel-body">
         <div class="progress">
             <?php $percent = get_project_completion_percentage($sections); ?>
-            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $percent; ?>%;">
-                <?php echo $percent; ?>%
+            <div class="progress-bar" role="progressbar" aria-valuenow="<?php echo $percent; ?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php if ($percent == 0) { echo '100'; } else { echo $percent; } ?>%;">
+                <?php if ($percent == 0) { echo '0% - Zero components marked as completed'; } else { echo $percent."%"; } ?>
             </div>
         </div>
     </div>

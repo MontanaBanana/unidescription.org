@@ -864,11 +864,10 @@ div.todo-description {
 input.todo-title {
     border: none;
     padding: 3px;
-    width: 140px;
+    width: 180px;
 }
 
 div.todo-description textarea {
-    border: none;
     padding: 3px;
     width: 100%;
 }
@@ -1566,3 +1565,15 @@ div#main-nav {
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-bottom: 6px solid #be2626; }
+
+.image-rights-text:before {
+    content: '' !important;
+}
+
+.component-complete-text:before {
+    content: '' !important;
+}
+
+.complete-text:before {
+    content: '' !important;
+}

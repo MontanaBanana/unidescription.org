@@ -565,6 +565,8 @@ class ProjectController extends Controller
     public function getJsonExportV2($id)
     {
 	    $project = Project::find($id);
+        $project->api_hits++;
+        $project->save();
 		
 		foreach ($project->project_sections as $s) {
             $combined = '';
@@ -1000,6 +1002,16 @@ class ProjectController extends Controller
             $assets = ProjectAsset::where('project_id', $project_id)->orderBy('priority', 'asc')->get();
 			return view('project.details', ['sections' => $sections, 'project' => $project, 'assets' => $assets]);
 		}
+    }
+
+    public function getUnlock(Request $request)
+    {
+		$ps = ProjectSection::find($request->project_section_id);
+        if ($ps->locked == true && $ps->locked_by_user_id == Auth::user()->id) {
+            $ps->locked = false;
+            $ps->save();
+        }
+        return json_encode( array('status' => 'success') );
     }
 
 	public function postSectionCrop(Request $request)
@@ -1463,7 +1475,7 @@ class ProjectController extends Controller
 		$ps = ProjectSection::find($project_section_id);
 		
 		$was_locked = false;
-		if (! $ps->locked || $project_id >= 286) {
+		if (! $ps->locked) {
 			// Lock it.
 			$ps->locked = true;
 			$ps->locked_by_user_id = Auth::user()->id;
@@ -1484,35 +1496,42 @@ class ProjectController extends Controller
         $count = 0;
         while ($parent_deleted) {
             if ($count++ > 20) { break; }
-            $prev_ps = DB::table('project_sections')
+            $results = DB::table('project_sections')
                 ->where('project_id', '=', $project_id)
                 ->where('sort_order', '<', $sort_order--)
                 ->where('deleted', '=', 0)
-                ->orderBy('sort_order', 'desc')
-                ->first();
+                ->orderBy('sort_order', 'desc')->get();
 
-            if ($prev_ps) {
-                if ($prev_ps->project_section_id == 0 || !$prev_ps->id) {
-                    $parent_deleted = false;
-                }
-                else {
-                    // There is a parent, so we need to check if it was deleted.
-                    $prev_ps_parent = ProjectSection::find($prev_ps->project_section_id);
-                    if ($prev_ps_parent->deleted) {
-                        $prev_ps = false;
-                    }
-                    elseif ($prev_ps_parent->project_section_id) {
-                        // There is a parent, so we need to check if it was deleted.
-                        $prev_ps_gparent = ProjectSection::find($prev_ps->project_section_id);
-                        if ($prev_ps_gparent->deleted) {
-                            $prev_ps = false;
+            if (count($results)) { 
+                foreach ($results as $prev_ps) { 
+
+                    if ($prev_ps) {
+                        if ($prev_ps->project_section_id == 0 || !$prev_ps->id) {
+                            $parent_deleted = false;
+                            break;
                         }
                         else {
-                            $parent_deleted = false;
+                            // There is a parent, so we need to check if it was deleted.
+                            $prev_ps_parent = ProjectSection::find($prev_ps->project_section_id);
+                            if ($prev_ps_parent->deleted) {
+                                $prev_ps = false;
+                            }
+                            elseif ($prev_ps_parent->project_section_id) {
+                                // There is a parent, so we need to check if it was deleted.
+                                $prev_ps_gparent = ProjectSection::find($prev_ps->project_section_id);
+                                if ($prev_ps_gparent->deleted) {
+                                    $prev_ps = false;
+                                }
+                                else {
+                                    $parent_deleted = false;
+                                    break;
+                                }
+                            }
+                            else {
+                                $parent_deleted = false;
+                                break;
+                            }
                         }
-                    }
-                    else {
-                        $parent_deleted = false;
                     }
                 }
             }
@@ -1524,44 +1543,56 @@ class ProjectController extends Controller
         $parent_deleted = true;
         $sort_order = $ps->sort_order;
         $count = 0;
+        $seen = array();
         while ($parent_deleted) {
             if ($count++ > 20) { break; }
-            $next_ps = DB::table('project_sections')
+            $results = DB::table('project_sections')
                 ->where('project_id', '=', $project_id)
-                ->where('sort_order', '>', $sort_order++)
+                ->where('sort_order', '>', $sort_order)
                 ->where('deleted', '=', 0)
-                ->orderBy('sort_order', 'asc')
-                ->first();
+                ->orderBy('sort_order', 'asc')->get();
 
-            if ($next_ps) {
-                if ($next_ps->project_section_id == 0 || !$next_ps->id) {
-                    $parent_deleted = false;
-                }
-                else {
-                    // There is a parent, so we need to check if it was deleted.
-                    $next_ps_parent = ProjectSection::find($next_ps->project_section_id);
-                    if ($next_ps_parent->deleted) {
-                        $next_ps = false;
-                    }
-                    elseif ($next_ps_parent->project_section_id) {
-                        // There is a parent, so we need to check if it was deleted.
-                        $next_ps_gparent = ProjectSection::find($next_ps->project_section_id);
-                        if ($next_ps_gparent->deleted) {
-                            $next_ps = false;
+            if (count($results)) {
+                foreach ($results as $next_ps) { 
+
+                    if ($next_ps) {
+                        if ($next_ps->project_section_id == 0 || !$next_ps->id) {
+                            $parent_deleted = false;
+                            break;
                         }
                         else {
-                            $parent_deleted = false;
+                            // There is a parent, so we need to check if it was deleted.
+                            $next_ps_parent = ProjectSection::find($next_ps->project_section_id);
+                            if ($next_ps_parent->deleted) {
+                                //echo "<PRE>".print_r($next_ps->id,true)."</pre>";exit;
+                                $next_ps = false;
+                            }
+                            elseif ($next_ps_parent->project_section_id) {
+                                // There is a parent, so we need to check if it was deleted.
+                                $next_ps_gparent = ProjectSection::find($next_ps->project_section_id);
+                                if ($next_ps_gparent->deleted) {
+                                    $next_ps = false;
+                                }
+                                else {
+                                    $parent_deleted = false;
+                                    break;
+                                }
+                            }
+                            else {
+                                $parent_deleted = false;
+                                break;
+                            }
                         }
                     }
-                    else {
-                        $parent_deleted = false;
-                    }
+
                 }
             }
             else {
                 $parent_deleted = false;
             }
+
         }
+
 
         /*
         $next_ps = DB::table('project_sections')
@@ -1580,11 +1611,17 @@ class ProjectController extends Controller
     
     public function postSection(Request $request)
     {
+        ignore_user_abort(true);
+
 		//return redirect("/account/project/toc/".$ps->project_id."/".strtolower(preg_replace('%[^a-z0-9_-]%six','-', $ps->project_id)));
         if (!isset($request->project_section_id)) {
 			return redirect('/account/');
         }
 		$ps = ProjectSection::find($request->project_section_id);
+
+        if (!strlen($request->gps_range)) {
+            $request->gps_range = 10;
+        }
 
 		// Save a version of this section with timestamps. Only save if the section is different enough.
 		if (
@@ -1639,6 +1676,7 @@ class ProjectController extends Controller
 		//combined the if statement, previous statement was redundant and repeating
 
 		if ($ps->title != $request->title || $ps->description != $request->description || $ps->phonetic_title != $request->phonetic_title || $ps->phonetic_description != $request->phonetic_description) {
+            /*(
             $combined = '';
 			
 			//////////////////////////////////
@@ -1726,6 +1764,7 @@ class ProjectController extends Controller
 				$ps->save();
 
             }
+             */
 			$ps->audio_file_needs_update = true;
 		}
 		$ps->description = $request->description;
@@ -1735,6 +1774,7 @@ class ProjectController extends Controller
 		$ps->latitude = $request->latitude;
 		$ps->longitude = $request->longitude;
 		$ps->notes = $request->notes;
+		$ps->gps_range = $request->gps_range;
 
 		$ps->locked = false;
 		if ($request->was_autosave == 1) {
@@ -1912,14 +1952,14 @@ class ProjectController extends Controller
         if ($request->title) {
             $pt->title= $request->title;
         }
-        elseif ($request->description) {
+        elseif (isset($request->description)) {
             $pt->description = $request->description;
         }
 		if($pt->save()){
-			$p = Project::find($request->project_id);
+			//$p = Project::find($request->project_id);
 			// NOW UPDATE THE PROJECT updated_at
-			$p->updated_at = date("Y-m-d H:i:s", time());
-			$p->save();
+			//$p->updated_at = date("Y-m-d H:i:s", time());
+		    //$p->save();
 		}
 		return response()->json([ 'status' => true ]);
 	}

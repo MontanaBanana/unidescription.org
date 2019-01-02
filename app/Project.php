@@ -28,6 +28,11 @@ class Project extends Model
     {
         return $this->hasMany('App\ProjectTodo')->orderBy('sort_order');
     }
+
+    public function project_trackings()
+    {
+        return $this->hasMany('App\ProjectTracking');
+    }
     
     public function project_sections()
     {

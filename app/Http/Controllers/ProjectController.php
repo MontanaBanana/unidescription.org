@@ -12,6 +12,7 @@ use App\SectionTemplate;
 use App\ProjectSection;
 use App\ProjectSectionVersion;
 use App\ProjectTodo;
+use App\ProjectTracking;
 use App\ProjectAsset;
 use App\User;
 use App\Http\Controllers;
@@ -567,6 +568,12 @@ class ProjectController extends Controller
 	    $project = Project::find($id);
         $project->api_hits++;
         $project->save();
+
+        $track = new ProjectTracking;
+        $track->project_id = $project->id;
+        $track->created_at = date('Y-m-d H:i:s');
+        $track->updated_at = date('Y-m-d H:i:s');
+        $track->save();
 		
 		foreach ($project->project_sections as $s) {
             $combined = '';

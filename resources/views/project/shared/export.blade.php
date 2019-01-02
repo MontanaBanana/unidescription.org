@@ -14,9 +14,11 @@
 			<li><a href="/account/project/zip/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;" target="_blank"><span class="fa fa-html5"></span> Download HTML Export</a></li>
 			<li><a href="/account/project/build/index/{{ $project->id }}" class="btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-download"></span> Create App</a></li>
             <br>
+<!--
             @if ($project->api_hits)
                 <strong>In-app views: {{ $project->api_hits }}</strong>
             @endif
+-->
           </ul>
         @endif
     </div>

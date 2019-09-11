@@ -25,9 +25,9 @@
 								<!--<li><a href="{{ SITEROOT }}/faq">FAQ</a></li>
 								<li><a href="{{ SITEROOT }}/tutorials">Tutorials</a></li>-->
 								<li><a href="{{ SITEROOT }}/about">About Us</a></li>
-								<li><a href="{{ SITEROOT }}/unid-academy">UniD Academy</a></li>
-								<li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+								<!--<li><a href="{{ SITEROOT }}/forum">Forum</a></li>-->
 								<li><a href="{{ SITEROOT }}/research">Research</a></li>
+								<li><a href="{{ SITEROOT }}/unid-academy">UniD Academy</a></li>
 							</ul>
 						</li>
 <!--

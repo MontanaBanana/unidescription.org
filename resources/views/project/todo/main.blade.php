@@ -56,7 +56,12 @@
 
     $(document).ready(function() {
 
+        var submitted = false;
         $('#todo-add').on('click', function() {
+            if (submitted) {
+               return; 
+            }
+            submitted = true;
 
             var new_todo = $('#todo-new').val();
 

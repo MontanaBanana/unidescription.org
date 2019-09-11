@@ -25,7 +25,7 @@
         @endif
         {{-- @if ($project->is_owner()) --}}
                 <div class="input-group" id="share-input-group">
-                    <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" />
+                    <input type="text" class="form-control" id="share-email" placeholder="Name / Email" aria-describedby="share-button" autocomplete="false" />
                     <span class="btn btn-sm btn-primary btn-inline" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
                 </div>
                 
@@ -262,7 +262,6 @@ $(document).ready(function() {
                     data : formData,
                     success: function(data, textStatus, jqXHR)
                     {
-                        if (data.status) {
                             $('ul.share-list-group').empty();
                             for (var i = 0; i < data.users.length; i++) {
                                 $('ul.share-list-group').append(
@@ -273,10 +272,6 @@ $(document).ready(function() {
                             $('#share-icon').addClass("fa fa-plus fa-fw");
 
                             $('#share-email').val('');
-                        }
-                        else {
-
-                        }
                     }
                 });
             }

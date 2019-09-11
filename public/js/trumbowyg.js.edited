@@ -1,3 +1,14 @@
+/**
+ * Trumbowyg v2.13.0 - A lightweight WYSIWYG editor
+ * Trumbowyg core file
+ * ------------------------
+ * @link http://alex-d.github.io/Trumbowyg
+ * @license MIT
+ * @author Alexandre Demode (Alex-D)
+ *         Twitter : @AlexandreDemode
+ *         Website : alex-d.fr
+ */
+
 jQuery.trumbowyg = {
     langs: {
         en: {
@@ -14,7 +25,7 @@ jQuery.trumbowyg = {
 
             bold: 'Bold',
             italic: 'Italic',
-            strikethrough: 'Strikethrough',
+            strikethrough: 'Stroke',
             underline: 'Underline',
 
             strong: 'Strong',
@@ -79,10 +90,8 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         prefix: 'trumbowyg-',
 
         semantic: true,
-        semanticKeepAttributes: false,
         resetCss: false,
         removeformatPasted: false,
-        tabToIndent: false,
         tagsToRemove: [],
         tagsToKeep: ['hr', 'img', 'embed', 'iframe', 'input'],
         btns: [
@@ -101,7 +110,6 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         ],
         // For custom button definitions
         btnsDef: {},
-        changeActiveDropdownIcon: false,
 
         inlineElementsSelector: 'a,abbr,acronym,b,caption,cite,code,col,dfn,dir,dt,dd,em,font,hr,i,kbd,li,q,span,strikeout,strong,sub,sup,u',
 
@@ -256,7 +264,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 
         /**
          * When the button is associated to a empty object
-         * fn and title attributes are defined from the button key value
+         * fn and title attributs are defined from the button key value
          *
          * For example
          *      foo: {}
@@ -306,14 +314,6 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             h4: {
                 fn: 'formatBlock',
                 title: h + ' 4'
-            },
-            h5: {
-                fn: 'formatBlock',
-                title: h + ' 5'
-            },
-            h6: {
-                fn: 'formatBlock',
-                title: h + ' 6'
             },
             subscript: {
                 tag: 'sub'
@@ -441,10 +441,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         t.pasteHandlers = [].concat(t.o.pasteHandlers);
 
         // Check if browser is IE
-        t.isIE = navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') !== -1;
-
-        // Check if we are on macOs
-        t.isMac = navigator.platform.toUpperCase().indexOf('MAC') !== -1;
+        t.isIE = (navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') !== -1);
 
         t.init();
     };
@@ -455,7 +452,8 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             'i': 'em',
             's': 'del',
             'strike': 'del',
-            'div': 'p'
+            'div': 'br',
+            'p': 'br'
         },
 
         init: function () {
@@ -467,7 +465,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             try {
                 // Disable image resize, try-catch for old IE
                 t.doc.execCommand('enableObjectResizing', false, false);
-                t.doc.execCommand('defaultParagraphSeparator', false, 'p');
+                t.doc.execCommand('defaultParagraphSeparator', false, 'br');
             } catch (e) {
             }
 
@@ -487,7 +485,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         },
 
         addBtnDef: function (btnName, btnDef) {
-            this.btnsDef[btnName] = $.extend(btnDef, this.btnsDef[btnName] || {});
+            this.btnsDef[btnName] = btnDef;
         },
 
         setupUrlPrefix: function () {
@@ -499,7 +497,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             if (typeof(protocol) !== 'string') {
                 return 'https://';
             }
-            return protocol.replace('://', '') + '://';
+            return /:\/\/$/.test(protocol) ? protocol : protocol + '://';
         },
 
         buildEditor: function () {
@@ -588,22 +586,11 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                     if ((e.ctrlKey || e.metaKey) && !e.altKey) {
                         ctrl = true;
                         var key = t.keys[String.fromCharCode(e.which).toUpperCase()];
-                        
+
                         try {
                             t.execCmd(key.fn, key.param);
                             return false;
-                        } catch (c) {}
-                    } else {
-                        
-                        if (t.o.tabToIndent && e.key === 'Tab') {
-                            try {
-                                if (e.shiftKey) {
-                                    t.execCmd('outdent', true, null);
-                                } else {
-                                    t.execCmd('indent', true, null);
-                                }
-                                return false;
-                            } catch (c) {}
+                        } catch (c) {
                         }
                     }
                 })
@@ -652,7 +639,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 .on('focus blur', function (e) {
                     t.$c.trigger('tbw' + e.type);
                     if (e.type === 'blur') {
-                        t.clearButtonPaneStatus()
+                        $('.' + prefix + 'active-button', t.$btnPane).removeClass(prefix + 'active-button ' + prefix + 'active');
                     }
                     if (t.o.autogrowOnEnter) {
                         if (t.autogrowOnEnterDontClose) {
@@ -798,7 +785,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                     html: t.hasSvg && hasIcon ?
                         '<svg><use xlink:href="' + t.svgPath + '#' + prefix + (btn.ico || btnName).replace(/([A-Z]+)/g, '-$1').toLowerCase() + '"/></svg>' :
                         t.hideButtonTexts ? '' : (btn.text || btn.title || t.lang[btnName] || btnName),
-                    title: (btn.title || btn.text || textDef) + (btn.key ? ' (' + (t.isMac ? 'Cmd' : 'Ctrl') + ' + ' + btn.key + ')' : ''),
+                    title: (btn.title || btn.text || textDef) + ((btn.key) ? ' (Ctrl + ' + btn.key + ')' : ''),
                     tabindex: -1,
                     mousedown: function () {
                         if (!isDropdown || $('.' + btnName + '-' + prefix + 'dropdown', t.$box).is(':hidden')) {
@@ -821,7 +808,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 $btn.addClass(prefix + 'open-dropdown');
                 var dropdownPrefix = prefix + 'dropdown',
                     dropdownOptions = { // the dropdown
-                        class: dropdownPrefix + '-' + btnName + ' ' + dropdownPrefix + ' ' + prefix + 'fixed-top ' + (btn.dropdownClass || '')
+                        class: dropdownPrefix + '-' + btnName + ' ' + dropdownPrefix + ' ' + prefix + 'fixed-top'
                     };
                 dropdownOptions['data-' + dropdownPrefix] = btnName;
                 var $dropdown = $('<div/>', dropdownOptions);
@@ -863,11 +850,9 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 
             return $('<button/>', {
                 type: 'button',
-                class: prefix + btnName + '-dropdown-button ' + (btn.class || '') + (btn.ico ? ' ' + prefix + btn.ico + '-button' : ''),
-                html: t.hasSvg && hasIcon ?
-                  '<svg><use xlink:href="' + t.svgPath + '#' + prefix + (btn.ico || btnName).replace(/([A-Z]+)/g, '-$1').toLowerCase() + '"/></svg>' + (btn.text || btn.title || t.lang[btnName] || btnName) :
-                  (btn.text || btn.title || t.lang[btnName] || btnName),
-                title: (btn.key ? '(' + (t.isMac ? 'Cmd' : 'Ctrl') + ' + ' + btn.key + ')' : null),
+                class: prefix + btnName + '-dropdown-button' + (btn.ico ? ' ' + prefix + btn.ico + '-button' : ''),
+                html: t.hasSvg && hasIcon ? '<svg><use xlink:href="' + t.svgPath + '#' + prefix + (btn.ico || btnName).replace(/([A-Z]+)/g, '-$1').toLowerCase() + '"/></svg>' + (btn.text || btn.title || t.lang[btnName] || btnName) : (btn.text || btn.title || t.lang[btnName] || btnName),
+                title: ((btn.key) ? ' (Ctrl + ' + btn.key + ')' : null),
                 style: btn.style || null,
                 mousedown: function () {
                     $('body', t.doc).trigger('mousedown');
@@ -879,10 +864,10 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             });
         },
         // Check if button is supported
-        isSupportedBtn: function (btnName) {
+        isSupportedBtn: function (b) {
             try {
-                return this.btnsDef[btnName].isSupported();
-            } catch (e) {
+                return this.btnsDef[b].isSupported();
+            } catch (c) {
             }
             return true;
         },
@@ -929,36 +914,36 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 
                     var scrollTop = $(window).scrollTop(),
                         offset = $box.offset().top + 1,
-                        $buttonPane = t.$btnPane,
-                        buttonPaneOuterHeight = $buttonPane.outerHeight() - 2;
+                        bp = t.$btnPane,
+                        oh = bp.outerHeight() - 2;
 
                     if ((scrollTop - offset > 0) && ((scrollTop - offset - t.height) < 0)) {
                         if (!t.isFixed) {
                             t.isFixed = true;
-                            $buttonPane.css({
+                            bp.css({
                                 position: 'fixed',
                                 top: 0,
-                                left: fixedFullWidth ? 0 : 'auto',
+                                left: fixedFullWidth ? '0' : 'auto',
                                 zIndex: 7
                             });
-                            t.$box.css({paddingTop: $buttonPane.height()});
+                            $([t.$ta, t.$ed]).css({marginTop: bp.height()});
                         }
-                        $buttonPane.css({
-                            width: fixedFullWidth ? '100%' : (($box.width() - 1))
+                        bp.css({
+                            width: fixedFullWidth ? '100%' : (($box.width() - 1) + 'px')
                         });
 
                         $('.' + t.o.prefix + 'fixed-top', $box).css({
                             position: fixedFullWidth ? 'fixed' : 'absolute',
-                            top: fixedFullWidth ? buttonPaneOuterHeight : buttonPaneOuterHeight + (scrollTop - offset),
+                            top: fixedFullWidth ? oh : oh + (scrollTop - offset) + 'px',
                             zIndex: 15
                         });
                     } else if (t.isFixed) {
                         t.isFixed = false;
-                        $buttonPane.removeAttr('style');
-                        t.$box.css({paddingTop: 0});
+                        bp.removeAttr('style');
+                        $([t.$ta, t.$ed]).css({marginTop: 0});
                         $('.' + t.o.prefix + 'fixed-top', $box).css({
                             position: 'absolute',
-                            top: buttonPaneOuterHeight
+                            top: oh
                         });
                     }
                 });
@@ -1055,31 +1040,31 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         // Open dropdown when click on a button which open that
         dropdown: function (name) {
             var t = this,
-                $body = $('body', t.doc),
+                d = t.doc,
                 prefix = t.o.prefix,
                 $dropdown = $('[data-' + prefix + 'dropdown=' + name + ']', t.$box),
                 $btn = $('.' + prefix + name + '-button', t.$btnPane),
                 show = $dropdown.is(':hidden');
 
-            $body.trigger('mousedown');
+            $('body', d).trigger('mousedown');
 
             if (show) {
-                var btnOffsetLeft = $btn.offset().left;
+                var o = $btn.offset().left;
                 $btn.addClass(prefix + 'active');
 
                 $dropdown.css({
                     position: 'absolute',
                     top: $btn.offset().top - t.$btnPane.offset().top + $btn.outerHeight(),
-                    left: (t.o.fixedFullWidth && t.isFixed) ? btnOffsetLeft : (btnOffsetLeft - t.$btnPane.offset().left)
+                    left: (t.o.fixedFullWidth && t.isFixed) ? o + 'px' : (o - t.$btnPane.offset().left) + 'px'
                 }).show();
 
                 $(window).trigger('scroll');
 
-                $body.on('mousedown.' + t.eventNamespace, function (e) {
+                $('body', d).on('mousedown.' + t.eventNamespace, function (e) {
                     if (!$dropdown.is(e.target)) {
                         $('.' + prefix + 'dropdown', t.$box).hide();
                         $('.' + prefix + 'active', t.$btnPane).removeClass(prefix + 'active');
-                        $body.off('mousedown.' + t.eventNamespace);
+                        $('body', d).off('mousedown.' + t.eventNamespace);
                     }
                 });
             }
@@ -1144,10 +1129,10 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             t.syncCode(force);
 
             if (t.o.semantic) {
-                t.semanticTag('b', t.o.semanticKeepAttributes);
-                t.semanticTag('i', t.o.semanticKeepAttributes);
-                t.semanticTag('s', t.o.semanticKeepAttributes);
-                t.semanticTag('strike', t.o.semanticKeepAttributes);
+                t.semanticTag('b');
+                t.semanticTag('i');
+                t.semanticTag('s');
+                t.semanticTag('strike');
 
                 if (full) {
                     var inlineElementsSelector = t.o.inlineElementsSelector,
@@ -1161,7 +1146,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                     // Wrap groups of inline elements in paragraphs (recursive)
                     var wrapInlinesInParagraphsFrom = function ($from) {
                         if ($from.length !== 0) {
-                            var $finalParagraph = $from.nextUntil(blockElementsSelector).addBack().wrapAll('<p/>').parent(),
+                            var $finalParagraph = $from.nextUntil(blockElementsSelector).addBack().wrapAll('<div/>').parent(),
                                 $nextElement = $finalParagraph.nextAll(inlineElementsSelector).first();
                             $finalParagraph.next('br').remove();
                             wrapInlinesInParagraphsFrom($nextElement);
@@ -1169,9 +1154,9 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                     };
                     wrapInlinesInParagraphsFrom(t.$ed.children(inlineElementsSelector).first());
 
-                    t.semanticTag('div', true);
+                    t.semanticTag('div', false);
 
-                    // Unwrap paragraphs content, containing nothing useful
+                    // Unwrap paragraphs content, containing nothing usefull
                     t.$ed.find('p').filter(function () {
                         // Don't remove currently being edited element
                         if (t.range && this === t.range.startContainer) {
@@ -1180,7 +1165,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                         return $(this).text().trim().length === 0 && $(this).children().not('br,span').length === 0;
                     }).contents().unwrap();
 
-                    // Get rid of temporary span's
+                    // Get rid of temporial span's
                     $('[data-tbw]', t.$ed).contents().unwrap();
 
                     // Remove empty <p>
@@ -1376,25 +1361,10 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             var t = this,
                 prefix = t.o.prefix,
                 fullscreenCssClass = prefix + 'fullscreen',
-                fullscreenPlaceholderClass = fullscreenCssClass + '-placeholder',
-                isFullscreen,
-                editorHeight = t.$box.outerHeight();
+                isFullscreen;
 
             t.$box.toggleClass(fullscreenCssClass);
             isFullscreen = t.$box.hasClass(fullscreenCssClass);
-
-            if (isFullscreen) {
-                t.$box.before(
-                    $('<div/>', {
-                        class: fullscreenPlaceholderClass
-                    }).css({
-                        height: editorHeight
-                    })
-                );
-            } else {
-                $('.' + fullscreenPlaceholderClass).remove();
-            }
-
             $('body').toggleClass(prefix + 'body-fullscreen', isFullscreen);
             $(window).trigger('scroll');
             t.$c.trigger('tbw' + (isFullscreen ? 'open' : 'close') + 'fullscreen');
@@ -1404,7 +1374,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         /*
          * Call method of trumbowyg if exist
          * else try to call anonymous function
-         * and finally native execCommand
+         * and finaly native execCommand
          */
         execCmd: function (cmd, param, forceCss, skipTrumbowyg) {
             var t = this;
@@ -1504,7 +1474,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 html: $form
             })
                 .css({
-                    top: '-' + t.$btnPane.outerHeight(),
+                    top: '-' + t.$btnPane.outerHeight() + 'px',
                     opacity: 0
                 })
                 .appendTo($modal)
@@ -1556,7 +1526,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             t.$overlay.off();
 
             // Find the modal box
-            var $modalBox = $('.' + prefix + 'modal-box', $(t.doc.body));
+            var $modalBox = $('.' + prefix + 'modal-box', $(document.body));
 
             $modalBox.animate({
                 top: '-' + $modalBox.height()
@@ -1567,7 +1537,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 
             t.restoreRange();
         },
-        // Preformatted build and management modal
+        // Preformated build and management modal
         openModalInsert: function (title, fields, cmd) {
             var t = this,
                 prefix = t.o.prefix,
@@ -1641,15 +1611,11 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
         },
         addErrorOnModalField: function ($field, err) {
             var prefix = this.o.prefix,
-                spanErrorClass = prefix + 'msg-error',
                 $label = $field.parent();
 
             $field
                 .on('change keyup', function () {
                     $label.removeClass(prefix + 'input-error');
-                    setTimeout(function () {
-                        $label.find('.' + spanErrorClass).remove();
-                    }, 150);
                 });
 
             $label
@@ -1657,7 +1623,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 .find('input+span')
                 .append(
                     $('<span/>', {
-                        class: spanErrorClass,
+                        class: prefix + 'msg-error',
                         text: err
                     })
                 );
@@ -1785,40 +1751,20 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 }
             }
 
-            // Fix IE11 Error 'Could not complete the operation due to error 800a025e'.
-            // https://stackoverflow.com/questions/16160996/could-not-complete-the-operation-due-to-error-800a025e
-            try {
-                documentSelection.removeAllRanges();
-            } catch (e) {
-            }
-            
+            documentSelection.removeAllRanges();
             documentSelection.addRange(range || savedRange);
         },
         getRangeText: function () {
             return this.range + '';
         },
 
-        clearButtonPaneStatus: function () {
-            var t = this,
-              prefix = t.o.prefix,
-              activeClasses = prefix + 'active-button ' + prefix + 'active',
-              originalIconClass = prefix + 'original-icon';
-
-            // Reset all buttons and dropdown state
-            $('.' + prefix + 'active-button', t.$btnPane).removeClass(activeClasses);
-            $('.' + originalIconClass, t.$btnPane).each(function () {
-                $(this).find('svg use').attr('xlink:href', $(this).data(originalIconClass));
-            });
-        },
         updateButtonPaneStatus: function () {
             var t = this,
                 prefix = t.o.prefix,
-                activeClasses = prefix + 'active-button ' + prefix + 'active',
-                originalIconClass = prefix + 'original-icon',
-                tags = t.getTagsRecursive(t.doc.getSelection().focusNode);
+                tags = t.getTagsRecursive(t.doc.getSelection().focusNode),
+                activeClasses = prefix + 'active-button ' + prefix + 'active';
 
-            t.clearButtonPaneStatus();
-
+            $('.' + prefix + 'active-button', t.$btnPane).removeClass(activeClasses);
             $.each(tags, function (i, tag) {
                 var btnName = t.tagToButton[tag.toLowerCase()],
                     $btn = $('.' + prefix + btnName + '-button', t.$btnPane);
@@ -1828,25 +1774,8 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
                 } else {
                     try {
                         $btn = $('.' + prefix + 'dropdown .' + prefix + btnName + '-dropdown-button', t.$box);
-                        var $btnSvgUse = $btn.find('svg use'),
-                            dropdownBtnName = $btn.parent().data(prefix + 'dropdown'),
-                            $dropdownBtn = $('.' + prefix + dropdownBtnName + '-button', t.$box),
-                            $dropdownBtnSvgUse = $dropdownBtn.find('svg use');
-
-                        // Highlight the dropdown button
-                        $dropdownBtn.addClass(activeClasses);
-
-                        // Switch dropdown icon to the active sub-icon one
-                        if (t.o.changeActiveDropdownIcon && $btnSvgUse.length > 0) {
-                            // Save original icon
-                            $dropdownBtn
-                              .addClass(originalIconClass)
-                              .data(originalIconClass, $dropdownBtnSvgUse.attr('xlink:href'));
-
-                            // Put the active sub-button's icon
-                            $dropdownBtnSvgUse
-                              .attr('xlink:href', $btnSvgUse.attr('xlink:href'));
-                        }
+                        var dropdownBtnName = $btn.parent().data('dropdown');
+                        $('.' + prefix + dropdownBtnName + '-button', t.$box).addClass(activeClasses);
                     } catch (e) {
                     }
                 }
@@ -1896,10 +1825,9 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
             });
         },
         destroyPlugins: function () {
-            var t = this;
             $.each(this.loadedPlugins, function (i, plugin) {
                 if (plugin.destroy) {
-                    plugin.destroy(t);
+                    plugin.destroy();
                 }
             });
         }

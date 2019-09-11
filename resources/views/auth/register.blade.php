@@ -13,7 +13,7 @@
 			<h2 class="page-header">Register</h2>
 		</div>
 
-		<form method="POST" action="/auth/register" class="form-register">
+		<form method="POST" action="/auth/register" class="form-register" id="register-form">
 		    
 		    {!! csrf_field() !!}
 		    
@@ -41,17 +41,22 @@
 			  <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" placeholder="Confirm Password" required>
 			</div>
 
-            <div class="g-recaptcha" data-sitekey="6LeRyCcUAAAAAPywPBDCQcG8imBSdWKqRjgtBgXz"></div>
-			    
 		    <div class="checkbox">
 				<label><input type="checkbox" value="remember"> Remember me</label>
 			</div>
 		
-		    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+            <button class="g-recaptcha btn btn-lg btn-primary btn-block" data-sitekey="6LdbV4oUAAAAAIxVY3G5nUu2fb_8RUOA3CFZ6NwT" data-callback='onSubmit'>Register</button>
 		
 		</form>
 
 	</div>
 </div>
+
+
+<script type="text/javascript">
+function onSubmit(token) {
+    document.getElementById("register-form").submit();
+}
+</script>
 
 @endsection

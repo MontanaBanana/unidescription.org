@@ -36,8 +36,8 @@
                     <h2 class="page-header">About The UniD Project<br/><span style="font-size: 16px;">Our backstory, our mission, and our plans for future development</span></h2>
                             <div class="col-md-12">
                                 <!--<div style="float: right; align: right; width: 500px; max-width: 100%; margin-left: 15px;"><img class="photo" src="{{ SITEROOT }}/images/conference-room.jpg" alt="Conference room at Harpers Ferry"> <p class="caption">Some of the UniD research team members in Harpers Ferry Center, W.V., in September 2016, working on the National Park Service's first "Descriptathon," an event that brought together parks from throughout the country to audio describe their brochures. Clockwise, from the far right, is principal investigator Brett Oppegaard, research assistant Phil Jordan, web developer Joe Oppegaard, and NPS Media Accessibility Coordinator Michele Hartley.</p></div>-->
-                                <div style="float: right; align: right; width: 588px; max-width: 100%; margin-left: 15px; border: 4px solid white;"><iframe width="580" height="301" src="https://www.youtube.com/embed/nxbgvqkWLh0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe> <p class="caption" style="padding: 10px;">Michele Hartley, Media Accessibility Coordinator for Harpers Ferry Center, the design hub of the National Park Service, gave this dynamic overview of The UniDescription Project at Fedstival 2017 (on Sept. 22, 2017).</p></div>
-                                <p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Dr. Thomas Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. For a behind-the-scenes look at the process of developing this project, please see the <a href="https://npsaudiodescription.wordpress.com/" target="_blank">blog</a>.</p>
+                                <div style="float: right; align: right; width: 588px; max-width: 100%; margin-left: 15px;"><iframe width="580" height="301" style="border: 4px solid white; box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);" src="https://www.youtube.com/embed/nxbgvqkWLh0" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe> <p class="caption" style="padding: 10px;">Michele Hartley, Media Accessibility Coordinator for Harpers Ferry Center, the design hub of the National Park Service, gave this dynamic overview of The UniDescription Project at Fedstival 2017 (on Sept. 22, 2017).</p></div>
+                                <p>The UniD (“UniDescription”) Project officially began in the fall of 2014, when principal investigator <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> moved from <a href="https://www.wsu.edu" target="_blank">Washington State University</a> to <a href="https://www.hawaii.edu" target="_blank">University of Hawai‘i</a>. During this transition, he was working with Michele Hartley at <a href="http://www.nps.gov/hfc" target="_blank">Harpers Ferry Center</a> on <a href="http://www.nps.gov/hfc/accessibility" target="_blank">accessibility issues</a> related to printed <a href="http://www.nps.gov" target="_blank">National Park Service</a> products, such as the <a href="https://www.nps.gov/hfc/products/pubs/pubs-04a-c.cfm" target="_blank">“Unigrid” brochures</a>, and started envisioning the potential of mobile technologies to remediate and translate those static texts into acoustic forms. Once in <a href="https://en.wikipedia.org/wiki/Manoa" target="_blank">Manoa</a>, he began collaborating with two scholars who have spent their careers focused upon issues of accessibility, <a href="https://coe.hawaii.edu/directory/?person=mconway" target="_blank">Dr. Megan Conway</a> and <a href="https://coe.hawaii.edu/directory/?person=tconway" target="_blank">Dr. Thomas Conway</a>, both serving in the UH <a href="https://www.cds.hawaii.edu/" target="_blank">Center on Disability Studies</a>. </p>
                                 <p>For a bit of additional background, in the late 1970s, designer <a href="http://www.vignelli.com/intro.html" target="_blank">Massimo Vignelli</a> worked with Harpers Ferry Center staff to create the "<a href="http://www.nps.gov/parkhistory/online_books/brochures/unigrid/index.htm" target="_blank">Unigrid System</a>,"  upon which all National Park Service brochures since have been based. The self-described "information architect," who also designed the innovative <a href="http://www.designishistory.com/1960/massimo-vignelli/" target="_blank">New York subway map</a>, favored a modular system with a subtextual grid that facilitated order and consistency.</p>
                                 <p>Our web-based project – with direct connections to Harpers Ferry Center, the National Park Service, those brochures, and those basic beliefs – has been called UniD, in tribute. That name should be pronounced like "unity," serving as both an abbreviation of the more wonky original label of "UniDescription" and as an inspiration for our mission:</p>
                                 <blockquote>To bring unity to the world of audio description. </blockquote>
@@ -91,7 +91,6 @@
 							<li>It will help you manage multiple text-to-speech projects, which can be created around any type of audiovisual translation context, including the need to translate a static media source (such as a brochure), a grouping of artifacts (either by theme or location), or whatever other ways in which you might find it useful</li>
 							<li>It provides templates for common audiovisual translation contexts</li>
 							<li>It provides best practices and scholarly research related to audiovisual translation issues</li>
-							<li>It includes a forum for discourse about audiovisual translation, including audio description, verbal description, and many of the other terms used for the similar process of verbally describing something visual and sharing that description with others</li>
 							<li>It creates deliverables that are accessible in many ways; your audiovisual translation can be exported as text, audio files, or even mobile apps (in Android and iOS formats)</li>
 							<li>This is a grant-sponsored program, so all of this is offered to you for free – and its products created for free distribution – in the hopes of making the world a more accessible place to people of all abilities. </li>
 							
@@ -100,7 +99,7 @@
 							The principal investigator on this project is: <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu" target="_blank">Dr. Brett Oppegaard</a> in the School of Communications in the College of Social Sciences at the University of Hawai‘i. 
 						</p>
 						<p>	
-							All inquiries about this project should be directed to him, either <a href="mailto:brett.oppegaard@gmail.com">by email</a> or <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu">phone</a>
+							All inquiries about this project should be directed to him, either <a href="mailto:unid@hawaii.edu">by email</a> or <a href="http://www.socialsciences.hawaii.edu/profile/index.cfm?email=brett.oppegaard@hawaii.edu">phone</a>
 						</p>
 					</div>
 				</div>
@@ -109,18 +108,22 @@
 					<p class="caption">During their fall 2016 visit to the Lincoln Memorial, Sushil Adhikari, from Nepal (right), and Nang Attal, from Afghanistan, discovered there was no audio description available at the site. So, Attal read the wall text to Adhikari and did his best to describe the surroundings. The UniD Project is intended to help visitors, like Adhikari, who are blind or visually impaired, have equivalent experiences, vetted by park staff, which allow more people to participate fully in important societal and cultural discussions.</p>
 				</div>
 
-                <hr />
-                <div class="col-lg-12">
+                <div class="col-lg-12" style="clear: both;">
                     <h2 class="page-header">Accessibility Standards We Use</h2>
                 </div>
 				<div class="col-md-5">
+                    <hr />
 <p>The UniDescription Project is committed to ensuring the accessibility of its web and mobile-app content to people with disabilities. All of the content on our website and in our mobile apps meets the World Wide Web Consortium Web Accessibility Initiative - W3C WAI's <a href="https://www.w3.org/TR/WCAG/" target="_blank">Web Content Accessibility Guidelines</a> 2.0, Level AA conformance.</p>
+
+<p>The American Council of the Blind has done a Section 508 and WCAG 2.1 AA comprehensive accessibility evaluation using the <a href="https://webaim.org/standards/wcag/checklist" target="_blank">WebAIM's WCAG 2 Checklist</a>.</p>
+
+<p><a href="/images/unid_app_web_accessibility_eval.pdf" target="_blank">Click here to read the full ACB document</a>.</p>
 
 <p>The UniDescription Project reviews its web content policy once a year (in December) to ensure it is up-to-date and reflects the latest standards as directed by the W3C. At that time, we also conduct a review of our content to ensure adherence to those standards. This includes a review of the mobile applications linked to the <a href="http://www.unidescription.org/" target="_blank">www.UniDescription.org website</a> and promoted by the project for use in delivering audio description for blind and visually impaired users.</p>
 
-<p>We try our best to catch any mistakes, but if we missed something, please let us know via email at: <a href="mailto:brett.oppegaard@hawaii.edu">brett.oppegaard@hawaii.edu</a>. </p>
+<p>We try our best to catch any mistakes, but if we missed something, please let us know via email at: <a href="mailto:unid@hawaii.edu">unid@hawaii.edu</a>. </p>
 
-<p>The UniDescription Project was last reviewed Jan. 1, 2018.</p>
+<p>The UniDescription Project was last reviewed Jan. 1, 2019.</p>
 
 				</div>
 
@@ -285,16 +288,6 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 							<h5>Co-PI</h5>
 							<p>An Assistant Professor in the UH Center on Disability Studies</p>
 						</div>
-						<!--
-					   <ul class="list-inline">
-							<li><a href="#" title="Facebook"><i class="fa fa-2x fa-facebook-square"></i></a>
-							</li>
-							<li><a href="#" title="LinkedIN"><i class="fa fa-2x fa-linkedin-square"></i></a>
-							</li>
-							<li><a href="#" title="Twitter"><i class="fa fa-2x fa-twitter-square"></i></a>
-							</li>
-						</ul>
-						-->
 					</div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2014 - Present</small>
 				</div>
@@ -318,6 +311,17 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 						-->
 					</div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2014 - Present</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="{{ SITEROOT }}/images/uh_logo.jpg" alt="University of Hawaii Logo" style="border: 0;">
+						<div class="caption" style="height: 165px;">
+                            <h4>Patricia Morrissey</h4>
+							<h5>Co-PI</h5>
+                            <p>Director of the UH Center on Disability Studies</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
@@ -387,12 +391,23 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 					<div class="thumbnail">
 						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
 						<div class="caption" style="height: 165px;">
+                            <h4>Kyndra LoCoco</h4>
+							<h5>Collaborator</h5>
+                            <p>Accessibility Partner and Community Programs Manager<br />Mountain View, CA</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2019 - Present</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
+						<div class="caption" style="height: 165px;">
                             <h4>Adrienne Biddings</h4>
 							<h5>Collaborator</h5>
 							<p>Policy Counsel, Google, Inc.,<br />Washington, D.C.</p>
 						</div>
 					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - 2019</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
@@ -436,6 +451,39 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 						</div>
 					</div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/sajja.png" alt="Sajja Koirala's bio photo">
+						<div class="caption" style="height: 165px;">
+							<h4>Sajja Koirala</h4>
+							<h5>Research Assistant</h5>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/uh_logo.jpg" alt="University of Hawaii logo" style="border: 0;">
+						<div class="caption" style="height: 165px;">
+							<h4>Ashiyan Rahmani-Shirazi</h4>
+							<h5>Research Assistant</h5>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 115px;">2019</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/uh_logo.jpg" alt="University of Hawaii logo" style="border: 0;">
+						<div class="caption" style="height: 165px;">
+                            <h4>Miles Gordon</h4>
+							<h5>Research Assistant</h5>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 115px;">2019</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
@@ -483,17 +531,6 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<img class="img-responsive img-person" src="/images/team/sajja.png" alt="Sajja Koirala's bio photo">
-						<div class="caption" style="height: 165px;">
-							<h4>Sajja Koirala</h4>
-							<h5>Research Assistant</h5>
-							<p>University of Hawai‘i<br />Honolulu, HI</p>
-						</div>
-					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>
-				</div>
-				<div class="col-md-3 text-center">
-					<div class="thumbnail">
 						<img class="img-responsive img-person" src="/images/team/terence.png" alt="Terence Rose's bio photo">
 						<div class="caption" style="height: 165px;">
 							<h4>Terence Rose</h4>
@@ -534,32 +571,52 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 					<h2 class="page-header">Media Coverage</h2>
 				</div>
 				<div class="col-md-6">
-                    <a href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/new_opportunities.png" width="100%" /></a>
-                    <p class="caption"><a style="font-size: 20px;" href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank">New opportunities for visually impaired visitors at national parks, Oct. 24, 2019</a></p>
+                    <a href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank"><img alt="New opportunities for visually impaired visitors at national parks, Oct. 24, 2018" class="photo" style="margin-top: 16px;" src="/images/new_opportunities.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank">New opportunities for visually impaired visitors at national parks, Oct. 24, 2018</a></p>
                 </div>
 				<div class="col-md-6">
-                    <a href="https://www.uhfoundation.org/news/publications" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/mobile_app_helps_blind.png" width="100%" /></a>
+                    <a href="https://www.uhfoundation.org/news/publications" target="_blank"><img alt="Mobile app helps blind visitors see national parks, Kupono, Winter 2018" class="photo" style="margin-top: 16px;" src="/images/mobile_app_helps_blind.png" width="100%" /></a>
                     <p><a style="font-size: 20px;" href="https://www.uhfoundation.org/news/publications" target="_blank">Mobile app helps blind visitors see national parks, Kupono, Winter 2018</a></p>
                 </div>
             </div>
             <div class="container">
 				<div class="col-md-6">
-                    <a href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/access_world-20180330.png" width="100%" /></a>
+                    <a href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank"><img alt="The UniDescription Project: Seeking to Bring Unity to the World of Audio Description, March 2018" class="photo" style="margin-top: 16px;" src="/images/access_world-20180330.png" width="100%" /></a>
                     <p class="caption"><a style="font-size: 20px;" href="http://www.afb.org/afbpress/pubnew.asp?DocID=aw190303" target="_blank">The UniDescription Project: Seeking to Bring Unity to the World of Audio Description, March 2018</a></p>
                 </div>
 				<div class="col-md-6">
-                    <a href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/honolulu-20180306.png" width="100%" /></a>
+                    <a href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank"><img alt="Hawai‘i Residents Develop Apps to Aid People Who Are Deaf and Blind, March 6, 2018" class="photo" style="margin-top: 16px;" src="/images/honolulu-20180306.png" width="100%" /></a>
                     <p><a style="font-size: 20px;" href="http://www.honolulumagazine.com/Honolulu-Magazine/March-2018/Hawaii-Residents-Develop-Apps-to-Aid-People-Who-Are-Deaf-and-Blind/" target="_blank">Hawai‘i Residents Develop Apps to Aid People Who Are Deaf and Blind, March 6, 2018</a></p>
                 </div>
             </div>
             <div class="container">
 				<div class="col-md-6">
-                    <a href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank"><img class="photo" src="/images/acb-news.png" width="100%" /></a>
+                    <a href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank"><img alt="Yosemite Audio Description, American Council of the Blind, Dec. 1, 2017" class="photo" src="/images/acb-news.png" width="100%" /></a>
                     <p class="caption"><a style="font-size: 20px;" href="https://www.facebook.com/AmericanCounciloftheBlindOfficial/posts/2085476868161468" target="_blank">Yosemite Audio Description, American Council of the Blind, Dec. 1, 2017</a></p>
                 </div>
 				<div class="col-md-6">
-                    <a href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank"><img class="photo" src="/images/civil_beat-news.png" width="100%" height="351" /></a>
+                    <a href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank"><img alt="Why Hawaii Media Need To Better Serve The Visually Impaired, CivilBeat.org, April 17, 2017" class="photo" src="/images/civil_beat-news.png" width="100%" height="351" /></a>
                     <p class="caption"><a style="font-size: 20px;" href="http://www.civilbeat.org/2017/04/reader-rep-why-hawaii-media-need-to-better-serve-the-visually-impaired/" target="_blank">Why Hawaii Media Need To Better Serve The Visually Impaired, CivilBeat.org, April 17, 2017</a></p>
+                </div>
+            </div>
+            <div class="container">
+				<div class="col-md-6">
+                    <a href="http://www.manoanow.org/kaleo/news/uh-researchers-to-assist-the-visually-impaired-through-web-tool/article_39d94cb0-909c-11e4-8255-2f9764d2e0de.html" target="_blank"><img alt="UH researchers to assist the visually impaired through web tool at national parks, Jan. 5, 2015" class="photo" src="/images/ka_leo_researchers_assist.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="http://www.manoanow.org/kaleo/news/uh-researchers-to-assist-the-visually-impaired-through-web-tool/article_39d94cb0-909c-11e4-8255-2f9764d2e0de.html" target="_blank">UH researchers to assist the visually impaired through web tool at national parks, Jan. 5, 2015 </a></p>
+                </div>
+				<div class="col-md-6">
+                    <a href="https://www.bizjournals.com/pacific/blog/morning_call/2014/12/national-park-service-gives-university-of-hawaii.html" target="_blank"><img alt="National Park Service gives University of Hawaii $300K for project aiding the visually impaired, Dec. 9, 2014" class="photo" src="/images/pacific_business_news_nps_gives_uh.png" width="100%" height="351" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="https://www.bizjournals.com/pacific/blog/morning_call/2014/12/national-park-service-gives-university-of-hawaii.html" target="_blank">National Park Service gives U of H $300K for project aiding the visually impaired, Dec. 9, 2014</a></p>
+                </div>
+            </div>
+            <div class="container">
+				<div class="col-md-6">
+                    <a href="http://www.manoanow.org/kaleo/news/uh-receives-grant-to-develop-audio-brochures-for-national-parks/article_382eb010-7b27-11e4-a143-8b250e328c85.html" target="_blank"><img alt="UH receives grant to develop audio brochures for national parks, Dec. 4, 2014" class="photo" src="/images/ka_leo_uh_receives_grant.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="http://www.manoanow.org/kaleo/news/uh-receives-grant-to-develop-audio-brochures-for-national-parks/article_382eb010-7b27-11e4-a143-8b250e328c85.html" target="_blank">UH receives grant to develop audio brochures for national parks, Dec. 4, 2014</a></p>
+                </div>
+				<div class="col-md-6">
+                    <a href="https://manoa.hawaii.edu/news/article.php?aId=6894" target="_blank"><img alt="Audio alternative of National Park brochures in works for visually impaired, Dec. 2, 2014" class="photo" src="/images/uh_audio_alternative.png" width="100%" height="351" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="https://manoa.hawaii.edu/news/article.php?aId=6894" target="_blank">Audio alternative of National Park brochures in works for visually impaired, Dec. 2, 2014</a></p>
                 </div>
             </div>
         </div>

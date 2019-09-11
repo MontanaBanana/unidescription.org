@@ -55,7 +55,6 @@ else {
     $libraries = App\Library::orderBy('word')->simplePaginate(20);
 }
 foreach ($libraries as $lib):
-
     ?>
     <tr>
         <td style="height: 40px;"><input type="text" id="<?php echo $lib->id; ?>" name="<?php echo $lib->id; ?>" value="<?php echo $lib->word; ?>" style="width: 90%" /></td>
@@ -132,9 +131,6 @@ endforeach;
         console.log($(this).data('library_id'));
         data.append('id', $(this).data('library_id'));
         data.append('_token', '{{csrf_token()}}');
-        //data.
-        //id="<?php echo $lib->id; ?>" name="<?php echo $lib->id; ?>" value="<?php echo $lib->word; ?>" style="width: 90%" />
-        //        <td><input type="text" id="p-<?php echo $lib->id; ?>"
         data.append('word', $('#'+$(this).data('library_id')).val());
         data.append('p_word', $('#p-'+$(this).data('library_id')).val());
 

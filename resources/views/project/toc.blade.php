@@ -278,6 +278,25 @@ $(window).on("blur mouseleave", function() {
     }
     requestAnimationFrame(f);
 })();
+
+
+function updateCheckboxes()
+{
+        $('div.table-of-contents ul > li').each(function(index) {
+            console.log($(this).data('section-id'));
+            $('> div > span.toc-check-complete > span.fa', $(this)).each(function (index2) {
+                 if ($(this).hasClass('fa-square-o')) { 
+                    console.log('square');
+                    $('ul > li > div > span.toc-check-complete', $(this).parent().parent().parent()).addClass('label-warning');
+                 }
+                 else {
+                    console.log('checkbox');
+                    $('ul > li > div > span.toc-check-complete', $(this).parent().parent().parent()).removeClass('label-warning');
+                 }
+            });
+        }); 
+			
+}
 	
 	$(document).ready(function() {
 
@@ -340,6 +359,8 @@ $(window).on("blur mouseleave", function() {
 					        $(section).removeClass('label-default');
 							$(section).addClass('label-success');
 							$(section).children().addClass('fa-check-square-o');
+
+                            updateCheckboxes();
 	
 				        }
 				        else {
@@ -376,6 +397,7 @@ $(window).on("blur mouseleave", function() {
 							$(section).addClass('label-default');
 							$(section).children().addClass('fa-square-o');
 	
+		                    updateCheckboxes();	
 				        }
 				        else {
 					        alert('Error: contact the site admin');
@@ -384,7 +406,7 @@ $(window).on("blur mouseleave", function() {
 				});
 				// Set it not completed
 			}
-			
+
 	  	});
 	  	@endif
 	  	
@@ -574,6 +596,7 @@ $(window).on("blur mouseleave", function() {
             $('#toc-form').submit();
         }
 	
+        updateCheckboxes();
 	});
 
     var called = 0;

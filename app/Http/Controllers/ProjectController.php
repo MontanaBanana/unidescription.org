@@ -58,14 +58,20 @@ class ProjectController extends Controller
 		if (!is_dir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id)) {
 			mkdir($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id);
 		}
-		$html = file_get_contents('http://'.$_SERVER['SERVER_NAME'].'/account/project/export/'.$id);
-        preg_match_all('/<li data-mp3="([^"]+)">([^<]+)<\/li>/', $html, $matches);
+        ini_set('allow_url_fopen', 1);
+		$html = file_get_contents('https://'.$_SERVER['SERVER_NAME'].'/account/project/export/'.$id);
+        //preg_match_all('/<li data-mp3="([^"]+)">([^<]+)<\/li>/', $html, $matches);
+        preg_match_all('/<source src="([^"]+)"/', $html, $matches);
 
         $files = array();
+        $count = 1;
         foreach ($matches[1] as $index => $value) {
             $mp3 = file_get_contents($value);
-            $files[] = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3';
-            file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3', $mp3);
+            $count++;
+            //$files[] = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3';
+            //file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$matches[2][$index].'.mp3', $mp3);
+            $files[] = $_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$count.'.mp3';
+            file_put_contents($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$index.'-'.$count.'.mp3', $mp3);
         }
 
         @unlink($_SERVER['DOCUMENT_ROOT'].'/projects/zips/'.$id.'/'.$id.'.zip');
@@ -120,14 +126,22 @@ class ProjectController extends Controller
         $letter_items = array(
                 'A' => array(
                     array('id' => '281', 'title' => 'About Us - The UniDescription Project'),
+                    array('id' => '300', 'title' => 'African Burial Ground National Monument'),
+                ),
+                'B' => array(
+                    array('id' => '517', 'title' => 'Big South Fork National River & Recreation Area - Tennessee'),
+                    array('id' => '321', 'title' => 'Boston African American National Historic Site - Massachusetts'),
+                    array('id' => '320', 'title' => 'Bunker Hill Monument | Boston National Historical Park - Massachusetts'),
                 ),
                 'C' => array(
                     array('id' => '97', 'title' => 'Cabrillo National Monument - California'),
                     array('id' => '141', 'title' => 'Cape Cod National Seashore - Massachusetts'),
+                    array('id' => '304', 'title' => 'Castle Clinton National Monument - New York'),
                     array('id' => '124', 'title' => 'César E. Chávez National Monument - California'),
                     array('id' => '125', 'title' => 'Channel Islands National Park - California'),
                 ),
                 'D' => array(
+                    array('id' => '255', 'title' => 'Death Valley National Park - California'),
                     array('id' => '101', 'title' => 'Denali National Park and Preserve - Alaska'),
                     array('id' => '256', 'title' => 'Devils Postpile National Monument - California'),
                 ),
@@ -136,11 +150,14 @@ class ProjectController extends Controller
                     array('id' => '103', 'title' => 'Everglades National Park - Florida'),
                 ),
                 'F' => array(
+                    array('id' => '510', 'title' => 'Faneuil Hall - Massachusetts'),
+                    array('id' => '301', 'title' => 'Federal Hall National Memorial - New York'),
                     array('id' => '154', 'title' => 'Flight 93 National Memorial - Pennsylvania'),
                     array('id' => '275', 'title' => 'Fort Point National Historic Site - California'),
                     array('id' => '126', 'title' => 'Fort Smith National Historic Site - Arkansas'),
                     array('id' => '143', 'title' => 'Fort Stanwix National Monument - New York'),
                     array('id' => '89', 'title' => 'Fort Vancouver National Historic Site - Washington'),
+                    array('id' => '318', 'title' => 'Freedom Trail | Boston National Historical Park - Massachusetts'),
                 ),
                 'G' => array(
                     array('id' => '144', 'title' => 'Gates of the Arctic National Park and Preserve - Alaska'),
@@ -149,6 +166,7 @@ class ProjectController extends Controller
                 ),
                 'H' => array(
                     array('id' => '136', 'title' => 'Hagerman Fossil Beds National Monument - Idaho'),
+                    array('id' => '354', 'title' => 'Harpers Ferry National Historical Park - West Virginia, Virginia, Maryland'),
                     array('id' => '123', 'title' => 'Harry S Truman National Historic Site - Missouri'),
                     array('id' => '252', 'title' => 'Hawaii Volcanoes National Park - Hawaii'),
                     array('id' => '107', 'title' => 'Herbert Hoover National Historic Site - Iowa'),
@@ -157,6 +175,7 @@ class ProjectController extends Controller
                 'J' => array(
                     array('id' => '142', 'title' => 'Jamestowne at Colonial National Historical Park - Virginia'),
                     array('id' => '99', 'title' => 'John Day Fossil Beds National Monument - Oregon'),
+                    array('id' => '298', 'title' => 'John Fitzgerald Kennedy National Historic Site - Massachusetts'),
                     array('id' => '277', 'title' => 'John Muir National Historic Site - California'),
                     array('id' => '146', 'title' => 'Johnstown Flood National Memorial - Pennsylvania'),
                     array('id' => '102', 'title' => 'Joshua Tree National Park - California'),
@@ -167,17 +186,23 @@ class ProjectController extends Controller
                 'L' => array(
                     array('id' => '254', 'title' => 'Lassen Volcanic National Park - California'),
                     array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
+                    array('id' => '296', 'title' => 'Longfellow House Washington\'s Headquarters - Massachusetts'),
                     array('id' => '132', 'title' => 'Lowell National Historical Park - Massachusetts'),
                 ),
                 'M' => array(
                     array('id' => '133', 'title' => 'Manzanar National Historic Site - California'),
                     array('id' => '147', 'title' => 'Minute Man National Historical Park - Massachusetts'),
                     array('id' => '134', 'title' => 'Morristown National Historical Park - New Jersey'),
+                    array('id' => '333', 'title' => 'Mount Rainier National Park - Washington'),
                     array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
                 ),
                 'N' => array(
                     array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
                     array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                ),
+                'O' => array(
+                    array('id' => '343', 'title' => 'Olympic National Park - Washington'),
+                    array('id' => '528', 'title' => 'Overmountain - Virginia, Tennessee, North Carolina, South Carolina'),
                 ),
                 'P' => array(
                     array('id' => '267', 'title' => 'Pinnacles National Park - California'),
@@ -190,12 +215,14 @@ class ProjectController extends Controller
                     array('id' => '271', 'title' => 'Rosie the Riveter/World War II Home Front National Historic Park - California'),
                 ),
                 'S' => array(
+                    array('id' => '316', 'title' => 'Salem Maritime National Historic Site - Massachusetts'),
                     array('id' => '92', 'title' => 'San Francisco Maritime National Historical Park - California'),
                     array('id' => '108', 'title' => 'Sitka National Historical Park - Alaska'),
                     array('id' => '150', 'title' => 'Statue of Liberty National Monument - New York, New Jersey'),
                     array('id' => '122', 'title' => 'Steamtown National Historic Site - Pennsylvania'),
                 ),
                 'T' => array(
+                    array('id' => '303', 'title' => 'Theodore Roosevelt Birthplace National Historic Site - New York'),
                     array('id' => '93', 'title' => 'Thomas Edison National Historical Park - New Jersey'),
                 ),
                 'V' => array(
@@ -203,6 +230,7 @@ class ProjectController extends Controller
                 ),
                 'W' => array(
                     array('id' => '242', 'title' => 'Washington Monument - District of Columbia'),
+                    array('id' => '308', 'title' => 'Weir Farm National Historic Site - Connecticut'),
                     array('id' => '274', 'title' => 'Whiskeytown—Shasta—Trinity National Recreation Area - California'),
                     array('id' => '152', 'title' => 'Women\'s Rights National Historical Park - New York'),
                 ),
@@ -317,57 +345,75 @@ class ProjectController extends Controller
     {
         $name_items = array(
                     array('id' => '281', 'title' => 'About Us - The UniDescription Project'),
+                    array('id' => '300', 'title' => 'African Burial Ground National Monument - New York'),
+                    array('id' => '517', 'title' => 'Big South Fork National River & Recreation Area - Tennessee'),
+                    array('id' => '321', 'title' => 'Boston African American National Historic Site - Massachusetts'),
+                    array('id' => '320', 'title' => 'Bunker Hill Monument | Boston National Historical Park - Massachusetts'),
                     array('id' => '97', 'title' => 'Cabrillo National Monument - California'),
                     array('id' => '141', 'title' => 'Cape Cod National Seashore - Massachusetts'),
+                    array('id' => '304', 'title' => 'Castle Clinton National Monument - New York'),
                     array('id' => '124', 'title' => 'César E. Chávez National Monument - California'),
                     array('id' => '125', 'title' => 'Channel Islands National Park - California'),
+                    array('id' => '255', 'title' => 'Death Valley National Park - California'),
                     array('id' => '101', 'title' => 'Denali National Park and Preserve - Alaska'),
                     array('id' => '256', 'title' => 'Devils Postpile National Monument - California'),
                     array('id' => '257', 'title' => 'Eugene O\'Neill National Historic Site - California'),
                     array('id' => '103', 'title' => 'Everglades National Park - Florida'),
+                    array('id' => '510', 'title' => 'Faneuil Hall - Massachusetts'),
+                    array('id' => '301', 'title' => 'Federal Hall National Memorial - New York'),
                     array('id' => '154', 'title' => 'Flight 93 National Memorial - Pennsylvania'),
                     array('id' => '275', 'title' => 'Fort Point National Historic Site - California'),
                     array('id' => '126', 'title' => 'Fort Smith National Historic Site - Arkansas'),
                     array('id' => '143', 'title' => 'Fort Stanwix National Monument - New York'),
                     array('id' => '89', 'title' => 'Fort Vancouver National Historic Site - Washington'),
+                    array('id' => '318', 'title' => 'Freedom Trail | Boston National Historical Park - Massachusetts'),
                     array('id' => '144', 'title' => 'Gates of the Arctic National Park and Preserve - Alaska'),
                     array('id' => '128', 'title' => 'George Washington Memorial Parkway - Virginia, Maryland, District of Columbia'),
                     array('id' => '76', 'title' => 'Golden Gate National Recreation Area - California'),
                     array('id' => '136', 'title' => 'Hagerman Fossil Beds National Monument - Idaho'),
+                    array('id' => '354', 'title' => 'Harpers Ferry National Historical Park - West Virginia, Virginia, Maryland'),
                     array('id' => '123', 'title' => 'Harry S Truman National Historic Site - Missouri'),
                     array('id' => '252', 'title' => 'Hawaii Volcanoes National Park - Hawaii'),
                     array('id' => '107', 'title' => 'Herbert Hoover National Historic Site - Iowa'),
                     array('id' => '145', 'title' => 'Home of Franklin D. Roosevelt National Historic Site - New York'),
                     array('id' => '142', 'title' => 'Jamestowne at Colonial National Historical Park - Virginia'),
                     array('id' => '99', 'title' => 'John Day Fossil Beds National Monument - Oregon'),
+                    array('id' => '298', 'title' => 'John Fitzgerald Kennedy National Historic Site - Massachusetts'),
                     array('id' => '277', 'title' => 'John Muir National Historic Site - California'),
                     array('id' => '146', 'title' => 'Johnstown Flood National Memorial - Pennsylvania'),
                     array('id' => '102', 'title' => 'Joshua Tree National Park - California'),
                     array('id' => '131', 'title' => 'Katmai National Park and Preserve - Alaska'),
                     array('id' => '254', 'title' => 'Lassen Volcanic National Park - California'),
                     array('id' => '258', 'title' => 'Lava Beds National Monument - California'),
+                    array('id' => '296', 'title' => 'Longfellow House Washington\'s Headquarters - Massachusetts'),
                     array('id' => '132', 'title' => 'Lowell National Historical Park - Massachusetts'),
                     array('id' => '133', 'title' => 'Manzanar National Historic Site - California'),
                     array('id' => '147', 'title' => 'Minute Man National Historical Park - Massachusetts'),
                     array('id' => '134', 'title' => 'Morristown National Historical Park - New Jersey'),
+                    array('id' => '333', 'title' => 'Mount Rainier National Park - Washington'),
                     array('id' => '276', 'title' => 'Muir Woods National Monument - California'),
                     array('id' => '149', 'title' => 'New River Gorge National River - West Virginia'),
                     //array('id' => '53', 'title' => 'NPS System Map and Guide - District of Columbia'),
                     array('id' => '148', 'title' => 'NPS Centennial System Map and Guide - District of Columbia'),
                     array('id' => '270', 'title' => 'NPS Unigrid Guide - District of Columbia'),
+                    array('id' => '343', 'title' => 'Olympic National Park - Washington'),
+                    array('id' => '528', 'title' => 'Overmountain - Virginia, Tennessee, North Carolina, South Carolina'),
                     array('id' => '267', 'title' => 'Pinnacles National Park - California'),
                     array('id' => '261', 'title' => 'Point Reyes National Seashore - California'),
                     array('id' => '273', 'title' => 'Port Chicago Naval Magazine National Memorial - California'),
                     array('id' => '94', 'title' => 'Pu‘ukohola Heiau National Historic Site - Hawaii'),
                     array('id' => '262', 'title' => 'Redwood National Park - California'),
                     array('id' => '271', 'title' => 'Rosie the Riveter/World War II Home Front National Historic Park - California'),
+                    array('id' => '316', 'title' => 'Salem Maritime National Historic Site - Massachusetts'),
                     array('id' => '92', 'title' => 'San Francisco Maritime National Historical Park - California'),
                     array('id' => '108', 'title' => 'Sitka National Historical Park - Alaska'),
                     array('id' => '150', 'title' => 'Statue of Liberty National Monument - New York, New Jersey'),
                     array('id' => '122', 'title' => 'Steamtown National Historic Site - Pennsylvania'),
+                    array('id' => '303', 'title' => 'Theodore Roosevelt Birthplace National Historic Site - New York'),
                     array('id' => '93', 'title' => 'Thomas Edison National Historical Park - New Jersey'),
                     array('id' => '151', 'title' => 'Valley Forge National Historical Park - Pennsylvania'),
                     array('id' => '242', 'title' => 'Washington Monument - District of Columbia'),
+                    array('id' => '308', 'title' => 'Weir Farm National Historic Site - Connecticut'),
                     array('id' => '274', 'title' => 'Whiskeytown—Shasta—Trinity National Recreation Area - California'),
                     array('id' => '152', 'title' => 'Women\'s Rights National Historical Park - New York'),
                     array('id' => '91', 'title' => 'Yellowstone National Park - Wyoming, Idaho, Montana'),
@@ -902,6 +948,8 @@ class ProjectController extends Controller
 		if ($user && $user->id) {
 			// User already exists in the database, good.
             // Lets change the owner
+            $project->users()->sync([ Auth::user()->id ], false);
+
 		    $project->user_id = $user->id;	
             $project->save();
 		}
@@ -950,7 +998,7 @@ class ProjectController extends Controller
 			if ($user->id == Auth::user()->id) {
 				// Don't do anything if we're trying to add or delete
 				// the owner of the project
-				return response()->json([ 'status' => false ]);
+				return response()->json([ 'status' => true, 'users' => $project->users ]);
 			}
 		
 			if ($add_or_del == 'add') {
@@ -1182,7 +1230,7 @@ class ProjectController extends Controller
 				foreach ($sections as $idx => $section) {
 					$parent_id = 0;
 					
-					$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'sort_order' => $section->sort_order, 'project_section_id' => 0]);
+					$ps = ProjectSection::create(['project_id' => $project->id, 'title' => $section->title, 'sort_order' => $section->sort_order, 'description' => $section->description, 'notes' => $section->notes, 'project_section_id' => 0]);
 					$ps->save();
 					
 					if ($section->children) {
@@ -1630,6 +1678,10 @@ class ProjectController extends Controller
             $request->gps_range = 10;
         }
 
+        if ($request->description == strip_tags($request->description)) {
+            $request->description = nl2br($request->description);
+        }
+
 		// Save a version of this section with timestamps. Only save if the section is different enough.
 		if (
 			$request->description != $ps->description || 
@@ -2027,7 +2079,7 @@ class ProjectController extends Controller
 	{		
 		if (strlen($request->title)) {
 			$status = true;
-			$ps = ProjectSection::create(['project_id' => $request->project_id, 'project_section_id' => $request->project_section_id, 'title' => $request->title, 'sort_order' => 99]);
+			$ps = ProjectSection::create(['project_id' => $request->project_id, 'project_section_id' => $request->project_section_id, 'title' => $request->title, 'sort_order' => 99999]);
 		}
 		else {
 			$status = false;

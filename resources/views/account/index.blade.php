@@ -42,13 +42,13 @@
 				<div class="row">
 					<div class="container">
 						<div class="col-md-2">
-							<img class="thumbnail" src="<?php if (strlen($a['user_image'])) { echo $a['user_image']; } else { echo 'https://placeholdit.imgix.net/~text?txtsize=14&txt=No user image&w=135&h=135'; } ?>" width="100%" />
+							<img class="thumbnail" src="<?php if (strlen($a['user_image'])) { echo $a['user_image']; } else { echo '/images/placeholder.png'; } ?>" width="100%" />
 						</div>
 						<div class="col-md-10">
 							<?php echo $a['text']; ?>
 							<div style="margin-top: 10px;">
 								<div class="col-md-2">
-									<img class="thumbnail" src="<?php if (strlen($a['project_image'])) { echo $a['project_image']; } else { echo 'https://placeholdit.imgix.net/~text?txtsize=14&txt=No project image&w=135&h=135'; } ?>" width="100%" />
+									<img class="thumbnail" src="<?php if (strlen($a['project_image'])) { echo $a['project_image']; } else { echo '/images/placeholder.png'; } ?>" width="100%" />
 								</div>
 								<div class="col-md-10">
 									<a href="<?php echo $a['project_link']; ?>"><?php echo $a['project_title']; ?></a><br />

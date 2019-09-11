@@ -9,7 +9,7 @@
 					<div class="col-lg-2 col-md-2 col-xs-6 col-with-border">
 						<ul class="list-unstyled">
 							<li><a href="{{ SITEROOT }}/unid-academy">UniD Academy</a></li>
-							<li><a href="{{ SITEROOT }}/forum">Forum</a></li>
+							<!--<li><a href="{{ SITEROOT }}/forum">Forum</a></li>-->
 							<li><a href="{{ SITEROOT }}/about">About Us</a></li>
 							<li><a href="https://npsaudiodescription.wordpress.com" target="_blank">Blog</a></li>
 						</ul>

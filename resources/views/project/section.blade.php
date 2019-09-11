@@ -260,7 +260,7 @@
 	                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
 	                                @if ($section->image_url)
 	                                    <div>
-	                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
+                                            <a href="{{ $section->image_url }}?ts=<?php echo time(); ?>" target="_blank"><img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" /></a>
 	                                    </div>
 	                                    <!-- Button trigger modal -->
 										<?php if ($was_locked || true): ?>
@@ -365,39 +365,6 @@
 									</div>
 								</div>
 							
-							@if($editable)
-                            @if(!$section->image_url)
-							<div class="panel panel-default">
-								<div class="panel-heading">Component Photo:</div>
-								<div class="panel-body">
-									<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
-	                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
-	                                @if ($section->image_url)
-	                                    <div>
-	                                        <img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
-	                                    </div>
-	                                    <!-- Button trigger modal -->
-										<?php if ($was_locked || true): ?>
-											<p>
-												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
-											</p>
-											<p>
-												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
-													<span class="fa fa-file-image-o"></span> Crop photo
-												</button>
-											</p>
-											<p>
-												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
-													<span class="fa fa-remove"></span> Delete photo
-												</button>
-											</p>
-										<?php endif; ?>
-	                                @endif
-                                    <!--<button class="save-details btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
-								</div>
-							</div>
-                            @endif
-							@endif
 					        						
                                 <div class="panel panel-default" id="phonetic_description_box" <?php if ($section->phonetic_description == '') { echo 'style="display: none !important;"'; } ?>>
 									<div class="panel-heading">
@@ -436,6 +403,39 @@
 									</div>
 								</div>
 										
+							@if($editable)
+                            @if(!$section->image_url)
+							<div class="panel panel-default">
+								<div class="panel-heading">Component Photo:</div>
+								<div class="panel-body">
+									<p>@if ($section->image_url)Replace the @else Upload a @endif photo for this project section.</p>
+	                                <?php if ($was_locked): ?><p><input type="file" id="section_image" name="section_image"></p><?php endif; ?>
+	                                @if ($section->image_url)
+	                                    <div>
+                                            <a href="{{ $section->image_url }}?ts=<?php echo time(); ?>" target="_blank"><img id="section-photo" src="{{ $section->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" /></a>
+	                                    </div>
+	                                    <!-- Button trigger modal -->
+										<?php if ($was_locked || true): ?>
+											<p>
+												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
+													<span class="fa fa-file-image-o"></span> Crop photo
+												</button>
+											</p>
+											<p>
+												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger"  data-toggle="modal" data-target="#deleteModal" style="width: 100%;">
+													<span class="fa fa-remove"></span> Delete photo
+												</button>
+											</p>
+										<?php endif; ?>
+	                                @endif
+                                    <!--<button class="save-details btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
+								</div>
+							</div>
+                            @endif
+							@endif
 										
 
 
@@ -544,7 +544,7 @@
 									<div class="panel-heading">Save &amp; Complete:</div>
 									<div class="panel-body">
 										<p><button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
-										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->complete) Component Complete @else Component Incomplete @endif</span> </a></p>
+										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span> </a></p>
 									</div>
 								</div>
 							<?php endif; ?>
@@ -721,11 +721,189 @@ $(document).ready(function() {
                 $('#unlock_form').ajaxSubmit({url: '/account/project/unlock', type: 'get', async: false});
             }
         });
+
+(function ($) {
+    'use strict';
+
+    function reverse(sentString) {
+        var theString = '';
+        for (var i = sentString.length - 1; i >= 0; i -= 1) {
+            theString += sentString.charAt(i);
+        }
+        return theString;
+    }
+
+    function checkValidTags(snippet) {
+        var theString = snippet;
+
+        // Replace uppercase element names with lowercase
+        theString = theString.replace(/<[^> ]*/g, function (match) {
+            return match.toLowerCase();
+        });
+
+        // Replace uppercase attribute names with lowercase
+        theString = theString.replace(/<[^>]*>/g, function (match) {
+            match = match.replace(/ [^=]+=/g, function (match2) {
+                return match2.toLowerCase();
+            });
+            return match;
+        });
+
+        // Put quotes around unquoted attributes
+        theString = theString.replace(/<[^>]*>/g, function (match) {
+            match = match.replace(/( [^=]+=)([^"][^ >]*)/g, '$1\"$2\"');
+            return match;
+        });
+
+        return theString;
+    }
+
+    function cleanIt(htmlBefore, htmlAfter) {
+        var matchedHead = '';
+        var matchedTail = '';
+        var afterStart;
+        var afterFinish;
+        var newSnippet;
+
+        // we need to extract the inserted block
+        for (afterStart = 0; htmlAfter.charAt(afterStart) === htmlBefore.charAt(afterStart); afterStart += 1) {
+            matchedHead += htmlAfter.charAt(afterStart);
+        }
+
+        // If afterStart is inside a HTML tag, move to opening brace of tag
+        for (var i = afterStart; i >= 0; i -= 1) {
+            if (htmlBefore.charAt(i) === '<') {
+                afterStart = i;
+                matchedHead = htmlBefore.substring(0, afterStart);
+                break;
+            } else if (htmlBefore.charAt(i) === '>') {
+                break;
+            }
+        }
+
+        // now reverse string and work from the end in
+        htmlAfter = reverse(htmlAfter);
+        htmlBefore = reverse(htmlBefore);
+
+        // Find end of both strings that matches
+        for (afterFinish = 0; htmlAfter.charAt(afterFinish) === htmlBefore.charAt(afterFinish); afterFinish += 1) {
+            matchedTail += htmlAfter.charAt(afterFinish);
+        }
+
+        // If afterFinish is inside a HTML tag, move to closing brace of tag
+        for (var j = afterFinish; j >= 0; j -= 1) {
+            if (htmlBefore.charAt(j) === '>') {
+                afterFinish = j;
+                matchedTail = htmlBefore.substring(0, afterFinish);
+                break;
+            } else if (htmlBefore.charAt(j) === '<') {
+                break;
+            }
+        }
+
+        matchedTail = reverse(matchedTail);
+
+        // If there's no difference in pasted content
+        if (afterStart === (htmlAfter.length - afterFinish)) {
+            return false;
+        }
+
+        htmlAfter = reverse(htmlAfter);
+        newSnippet = htmlAfter.substring(afterStart, htmlAfter.length - afterFinish);
+
+        // first make sure all tags and attributes are made valid
+        newSnippet = checkValidTags(newSnippet);
+
+        // Replace opening bold tags with strong
+        newSnippet = newSnippet.replace(/<b(\s+|>)/g, '<strong$1');
+        // Replace closing bold tags with closing strong
+        newSnippet = newSnippet.replace(/<\/b(\s+|>)/g, '</strong$1');
+
+        // Replace italic tags with em
+        newSnippet = newSnippet.replace(/<i(\s+|>)/g, '<em$1');
+        // Replace closing italic tags with closing em
+        newSnippet = newSnippet.replace(/<\/i(\s+|>)/g, '</em$1');
+
+        // strip out comments -cgCraft
+        newSnippet = newSnippet.replace(/<!(?:--[\s\S]*?--\s*)?>\s*/g, '');
+
+        // strip out &nbsp; -cgCraft
+        newSnippet = newSnippet.replace(/&nbsp;/gi, ' ');
+        // strip out extra spaces -cgCraft
+        newSnippet = newSnippet.replace(/ <\//gi, '</');
+
+        while (newSnippet.indexOf('  ') !== -1) {
+            var anArray = newSnippet.split('  ');
+            newSnippet = anArray.join(' ');
+        }
+
+        // strip &nbsp; -cgCraft
+        newSnippet = newSnippet.replace(/^\s*|\s*$/g, '');
+
+        // Strip out unaccepted attributes
+        newSnippet = newSnippet.replace(/<[^>]*>/g, function (match) {
+            match = match.replace(/ ([^=]+)="[^"]*"/g, function (match2, attributeName) {
+                if (['alt', 'href', 'src', 'title'].indexOf(attributeName) !== -1) {
+                    return match2;
+                }
+                return '';
+            });
+            return match;
+        });
+
+        // Final cleanout for MS Word crud
+        newSnippet = newSnippet.replace(/<\?xml[^>]*>/g, '');
+        newSnippet = newSnippet.replace(/<[^ >]+:[^>]*>/g, '');
+        newSnippet = newSnippet.replace(/<\/[^ >]+:[^>]*>/g, '');
+
+        // remove unwanted tags
+        newSnippet = newSnippet.replace(/<(div|span|style|meta|link){1}.*?>/gi, '');
+
+        htmlAfter = matchedHead + newSnippet + matchedTail;
+        return htmlAfter;
+    }
+
+    // clean editor
+    // this will clean the inserted contents
+    // it does a compare, before and after paste to determine the
+    // pasted contents
+    $.extend(true, $.trumbowyg, {
+        plugins: {
+            cleanPaste: {
+                init: function (trumbowyg) {
+                    trumbowyg.pasteHandlers.push(function () {
+                        try {
+                            var contentBefore = trumbowyg.$ed.html();
+                            setTimeout(function () {
+                                var contentAfter = trumbowyg.$ed.html();
+                                contentAfter = cleanIt(contentBefore, contentAfter);
+                                trumbowyg.$ed.html(contentAfter);
+                            }, 0);
+                        } catch (c) {
+                        }
+                    });
+                }
+            }
+        }
+    });
+})(jQuery);
+
 		
         $('textarea.rte').trumbowyg({
-		    removeformatPasted: true,
                 autogrow: true,
-                svgPath: '/js/ui/icons.svg'
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'], // Only supported in Blink browsers
+                    ['strong', 'em', 'del'],
+                    ['superscript', 'subscript'],
+                    ['link'],
+                    ['insertImage'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
+                    ['horizontalRule'],
+                    ['removeformat'],
+                    ['fullscreen']
+                ]
 		}).on('tbwchange', function() {
             $('#section_form').data('changed', true);
 			if (($('.trumbowyg-editor').text().length - orig_count > 15) || orig_count - $('.trumbowyg-editor').text().length > 15) {

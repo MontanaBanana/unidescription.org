@@ -30,7 +30,7 @@ a img {
 .btn {
 	display:block;
 	border:none;
-	background:#b17f1b;
+	background:#6d4e10;
 	color:#fff;
 	padding:10px 0px;
 	text-align:center;
@@ -60,7 +60,7 @@ a img {
     background-color: red;
 }
 .btn.btn-primary {
-	background:#b17f1b;
+	background:#6d4e10;
 	color:#fff;
 }
 .btn.btn-primary:hover {
@@ -140,7 +140,7 @@ a img {
 	transition:color 200ms ease-out;
 }
 .navbar ul.nav.navbar-nav li.gold a {
-	color:#b17f1b;
+	color:#e6a422;
 }
 .navbar ul.nav.navbar-nav li.gold a:hover {
 	color:#e6a422;
@@ -169,12 +169,12 @@ a img {
 }
 .blade.green,
 .row.green {
-	background-color: #7a8f52;
+	background-color: #4c5932;
 	color:#fff;
 }
 .blade.gray,
 .row.gray {
-	background-color: #918f7f;
+	background-color: #56554b;
 	color:#fff;
 }
 .blade.below-home-boxes {
@@ -255,7 +255,7 @@ blockquote {
 	width:70%;
 	margin-top:20px;
 	margin-bottom:20px;
-	border-left:4px solid #b17f1b;
+	border-left:4px solid #6d4e10;
 }
 
 /* Home boxes boxed content */
@@ -274,7 +274,7 @@ blockquote {
 	box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.25);
 }
 .home-boxes .panel.panel-default .panel-heading {
-	background:#918f7f;
+	background:#56554b;
 	min-height:68px;
 	text-align:center;
 	font-size:17px;
@@ -314,7 +314,7 @@ blockquote {
 	box-shadow: 0px 3px 12px 0px rgba(0,0,0,0.25);
 }
 .the-team .thumbnail.tall {
-	min-height:412px;
+	height:412px;
 }
 
 .the-team .thumbnail p {
@@ -325,13 +325,13 @@ blockquote {
 	line-height:20px;
 }
 .the-team .thumbnail .img-logo {
-	width: 150px;
+	min-width: 150px;
 	height: 150px; 
 	margin-top: 16px; 
 	border:none;
 }
 .the-team .thumbnail .img-person { 
-	width: 110px;
+	min-width: 110px;
 	height: 150px; 
 	margin-top: 16px; 
 }
@@ -424,7 +424,7 @@ header .centerpiece .slide {
 	padding:12px 60px;
 	font-family: 'Open Sans', sans-serif;
 	font-weight:400;
-	background:#b17f1b;
+	background:#6d4e10;
 	color:#fff;
 	font-size:28px;
 	text-transform:uppercase;
@@ -577,7 +577,7 @@ footer a {
 	text-decoration:none;
 }
 footer a:hover {
-	color:#b17f1b;
+	color:#6d4e10;
 	text-decoration:none;
 }
 footer .logos {

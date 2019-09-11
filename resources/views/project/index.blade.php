@@ -84,7 +84,7 @@ foreach ($projects as $k => $v) {
 				<div class="container">
 					<div class="col-md-5">
 						<a href="/account/project/details/{{ $project->id }}/{{ strtolower(preg_replace('%[^a-z0-9_-]%six','-', $project->title)) }}">
-							<img class="photo img-responsive img-hover thumbnail" src="<?php if ($project->image_url) { echo $project->image_url; } else { echo 'https://placeholdit.imgix.net/~text?txtsize=14&txt=Project Placeholder Image&w=380&h=250'; } ?>" alt="{{ $project->title }}">
+							<img class="photo img-responsive img-hover thumbnail" src="<?php if ($project->image_url) { echo $project->image_url; } else { echo '/images/placeholder.png'; } ?>" alt="{{ $project->title }}">
 						</a>
 						@include('project.shared.progress')
 					</div>
@@ -94,9 +94,9 @@ foreach ($projects as $k => $v) {
 							Created: {{ date('F jS, Y', strtotime($project->created_at)) }}<br />
 							Updated: {{ date('F jS, Y', strtotime($project->updated_at)) }}<br />
 						</small>
-						<?php if (strlen($project->author)): ?>
+						<!--<?php if (strlen($project->author)): ?>
 							<strong>Author:</strong> {{ $project->author }}<br />
-						<?php endif; ?>
+						<?php endif; ?>-->
 						<?php if (strlen($project->description)): ?>
 							<strong>Description:</strong> {{ $project->description }}<br />
 						<?php endif; ?>

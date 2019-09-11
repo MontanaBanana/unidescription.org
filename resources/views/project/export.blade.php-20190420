@@ -113,7 +113,7 @@
 
                             <?php if (strlen($section->description) OR strlen($section->audio_description)): ?>
                                 <?php if (strlen($section->image_url) && $section->has_image_rights): ?>
-                                    <img width="100%" src="https://www.unidescription.org/<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
+                                    <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                                 <?php endif; ?>
                                 <?php if (preg_match("/</", $section->description)) { echo $section->description; } else { echo nl2br($section->description); } ?>
                                     <div>
@@ -123,15 +123,18 @@
                                         $description_audio = $section->audio_description;
                                     }
                                 ?>
-<audio id="audio-{{ $section->id }}" preload="auto" controls>
-      <source src="{{ $section->audio_file_combined }}" type="audio/mpeg">
-</audio>
+                                        <audio id="audio-{{ $section->id }}" preload="auto" data-able-player> </audio>
+                                        <!-- first playlist (embedded) -->
+                                        <ul class="able-playlist" data-player="audio-{{ $section->id }}" data-embedded>
+                                          <li data-mp3="{{ $this_audio }}" >{{ $section->title }}</li>
+                                          <li data-mp3="{{ $description_audio }}">Description of {{ $section->title }}</li>
+                                        </ul>
                                         <a href="#toc">&uarr; back to top</a>
                                     </div>
                             <?php endif; ?>
 
                             <?php if (strlen($section->image_url) && !strlen($section->description) && $section->has_image_rights): ?>
-                                <img width="100%" src="https://www.unidescription.org/<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
+                                <img width="100%" src="<?php echo $section->image_url; ?>" alt="{{ $section->title }} section image" />
                             <?php endif; ?>
                             
                             @if (count($section->children))
@@ -146,9 +149,12 @@
                                                 <?php endif; ?>
                                                 <?php if (preg_match("/</", $s->description)) { echo $s->description; } else { echo nl2br($s->description); } ?>
                                                 <div>
-<audio id="audio-{{ $s->id }}" preload="auto" controls>
-      <source src="{{ $s->audio_file_combined }}" type="audio/mpeg">
-</audio>
+                                                    <audio id="audio-{{ $s->id }}" preload="auto" data-able-player> </audio>
+                                                    <!-- first playlist (embedded) -->
+                                                    <ul class="able-playlist" data-player="audio-{{ $s->id }}" data-embedded>
+                                                      <li data-mp3="{{ $s->audio_title ? '/audio/'.$s->audio_title : $s->audio_file_title }}" >{{ $s->title }}</li>
+                                                      <li data-mp3="{{ $s->audio_description ? '/audio/'.$s->audio_description : $s->audio_file_description }}">Description of {{ $s->title }}</li>
+                                                    </ul>
                                                 </div>
                                                 <a href="#toc">&uarr; back to top</a>
 
@@ -170,9 +176,12 @@
 
                                                             <div class="lm"><?php if (preg_match("/</", $chch->description)) { echo $chch->description; } else { echo nl2br($chch->description); } ?></div>
                                                             <div>
-<audio id="audio-{{ $chch->id }}" preload="auto" controls>
-      <source src="{{ $chch->audio_file_combined }}" type="audio/mpeg">
-</audio>
+                                                                <audio id="audio-{{ $chch->id }}" preload="auto" data-able-player> </audio>
+                                                                <!-- first playlist (embedded) -->
+                                                                <ul class="able-playlist" data-player="audio-{{ $chch->id }}" data-embedded>
+                                                                  <li data-mp3="{{ $chch->audio_title ? '/audio/'.$chch->audio_title : $chch->audio_file_title }}" >{{ $chch->title }}</li>
+                                                                  <li data-mp3="{{ $chch->audio_description ? '/audio/'.$chch->audio_description : $chch->audio_file_description }}">Description of {{ $chch->title }}</li>
+                                                                </ul>
                                                             </div>
                                                             <a href="#toc">&uarr; back to top</a>
 

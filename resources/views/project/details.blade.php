@@ -87,6 +87,13 @@ if(isset($project) && $project->id > 0){
 			</nav>
 		</div>
 		
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script type="text/javascript">
+function onSubmit(token) {
+    document.getElementById("project_details_form").submit();
+}
+</script>
 		
 		<div class="row project">
 				<form id="project_details_form" method="POST" action="/account/project/details" enctype="multipart/form-data">
@@ -109,7 +116,7 @@ if(isset($project) && $project->id > 0){
 									<div class="panel-heading">Project Template:</div>
 									<div class="panel-body">
 										<div class="select-template selected" style="float: left;" data-template="template-none">
-											<img class="thumbnail" src="https://placeholdit.imgix.net/~text?txtsize=14&txt=No%20Template&w=200&h=131" alt="No Template placeholder">
+											<img class="thumbnail" src="/images/placeholder.png" style="height: 182px;" alt="No Template placeholder">
 											<p>No Template</p>
 										</div>
 										<div class="select-template" style="float: right;" data-template="template-nps">
@@ -159,6 +166,7 @@ if(isset($project) && $project->id > 0){
 									</div>
 								</div>
 	
+<!--
 								<div class="panel panel-default">
 									<div class="panel-heading" id="metatags-label">
 										Metatags: (comma separated list. i.e.: National Historial Site, Oregon, bison, Midwest.)
@@ -167,7 +175,9 @@ if(isset($project) && $project->id > 0){
 										<textarea aria-labelledby="metatags-label" name="metatags" <?php if(!$editable){echo ' disabled';}?>>{{ $project->metatags }}</textarea>
 									</div>
 								</div>
+-->
 								
+<!--
 								<div class="panel panel-default">
 									<div class="panel-heading" id="author-label">
 										Author:
@@ -176,7 +186,9 @@ if(isset($project) && $project->id > 0){
 										<input aria-labelledby="author-label" type="text" class="large" name="author" value="{{ $project->author }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
+-->
 								
+<!--
 								<div class="panel panel-default">
 									<div class="panel-heading" id="publication-label">
 										Publication year of brochure:
@@ -185,6 +197,7 @@ if(isset($project) && $project->id > 0){
 										<input aria-labelledby="publication-label" type="text" class="large" name="publication_date" value="{{ $project->publication_date }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
+-->
 																																				
 								<div class="panel panel-default">
 									<div class="panel-heading">Project Photo:</div>
@@ -209,9 +222,11 @@ if(isset($project) && $project->id > 0){
 									</div>
 								</div>
 	
+                                @include('project.shared.assets')
+
 								@if($editable)
 								<div class="wrapper-footer">
-									<button class="btn btn-lg btn-primary btn-icon save-details"><span class="fa fa-floppy-o"></span> Save Details</button>
+									<button class="g-recaptcha btn btn-lg btn-primary btn-icon @if ($project->id) save-details @endif" data-sitekey="6LdbV4oUAAAAAIxVY3G5nUu2fb_8RUOA3CFZ6NwT" data-callback='onSubmit'><span class="fa fa-floppy-o"></span> Save Details</button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 								@endif
@@ -228,13 +243,9 @@ if(isset($project) && $project->id > 0){
 							</div>
 -->
 	
-							@include('project.shared.owner')
-							
 							@include('project.shared.export')
 
-                            @include('project.shared.library')
-
-                            @include('project.shared.assets')
+							@include('project.shared.owner')
 
 							@include('project.shared.version')
 						</div>

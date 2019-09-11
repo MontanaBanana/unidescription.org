@@ -55,7 +55,7 @@ SIGDOC_Oppegaard_2017.docx
                     </section>
 
                 <div class="col-md-6">
-                     <a href="/images/toward_cultural_inclusion.pdf" target="_blank"><img class="photo" style="margin-top: 16px;" src="/images/review_of_disability_studies.png" width="100%" /></a>
+                     <a href="/images/toward_cultural_inclusion.pdf" target="_blank"><img class="photo" style="margin-top: 16px; height: 374px;" src="/images/review_of_disability_studies.png" width="100%" /></a>
                     <p>Conway, T., Oppegaard, B., &amp; Conway, M. (2016). <a href="/images/toward_cultural_inclusion.pdf">Toward cultural inclusion: Using mobile technologies to increase access to audio description</a>, The Review of Disability Studies: An International Journal, 11(4), 5-8.</p>
                 </div>
                 <div class="col-md-6">
@@ -64,13 +64,13 @@ SIGDOC_Oppegaard_2017.docx
                 </div>
 
                     <section>
-                    <center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/sigdoc_2017.PNG" alt="Brett's 2017 SIGDOC UniD research poster"></center>
+                    <center><a href="{{ SITEROOT }}/images/sigdoc_2017.PNG" target="_blank"><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/sigdoc_2017.PNG" alt="Brett's 2017 SIGDOC UniD research poster"></a></center>
                     <center><strong><a href="{{ SITEROOT }}/images/SIGDOC_Oppegaard_2017.docx">Download the paper</a></strong></center>
                     <p>"To Bracket or Not Bracket: Experiments in Gamification in the Wilds of Technical Communication" research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Halifax, Nova Scotia, Canada, in 2017.</p>
                     </section>
 
                     <section style="padding-top: 30px;">
-                    <center><img style="width: 100%" class="photo" src="{{ SITEROOT }}/images/SIGDOC_poster_2016.jpg" alt="Brett's 2016 SIGDOC UniD research poster"></center>
+                    <center><a href="{{ SITEROOT }}/images/SIGDOC_poster_2016.jpg" target="_blank"><img style="width: 100%" class="photo" src="{{ SITEROOT }}/images/SIGDOC_poster_2016.jpg" alt="Brett's 2016 SIGDOC UniD research poster"></a></center>
                     <center><strong><a href="{{ SITEROOT }}/images/62_Oppegaard_FINAL_SIGDOC_submitted.docx">Download the paper</a></strong></center>
                     <p>"From seeing to hearing: Lessons learned from a research-based design project focused upon audio description, print-to-acoustic remediation, and mobile-app delivery" research poster presented by Brett Oppegaard at the annual Association for Computer Machinery SIG Design of Communication (SIGDOC), held in Silver Spring, Maryland, U.S., in 2016.</p>
                     </section>
@@ -130,9 +130,9 @@ SIGDOC_Oppegaard_2017.docx
 'Fort Smith National Historic Site' => array('image' => 'FortSmith.jpg', 'link' => '/account/project/export/126'),
 'Fort Stanwix National Monument' => array('image' => 'FortStanwix.jpg', 'link' => '/account/project/export/143'),
 'Fort Vancouver National Historic Site' => array('image' => 'FortVancouver.jpg', 'link' => '/account/project/export/89'),
-'Gates of the Arctic National Park and Preserve' => array('image' => 'GatesOfTheArctic.jpg', 'link' => '/account/project/export/144'),
+'Gates of the Arctic National Park &amp; Preserve' => array('image' => 'GatesOfTheArctic.jpg', 'link' => '/account/project/export/144'),
 'George Washington Memorial Parkway' => array('image' => 'GeorgeWashington.jpg', 'link' => '/account/project/export/128'),
-'Gettysburg National Military Park' => array('image' => 'Gettysburg.jpg', 'link' => '/account/project/export/98'),
+//'Gettysburg National Military Park' => array('image' => 'Gettysburg.jpg', 'link' => '/account/project/export/98'),
 'Golden Gate National Recreation Area' => array('image' => 'GoldenGate.jpg', 'link' => '/account/project/export/76'),
 'Hagerman Fossil Beds National Monument' => array('image' => 'Hagerman.jpg', 'link' => '/account/project/export/136'),
 'Harpers Ferry Center' => array('image' => 'HarpersFerry.jpg', 'link' => '/account/project/export/270'),
@@ -160,7 +160,7 @@ SIGDOC_Oppegaard_2017.docx
 'Pu‘ukohola Heiau National Historic Site' => array('image' => 'Puuk.jpg', 'link' => '/account/project/export/94'),
 'Redwood National Park' => array('image' => 'Redwoods.jpg', 'link' => '/account/project/export/262'),
 'Rosie the Riveter/WWII Home Front NHP' => array('image' => 'Rosie.jpg', 'link' => '/account/project/export/271'),
-'San Francisco Maritime National Historic Park' => array('image' => 'sf.jpg', 'link' => '/account/project/export/92'),
+'San Francisco Maritime Ntnl Historic Park' => array('image' => 'sf.jpg', 'link' => '/account/project/export/92'),
 'Sitka National Historical Park' => array('image' => 'Sitka.jpg', 'link' => '/account/project/export/108'),
 'Statue of Liberty National Monument' => array('image' => 'StateOfLiberty.jpg', 'link' => '/account/project/export/150'),
 'Steamtown National Historic Site' => array('image' => 'Steamtown.jpg', 'link' => '/account/project/export/122'),
@@ -217,7 +217,7 @@ SIGDOC_Oppegaard_2017.docx
 						?>
 							<div class="grid-item col-md-4 col-sm-4 col-xs-4">
 								<div class="grid-item-content">
-                                    <a target="_blank" href="<?php echo $r['link']; ?>"><img class="img-responsive customer-img" src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}"></a>
+                                    <a target="_blank" href="<?php echo $r['link']; ?>"><img class="img-responsive customer-img" style="height: 316px;"  src="{{ SITEROOT }}/images/research_partners/<?php echo $r['image']; ?>" alt="{{ $k }}"></a>
                                     <p><a target="_blank" href="<?php echo $r['link']; ?>">{{ $k }}</a></p>
 								</div>
 							</div>
@@ -240,7 +240,7 @@ SIGDOC_Oppegaard_2017.docx
                 <div class="col-md-3 text-center">
                     <div class="thumbnail">
                         <a href="https://manoa.hawaii.edu/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/uh_logo.jpg" alt="University of Hawaii Logo"></a>
-                        <div class="caption" style="height: 155px;">
+                        <div class="caption" style="height: 185px;">
 <h4>The University of Hawaii at Manoa</h4>
 <h5>School of Communications / <br>
 Center On Disability Studies</h5>
@@ -254,7 +254,7 @@ Center On Disability Studies</h5>
                 <div class="col-md-3 text-center">
                     <div class="thumbnail">
                         <a href="http://www.nps.gov" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/nps_square_logo.png" alt="National Park Service Logo"></a>
-                        <div class="caption" style="height: 155px;">
+                        <div class="caption" style="height: 185px;">
 <h4>The U.S. National Park Service</h4>
 <h5>Harpers Ferry Center<br>&nbsp;</h5>
 <p>
@@ -269,7 +269,7 @@ $344,800 + In-Kind Services
                 <div class="col-md-3 text-center">
                     <div class="thumbnail">
                         <a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
-                        <div class="caption" style="height: 155px;">
+                        <div class="caption" style="height: 185px;">
                             <h4>Google, Inc.<br>&nbsp;</h4>
                             <h5>&nbsp;<br>&nbsp;</h5>
                             <p>$225,000 + In-Kind Services</p>
@@ -280,7 +280,7 @@ $344,800 + In-Kind Services
                 <div class="col-md-3 text-center">
                     <div class="thumbnail">
                         <a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/acb.png" alt="American Council of the Blind Logo"></a>
-                        <div class="caption" style="height: 155px;">
+                        <div class="caption" style="height: 185px;">
                             <h4>American Council of the Blind</h4>
                             <h5>&nbsp;<br>&nbsp;</h5>
                             <p>In-Kind Services</p>

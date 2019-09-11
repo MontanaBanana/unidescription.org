@@ -98,6 +98,19 @@ function get_project_completion_percentage($sections)
 				if ($child->completed && !$child->deleted) {
 					$completed++;
 				}
+
+                if (!$child->deleted) { 
+                    foreach ($child->children as $grandchild) {
+                        if ($grandchild->deleted) {
+                            $total--;
+                        }
+                        $total++;
+
+                        if ($grandchild->completed && !$grandchild->deleted) {
+                            $completed++;
+                        }
+                    }
+                }
 			}
 		}
 	endforeach;

@@ -20,7 +20,7 @@ if (count($section->project_section_versions)):
                     }
 					?>
 					<a data-toggle="modal" href="#<?php echo $v->id; ?>" data-target="#<?php echo $v->id; ?>">
-						<?php echo prettyDate($v->created_at->addHours(-7)->format('D, d M Y h:i:s')); ?>
+						<?php echo prettyDate($v->created_at->addHours(0)->format('D, d M Y H:i:s')); ?>
                     </a> @if ($v->user_id) - <a href="mailto:{{ $edit_user->email }}">{{ $edit_user->email }}</a>@endif <br />
 					<?php
 				}

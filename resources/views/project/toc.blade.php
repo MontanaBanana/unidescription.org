@@ -109,6 +109,7 @@
 								<div class="panel panel-default">
                                     <div class="panel-heading">
                                     Frontstage: <p> <label for="toggle-deleted"><input type="checkbox" onclick="toggleDeleted();" id="toggle-deleted" <?php if (@$_GET['show_deleted']) { echo 'checked'; } ?>/> Show deleted items</label> </p>
+                                    <strong>PLEASE READ: The Table of Contents no longer auto-saves. Once you have completed your changes, click the Save button at the bottom of the page.</strong>
 
                                     </div>
 									<div class="panel-body white unid-list table-of-contents">
@@ -117,8 +118,8 @@
 											
 											<ul data-role="listview" data-inset="true" data-theme="d" <?php if($editable){echo 'id="sortable" class="sortable ui-sortable mjs-nestedSortable-branch mjs-nestedSortable-expanded"';}?>>
 												<?php foreach ($sections as $index => $section): ?>
-                                                    <?php if (!@$_GET['show_deleted'] && $section->deleted) { continue; } ?>
-													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded">
+                                                    <?php //if (!@$_GET['show_deleted'] && $section->deleted) { continue; } ?>
+													<li id="item-{{ $index }}" data-title="{{ $section->title }}" data-section-id="{{ $section->id }}" class="li-section mjs-nestedSortable-branch mjs-nestedSortable-expanded @if ($section->deleted) deleted @endif">
 														<div style="overflow: hidden; width: 100%;">
 													        <input type="hidden" id="section-{{ $index }}-title" name="section-{{ $index }}-title" class="form-control" value="{{ $section->title }}" />   
 															<input type="hidden" name="sort_order[]" value="{{ $section->id }}" />
@@ -126,7 +127,7 @@
 															<i class="fa fa-chevron-down toggle"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 															@if($editable)
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
-															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square @else fa-square @endif"></span></span>
 															@endif
 															<!--<span class="label pull-right hidden-xs hidden-sm text-length label-info">Good Text Length</span>-->
 														</div>
@@ -142,7 +143,7 @@
 																			<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																			@if($editable)
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
-																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square @else fa-square @endif"></span></span>
 																			@endif
 																			<!--<span class="label pull-right hidden-xs hidden-sm text-length label-default section-{{ $child->id }}-label">Not Started</span>-->
 																		</div>
@@ -158,7 +159,7 @@
 	                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 	                                                                                        @if($editable)
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
-	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square @else fa-square @endif"></span></span>
 	                                                                                        @endif
 	                                                                                        <!--<span class="label pull-right hidden-xs hidden-sm text-length label-default section-{{ $chch->id }}-label">Not Started</span>-->
 	                                                                                    </div>
@@ -205,8 +206,8 @@
 									</div>
 								</div>   
 								<div class="wrapper-footer">
-									<!--<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Frontstage</button>-->
-									<button class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save </button>
+									<!--<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-save"></span> Save Frontstage</button>-->
+									<button class="btn btn-lg btn-primary btn-icon"><span class="fa fa-save"></span> Save </button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 					        </div>
@@ -285,7 +286,7 @@ function updateCheckboxes()
         $('div.table-of-contents ul > li').each(function(index) {
             console.log($(this).data('section-id'));
             $('> div > span.toc-check-complete > span.fa', $(this)).each(function (index2) {
-                 if ($(this).hasClass('fa-square-o')) { 
+                 if ($(this).hasClass('fa-square')) { 
                     console.log('square');
                     $('ul > li > div > span.toc-check-complete', $(this).parent().parent().parent()).addClass('label-warning');
                  }
@@ -338,7 +339,7 @@ function updateCheckboxes()
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-square-o');
+				$(section).children().removeClass('fa-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -358,7 +359,7 @@ function updateCheckboxes()
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('label-default');
 							$(section).addClass('label-success');
-							$(section).children().addClass('fa-check-square-o');
+							$(section).children().addClass('fa-check-square');
 
                             updateCheckboxes();
 	
@@ -375,7 +376,7 @@ function updateCheckboxes()
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-check-square-o');
+				$(section).children().removeClass('fa-check-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -395,7 +396,7 @@ function updateCheckboxes()
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('label-success');
 							$(section).addClass('label-default');
-							$(section).children().addClass('fa-square-o');
+							$(section).children().addClass('fa-square');
 	
 		                    updateCheckboxes();	
 				        }
@@ -593,7 +594,7 @@ function updateCheckboxes()
             console.log($('#json_toc'));
             //_super($item, container);
             //alert('about to submit');
-            $('#toc-form').submit();
+            //$('#toc-form').submit();
         }
 	
         updateCheckboxes();
@@ -673,11 +674,17 @@ function submittoc() {
 
 }
 
-/*
-$(window).bind('beforeunload', function(){
-          submittoc();
-});
- */
+//$(window).bind('beforeunload', function(){
+          //submittoc();
+    //$('#toc-form').submit();
+    //
+//});
+
+window.onunload = function saveAndPost() {
+    var formData = new FormData(document.getElementById("toc-form"));
+    navigator.sendBeacon("/account/project/toc", formData);
+
+};
 
 </script>
 

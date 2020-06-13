@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="{{ SITEROOT }}/css/nps-bootstrap.css">
 	
 	<!-- Custom Fonts -->
-	<link href="{{ SITEROOT }}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-IIED/eyOkM6ihtOiQsX2zizxFBphgnv1zbe1bKA+njdFzkr6cDNy16jfIKWu4FNH" crossorigin="anonymous">
 	<link href="//fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,600,700" rel="stylesheet" type="text/css">
 
 	<!-- RTE -->
@@ -61,7 +61,7 @@
 	<script type="text/javascript" src="{{ SITEROOT }}/js/trumbowyg.js?v=2.13.0&j=1.5"></script>
 
 	<!-- Unidescription custom JS -->
-	<script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js?ts=1234"></script>
+	<script type="text/javascript" src="{{ SITEROOT }}/js/unidescription.js?ts=1234.1"></script>
 
 	<!-- cropper -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropper/2.3.2/cropper.min.css">
@@ -69,8 +69,8 @@
 
 	<script type="text/javascript" src="{{ SITEROOT }}/js/dropzone.js"></script>
 	
-	<link href="{{ SITEROOT }}/css/unidescription.css" rel="stylesheet">
-	<link href="{{ SITEROOT }}/css/responsive.css" rel="stylesheet">
+	<link href="{{ SITEROOT }}/css/unidescription.css?v=10" rel="stylesheet">
+	<link href="{{ SITEROOT }}/css/responsive.css?v=10" rel="stylesheet">
 
 	@yield('header')
 	

@@ -32,14 +32,19 @@ SIGDOC_Oppegaard_2017.docx
             <div class="container">
                 <div class="col-md-12">
                     <h2 class="page-header" style="top: -40px; position: relative; margin-bottom: 0">Where We've Been<br/><span style="font-size: 16px;">Audio Description Created Around the U.S. (and World)</span></h2>
-
-                    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="100%" height="594"></iframe>
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1zHzJMwrFGo1LzwLLIFSHNkuDZYY" width="100%" height="594"></iframe>
 
                     <h2 class="page-header" style="position: relative; margin-bottom: 0">Field Research<br/><span style="font-size: 16px;">Studying Audio Description On Site</span></h2>
 
 <section>
 <center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/muir_woods_field_test-20180427.jpg" alt="This photo shows Silicon Valley and San Francisco chapters of the American Council of the Blind participating in field tests of the UniD apps in April 2018 at Muir Woods National Monument. The seven people shown, including Park Ranger Michael Faw, in the middle of the screen, are either looking at, or listening to, their mobile devices in a setting of enormous redwood trees. Those blind or visually impaired members included Frank Welte, Sally McGuire, Park Ranger Michael Faw, Michael Keithley, and Susan Glass. Photo courtesy of: Dr. Thomas Conway, University of Hawaii." /></center>
 <p>Silicon Valley and San Francisco chapters of the American Council of the Blind participated in field tests of the UniD apps in April 2018 at Muir Woods National Monument. Those blind or visually impaired members included Frank Welte, Sally McGuire, Park Ranger Michael Faw, Michael Keithley, and Susan Glass. Photo courtesy of: Dr. Thomas Conway, University of Hawaii.</p>
+<br /><br />
+</section>
+
+<section>
+<center><img style="width: 100%;" class="photo" src="{{ SITEROOT }}/images/jr_earnest_maritime.jpg" alt="On the deck of a majestic sailboat, Park Ranger J.R. Earnest discusses the history of the San Francisco Maritime National Historical Park with members of ACB, trying out the UniD app. Earnest is dressed in a formal National Park Service uniform, with green pants and shirt, a tan circular-brimmed ranger hat, and brown shoes. He has a medium-length beard and wears dark sunglasses. The ship's deck is made of wood planks. A huge mast rises from the deck. Ropes and riggings are prevalent, but no sail is visible. On a bench, in the middle of the deck, sits the five American Council of the Blind members on this tour." /></center>
+<p>Park Ranger J.R. Earnest describes a ship at the San Francisco Maritime National Historical Park to members of the American Council of the Blind, who are touring the site to test the UniD app, from left: Victor Clifford, Beverly Clifford, John Glass, Susan Glass, and Alice McGrath Turner. (Photo courtesy of Jo Lynn Bailey-Page)</p>
 <br /><br />
 </section>
 
@@ -272,7 +277,7 @@ $344,800 + In-Kind Services
                         <div class="caption" style="height: 185px;">
                             <h4>Google, Inc.<br>&nbsp;</h4>
                             <h5>&nbsp;<br>&nbsp;</h5>
-                            <p>$225,000 + In-Kind Services</p>
+                            <p>$275,000 + In-Kind Services</p>
                         </div>
                     </div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2017 - Present</small>

@@ -4,7 +4,7 @@
 				<div class="container">
 					<div class="col-lg-2 col-md-2">
 						<!--<img src="{{ SITEROOT }}/images/unid_logo_white.svg" alt="UniDescription logo" class="footer-brand" />-->
-						<img src="{{ SITEROOT }}/images/logo-option-3-transparent.png" style="width: 123px;" alt="UniDescription logo" class="footer-brand" />
+						<a href="/about"><img src="{{ SITEROOT }}/images/logo-option-3-transparent.png" style="width: 123px;" alt="UniDescription logo" class="footer-brand" /></a>
 					</div>
 					<div class="col-lg-2 col-md-2 col-xs-6 col-with-border">
 						<ul class="list-unstyled">

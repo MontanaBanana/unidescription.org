@@ -187,7 +187,7 @@
 -->
 								@if($editable)
 									<div class="wrapper-footer">
-										<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-floppy-o"></span> Save Details</button>
+										<button class="btn btn-lg btn-primary btn-icon" type="submit"><span class="fa fa-save"></span> Save Details</button>
 										<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 									</div>
 								@endif

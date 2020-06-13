@@ -201,11 +201,11 @@
 			<span class="pull-right" style="padding-right: 5px;">
 				<?php if($section->audio_title!=''){ ?>
 				    <span class="btn btn-sm btn-primary toggle-phonetic" rel="title" style="position: relative; top: -5px;" data-toggle="tooltip" data-placement="left" data-title="Edit phonetics">
-				        <span class="fal fa-assistive-listening-systems"></span>
+				        <span class="fal fa-volume-up"></span>
 			        </span>
 			    <?php } else { ?>
 					<span class="btn btn-sm btn-primary toggle-phonetic" rel="title" style="position: relative; top: -5px;" data-toggle="tooltip" data-placement="left" data-title="Edit phonetics">
-						<span class="fa fa-assistive-listening-systems"></span>
+						<span class="fas fa-volume-up"></span>
 					</span>
 				<?php } ?>
 			</span>
@@ -265,7 +265,7 @@
 	                                    <!-- Button trigger modal -->
 										<?php if ($was_locked || true): ?>
 											<p>
-                                            <a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
+                                            <a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square @else fa-square @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
 											</p>
 											<p>
 												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
@@ -279,7 +279,7 @@
 											</p>
 										<?php endif; ?>
 	                                @endif
-                                    <!--<button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
+                                    <!--<button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-save"></span> Upload &amp; Save</button>-->
 								</div>
 							</div>
                             @endif
@@ -333,11 +333,11 @@
 			<span class="pull-right" style="padding-right: 5px;">
 				<?php if($section->audio_description!=''){ ?>
 				    <span class="btn btn-sm btn-primary toggle-phonetic-description" rel="description" style="position: relative; top: -5px;" data-toggle="tooltip" data-placement="left" data-description="Edit phonetics">
-				        <span class="fal fa-assistive-listening-systems"></span>
+				        <span class="fal fa-volume-up"></span>
 			        </span>
 			    <?php } else { ?>
 					<span class="btn btn-sm btn-primary toggle-phonetic-description" rel="description" style="position: relative; top: -5px;" data-toggle="tooltip" data-placement="left" data-description="Edit phonetics">
-						<span class="fa fa-assistive-listening-systems"></span>
+						<span class="fas fa-volume-up"></span>
 					</span>
 				<?php } ?>
 			</span>
@@ -417,7 +417,7 @@
 	                                    <!-- Button trigger modal -->
 										<?php if ($was_locked || true): ?>
 											<p>
-												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square-o @else fa-square-o @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
+												<a class="has-image-rights btn btn-lg @if ($section->has_image_rights) btn-success @else btn-default @endif btn-icon" style="width: 100%"><span class="fa @if ($section->has_image_rights) fa-check-square @else fa-square @endif"></span> <span style="border-right: 0;" class="image-rights-text">@if ($section->has_image_rights) Image Rights Cleared @else NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY) @endif</span></a>
 											</p>
 											<p>
 												<button type="button" class="btn btn-primary btn-lg btn-icon" data-toggle="modal" data-target="#cropModal" style="width: 100%;">
@@ -431,13 +431,36 @@
 											</p>
 										<?php endif; ?>
 	                                @endif
-                                    <!--<button class="save-details btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-floppy-o"></span> Upload &amp; Save</button>-->
+                                    <!--<button class="save-details btn btn-lg btn-primary btn-icon" style="width: 100%;"><span class="fa fa-save"></span> Upload &amp; Save</button>-->
 								</div>
 							</div>
                             @endif
 							@endif
 										
 
+<div class="row">
+    <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height: 57px;">
+                        Web location
+                    </div>
+                    <p>Does the thing you are describing exist on the web? If so, please include a link to the original image and/or webpage that you are describing.</p>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Source website (ex., https://www.example.gov/history/details.htm - this is the website where you found the item to describe):
+                        <input type="text" id="src_url" class="large" name="src_url" value="{{ $section->src_url }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Image link (ex., https://www.unidescription.org/images/logo-option-3-transparent.png - this is a link to the specific image you are describing. It will typically end with a .png or .jpg at the end of the link):
+                        <input type="text" id="remote_image_url" class="large" name="remote_image_url" value="{{ $section->remote_image_url }}" style="color:#000; width:100%; padding:0 5px" <?php if (!$was_locked OR !$editable) { echo 'disabled'; } ?>>
+                    </div>
+                </div>
+        
+    </div>  
+</div>
 
 <div class="row">
 	    <div class="col-lg-12">
@@ -500,8 +523,8 @@
 					        						
 								<?php if ($was_locked): ?>
 									<div class="wrapper-footer">
-										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-floppy-o"></span> Save &amp; Return</button>-->
-										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span></a>
+										<!--<button id="save-page" class="btn btn-lg btn-primary btn-icon"><span class="fa fa-save"></span> Save &amp; Return</button>-->
+										<a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square @else fa-square @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span></a>
 									</div>
 								<?php endif; ?>
 					        </div>				        
@@ -543,12 +566,21 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">Save &amp; Complete:</div>
 									<div class="panel-body">
-										<p><button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-floppy-o"></span> Save &amp; Return</button></p>
-										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span> </a></p>
+										<p><button class="btn btn-lg btn-primary btn-icon save-details" style="width: 100%;"><span class="fa fa-save"></span> Save &amp; Return</button></p>
+										<p><a class="page-complete check-complete btn btn-lg @if ($section->completed) btn-success @else btn-red @endif btn-icon" style="width: 100%;"><span class="fa @if ($section->completed) fa-check-square @else fa-square @endif"></span> <span class="component-complete-text" style="border: 0;">@if ($section->completed) Component Complete @else Component Incomplete @endif</span> </a></p>
+                                <?php if ($was_locked && $section->deleted): ?>
+										<p><a class="btn btn-lg btn-success btn-icon restore-section" data-toggle="modal" data-target="#undeleteSectionModal" style="width: 100%;"><span class="fa fa-trash-undo"></span>Restore This Component</a></p>
+                                <?php endif; ?>
+
+                                <?php if ($was_locked && !$section->deleted): ?>
+										<p><a class="btn btn-lg btn-red btn-icon delete-section" data-toggle="modal" data-target="#deleteSectionModal" style="width: 100%;"><span class="fa fa-times"></span>Delete This Component</a></p>
+                                <?php endif; ?>
 									</div>
 								</div>
 							<?php endif; ?>
+
 							@endif
+
 							
 	                        @include('project.todo.main')
 	                        
@@ -708,19 +740,30 @@ $(document).ready(function() {
                $("#section_form").data("changed",true);
         });
 
-        $(window).on('beforeunload', function(){
+        //$(window).on('beforeunload', function(){
+            /*
             $("#was_autosave").val(0);
             if ($("#section_form").data("changed")) {
                 $('.modal-title').html('Please wait');
                 $('.modal-body').html('Saving component...');
                 $('.modal-footer').html('');
                 $('#deleteModal').modal({show: true});
-                $("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
+                //$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post', async: false});
             }
             else {
-                $('#unlock_form').ajaxSubmit({url: '/account/project/unlock', type: 'get', async: false});
+                navigator.sendBeacon('/account/project/unlock/{{ $section->id }}');
             }
-        });
+             */
+        //});
+
+        window.onunload = function saveAndPostData() {
+                var formData = new FormData(document.getElementById("section_form"));
+                console.log('sending beacon');
+                console.log(formData);
+                formData.set('was_autosave', 0);
+                navigator.sendBeacon("/account/project/section", formData);
+                console.log('sent');
+        };
 
 (function ($) {
     'use strict';
@@ -1081,13 +1124,13 @@ $(document).ready(function() {
 			//console.log( $(this).children() );
 			//console.log( $(this).data() );
 
-			if ($(this).children().hasClass('fa-square-o')) {
+			if ($(this).children().hasClass('fa-square')) {
 				
 				var section_id = $(this).data('section_id');
 				var section = $(this);
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-square-o');
+				$(section).children().removeClass('fa-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -1111,7 +1154,7 @@ $(document).ready(function() {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-default');
 							$(section).addClass('btn-success');
-							$(section).children().addClass('fa-check-square-o');
+							$(section).children().addClass('fa-check-square');
                             $('.image-rights-text').html('Image Rights Cleared');
 	
 				        }
@@ -1131,7 +1174,7 @@ $(document).ready(function() {
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-check-square-o');
+				$(section).children().removeClass('fa-check-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -1154,7 +1197,7 @@ $(document).ready(function() {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-success');
 							$(section).addClass('btn-default');
-							$(section).children().addClass('fa-square-o');
+							$(section).children().addClass('fa-square');
                             $('.image-rights-text').html('NOT CLEARED - IMAGE RIGHTS (WILL NOT DISPLAY)');
 	
 				        }
@@ -1170,7 +1213,7 @@ $(document).ready(function() {
 				// Set it not completed
 			}
 			
-			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
+			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square"></span></span>
 		});
 		
 	  	$('.check-complete').on('click', function(event) {
@@ -1179,14 +1222,14 @@ $(document).ready(function() {
 			//console.log( $(this).children() );
 			//console.log( $(this).data() );
 
-			if ($(this).children().hasClass('fa-square-o')) {
+			if ($(this).children().hasClass('fa-square')) {
 				
 				var section_id = $(this).data('section_id');
 				//var section = $(this);
 				var section = $('.page-complete');
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-square-o');
+				$(section).children().removeClass('fa-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -1209,7 +1252,7 @@ $(document).ready(function() {
 					        $(section).removeClass('btn-default');
 							$(section).removeClass('btn-red');
 							$(section).addClass('btn-success');
-							$(section).children().addClass('fa-check-square-o');
+							$(section).children().addClass('fa-check-square');
                             $('.component-complete-text').html('Component Complete');	
 				        }
 				        else {
@@ -1228,7 +1271,7 @@ $(document).ready(function() {
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-check-square-o');
+				$(section).children().removeClass('fa-check-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -1249,7 +1292,7 @@ $(document).ready(function() {
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('btn-success');
 							$(section).addClass('btn-red');
-							$(section).children().addClass('fa-square-o');
+							$(section).children().addClass('fa-square');
                             $('.component-complete-text').html('Component Incomplete');	
 	
 				        }
@@ -1264,7 +1307,7 @@ $(document).ready(function() {
 				// Set it not completed
 			}
 			
-			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square-o"></span></span>
+			//<span data-section_id="{{ $section->id }}" class="check-complete label pull-right label-default"><span class="fa fa-square"></span></span>
 
 	  	});
 
@@ -1360,6 +1403,51 @@ $(document).ready(function() {
                 }
             });
         });
+
+        $('#undeleteSection').click(function() {
+            $.ajax({
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN' : $('input[name="_token"]').val()  },
+                url: '/account/project/deleted',
+                data: {
+                    deleted: 0,
+                    id: $('#project_section_id').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    location.href = location.href.replace('/section/', '/toc/');
+                    //$('#deleteModalClose').click();
+                    //$('#save-page').click();
+                    //$('#was_autosave').val(0);
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post'});
+
+                }
+            });
+        });
+
+        $('#deleteSection').click(function() {
+            $.ajax({
+                method: 'POST',
+                headers: { 'X-CSRF-TOKEN' : $('input[name="_token"]').val()  },
+                url: '/account/project/deleted',
+                data: {
+                    deleted: 1,
+                    id: $('#project_section_id').val()
+                },
+                dataType: "json",
+                success: function(response) {
+                    //location.reload();
+                    location.href = location.href.replace('/section/', '/toc/');
+                    //$('#deleteModalClose').click();
+                    //$('#save-page').click();
+                    //$('#was_autosave').val(0);
+    				//$("#section_form").ajaxSubmit({url: '/account/project/section', type: 'post'});
+
+                }
+            });
+        });
+
+
         
         $('#section_image').change(function(){
             $('.modal-title').html('Please wait');
@@ -1596,6 +1684,45 @@ $(document).ready(function() {
   </div>
 </div>
 
+<div class="modal fade" id="undeleteSectionModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myDeleteModalLabel">Restore Component</h4>
+      </div>
+      <div class="modal-body col-md-12">
+	  	Are you sure you want to restore this component? You can delete it later if needed.
+      </div>
+      <div class="modal-footer">
+        <button id="undeleteSectionModalClose" type="button" class="btn btn-default" data-dismiss="modal" style="width: 50%">No, Close</button>
+        <br />
+        <button type="button" class="btn btn-primary label-danger" id="undeleteSection" style="width: 50%;">Yes, Restore Component</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteSectionModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myDeleteModalLabel">Delete Component</h4>
+      </div>
+      <div class="modal-body col-md-12">
+	  	Are you sure you want to delete this component? You can restore it later if needed.
+      </div>
+      <div class="modal-footer">
+        <button id="deleteSectionModalClose" type="button" class="btn btn-default" data-dismiss="modal" style="width: 50%">No, Close</button>
+        <br />
+        <button type="button" class="btn btn-primary label-danger" id="deleteSection" style="width: 50%;">Yes, Delete Component</button>
+<!--       result = $image.cropper(data.method, data.option, data.secondOption);-->
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myDeleteModalLabel">

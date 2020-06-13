@@ -325,13 +325,13 @@ blockquote {
 	line-height:20px;
 }
 .the-team .thumbnail .img-logo {
-	min-width: 150px;
+	/*min-width: 150px;*/
 	height: 150px; 
 	margin-top: 16px; 
 	border:none;
 }
 .the-team .thumbnail .img-person { 
-	min-width: 110px;
+	/*min-width: 110px;*/
 	height: 150px; 
 	margin-top: 16px; 
 }

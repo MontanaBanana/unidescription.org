@@ -21,7 +21,7 @@
                 <span class="fa fa-bars" style="cursor: move;"></span>
                 <i class="fa fa-chevron-right toggle"></i> <input type="text" data-todo_id="{{ $todo->id }}" class="todo-title" name="todo-title-{{ $todo->id }}" value="{{ $todo->title }}" />
                 <span data-todo_id="{{ $todo->id }}" class="toc-icon todo-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($todo->deleted) fa-undo @else fa-times @endif"></span></span>
-                <span data-todo_id="{{ $todo->id }}" class="todo-check-complete label pull-right @if ($todo->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($todo->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+                <span data-todo_id="{{ $todo->id }}" class="todo-check-complete label pull-right @if ($todo->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($todo->completed) fa-check-square @else fa-square @endif"></span></span>
                 <div class="todo-description">
                     <textarea data-todo_id="{{ $todo->id }}" class="todo-textarea" placeholder="Any other instructions to add? Type here.">{{ $todo->description }}</textarea>
                 </div>
@@ -155,7 +155,7 @@
                 var todo_id = $(this).data('todo_id');
                 var todo = $(this);
 
-                $(todo).children().removeClass('fa-square-o');
+                $(todo).children().removeClass('fa-square');
                 $(todo).children().addClass("fa-spinner fa-spin");
 
                 var formData = {
@@ -175,7 +175,7 @@
                             $(todo).children().removeClass("fa-spinner fa-spin");
                             $(todo).removeClass('label-default');
                             $(todo).addClass('label-success');
-                            $(todo).children().addClass('fa-check-square-o');
+                            $(todo).children().addClass('fa-check-square');
 
                         }
                         else {
@@ -190,7 +190,7 @@
 
                 //$(todo).addClass('label-success');
                 //$(todo).removeClass('label-default');
-                $(todo).children().removeClass('fa-check-square-o');
+                $(todo).children().removeClass('fa-check-square');
                 $(todo).children().addClass("fa-spinner fa-spin");
 
                 var formData = {
@@ -210,7 +210,7 @@
                             $(todo).children().removeClass("fa-spinner fa-spin");
                             $(todo).removeClass('label-success');
                             $(todo).addClass('label-default');
-                            $(todo).children().addClass('fa-square-o');
+                            $(todo).children().addClass('fa-square');
 
                         }
                         else {

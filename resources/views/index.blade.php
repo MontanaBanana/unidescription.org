@@ -8,7 +8,7 @@
 	<div class="row blade introduction" style="clear: both;">
 		<div class="container">
 			<div class="col-lg-12">
-                <header style="background-image:url({{ SITEROOT }}/slideshow/joe_parthenon.jpg); border: 4px solid #fff; -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);" title="The UniDescription Project's mantra is to 'audio describe the world,' and this image shows UniD developer Joe Oppegaard at the base of the Acropolis in Athens, Greece, testing the UniD system. Joe is wearing a black shirt and dark sunglasses, contrasting with his blond hair and white earbuds, which are connected to his smartphone, as he listens to content on the phone underneath the massive marble columns at the remains of the Parthenon. The UniD Project team has worked with the University of Piraeus in Athens to audio describe parts of the Acropolis as well as various other major public attractions around the world, including more than 50 U.S. National Park Service sites.">
+                <a href="/about"><header style="background-image:url({{ SITEROOT }}/slideshow/joe_parthenon.jpg); border: 4px solid #fff; -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2); box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.2);" title="The UniDescription Project's mantra is to 'audio describe the world,' and this image shows UniD developer Joe Oppegaard at the base of the Acropolis in Athens, Greece, testing the UniD system. Joe is wearing a black shirt and dark sunglasses, contrasting with his blond hair and white earbuds, which are connected to his smartphone, as he listens to content on the phone underneath the massive marble columns at the remains of the Parthenon. The UniD Project team has worked with the University of Piraeus in Athens to audio describe parts of the Acropolis as well as various other major public attractions around the world, including more than 50 U.S. National Park Service sites.">
                     <div class="container centerpiece">
             <!--
                         <div class="slide">
@@ -17,7 +17,7 @@
                         </div>
             -->
                     </div>
-                </header>
+                </header></a>
                 <div width="100%" style="margin-top: 8px; background: black; height: 80px;" class="slide">
                     <div style="float: left;"><p class="tagline" style="padding-top: 24px;" id="tagline">Audio Describe the World</p></div>
                     <div style="float: right; padding-top: 26px; padding-right: 5px;"><p class="button"><a id="tagline-learn-more" aria-labelledby="tagline tagline-learn-more" href="{{ SITEROOT }}/auth/register">Get Started</a></p></div>

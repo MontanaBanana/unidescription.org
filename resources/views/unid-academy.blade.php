@@ -24,7 +24,7 @@
 		<!-- Content Row -->
 		<div class="row blade" style="padding-top: 0;">
             <div class="container">
-                <div class="col-md-12">
+                <div class="col-md-8">
 <h3>Learn how to create basic Audio Description</h3>
 <ul>
 <li><a href="https://manoahawaiiss.az1.qualtrics.com/jfe/form/SV_3a4EsBnuvWWJeo5" target="_blank">How do I describe a portrait?</a></li>
@@ -70,6 +70,11 @@
 
 
                 </div>
+                <div class="col-md-4">
+                    <img src="/images/eric_bridges_doug_powell_pat_sheehan_nps_staff_at_john_brows_fort.jpg" alt="Five people are outside the single-story brick reconstruction of John Brown's Fort at Harpers Ferry National Historical Park, listening to their mobile devices. Three of them, in the foreground, are members of the American Council of the Blind: Executive Director Eric Bridges, Rehabilitation Task Force member Doug Powell, and board member Pat Sheehan. The other two are U.S. National Park Service staff. The building has three doorways, with half-circle windows over each door. A cupola rises above the roofline. Tall, leafy trees hover over the building. " width="100%" />
+                    <p>Eric Bridges, American Council of the Blind's Executive Director, Doug Powell, a member of ACB’s Rehabilitation Task Force, and Pat Sheehan, Director of the 508 Program Office at the U.S. Department of Veterans Affairs, use the UniD app to explore John Brown's Fort with U.S. National Park Service staff at Harpers Ferry National Historical Park in West Virginia. </p>
+
+                </div>
             </div>
 		</div>
 		<!-- End the content -->
@@ -77,7 +82,7 @@
 		<div class="row blade" style="padding-top: 0;">
             <div class="container">
                 <div class="col-md-12">
-                    <iframe width="100%" height="1800" src="https://www.cds.hawaii.edu/projects/training/courses/unidescription/" frameborder="0"></iframe>
+		    <iframe width="100%" height="1800" src="https://cds.coe.hawaii.edu/training/courses/unidescription/" frameborder="0"></iframe>
                 </div>
             </div>
 		</div>

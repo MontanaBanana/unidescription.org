@@ -123,7 +123,7 @@
 															<i class="fa fa-chevron-down toggle pull-left"></i> <a href="/account/project/section/{{ $project->id }}/{{ $section->id }}">&nbsp;&nbsp;{{ $section->title }}</a> @if ($section->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 															@if($editable)
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-delete label pull-right label-danger" data-toggle="tooltip" data-placement="left" title="Delete"><span class="fa @if ($section->deleted) fa-undo @else fa-times @endif"></span></span>
-															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+															<span data-section_id="{{ $section->id }}" class="toc-check-complete label pull-right @if ($section->completed) label-success @else label-default @endif" data-toggle="tooltip" data-placement="left" title="Mark as complete"><span class="fa @if ($section->completed) fa-check-square @else fa-square @endif"></span></span>
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-move-right label pull-left label-primary" data-placement="right" title="Move right" onclick="move_component({{ $section->id }}, 'right');"><span class="fa fa-arrow-right"></span></span>
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-move-left label pull-left label-primary" data-placement="left" title="Move left" onclick="move_component({{ $section->id }}, 'left');"><span class="fa fa-arrow-left"></span></span>
 															<span data-section_id="{{ $section->id }}" class="toc-icon toc-move-down label pull-left label-primary" data-placement="down" title="Move down" onclick="move_component({{ $section->id }}, 'down');"><span class="fa fa-arrow-down"></span></span>
@@ -142,7 +142,7 @@
 																			<a href="/account/project/section/{{ $project->id }}/{{ $child->id }}">&nbsp;&nbsp;{{ $child->title }}</a> @if ($child->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 																			@if($editable)
 																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($child->deleted) fa-undo @else fa-times @endif"></span></span>
-																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+																			<span data-section_id="{{ $child->id }}" class="toc-icon toc-check-complete label pull-right @if ($child->completed) label-success @else label-default @endif"><span class="fa @if ($child->completed) fa-check-square @else fa-square @endif"></span></span>
                                                                             <span data-child_id="{{ $child->id }}" class="toc-icon toc-move-right label pull-left label-primary" data-placement="right" title="Move right" onclick="move_component({{ $child->id }}, 'right');"><span class="fa fa-arrow-right"></span></span>
                                                                             <span data-child_id="{{ $child->id }}" class="toc-icon toc-move-left label pull-left label-primary" data-placement="left" title="Move left" onclick="move_component({{ $child->id }}, 'left');"><span class="fa fa-arrow-left"></span></span>
                                                                             <span data-child_id="{{ $child->id }}" class="toc-icon toc-move-down label pull-left label-primary" data-placement="down" title="Move down" onclick="move_component({{ $child->id }}, 'down');"><span class="fa fa-arrow-down"></span></span>
@@ -161,7 +161,7 @@
 	                                                                                        <a href="/account/project/section/{{ $project->id }}/{{ $chch->id }}">&nbsp;&nbsp;{{ $chch->title }}</a> @if ($chch->deleted) <span class="label pull-right label-warning">Deleted</span> @endif
 	                                                                                        @if($editable)
 	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-delete label pull-right label-danger"><span class="fa @if ($chch->deleted) fa-undo @else fa-times @endif"></span></span>
-	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square-o @else fa-square-o @endif"></span></span>
+	                                                                                        <span data-section_id="{{ $chch->id }}" class="toc-icon toc-check-complete label pull-right @if ($chch->completed) label-success @else label-default @endif"><span class="fa @if ($chch->completed) fa-check-square @else fa-square @endif"></span></span>
                                                                                             <span data-chch_id="{{ $chch->id }}" class="toc-icon toc-move-right label pull-left label-primary" data-placement="right" title="Move right" onclick="move_component({{ $chch->id }}, 'right');"><span class="fa fa-arrow-right"></span></span>
                                                                                             <span data-chch_id="{{ $chch->id }}" class="toc-icon toc-move-left label pull-left label-primary" data-placement="left" title="Move left" onclick="move_component({{ $chch->id }}, 'left');"><span class="fa fa-arrow-left"></span></span>
                                                                                             <span data-chch_id="{{ $chch->id }}" class="toc-icon toc-move-down label pull-left label-primary" data-placement="down" title="Move down" onclick="move_component({{ $chch->id }}, 'down');"><span class="fa fa-arrow-down"></span></span>
@@ -297,7 +297,7 @@ var $elems = $("html, body");
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-square-o');
+				$(section).children().removeClass('fa-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -317,7 +317,7 @@ var $elems = $("html, body");
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('label-default');
 							$(section).addClass('label-success');
-							$(section).children().addClass('fa-check-square-o');
+							$(section).children().addClass('fa-check-square');
 	
 				        }
 				        else {
@@ -332,7 +332,7 @@ var $elems = $("html, body");
 				
 				//$(section).addClass('label-success');
 				//$(section).removeClass('label-default');
-				$(section).children().removeClass('fa-check-square-o');
+				$(section).children().removeClass('fa-check-square');
     			$(section).children().addClass("fa-spinner fa-spin");
 
 				var formData = { 
@@ -352,7 +352,7 @@ var $elems = $("html, body");
 					        $(section).children().removeClass("fa-spinner fa-spin");
 					        $(section).removeClass('label-success');
 							$(section).addClass('label-default');
-							$(section).children().addClass('fa-square-o');
+							$(section).children().addClass('fa-square');
 	
 				        }
 				        else {

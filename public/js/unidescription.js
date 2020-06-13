@@ -196,7 +196,7 @@ $(document).ready(function(){
 			$('#json_toc').val(jsonString);
 			//$('#serialize_output').html("<PRE>"+jsonString+"</pre>");
 			_super($item, container);
-			$('#toc-form').submit();
+			//$('#toc-form').submit();
 		},
         /*
 		isValidTarget: function ($item, container) {

@@ -6,6 +6,12 @@
 
 <div class="row blade">
 	<div class="container">
+
+<?php if ($_SERVER['HTTP_REFERER'] == 'https://www.unidescription.org/auth/password'): ?>
+<div class="alert alert-success" role="alert">
+        You will receive an email shortly with instructions to reset your password.
+</div>
+<?php endif; ?>
 	
 		<div class="col-lg-12">
 			<h2 class="page-header">Password Reset</h2>
@@ -13,7 +19,7 @@
 			<p>&nbsp;</p>
 		</div>
 	
-		<form method="POST" action="/password/email" class="form-register">
+		<form method="POST" action="/password/email?orig=1" class="form-register">
 		    
 		    {!! csrf_field() !!}
 		

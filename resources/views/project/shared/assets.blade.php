@@ -60,11 +60,13 @@ $('div#dropit').dropzone({
 
 
         $('#asset').on('change', function() {
+            /*
             $('.modal-title').html('Please wait');
             $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
             $('.modal-footer').html('');
             $('#deleteModal').modal({show: true});
             setTimeout(function() { location.reload() }, 500);
+             */
         });
 
 	  	$('.asset-delete').on('click', function(event) {

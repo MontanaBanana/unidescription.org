@@ -13,7 +13,9 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         '/account/project/section',
+        '/account/project/unlock/*',
         '/library/replacetext',
         '/account/project/assets',
+        '/api/*',
     ];
 }

@@ -29,7 +29,7 @@
                     <span class="btn btn-sm btn-primary btn-inline" id="share-button"><i id="share-icon" class="fa fa-plus fa-fw"></i> Share</span>
                 </div>
                 
-                <span class="btn btn-lg btn-warning btn-wide btn-icon googleContactsButton"><span class="fa fa-google"></span> Authorize Contacts</span>
+                <span class="btn btn-lg btn-warning btn-wide btn-icon googleContactsButton"><span class="fab fa-google"></span> Authorize Contacts</span>
                 <p id="googleContactSuccess" style="display: none;">Alright! Now, you can just start typing email addresses or names of your contacts.</p>
                 
                 <p>&nbsp;</p>

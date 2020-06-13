@@ -32,7 +32,9 @@
 		<!-- /.row -->
 		
 		<?php
+            $limit = 0;
 			foreach ($activities as $ts => $a):
+                if ($limit++ > 50) { break; }
 				?>		
 				<div class="row">
 					<div class="container">

@@ -57,6 +57,53 @@
             div.lm { margin-left: 20px; }
         </style>
 
+<script type="text/javascript">
+    var duration_total = 0;
+    function getDuration(src, cb) {
+        var audio = new Audio();
+        $(audio).on("loadedmetadata", function(){
+            cb(audio.duration);
+        });
+        audio.src = src;
+    }
+
+    function updateDuration() {
+        var date = new Date(null);
+        date.setSeconds(duration_total);
+        var utc = date.toUTCString();
+        // // retrieve each value individually - returns h:m:s
+        //var time = date.getUTCHours() + ':' + date.getUTCMinutes() + ':' +  date.getUTCSeconds();
+        //var time = date.toISOString().substr(11, 8);
+
+        var string_time = '';
+        if (date.getUTCHours() > 0) {
+            string_time += date.getUTCHours() + ' hour';
+            if (date.getUTCHours() > 1) {
+                string_time += 's';
+            }
+            string_time += ', ';
+        }
+
+        if (date.getUTCMinutes() > 0) {
+            string_time += date.getUTCMinutes() + ' minute';
+            if (date.getUTCMinutes() > 1) {
+                string_time += 's';
+            }
+            string_time += ', ';
+        }
+
+        if (date.getUTCSeconds() > 0) {
+            string_time += date.getUTCSeconds() + ' second';
+            if (date.getUTCSeconds() > 1) {
+                string_time += 's';
+            }
+        }
+
+        document.getElementById("duration").textContent = string_time.replace(/, $/, '');
+
+    }
+</script>
+
 	</head>
 	<body>
         
@@ -65,6 +112,7 @@
         <div id="toc">
             <h1>{{ $project->title }}</h1>
             <!--<p>{{ $project->description }}</p>-->
+            <p>Audio Available: <span id="duration"></span></p>
         </div>
             <nav>
                 <div width="50%">
@@ -126,6 +174,13 @@
 <audio id="audio-{{ $section->id }}" preload="auto" controls>
       <source src="{{ $section->audio_file_combined }}" type="audio/mpeg">
 </audio>
+<script type="text/javascript">
+    getDuration("{{ $section->audio_file_combined }}", function(length) {
+        console.log('I got length ' + length);
+        duration_total += length;
+        updateDuration();
+    });
+</script>
                                         <a href="#toc">&uarr; back to top</a>
                                     </div>
                             <?php endif; ?>
@@ -137,7 +192,7 @@
                             @if (count($section->children))
                                 @foreach ($section->children as $s)
                                     @if ($s->completed && !$s->deleted)
-                                            <h3> {{ $s->title }} </h3>
+                                            <h3 id="{{ $s->id }}"> {{ $s->title }} </h3>
                                             <a name="{{ $s->id }}"></a>
 
                                             <?php if (strlen($s->description)): ?>
@@ -149,6 +204,13 @@
 <audio id="audio-{{ $s->id }}" preload="auto" controls>
       <source src="{{ $s->audio_file_combined }}" type="audio/mpeg">
 </audio>
+<script type="text/javascript">
+    getDuration("{{ $s->audio_file_combined }}", function(length) {
+        console.log('I got length ' + length);
+        duration_total += length;
+        updateDuration();
+    });
+</script>
                                                 </div>
                                                 <a href="#toc">&uarr; back to top</a>
 
@@ -161,7 +223,7 @@
                                                 @foreach ($s->children as $chch)
                                                     @if ($chch->completed && !$chch->deleted)
                                                     <p class="chch">
-                                                        <h4>{{ $chch->title }}</h4> 
+                                                        <h4 id="{{ $chch->id }}">{{ $chch->title }}</h4> 
                                                         <a name="{{ $chch->id }}"></a>
                                                         <?php if (strlen($chch->description)): ?>
                                                             <?php if (strlen($chch->image_url) && $chch->has_image_rights): ?>
@@ -173,6 +235,12 @@
 <audio id="audio-{{ $chch->id }}" preload="auto" controls>
       <source src="{{ $chch->audio_file_combined }}" type="audio/mpeg">
 </audio>
+<script type="text/javascript">
+    getDuration("{{ $chch->audio_file_combined }}", function(length) {
+        duration_total += length;
+        updateDuration();
+    });
+</script>
                                                             </div>
                                                             <a href="#toc">&uarr; back to top</a>
 
@@ -215,16 +283,20 @@ console.log('inside clicky');
         event.preventDefault();
         $('html, body').animate({
           scrollTop: target.offset().top
-        }, 1000, function() {
+        }, 750, function() {
           // Callback after animation
           // Must change focus!
           var $target = $(target);
           $target.focus();
+          console.log('focused on');
+          console.log($target);
           if ($target.is(":focus")) { // Checking if the target was focused
             return false;
           } else {
             $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
             $target.focus(); // Set focus again
+            console.log($target);
+            console.log('focused inside');
           };
         });
       }

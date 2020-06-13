@@ -100,6 +100,8 @@ Route::post(WEBROOT.'library/delete', 'LibraryController@postDelete');
 Route::post(WEBROOT.'library/update', 'LibraryController@postUpdate');
 
 
+Route::get(WEBROOT.'api/status', 'ApiController@getStatus');
+Route::post(WEBROOT.'api/describe', 'ApiController@postDescribe');
 // Project routes
 Route::get(WEBROOT.'project/npsProjects', 'ProjectController@getNpsProjects');
 Route::get(WEBROOT.'project/npsProjectsV2', 'ProjectController@getNpsProjectsV2');
@@ -139,7 +141,8 @@ Route::post(WEBROOT.'account/project/deleted', 'ProjectController@postDeleted');
 
 Route::get(WEBROOT.'account/project/section/{id}/{section_id}', 'ProjectController@getSection');
 Route::post(WEBROOT.'account/project/section', 'ProjectController@postSection');
-Route::get(WEBROOT.'account/project/unlock', 'ProjectController@getUnlock');
+Route::get(WEBROOT.'account/project/unlock/{section_id}', 'ProjectController@getUnlock');
+Route::post(WEBROOT.'account/project/unlock/{section_id}', 'ProjectController@postUnlock');
 Route::post(WEBROOT.'account/project/addSection', 'ProjectController@postAddSection');
 Route::post(WEBROOT.'account/project/section/crop', 'ProjectController@postSectionCrop');
 Route::post(WEBROOT.'account/project/section/deleteImage', 'ProjectController@postDeleteImage');

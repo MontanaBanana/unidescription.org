@@ -286,7 +286,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 						<div class="caption" style="height: 165px;">
 							<h4>Megan Conway</h4>
 							<h5>Co-PI</h5>
-							<p>An Assistant Professor in the UH Center on Disability Studies</p>
+                            <p>A Research and Accessibility Specialist at the Helen Keller National Center, NY</p>
 						</div>
 					</div>
                     <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2014 - Present</small>
@@ -314,7 +314,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<img class="img-responsive img-person" src="{{ SITEROOT }}/images/uh_logo.jpg" alt="University of Hawaii Logo" style="border: 0;">
+						<img class="img-responsive img-person" src="{{ SITEROOT }}/images/team/pat-morrissey.jpg" alt="Photo of Patricia Morrissey" style="border: 0;">
 						<div class="caption" style="height: 165px;">
                             <h4>Patricia Morrissey</h4>
 							<h5>Co-PI</h5>
@@ -389,7 +389,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
+						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/team/kyndra-lococo.jpg" alt="Photo of Kyndra LoCoco"></a>
 						<div class="caption" style="height: 165px;">
                             <h4>Kyndra LoCoco</h4>
 							<h5>Collaborator</h5>
@@ -400,7 +400,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/google_logo.png" alt="Google logo"></a>
+						<a href="http://www.google.com/" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/team/adrienne-biddings.jpg" alt="Photo of Adrienne Biddings"></a>
 						<div class="caption" style="height: 165px;">
                             <h4>Adrienne Biddings</h4>
 							<h5>Collaborator</h5>
@@ -411,7 +411,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/acb.png" alt="American Council of the Blind Logo"></a>
+						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/team/eric-bridges.png" alt="Photo of Eric Bridges"></a>
 						<div class="caption" style="height: 165px;">
                             <h4>Eric Bridges</h4>
 							<h5>Collaborator</h5>
@@ -422,7 +422,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/acb.png" alt="American Council of the Blind Logo"></a>
+						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/team/jo-lynn-bailey.jpg" alt="Photo of Jo Lynn Bailey-Page"></a>
 						<div class="caption" style="height: 165px;">
 							<h4>Jo Lynn Bailey-Page</h4>
 							<h5>Collaborator</h5>
@@ -443,7 +443,7 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/acb.png" alt="American Council of the Blind Logo"></a>
+						<a href="http://acb.org" target="_blank"><img class="img-responsive img-logo" src="{{ SITEROOT }}/images/team/dan-spoone.png" alt="Photo of Dan Spoone"></a>
 						<div class="caption" style="height: 165px;">
 							<h4>Dan Spoone</h4>
                             <h5>Collaborator</h5>
@@ -465,7 +465,18 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<img class="img-responsive img-person" src="/images/uh_logo.jpg" alt="University of Hawaii logo" style="border: 0;">
+						<img class="img-responsive img-person" src="/images/team/layla.jpg" alt="Layla the guide dog's bio photo">
+						<div class="caption" style="height: 165px;">
+                            <h4>Layla</h4>
+							<h5>Ms. Koirala's Assistant</h5>
+							<p>University of Hawai‘i<br />Honolulu, HI</p>
+						</div>
+					</div>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2020 - Present</small>
+				</div>
+				<div class="col-md-3 text-center">
+					<div class="thumbnail">
+						<img class="img-responsive img-person" src="/images/team/ashiyan-rahmani-shirazi.jpg" alt="Picture of Ashiyan Rahmani-Shirazi" style="border: 0;">
 						<div class="caption" style="height: 165px;">
 							<h4>Ashiyan Rahmani-Shirazi</h4>
 							<h5>Research Assistant</h5>
@@ -476,31 +487,20 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
-						<img class="img-responsive img-person" src="/images/uh_logo.jpg" alt="University of Hawaii logo" style="border: 0;">
+						<img class="img-responsive img-person" src="/images/team/miles-gordon.png" alt="Photo of Miles Gordon" style="border: 0;">
 						<div class="caption" style="height: 165px;">
                             <h4>Miles Gordon</h4>
 							<h5>Research Assistant</h5>
 							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
 					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 115px;">2019</small>
+                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2019 - 2020</small>
 				</div>
 				<div class="col-md-3 text-center">
 					<div class="thumbnail">
 						<img class="img-responsive img-person" src="/images/team/tuyet-hayes.jpg" alt="Tuyet Hayes's bio photo">
 						<div class="caption" style="height: 165px;">
 							<h4>Tuyet Hayes</h4>
-							<h5>Research Assistant</h5>
-							<p>University of Hawai‘i<br />Honolulu, HI</p>
-						</div>
-					</div>
-                    <small style="font-style: italic; position: absolute; bottom: 30px; margin: auto; color: black; left: 90px;">2016 - 2018</small>
-				</div>
-				<div class="col-md-3 text-center">
-					<div class="thumbnail">
-						<img class="img-responsive img-person" src="/images/team/phil-jordan.jpg" alt="Philipp Jordan's bio photo">
-						<div class="caption" style="height: 165px;">
-							<h4>Philipp Jordan</h4>
 							<h5>Research Assistant</h5>
 							<p>University of Hawai‘i<br />Honolulu, HI</p>
 						</div>
@@ -564,12 +564,39 @@ An ACB member tests our UniD app at Muir Woods.<br/>Courtesy of: Alison Taggart-
 		</div>
 		<!-- /.row -->
 
+        <div class="row blade" style="padding-bottom: 0px;">
+            <div class="container"> 
+                       <center><a target="_blank" href="https://www.acb.org/"><img src="https://www.acb.org/sites/default/files/ACB%20New%20Logo%202017.png"></a></center><br /><br />
+                    <p>
+                        <strong>American Council of the Blind Volunteers</strong><br>
+                    </p>
+                    <p>
+                        Here are some of the most-active <a href="https://www.acb.org/" target="_blank">American Council of the Blind</a> volunteers, who have contributed to The UniDescription Project in many ways so far, such as through helping with the Descripathons, reviewing Audio Description in process, and testing Audio Description at U.S. National Park Service sites. Thank you, again, volunteers: <br /><br />
 
-		<div class="row blade">
+Melissa Allman, Natalie Barrett, Christina Brino, Lynn Burnett, Lori Castner, Mary Castellano, Brian Charlson, Kim Charlson, Tonia Clayton, Bev Clifford, Victor Clifford, Denise Decker, Chenier Derrick, Dan Dillon, Steve Dresser, Clarisse Durnell, Martha Espitia, Jonathan Finley, Carol Francisco, Maile George, Jamie Gibson-Barrows, John Glass, Susan Glass, James Gonsalves, Chris Gray, Gabe Griffeth, Pam Groswald, Debbie Grubb, Bob Hachey, Sarah Harris, Lynn Hedl, Veronica Hernandez, Betty Hunter, Sharon Ige, Peggy Ivie, Cory Kadlik, Alva Kaneaiakala, Mike Keithley, Vickie Kennedy, Perla Kohs, Sajja Koirala, Ralph Korosec, Laureen Kukino, Lew Lasher, Sally Maguire, Rich McCarthy, Michelle McGrew, David Meador, Tanya Milojevic, Rick Morin, Joy Nagata-Muranaka, Tom Osborn, Linda Porelle, Doug Powell, John Quarles, Clark Rachfal, Sudha Rajagopalam, Shana Ray, Nikki Richards, Joey Ruiz, Noel Runyon, Gina Russo, Pat Sheehan, Jonah Sniffen, Leslie Spoone, Jo Anne Stombaugh, Michael Talley, Laura Tanigawa, Jeff Thom, David Trott, Rhonda Trott, Robb Turner, Alice Turner, Ernie Udo, Barry Vaughn, Frank Welte, Beth White, Tanya Williams, Roger Womack, and Sheila Young.
+
+
+                    </p>
+                    <hr />
+            </div>
+        </div>
+
+
+		<div class="row blade" style="padding-top: 10px;">
 			<div class="container">
 				<div class="col-lg-12">
 					<h2 class="page-header">Media Coverage</h2>
 				</div>
+				<div class="col-md-6">
+                    <a href="https://www.hawaiinewsnow.com/2019/08/26/innovative-computer-program-helps-blind-experience-national-parks/" target="_blank"><img alt="Innovative computer program helps the blind experience national parks, Aug. 26, 2019" class="photo" style="margin-top: 16px;" src="/images/innovative_computer_program.png" width="100%" /></a>
+                    <p class="caption"><a style="font-size: 20px;" href="https://www.hawaiinewsnow.com/2019/08/26/innovative-computer-program-helps-blind-experience-national-parks/" target="_blank">Innovative computer program helps the blind experience national parks, Aug. 26, 2019</a></p>
+                </div>
+				<div class="col-md-6">
+                    <a href="http://acbradio.org/sites/default/files/archives/shows/mainmenu/mm20190329.mp3" target="_blank"><img alt="ACB's UniDescription, CSUN and the Apple Keynote are featured on this week's episode of Main Menu, March 29, 2019" class="photo" style="margin-top: 16px;" src="/images/acb_padding.png"/></a>
+                    <p><a style="font-size: 20px;" href="http://acbradio.org/sites/default/files/archives/shows/mainmenu/mm20190329.mp3" target="_blank">ACB's UniDescription, CSUN and the Apple Keynote are featured on this week's episode of Main Menu, March 29, 2019</a></p>
+                </div>
+            </div>
+			<div class="container">
 				<div class="col-md-6">
                     <a href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank"><img alt="New opportunities for visually impaired visitors at national parks, Oct. 24, 2018" class="photo" style="margin-top: 16px;" src="/images/new_opportunities.png" width="100%" /></a>
                     <p class="caption"><a style="font-size: 20px;" href="https://www.uhfoundation.org/impact/research/new-opportunities-visually-impaired-visitors-national-parks" target="_blank">New opportunities for visually impaired visitors at national parks, Oct. 24, 2018</a></p>

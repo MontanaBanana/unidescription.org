@@ -136,6 +136,9 @@ function onSubmit(token) {
 										<input aria-labelledby="project-name-label" type="text" class="large" name="title" value="{{ $project->title }}" <?php if(!$editable){echo ' disabled';}?> />
 									</div>
 								</div>
+<?php
+if ($project->id > 0):
+?>
 <!--
 								
 								<div class="panel panel-default">
@@ -165,6 +168,29 @@ function onSubmit(token) {
 										<textarea aria-labelledby="version-label" name="version" <?php if(!$editable){echo ' disabled';}?>>{{ $project->version }}</textarea>
 									</div>
 								</div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height: 57px;">
+                        Geolocation Tag @if($editable)<span class="pull-right" style="padding-right: 5px;"><a class="btn btn-sm btn-primary" style="position: relative; top: -5px;" onclick="FillOutCoords()"><span id="location-arrow" class="fa fa-map-marker" style="font-size: 2em;" title="Click or tap to grab your current GPS coordinates"></span></a></span>@endif
+                    </div>
+                    <div class="panel-body">
+                        This GPS coordinate is used to display how far away a person is from this location while in the UniD app. You can click the map marker icon above to get your current GPS coordinates or fill them in manually below.    
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Latitude:
+                        <input type="text" id="latitude" class="large" name="latitude" value="{{ $project->latitude }}" style="color:#000; width:100%; padding:0 5px">
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Longitude:
+                        <input type="text" id="longitude" class="large" name="longitude" value="{{ $project->longitude }}" style="color:#000; width:100%; padding:0 5px">
+                    </div>
+                </div>
 	
 <!--
 								<div class="panel panel-default">
@@ -204,10 +230,10 @@ function onSubmit(token) {
 									<div class="panel-body white">
 										<div class="col-md-6">
 											@if ($project->image_url)
-												<img src="{{ $project->image_url }}" style="width: 100%;" class="thumbnail" />
+												<img src="{{ $project->image_url }}?ts=<?php echo time(); ?>" style="width: 100%;" class="thumbnail" />
 												@if($editable)
 												<button type="button" class="btn btn-primary btn-lg btn-icon label-danger" id="deleteProjectImage" style="width: 100%;">
-														<span class="fa fa-remove"></span> Delete photo
+														<span class="far fa-trash"></span> Delete photo
 												</button>
 												@endif
 											@endif
@@ -224,9 +250,10 @@ function onSubmit(token) {
 	
                                 @include('project.shared.assets')
 
+<?php endif; ?>
 								@if($editable)
 								<div class="wrapper-footer">
-									<button class="g-recaptcha btn btn-lg btn-primary btn-icon @if ($project->id) save-details @endif" data-sitekey="6LdbV4oUAAAAAIxVY3G5nUu2fb_8RUOA3CFZ6NwT" data-callback='onSubmit'><span class="fa fa-floppy-o"></span> Save Details</button>
+									<button class="g-recaptcha btn btn-lg btn-primary btn-icon @if ($project->id) save-details @endif" data-sitekey="6LdbV4oUAAAAAIxVY3G5nUu2fb_8RUOA3CFZ6NwT" data-callback='onSubmit'><span class="fa fa-save"></span> Save Details</button>
 									<!--<a href="#" class="btn btn-lg btn-success btn-icon"><span class="fa fa-check"></span> Project Details Saved</a>-->
 								</div>
 								@endif
@@ -300,6 +327,7 @@ function onSubmit(token) {
 
 
         @if ($project->id)
+            /*
             $(window).on('beforeunload', function(){
                 if ($("#project_details_form").data("changed")) {
 
@@ -311,14 +339,30 @@ function onSubmit(token) {
                     $("#project_details_form").ajaxSubmit({url: '/account/project/details', type: 'post', async: false});
                 }
             });
+             */
         @endif
+
+
+        @if ($project->id)
+        window.onunload = function saveAndPostData() {
+                if ($("#project_details_form").data("changed")) {
+                    var formData = new FormData(document.getElementById("project_details_form"));
+                    console.log('sending beacon');
+                    console.log(formData);
+                    formData.set('was_autosave', 0);
+                    navigator.sendBeacon("/account/project/details", formData);
+                    console.log('sent');
+                }
+        };
+        @endif
+
 
         $('#project_image').on('change', function() {
                 $('.modal-title').html('Please wait');
                 $('.modal-body').html('Uploading data...&nbsp;&nbsp;&nbsp;<img src="/images/ajax-loader.gif" style="border: 0;">');
                 $('.modal-footer').html('');
                 $('#deleteModal').modal({show: true});
-                setTimeout(function() { $("#project_details_form").submit(); }, 500);
+                setTimeout(function() { $("#project_details_form").submit(); }, 1000);
 
         });
 
@@ -353,6 +397,21 @@ function onSubmit(token) {
 
 	});
 	@endif
+    function FillOutCoords() {
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                 var latitude  = position.coords.latitude;
+                 var longitude = position.coords.longitude;
+
+                 $('#latitude').val( latitude );
+                 $('#longitude').val( longitude );
+            });
+        } else {
+              /* geolocation IS NOT available */
+            alert('Couldn\'t access GPS coordinates');
+        }
+    }
+
 
 </script>
 
